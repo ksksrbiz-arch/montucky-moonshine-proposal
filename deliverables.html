@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Montucky Moonshine — Proposal Deliverables | 1Commerce</title>
+<meta name="description" content="Complete proposal deliverables for Montucky Moonshine's Sovereign Command Center — by 1Commerce LLC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a08;
+  --bg2: #121210;
+  --card: #1a1a16;
+  --card-hover: #222218;
+  --amber: #c8922a;
+  --amber-light: #e6b04a;
+  --amber-glow: rgba(200,146,42,0.12);
+  --cream: #f5f0e6;
+  --cream-muted: #c4bfb2;
+  --dim: #8a8578;
+  --border: rgba(200,146,42,0.12);
+  --ff-d: 'Playfair Display', Georgia, serif;
+  --ff-b: 'Barlow', system-ui, sans-serif;
+  --ff-c: 'Barlow Condensed', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--ff-b);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+
+a { color: var(--amber); text-decoration: none; transition: color 0.3s; }
+a:hover { color: var(--amber-light); }
+a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+
+/* Hero */
+.hero {
+  position: relative;
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(200,146,42,0.06) 0%, transparent 60%);
+  border-bottom: 1px solid var(--border);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: var(--amber-glow);
+  border: 1px solid rgba(200,146,42,0.2);
+  border-radius: 2px;
+  font-family: var(--ff-c);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--amber);
+  margin-bottom: 2rem;
+}
+.hero-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.hero h1 {
+  font-family: var(--ff-d);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--cream);
+}
+.hero h1 em { font-style: italic; color: var(--amber); }
+.hero .sub {
+  font-size: 1rem;
+  color: var(--cream-muted);
+  max-width: 540px;
+  margin: 0 auto 1.5rem;
+  font-weight: 300;
+}
+.hero .from {
+  font-family: var(--ff-c);
+  font-size: 0.8rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Container */
+.container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Section */
+.section { padding: 3.5rem 0; }
+.section + .section { border-top: 1px solid var(--border); }
+.section-label {
+  font-family: var(--ff-c);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--ff-d);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 1.5rem;
+}
+
+/* Deliverable cards */
+.deliverable {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.deliverable:hover {
+  background: var(--card-hover);
+  border-color: rgba(200,146,42,0.25);
+  transform: translateX(4px);
+}
+.deliverable .num {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--amber-glow);
+  border: 1px solid rgba(200,146,42,0.2);
+  border-radius: 2px;
+  font-family: var(--ff-d);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--amber);
+  flex-shrink: 0;
+}
+.deliverable .info h3 {
+  font-family: var(--ff-b);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+}
+.deliverable .info p {
+  font-size: 0.85rem;
+  color: var(--cream-muted);
+  line-height: 1.5;
+}
+.deliverable .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  font-family: var(--ff-c);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.status-live { background: rgba(74,222,128,0.12); color: #4ade80; }
+.status-live .sdot { background: #4ade80; }
+.status-ready { background: var(--amber-glow); color: var(--amber); }
+.status-ready .sdot { background: var(--amber); }
+.status-attached { background: rgba(96,165,250,0.12); color: #60a5fa; }
+.status-attached .sdot { background: #60a5fa; }
+.sdot { width: 5px; height: 5px; border-radius: 50%; }
+.deliverable .arrow {
+  font-size: 1.2rem;
+  color: var(--dim);
+  transition: all 0.3s;
+  align-self: center;
+}
+.deliverable:hover .arrow { color: var(--amber); transform: translateX(4px); }
+
+/* Phase roadmap */
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.phase {
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  position: relative;
+}
+.phase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+.phase:nth-child(1)::before { background: #4ade80; }
+.phase:nth-child(2)::before { background: var(--amber); }
+.phase:nth-child(3)::before { background: #a78bfa; }
+.phase-num {
+  font-family: var(--ff-c);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--dim);
+  margin-bottom: 0.5rem;
+}
+.phase h3 {
+  font-family: var(--ff-d);
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+.phase p {
+  font-size: 0.85rem;
+  color: var(--cream-muted);
+  line-height: 1.5;
+}
+
+/* Architecture diagram */
+.arch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+.arch-node {
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  text-align: center;
+}
+.arch-node .label {
+  font-family: var(--ff-c);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  margin-bottom: 0.3rem;
+}
+.arch-node .value {
+  font-family: var(--ff-d);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cream);
+}
+.arch-center {
+  grid-column: 1 / -1;
+  padding: 1.25rem;
+  background: var(--amber-glow);
+  border: 1px solid rgba(200,146,42,0.25);
+  border-radius: 2px;
+  text-align: center;
+}
+.arch-center .label { color: var(--amber); }
+.arch-center .value { color: var(--amber-light); }
+
+/* CTA */
+.cta {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  background: linear-gradient(0deg, rgba(200,146,42,0.06) 0%, transparent 100%);
+  border-top: 1px solid var(--border);
+}
+.cta h2 {
+  font-family: var(--ff-d);
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+.cta p {
+  color: var(--cream-muted);
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--amber);
+  color: var(--bg);
+  font-family: var(--ff-c);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  min-height: 48px;
+}
+.btn:hover { background: var(--amber-light); color: var(--bg); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--amber);
+  border: 1px solid rgba(200,146,42,0.3);
+}
+.btn-ghost:hover { background: var(--amber-glow); color: var(--amber-light); }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+}
+footer p {
+  font-size: 0.75rem;
+  color: var(--dim);
+}
+footer a { color: var(--amber); }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .deliverable { grid-template-columns: 1fr; gap: 0.75rem; }
+  .deliverable .num { width: 2.5rem; height: 2.5rem; font-size: 1rem; }
+  .deliverable .status { margin-top: 0.5rem; }
+  .hero { padding: 4rem 1.5rem 3rem; }
+  .phases { grid-template-columns: 1fr; }
+}
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal:nth-child(2) { transition-delay: 0.08s; }
+  .reveal:nth-child(3) { transition-delay: 0.16s; }
+  .reveal:nth-child(4) { transition-delay: 0.24s; }
+  .reveal:nth-child(5) { transition-delay: 0.32s; }
+  .reveal:nth-child(6) { transition-delay: 0.4s; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge"><span class="dot"></span> Proposal Ready</div>
+  <h1>Montucky <em>Moonshine</em></h1>
+  <p class="sub">The Sovereign Command Center — a unified ecosystem for Shopify, Meta, and TikTok. Everything below is built, live, and ready for review.</p>
+  <p class="from">Engineered by 1Commerce LLC &middot; April 2026</p>
+</header>
+
+<main>
+  <!-- Deliverables -->
+  <div class="container">
+    <section class="section">
+      <p class="section-label">Deliverables</p>
+      <h2 class="section-title">Your Complete Package</h2>
+
+      <a href="https://montucky-moonshine-proposal.netlify.app" target="_blank" rel="noopener noreferrer" class="deliverable reveal">
+        <div class="num">1</div>
+        <div class="info">
+          <h3>Live Storefront Redesign</h3>
+          <p>Premium headless frontend with your full product catalog. Dark rustic aesthetic, frictionless Shopify checkout. Mobile-optimized, sub-2s load time.</p>
+        </div>
+        <span class="status status-live"><span class="sdot"></span>Live</span>
+      </a>
+
+      <a href="https://github.com/ksksrbiz-arch/montucky-moonshine-proposal" target="_blank" rel="noopener noreferrer" class="deliverable reveal">
+        <div class="num">2</div>
+        <div class="info">
+          <h3>Source Code Repository</h3>
+          <p>Full ownership of the codebase — HTML5, CSS3, vanilla JS. Auto-deploying from GitHub to Netlify. No vendor lock-in, no proprietary dependencies.</p>
+        </div>
+        <span class="status status-live"><span class="sdot"></span>Live</span>
+      </a>
+
+      <div class="deliverable reveal">
+        <div class="num">3</div>
+        <div class="info">
+          <h3>Sovereign Moonshine Pitch Deck</h3>
+          <p>15-page strategic overview covering the Autonomous Command Center architecture, omnichannel sync, AI asset generation, agentic workflows, and phased rollout plan.</p>
+        </div>
+        <span class="status status-attached"><span class="sdot"></span>Attached</span>
+      </div>
+
+      <div class="deliverable reveal">
+        <div class="num">4</div>
+        <div class="info">
+          <h3>Technical Infrastructure Audit</h3>
+          <p>Full architectural assessment of the 1Commerce automation framework — GCP microservices, event-driven backbone, security considerations, and phased implementation roadmap.</p>
+        </div>
+        <span class="status status-ready"><span class="sdot"></span>Ready</span>
+      </div>
+
+      <div class="deliverable reveal">
+        <div class="num">5</div>
+        <div class="info">
+          <h3>Social Commerce Strategy</h3>
+          <p>Data-driven content calendar, Facebook/Instagram/TikTok optimization plan, video production blueprint, and algorithmic growth strategy tailored to your brand.</p>
+        </div>
+        <span class="status status-ready"><span class="sdot"></span>Ready</span>
+      </div>
+
+      <div class="deliverable reveal">
+        <div class="num">6</div>
+        <div class="info">
+          <h3>Admin Dashboard Prototype</h3>
+          <p>Sovereign Command Center UI mockup — revenue analytics, social hub management, Shopify sync controls, automation builder, SEO engine, and AI product studio.</p>
+        </div>
+        <span class="status status-ready"><span class="sdot"></span>Ready</span>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="section">
+      <p class="section-label">Architecture</p>
+      <h2 class="section-title">The Sovereign Architecture</h2>
+      <div class="arch-grid">
+        <div class="arch-node"><div class="label">Storefront</div><div class="value">Shopify</div></div>
+        <div class="arch-node"><div class="label">Social</div><div class="value">Meta</div></div>
+        <div class="arch-node"><div class="label">Discovery</div><div class="value">TikTok</div></div>
+        <div class="arch-center"><div class="label">Single Source of Truth</div><div class="value">The Command Center (SSOT)</div></div>
+        <div class="arch-node"><div class="label">Payments</div><div class="value">Shopify Buy SDK</div></div>
+        <div class="arch-node"><div class="label">Automation</div><div class="value">n8n Workflows</div></div>
+        <div class="arch-node"><div class="label">Analytics</div><div class="value">BigQuery</div></div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="section">
+      <p class="section-label">Rollout Plan</p>
+      <h2 class="section-title">Convergence to Expansion</h2>
+      <div class="phases">
+        <div class="phase reveal">
+          <div class="phase-num">Phase 1 &middot; Weeks 1–2</div>
+          <h3>Convergence</h3>
+          <p>Connect the Shopify/Meta/TikTok triad. Deploy the React headless frontend. Route all payments to the Shopify SSOT. Zero payment disruption.</p>
+        </div>
+        <div class="phase reveal">
+          <div class="phase-num">Phase 2 &middot; Weeks 3–4</div>
+          <h3>The Copilot</h3>
+          <p>Activate the AI Asset Optimizer and Setup Wizards. Automate cross-platform catalog syncing. Enable voice-driven workflow execution.</p>
+        </div>
+        <div class="phase reveal">
+          <div class="phase-num">Phase 3 &middot; Ongoing</div>
+          <h3>Expansion</h3>
+          <p>Deploy the Analytics Engine. Activate the Torque affiliate loop. Scale social commerce with zero added operational overhead.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Ready to see it in action?</h2>
+    <p>20 minutes. Live walkthrough of the storefront, the command center, and the roadmap.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="https://montucky-moonshine-proposal.netlify.app" target="_blank" rel="noopener noreferrer" class="btn">View Live Demo &rarr;</a>
+      <a href="mailto:skdev@1commercesolutions.com?subject=Montucky%20Moonshine%20-%20Let's%20Talk" class="btn btn-ghost">Schedule a Call</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>1Commerce LLC &middot; <a href="https://1commercesolutions.com" target="_blank" rel="noopener noreferrer">1commercesolutions.com</a> &middot; PNW Enterprises</p>
+</footer>
+
+<script>
+// Scroll reveal
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+</script>
+</body>
+</html>
