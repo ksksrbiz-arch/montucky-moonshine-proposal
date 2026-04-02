@@ -31,6 +31,11 @@
   to = "/terms.html"
   status = 200
 
+[[redirects]]
+  from = "/deliverables"
+  to = "/deliverables.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

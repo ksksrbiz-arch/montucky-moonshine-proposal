@@ -323,7 +323,9 @@
       {n:"Bold Graphic Tee",p:"$33.32",img:"https://montuckymoonshine.com/cdn/shop/files/8382319889231594197_2048_1024x.jpg?v=1774642794",url:"https://montuckymoonshine.com/products/t-shirt-found-out-already",tag:"Apparel",cat:"tees"},
       {n:"Heavyweight Hoodie",p:"$87.77",img:"https://montuckymoonshine.com/cdn/shop/files/6909327151717644564_2048_1024x.jpg?v=1774545469",url:"https://montuckymoonshine.com/products/unisex-heavyweight-hooded-sweatshirt",tag:"Apparel",cat:"tees"},
       {n:"Jersey Tee",p:"$18.82",img:"https://montuckymoonshine.com/cdn/shop/files/8732487188133167477_2048_1024x.jpg?v=1774545435",url:"https://montuckymoonshine.com/products/unisex-jersey-short-sleeve-tee",tag:"Apparel",cat:"tees"},
-      {n:"Velveteen Blanket",p:"$32.15",img:"https://montuckymoonshine.com/cdn/shop/products/09193d3b46d306ced28add4a23b3e67e_1024x.jpg?v=1666326356",url:"https://montuckymoonshine.com/products/velveteen-minky-blanket-two-sided-print",tag:"Home",cat:"merchandise"}
+      {n:"Velveteen Blanket",p:"$32.15",img:"https://montuckymoonshine.com/cdn/shop/products/09193d3b46d306ced28add4a23b3e67e_1024x.jpg?v=1666326356",url:"https://montuckymoonshine.com/products/velveteen-minky-blanket-two-sided-print",tag:"Home",cat:"merchandise"},
+      {n:"WD & Duct Tape Tee",p:"$22.99",img:"https://montuckymoonshine.com/cdn/shop/files/5977245853495543666_2048_1024x.jpg?v=1774545663",url:"https://montuckymoonshine.com/products/wd-ducttape-tee",tag:"Apparel",cat:"tees"},
+      {n:"Women's Thongs (AOP)",p:"$22.38",img:"https://montuckymoonshine.com/cdn/shop/files/3122953234843618473_2048_1024x.jpg?v=1738052717",url:"https://montuckymoonshine.com/products/womens-thongs-aop",tag:"Apparel",cat:"merchandise"}
     ];
 
     function renderProducts(list, container) {
