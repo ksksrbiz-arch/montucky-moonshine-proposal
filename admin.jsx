@@ -1,1088 +1,206 @@
-import { useState, useEffect, useRef } from "react";
-import { BarChart, Bar, LineChart, Line, AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
-import { LayoutDashboard, ShoppingBag, Share2, Zap, Search, Image, GraduationCap, Settings, ChevronRight, TrendingUp, TrendingDown, Eye, MousePointerClick, DollarSign, Users, Package, Star, ExternalLink, Check, AlertTriangle, Info, ArrowRight, ArrowLeft, Globe, Link2, Bot, Cpu, BookOpen, Lightbulb, Target, BarChart3, Activity, RefreshCw, Sparkles, Wand2, Camera, Palette, Type, Layers, ShieldCheck, Clock, Plug, MessageSquare, Hash, Heart, Play, Store, CircleDot, ChevronDown, X, Menu, Home } from "lucide-react";
+import { useState } from "react";
+import { BarChart, Bar, AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
+import { LayoutDashboard, ShoppingBag, Share2, Zap, Search, Image, GraduationCap, Settings, ChevronRight, TrendingUp, TrendingDown, Eye, MousePointerClick, DollarSign, Users, Package, Star, Check, AlertTriangle, ArrowRight, ArrowLeft, Globe, Bot, Cpu, BookOpen, Lightbulb, Target, BarChart3, RefreshCw, Sparkles, Wand2, Camera, Palette, Clock, Plug, MessageSquare, Hash, Heart, Play, Store, ChevronDown, Menu, Home } from "lucide-react";
 
-// ============================================================
-// DATA & CONSTANTS
-// ============================================================
-const COLORS = {
-  amber: "#c8922a", amberLight: "#e6b04a", amberGlow: "rgba(200,146,42,0.15)",
-  bg: "#0a0a08", bgDark: "#121210", bgCard: "#1a1a16", bgCardHover: "#222218",
-  cream: "#f5f0e6", creamMuted: "#c4bfb2", textPrimary: "#eae5d8",
-  textSecondary: "#9e9a8f", textDim: "#6b675e", border: "rgba(200,146,42,0.12)",
-  green: "#4ade80", red: "#f87171", blue: "#60a5fa", purple: "#a78bfa",
-  pink: "#f472b6", cyan: "#22d3ee", orange: "#fb923c"
-};
+const C={amber:"#c8922a",amberLight:"#e6b04a",amberGlow:"rgba(200,146,42,0.15)",bg:"#0a0a08",bgDark:"#121210",bgCard:"#1a1a16",bgCardHover:"#222218",cream:"#f5f0e6",creamMuted:"#c4bfb2",textPrimary:"#eae5d8",textSecondary:"#9e9a8f",textDim:"#8a8578",border:"rgba(200,146,42,0.12)",green:"#4ade80",red:"#f87171",blue:"#60a5fa",purple:"#a78bfa",pink:"#f472b6",cyan:"#22d3ee",orange:"#fb923c",focus:"rgba(200,146,42,0.6)"};
 
-const revenueData = [
-  { month: "Oct", revenue: 1240, orders: 18 }, { month: "Nov", revenue: 2100, orders: 31 },
-  { month: "Dec", revenue: 3420, orders: 48 }, { month: "Jan", revenue: 2800, orders: 39 },
-  { month: "Feb", revenue: 3100, orders: 44 }, { month: "Mar", revenue: 4250, orders: 58 }
+const Styles=()=>(<style>{`
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:dark;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*:focus{outline:none}
+*:focus-visible{outline:2px solid ${C.focus};outline-offset:2px;border-radius:2px}
+button,a,[role="button"],[role="tab"],select,input,textarea{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+h1,h2,h3,h4{text-wrap:balance}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.scroll-x{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+.scroll-x::-webkit-scrollbar{display:none}
+.scroll-x>*{scroll-snap-align:start}
+.safe-b{padding-bottom:max(.75rem,env(safe-area-inset-bottom))}
+.safe-t{padding-top:max(.75rem,env(safe-area-inset-top))}
+.safe-x{padding-left:max(1rem,env(safe-area-inset-left));padding-right:max(1rem,env(safe-area-inset-right))}
+.cv-auto{content-visibility:auto;contain-intrinsic-size:auto 500px}
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:1rem;background:${C.amber};color:${C.bg};font-weight:700;font-size:.875rem;text-decoration:none}
+.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto}
+.sc{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:${C.border};border-radius:3px}::-webkit-scrollbar-thumb:hover{background:${C.amber}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+`}</style>);
+
+const tt={color:C.cream,fontSize:12};
+const ts={background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:2};
+const revenueData=[{month:"Oct",revenue:1240},{month:"Nov",revenue:2100},{month:"Dec",revenue:3420},{month:"Jan",revenue:2800},{month:"Feb",revenue:3100},{month:"Mar",revenue:4250}];
+const trafficData=[{day:"Mon",organic:120,social:85,direct:45},{day:"Tue",organic:145,social:110,direct:52},{day:"Wed",organic:135,social:95,direct:48},{day:"Thu",organic:160,social:130,direct:60},{day:"Fri",organic:190,social:155,direct:72},{day:"Sat",organic:210,social:180,direct:88},{day:"Sun",organic:175,social:140,direct:65}];
+const seoKeywords=[{kw:"montana moonshine merchandise",pos:4,ch:3,vol:880,ctr:12.4},{kw:"moonshine coffee mug",pos:8,ch:-2,vol:1200,ctr:6.8},{kw:"montucky moonshine shop",pos:2,ch:1,vol:590,ctr:18.2},{kw:"moonshine themed gifts",pos:11,ch:5,vol:2400,ctr:3.1},{kw:"funny drinking t-shirts",pos:15,ch:-1,vol:6600,ctr:1.4},{kw:"moonshine stein mug",pos:6,ch:2,vol:720,ctr:9.7},{kw:"montana bar merchandise",pos:9,ch:4,vol:440,ctr:5.2},{kw:"custom moonshine flask",pos:7,ch:0,vol:1100,ctr:7.8}];
+const seoScores=[{subject:"Technical",A:82,fullMark:100},{subject:"Content",A:65,fullMark:100},{subject:"Authority",A:45,fullMark:100},{subject:"Speed",A:91,fullMark:100},{subject:"Mobile",A:88,fullMark:100},{subject:"UX",A:72,fullMark:100}];
+const products=[
+{id:"ebook",name:"Montucky Spirits E-Book",price:"$10.00",img:"https://montuckymoonshine.com/cdn/shop/products/bookcover_1024x.png?v=1642360814",url:"https://montuckymoonshine.com/products/montucky-moonshine-spirits-e-book",cat:"merchandise",seo:72,tag:"Digital"},
+{id:"clock",name:"Wall Clock",price:"$35.00",img:"https://montuckymoonshine.com/cdn/shop/files/2096947309553618432_2048_1024x.jpg?v=1688013525",url:"https://montuckymoonshine.com/products/wall-clock",cat:"merchandise",seo:58,tag:"Home"},
+{id:"stein",name:"Moonshine Stein",price:"$25.00",img:"https://montuckymoonshine.com/cdn/shop/products/pns73k8a6h07stpkhj1y3d2g_1024x.png?v=1547450598",url:"https://montuckymoonshine.com/products/moonshine-stein",cat:"mugs",seo:81,tag:"Drinkware"},
+{id:"mug",name:"Sexy Coffee Mug",price:"$19.99",img:"https://montuckymoonshine.com/cdn/shop/files/12123678348230688733_2048_custom_1024x.jpg?v=1728695733",url:"https://montuckymoonshine.com/products/accent-coffee-mug-11-15oz-1",cat:"mugs",seo:67,tag:"Drinkware"},
+{id:"flask",name:"Steel Flask 6oz",price:"$21.88",img:"https://montuckymoonshine.com/cdn/shop/files/13314165464068572653_2048_1024x.jpg?v=1737535598",url:"https://montuckymoonshine.com/products/stainless-steel-flask-6oz",cat:"mugs",seo:74,tag:"Drinkware"},
+{id:"hat",name:"Distressed Dad Hat",price:"$22.00",img:"https://montuckymoonshine.com/cdn/shop/products/mockup-b7a59b9d_1024x.jpg?v=1589435140",url:"https://montuckymoonshine.com/products/distressed-dad-hat",cat:"merchandise",seo:55,tag:"Accessories"},
+{id:"ddd",name:"Drink Drank Drunk Tee",price:"$21.69",img:"https://montuckymoonshine.com/cdn/shop/files/15211927451420024901_2048_1024x.jpg?v=1738121468",url:"https://montuckymoonshine.com/products/funny-drink-drank-drunk-t-shirt",cat:"tees",seo:63,tag:"Apparel"},
+{id:"carp",name:"Hobby Carpenter Tee",price:"$29.27",img:"https://montuckymoonshine.com/cdn/shop/files/12475718121083323152_2048_1024x.jpg?v=1774545601",url:"https://montuckymoonshine.com/products/hobby-carpenter-t-shirt",cat:"tees",seo:49,tag:"Apparel"},
+{id:"bold",name:"Bold Graphic Tee",price:"$33.32",img:"https://montuckymoonshine.com/cdn/shop/files/8382319889231594197_2048_1024x.jpg?v=1774642794",url:"https://montuckymoonshine.com/products/t-shirt-found-out-already",cat:"tees",seo:44,tag:"Apparel"},
+{id:"hoodie",name:"Heavyweight Hoodie",price:"$87.77",img:"https://montuckymoonshine.com/cdn/shop/files/6909327151717644564_2048_1024x.jpg?v=1774545469",url:"https://montuckymoonshine.com/products/unisex-heavyweight-hooded-sweatshirt",cat:"tees",seo:51,tag:"Apparel"},
+{id:"jersey",name:"Jersey Tee",price:"$18.82",img:"https://montuckymoonshine.com/cdn/shop/files/8732487188133167477_2048_1024x.jpg?v=1774545435",url:"https://montuckymoonshine.com/products/unisex-jersey-short-sleeve-tee",cat:"tees",seo:46,tag:"Apparel"},
+{id:"blanket",name:"Minky Blanket",price:"$32.15",img:"https://montuckymoonshine.com/cdn/shop/products/09193d3b46d306ced28add4a23b3e67e_1024x.jpg?v=1666326356",url:"https://montuckymoonshine.com/products/velveteen-minky-blanket",cat:"merchandise",seo:60,tag:"Home"}
 ];
+const automations=[{id:"a1",name:"New Order → IG Story",trigger:"Shopify Order",action:"Post to IG Stories",status:"active",runs:142},{id:"a2",name:"Low Stock → Alert",trigger:"Inventory < 5",action:"Email + Slack",status:"active",runs:23},{id:"a3",name:"Review → Social",trigger:"5-Star Review",action:"Share Meta+TikTok",status:"active",runs:67},{id:"a4",name:"Cart → Recovery",trigger:"Abandoned 1hr",action:"Email Sequence",status:"paused",runs:89},{id:"a5",name:"Weekly SEO Audit",trigger:"Monday 6am",action:"Full Crawl+Report",status:"active",runs:14},{id:"a6",name:"Photo Optimize",trigger:"New Product",action:"AI Enhance",status:"active",runs:31}];
 
-const trafficData = [
-  { day: "Mon", organic: 120, social: 85, direct: 45 },
-  { day: "Tue", organic: 145, social: 110, direct: 52 },
-  { day: "Wed", organic: 135, social: 95, direct: 48 },
-  { day: "Thu", organic: 160, social: 130, direct: 60 },
-  { day: "Fri", organic: 190, social: 155, direct: 72 },
-  { day: "Sat", organic: 210, social: 180, direct: 88 },
-  { day: "Sun", organic: 175, social: 140, direct: 65 }
+/* Primitives - all ≥44px touch targets, proper ARIA */
+const Card=({children,className="",onClick,ariaLabel})=>{const interactive=!!onClick;return(<div onClick={onClick} className={`rounded-sm border transition-all duration-300 ${interactive?'cursor-pointer':''} ${className}`} style={{background:C.bgCard,borderColor:C.border}} role={interactive?"button":undefined} aria-label={ariaLabel} tabIndex={interactive?0:undefined} onKeyDown={interactive?e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onClick()}}:undefined}>{children}</div>)};
+const KPI=({icon:I,label,value,change,positive})=>(<Card className="p-4" ariaLabel={`${label}: ${value}`}><div className="flex items-start justify-between mb-2"><div className="p-2 rounded-sm" style={{background:C.amberGlow}}><I size={18} style={{color:C.amber}} aria-hidden="true"/></div>{change&&<span className="text-xs font-semibold flex items-center gap-1" style={{color:positive?C.green:C.red}}>{positive?<TrendingUp size={12} aria-hidden="true"/>:<TrendingDown size={12} aria-hidden="true"/>}{change}</span>}</div><div className="text-2xl font-bold" style={{color:C.cream,fontFamily:"'Playfair Display',serif"}}>{value}</div><div className="text-xs mt-1 uppercase tracking-widest" style={{color:C.textDim}}>{label}</div></Card>);
+const StatusBadge=({status})=>{const cl={active:C.green,paused:C.amber,error:C.red,connected:C.green,disconnected:C.textDim,pending:C.amber};return(<span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider" role="status" style={{background:`${cl[status]}20`,color:cl[status]}}><span className="w-1.5 h-1.5 rounded-full" style={{background:cl[status]}} aria-hidden="true"/>{status}</span>)};
+const SH=({icon:I,title,sub,action})=>(<div className="flex items-center justify-between mb-6 flex-wrap gap-3"><div><div className="flex items-center gap-2 mb-1">{I&&<I size={20} style={{color:C.amber}} aria-hidden="true"/>}<h2 className="text-xl font-bold" style={{color:C.cream,fontFamily:"'Playfair Display',serif"}}>{title}</h2></div>{sub&&<p className="text-sm" style={{color:C.textDim}}>{sub}</p>}</div>{action}</div>);
+const PB=({value,max=100,color=C.amber,label})=>(<div className="w-full h-2 rounded-full" style={{background:`${color}20`}} role="progressbar" aria-valuenow={value} aria-valuemin={0} aria-valuemax={max} aria-label={label||`${Math.round(value/max*100)}%`}><div className="h-full rounded-full transition-all duration-700" style={{width:`${value/max*100}%`,background:color}}/></div>);
+const TabBar=({tabs,active,onChange,al})=>(<div className="scroll-x flex gap-1 p-1 rounded-sm mb-6" style={{background:C.bgDark,border:`1px solid ${C.border}`}} role="tablist" aria-label={al||"Tabs"}>{tabs.map(t=>(<button key={t.id} onClick={()=>onChange(t.id)} role="tab" aria-selected={active===t.id} className="flex-shrink-0 flex-1 min-w-[5rem] px-3 py-3 text-xs font-semibold uppercase tracking-wider rounded-sm transition-all" style={{background:active===t.id?C.amberGlow:'transparent',color:active===t.id?C.amber:C.textDim,border:active===t.id?`1px solid ${C.amber}`:'1px solid transparent',minHeight:44}}>{t.label}</button>))}</div>);
+const Ext=({href,children,className="",style={}})=>(<a href={href} target="_blank" rel="noopener noreferrer" className={className} style={style}>{children}</a>);
+
+/* Dashboard */
+const Dashboard=()=>(<div className="space-y-6 cv-auto"><SH icon={LayoutDashboard} title="Command Center" sub="Real-time overview"/>
+<div className="grid grid-cols-2 md:grid-cols-4 gap-3"><KPI icon={DollarSign} label="Revenue (30d)" value="$4,250" change="+37%" positive/><KPI icon={ShoppingBag} label="Orders (30d)" value="58" change="+22%" positive/><KPI icon={Eye} label="Visitors" value="1,847" change="+18%" positive/><KPI icon={Users} label="Customers" value="312" change="+9%" positive/></div>
+<div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+<Card className="p-4 md:col-span-2"><div className="text-xs uppercase tracking-widest mb-3" style={{color:C.textDim}}>Revenue</div><ResponsiveContainer width="100%" height={220}><AreaChart data={revenueData}><defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor={C.amber} stopOpacity={.3}/><stop offset="95%" stopColor={C.amber} stopOpacity={0}/></linearGradient></defs><XAxis dataKey="month" tick={{fill:C.textDim,fontSize:11}} axisLine={false} tickLine={false}/><YAxis tick={{fill:C.textDim,fontSize:11}} axisLine={false} tickLine={false}/><Tooltip contentStyle={ts} itemStyle={tt}/><Area type="monotone" dataKey="revenue" stroke={C.amber} fill="url(#rg)" strokeWidth={2}/></AreaChart></ResponsiveContainer></Card>
+<Card className="p-4"><div className="text-xs uppercase tracking-widest mb-3" style={{color:C.textDim}}>Traffic Sources</div><ResponsiveContainer width="100%" height={180}><PieChart><Pie data={[{name:'Organic',value:42},{name:'Social',value:33},{name:'Direct',value:18},{name:'Referral',value:7}]} cx="50%" cy="50%" innerRadius={45} outerRadius={70} paddingAngle={3} dataKey="value">{[C.amber,C.purple,C.blue,C.green].map((c,i)=><Cell key={i} fill={c}/>)}</Pie><Tooltip contentStyle={ts} itemStyle={tt}/></PieChart></ResponsiveContainer><div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 justify-center">{[{l:'Organic',c:C.amber},{l:'Social',c:C.purple},{l:'Direct',c:C.blue},{l:'Referral',c:C.green}].map(i=><span key={i.l} className="flex items-center gap-1 text-xs" style={{color:C.textDim}}><span className="w-2 h-2 rounded-full" style={{background:i.c}} aria-hidden="true"/>{i.l}</span>)}</div></Card>
+</div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+<Card className="p-4"><div className="text-xs uppercase tracking-widest mb-3" style={{color:C.textDim}}>Quick Actions</div><nav aria-label="Quick actions">{[{icon:Package,l:"Add Product",d:"Shopify + socials"},{icon:Sparkles,l:"Generate Photos",d:"AI studio"},{icon:Search,l:"SEO Audit",d:"Full analysis"},{icon:Zap,l:"New Automation",d:"Build workflow"}].map((a,i)=><button key={i} className="w-full flex items-center gap-3 p-3 rounded-sm transition-all text-left hover:translate-x-1" style={{borderBottom:i<3?`1px solid ${C.border}`:'none',minHeight:52,background:'transparent'}} aria-label={a.l}><div className="p-2 rounded-sm" style={{background:C.amberGlow}}><a.icon size={16} style={{color:C.amber}} aria-hidden="true"/></div><div className="flex-1 min-w-0"><div className="text-sm font-semibold" style={{color:C.cream}}>{a.l}</div><div className="text-xs" style={{color:C.textDim}}>{a.d}</div></div><ChevronRight size={14} style={{color:C.textDim}} aria-hidden="true"/></button>)}</nav></Card>
+<Card className="p-4"><div className="text-xs uppercase tracking-widest mb-3" style={{color:C.textDim}}>Automations</div>{automations.slice(0,4).map(a=><div key={a.id} className="flex items-center justify-between p-3" style={{borderBottom:`1px solid ${C.border}`}}><div className="min-w-0"><div className="text-sm font-medium truncate" style={{color:C.cream}}>{a.name}</div><div className="text-xs" style={{color:C.textDim}}>{a.runs} runs</div></div><StatusBadge status={a.status}/></div>)}</Card>
+</div></div>);
+
+/* Social Hub */
+const SocialHub=()=>{const[tab,setTab]=useState("overview");const pl=[{name:"Meta",icon:Globe,status:"connected",f:"2.4K",e:"3.2%",c:C.blue},{name:"Instagram",icon:Camera,status:"connected",f:"1.8K",e:"4.7%",c:C.pink},{name:"TikTok Shop",icon:Play,status:"pending",f:"890",e:"8.1%",c:C.cyan},{name:"TikTok",icon:Hash,status:"connected",f:"890",e:"8.1%",c:C.cyan}];return(<div className="space-y-6 cv-auto"><SH icon={Share2} title="Social Command" sub="Meta, Instagram, TikTok — one place"/>
+<TabBar tabs={[{id:"overview",label:"Overview"},{id:"meta",label:"Meta/IG"},{id:"tiktok",label:"TikTok"},{id:"cal",label:"Calendar"}]} active={tab} onChange={setTab} al="Social tabs"/>
+{tab==="overview"&&<><div className="grid grid-cols-2 gap-3">{pl.map(p=><Card key={p.name} className="p-4"><div className="flex items-center justify-between mb-3"><div className="p-2 rounded-sm" style={{background:`${p.c}20`}}><p.icon size={18} style={{color:p.c}} aria-hidden="true"/></div><StatusBadge status={p.status}/></div><div className="text-lg font-bold" style={{color:C.cream}}>{p.f}</div><div className="text-xs" style={{color:C.textDim}}>{p.name}</div><div className="text-xs mt-1" style={{color:C.green}}>{p.e} eng.</div></Card>)}</div>
+<Card className="p-4"><div className="text-xs uppercase tracking-widest mb-3" style={{color:C.textDim}}>Engagement (7d)</div><ResponsiveContainer width="100%" height={200}><BarChart data={trafficData}><XAxis dataKey="day" tick={{fill:C.textDim,fontSize:11}} axisLine={false} tickLine={false}/><YAxis tick={{fill:C.textDim,fontSize:11}} axisLine={false} tickLine={false}/><Tooltip contentStyle={ts} itemStyle={tt}/><Bar dataKey="organic" fill={C.amber} radius={[2,2,0,0]}/><Bar dataKey="social" fill={C.purple} radius={[2,2,0,0]}/><Bar dataKey="direct" fill={C.blue} radius={[2,2,0,0]}/></BarChart></ResponsiveContainer></Card></>}
+{tab==="meta"&&<Card className="p-4 md:p-5"><div className="flex items-center gap-3 mb-4 flex-wrap"><div className="p-3 rounded-sm" style={{background:`${C.blue}20`}}><Globe size={24} style={{color:C.blue}} aria-hidden="true"/></div><div className="flex-1 min-w-0"><div className="text-base font-bold" style={{color:C.cream}}>Meta Business Suite</div><div className="text-xs" style={{color:C.textDim}}>Facebook, Instagram, Messenger, Ads</div></div><StatusBadge status="connected"/></div>
+<div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">{[{l:"Reach",v:"12.4K",c:"+28%"},{l:"Engagement",v:"3.2%",c:"+0.4%"},{l:"Ad Spend",v:"$0",c:"None"}].map(s=><div key={s.l} className="p-3 rounded-sm" style={{background:C.bgDark,border:`1px solid ${C.border}`}}><div className="text-xs uppercase tracking-wider mb-1" style={{color:C.textDim}}>{s.l}</div><div className="text-xl font-bold" style={{color:C.cream}}>{s.v}</div><div className="text-xs" style={{color:C.green}}>{s.c}</div></div>)}</div>
+<div className="p-3 rounded-sm" style={{background:`${C.amber}08`,border:`1px solid ${C.border}`}}><div className="flex items-center gap-2 mb-2"><Lightbulb size={14} style={{color:C.amber}} aria-hidden="true"/><span className="text-xs font-semibold uppercase tracking-wider" style={{color:C.amber}}>AI Recommendation</span></div><p className="text-sm" style={{color:C.textSecondary}}>Engagement peaks Thu–Sat. Schedule 3 posts/week then. Mug photos get 2.4× more engagement — try "Mug Monday".</p></div></Card>}
+{tab==="tiktok"&&<Card className="p-4 md:p-5"><div className="p-4 rounded-sm text-center" style={{background:C.bgDark,border:`1px dashed ${C.amber}`}}><Plug size={32} style={{color:C.amber}} className="mx-auto mb-2" aria-hidden="true"/><div className="text-sm font-semibold mb-1" style={{color:C.cream}}>TikTok Shop Setup Required</div><p className="text-xs mb-3" style={{color:C.textDim}}>Connect TikTok Business to sync products & enable in-app purchases.</p><button className="px-5 py-3 text-xs font-bold uppercase tracking-wider" style={{background:C.amber,color:C.bg,minHeight:44}}>Launch Wizard →</button></div><div className="mt-4 space-y-1">{["Product Sync — auto-sync catalog","Shoppable Videos — tag in content","Live Shopping — sell during LIVE","Affiliate — creator commissions","Order Sync — unified fulfillment"].map((f,i)=><div key={i} className="flex items-center gap-2 py-2 text-sm" style={{color:C.textSecondary,borderBottom:i<4?`1px solid ${C.border}`:'none'}}><Check size={14} style={{color:C.green}} aria-hidden="true"/>{f}</div>)}</div></Card>}
+{tab==="cal"&&<Card className="p-4"><div className="text-sm font-semibold mb-4" style={{color:C.cream}}>This Week</div><div className="grid grid-cols-7 gap-1">{["M","T","W","T","F","S","S"].map((d,i)=><div key={i} className="text-center text-[10px] font-semibold py-1" style={{color:C.textDim}}>{d}</div>)}{[{n:1,p:"IG"},null,{n:1,p:"Meta"},{n:2,p:"IG+TT"},null,{n:1,p:"TT"},{n:1,p:"IG"}].map((d,i)=><div key={i} className="aspect-square rounded-sm flex flex-col items-center justify-center" style={{background:d?C.amberGlow:C.bgDark,border:`1px solid ${d?C.amber:C.border}`}}>{d?<><div className="text-lg font-bold" style={{color:C.amber}}>{d.n}</div><div className="text-[8px] uppercase" style={{color:C.textDim}}>{d.p}</div></>:<span className="text-xs" style={{color:C.textDim}}>—</span>}</div>)}</div></Card>}
+</div>)};
+
+/* Shopify */
+const ShopifySync=()=>{const[tab,setTab]=useState("products");return(<div className="space-y-6 cv-auto"><SH icon={ShoppingBag} title="Shopify Integration" sub="Products, orders, inventory"/>
+<div className="grid grid-cols-2 md:grid-cols-4 gap-3"><KPI icon={Package} label="Products" value="15"/><KPI icon={ShoppingBag} label="Pending" value="4"/><KPI icon={DollarSign} label="Avg Order" value="$38.40" change="+12%" positive/><KPI icon={Star} label="Rating" value="4.6"/></div>
+<TabBar tabs={[{id:"products",label:"Products"},{id:"orders",label:"Orders"},{id:"inv",label:"Inventory"}]} active={tab} onChange={setTab} al="Shopify tabs"/>
+{tab==="products"&&<div className="space-y-2" role="list">{products.map(p=><Card key={p.id} className="p-3"><div className="flex items-center gap-3"><img src={p.img} alt="" className="w-12 h-12 rounded-sm object-cover" loading="lazy"/><div className="flex-1 min-w-0"><div className="text-sm font-semibold truncate" style={{color:C.cream}}>{p.name}</div><div className="text-xs" style={{color:C.textDim}}>{p.tag} · {p.price}</div></div><div className="flex items-center gap-2 shrink-0"><span className="text-sm font-bold" style={{color:p.seo>70?C.green:p.seo>50?C.amber:C.red}}>{p.seo}</span><div className="hidden sm:block w-16"><PB value={p.seo} color={p.seo>70?C.green:p.seo>50?C.amber:C.red} label={`SEO ${p.seo}`}/></div></div></div></Card>)}</div>}
+{tab==="orders"&&<Card className="p-4">{[{id:"#1058",c:"Mike T.",t:"$87.77",it:"Hoodie",s:"Shipped"},{id:"#1057",c:"Sarah L.",t:"$45.87",it:"Stein+Flask",s:"Processing"},{id:"#1056",c:"Jake R.",t:"$21.69",it:"DDD Tee",s:"Delivered"},{id:"#1055",c:"Amy K.",t:"$19.99",it:"Mug",s:"Delivered"}].map((o,i)=><div key={o.id} className="flex items-center justify-between py-3" style={{borderBottom:i<3?`1px solid ${C.border}`:'none'}}><div className="min-w-0"><span className="text-sm font-bold mr-2" style={{color:C.amber}}>{o.id}</span><span className="text-sm" style={{color:C.cream}}>{o.c}</span><div className="text-xs mt-0.5" style={{color:C.textDim}}>{o.it}</div></div><div className="text-right shrink-0 ml-3"><div className="text-sm font-semibold" style={{color:C.cream}}>{o.t}</div><StatusBadge status={o.s==="Delivered"?"active":"pending"}/></div></div>)}</Card>}
+{tab==="inv"&&<Card className="p-4">{[{n:"Moonshine Stein",s:3,l:true},{n:"Dad Hat",s:8},{n:"E-Book",s:"∞"},{n:"Wall Clock",s:5,l:true}].map((it,i)=><div key={it.n} className="flex items-center justify-between py-3" style={{borderBottom:i<3?`1px solid ${C.border}`:'none'}}><div className="text-sm" style={{color:C.cream}}>{it.n}</div><div className="flex items-center gap-2"><span className="text-sm font-bold" style={{color:it.l?C.red:C.green}}>{it.s}{typeof it.s==='number'?' units':''}</span>{it.l&&<AlertTriangle size={14} style={{color:C.red}} aria-label="Low stock"/>}</div></div>)}</Card>}
+</div>)};
+
+/* Automations */
+const AutomationMatrix=()=>(<div className="space-y-6 cv-auto"><SH icon={Zap} title="Automations" sub="Scale while you sleep" action={<button className="px-4 py-3 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:C.amber,color:C.bg,minHeight:44}}>+ New</button>}/>
+<div className="grid grid-cols-3 gap-3"><KPI icon={Zap} label="Active" value="5"/><KPI icon={RefreshCw} label="Runs" value="366"/><KPI icon={Clock} label="Saved" value="~47h"/></div>
+<div className="space-y-2">{automations.map(a=><Card key={a.id} className="p-4"><div className="flex items-center justify-between mb-2 flex-wrap gap-2"><div className="text-sm font-bold" style={{color:C.cream}}>{a.name}</div><StatusBadge status={a.status}/></div><div className="flex items-center gap-2 text-xs flex-wrap" style={{color:C.textDim}}><span className="px-2 py-1 rounded-sm" style={{background:C.bgDark,border:`1px solid ${C.border}`}}>{a.trigger}</span><ArrowRight size={12} style={{color:C.amber}} aria-hidden="true"/><span className="px-2 py-1 rounded-sm" style={{background:C.bgDark,border:`1px solid ${C.border}`}}>{a.action}</span><span className="ml-auto">{a.runs}</span></div></Card>)}</div>
+<Card className="p-4"><div className="text-sm font-bold mb-3" style={{color:C.cream}}>Suggested</div>{[{n:"Price Drop → Email",d:"Notify past buyers"},{n:"UGC → Social Proof",d:"Collect tagged photos"},{n:"Seasonal Launcher",d:"Auto-publish on date"}].map((s,i)=><div key={i} className="flex items-center gap-3 py-3" style={{borderBottom:i<2?`1px solid ${C.border}`:'none'}}><Sparkles size={16} style={{color:C.amber}} aria-hidden="true"/><div className="flex-1 min-w-0"><div className="text-sm font-medium" style={{color:C.cream}}>{s.n}</div><div className="text-xs" style={{color:C.textDim}}>{s.d}</div></div><button className="text-xs font-semibold uppercase px-3 py-2" style={{color:C.amber,minHeight:36}}>Enable</button></div>)}</Card>
+</div>);
+
+/* SEO */
+const SEOAnalytics=()=>{const[tab,setTab]=useState("keywords");return(<div className="space-y-6 cv-auto"><SH icon={Search} title="SEO & Analytics" sub="What's working, what to cull, where to attack"/>
+<div className="grid grid-cols-2 md:grid-cols-4 gap-3"><KPI icon={Eye} label="Impressions" value="24.6K" change="+42%" positive/><KPI icon={MousePointerClick} label="Clicks" value="847" change="+28%" positive/><KPI icon={Target} label="Position" value="7.2" change="-2.1" positive/><KPI icon={BarChart3} label="CTR" value="3.4%" change="+0.6%" positive/></div>
+<TabBar tabs={[{id:"keywords",label:"Keywords"},{id:"health",label:"Health"},{id:"actions",label:"AI Actions"},{id:"cull",label:"Cull"}]} active={tab} onChange={setTab} al="SEO tabs"/>
+{tab==="keywords"&&<Card className="p-3 md:p-4">
+<div className="hidden md:block overflow-x-auto"><table className="w-full text-sm"><thead><tr style={{borderBottom:`1px solid ${C.border}`}}>{["Keyword","Pos","Δ","Vol","CTR",""].map(h=><th key={h} className="text-left py-2 px-2 text-xs uppercase tracking-wider font-semibold" style={{color:C.textDim}} scope="col">{h}</th>)}</tr></thead><tbody>{seoKeywords.map((k,i)=><tr key={i} style={{borderBottom:`1px solid ${C.border}`}}><td className="py-3 px-2 font-medium" style={{color:C.cream}}>{k.kw}</td><td className="py-3 px-2"><span className="font-bold" style={{color:k.pos<=5?C.green:k.pos<=10?C.amber:C.red}}>#{k.pos}</span></td><td className="py-3 px-2"><span className="flex items-center gap-1" style={{color:k.ch>0?C.green:k.ch<0?C.red:C.textDim}}>{k.ch>0?<TrendingUp size={12} aria-hidden="true"/>:k.ch<0?<TrendingDown size={12} aria-hidden="true"/>:null}{k.ch>0?'+':''}{k.ch}</span></td><td className="py-3 px-2" style={{color:C.textSecondary}}>{k.vol.toLocaleString()}</td><td className="py-3 px-2" style={{color:C.textSecondary}}>{k.ctr}%</td><td className="py-3 px-2">{k.pos>=7&&k.pos<=12?<span className="text-xs font-semibold px-2 py-1 rounded-full" style={{background:`${C.amber}20`,color:C.amber}}>Strike</span>:k.pos<=3?<span className="text-xs font-semibold px-2 py-1 rounded-full" style={{background:`${C.green}20`,color:C.green}}>Defend</span>:null}</td></tr>)}</tbody></table></div>
+<div className="md:hidden space-y-2">{seoKeywords.map((k,i)=><div key={i} className="p-3 rounded-sm" style={{background:C.bgDark,border:`1px solid ${C.border}`}}><div className="text-sm font-medium mb-1" style={{color:C.cream}}>{k.kw}</div><div className="flex items-center gap-3 text-xs flex-wrap"><span className="font-bold" style={{color:k.pos<=5?C.green:k.pos<=10?C.amber:C.red}}>#{k.pos}</span><span style={{color:k.ch>0?C.green:k.ch<0?C.red:C.textDim}}>{k.ch>0?'↑':k.ch<0?'↓':'='}{Math.abs(k.ch)}</span><span style={{color:C.textDim}}>{k.vol.toLocaleString()}/mo</span><span style={{color:C.textDim}}>{k.ctr}%</span>{k.pos>=7&&k.pos<=12&&<span className="px-2 py-0.5 rounded-full font-semibold" style={{background:`${C.amber}20`,color:C.amber}}>Strike</span>}</div></div>)}</div>
+</Card>}
+{tab==="health"&&<div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Card className="p-4"><div className="text-xs uppercase tracking-widest mb-3" style={{color:C.textDim}}>Health Radar</div><ResponsiveContainer width="100%" height={250}><RadarChart data={seoScores}><PolarGrid stroke={C.border}/><PolarAngleAxis dataKey="subject" tick={{fill:C.textDim,fontSize:11}}/><PolarRadiusAxis tick={false} axisLine={false}/><Radar dataKey="A" stroke={C.amber} fill={C.amber} fillOpacity={.2}/></RadarChart></ResponsiveContainer></Card>
+<Card className="p-4"><div className="text-xs uppercase tracking-widest mb-3" style={{color:C.textDim}}>Core Web Vitals</div>{[{m:"LCP",v:"1.8s",s:92},{m:"INP",v:"85ms",s:94},{m:"CLS",v:"0.04",s:96},{m:"TTFB",v:"0.6s",s:88},{m:"Lighthouse",v:"96",s:96}].map((v,i)=><div key={v.m} className="py-2.5" style={{borderBottom:i<4?`1px solid ${C.border}`:'none'}}><div className="flex justify-between mb-1"><span className="text-sm" style={{color:C.cream}}>{v.m}</span><span className="text-sm font-bold" style={{color:C.green}}>{v.v}</span></div><PB value={v.s} color={C.green} label={`${v.m}: ${v.v}`}/></div>)}</Card></div>}
+{tab==="actions"&&<Card className="p-4" style={{borderColor:`${C.amber}40`}}><div className="flex items-center gap-2 mb-3"><Sparkles size={16} style={{color:C.amber}} aria-hidden="true"/><span className="text-sm font-bold" style={{color:C.amber}}>AI SEO Agent</span></div>{["Meta descriptions optimized (6 pages) — 2h ago","3 'striking distance' keywords briefed — 6h ago","12 images compressed (68% avg) — yesterday","Schema markup added (Product, Org, Local) — 2d ago","Internal linking: 8 orphans connected — 3d ago"].map((a,i)=><div key={i} className="flex items-start gap-3 py-2.5" style={{borderBottom:i<4?`1px solid ${C.border}`:'none'}}><Check size={14} style={{color:C.green}} className="mt-0.5 shrink-0" aria-hidden="true"/><span className="text-sm" style={{color:C.textSecondary}}>{a}</span></div>)}</Card>}
+{tab==="cull"&&<div className="space-y-3"><Card className="p-4" style={{borderColor:`${C.red}30`}}><div className="flex items-center gap-2 mb-3"><AlertTriangle size={16} style={{color:C.red}} aria-hidden="true"/><span className="text-sm font-bold" style={{color:C.red}}>Underperforming — Cull Candidates</span></div>{products.filter(p=>p.seo<55).map(p=><div key={p.id} className="flex items-center gap-3 py-2.5 flex-wrap" style={{borderBottom:`1px solid ${C.border}`}}><img src={p.img} alt="" className="w-10 h-10 rounded-sm object-cover" loading="lazy"/><div className="flex-1 min-w-0"><div className="text-sm truncate" style={{color:C.cream}}>{p.name}</div><div className="text-xs" style={{color:C.textDim}}>SEO: {p.seo}/100</div></div><div className="flex gap-2"><button className="text-xs px-3 py-2 rounded-sm" style={{background:`${C.amber}20`,color:C.amber,minHeight:36}}>Fix</button><button className="text-xs px-3 py-2 rounded-sm" style={{background:`${C.red}20`,color:C.red,minHeight:36}}>Archive</button></div></div>)}</Card>
+<Card className="p-4" style={{borderColor:`${C.green}30`}}><div className="flex items-center gap-2 mb-3"><TrendingUp size={16} style={{color:C.green}} aria-hidden="true"/><span className="text-sm font-bold" style={{color:C.green}}>Top Performers — Amplify</span></div>{products.filter(p=>p.seo>70).map(p=><div key={p.id} className="flex items-center gap-3 py-2.5" style={{borderBottom:`1px solid ${C.border}`}}><img src={p.img} alt="" className="w-10 h-10 rounded-sm object-cover" loading="lazy"/><div className="flex-1 min-w-0"><div className="text-sm truncate" style={{color:C.cream}}>{p.name}</div><div className="text-xs" style={{color:C.textDim}}>SEO: {p.seo}/100</div></div><button className="text-xs px-3 py-2 rounded-sm" style={{background:`${C.green}20`,color:C.green,minHeight:36}}>Amplify</button></div>)}</Card></div>}
+</div>)};
+
+/* Product Studio */
+const ProductStudio=()=>{const[sel,setSel]=useState(null);return(<div className="space-y-6 cv-auto"><SH icon={Image} title="AI Product Studio" sub="Photos, optimization, location"/>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<Card className="p-4"><div className="flex items-center gap-2 mb-4"><Wand2 size={18} style={{color:C.amber}} aria-hidden="true"/><span className="text-sm font-bold" style={{color:C.cream}}>Photo Generator</span></div><div className="space-y-3"><div><label htmlFor="ps" className="text-xs uppercase tracking-wider block mb-1" style={{color:C.textDim}}>Product</label><select id="ps" className="w-full p-3 rounded-sm text-sm" style={{background:C.bgDark,color:C.cream,border:`1px solid ${C.border}`,minHeight:44}} onChange={e=>setSel(products[e.target.value])} defaultValue=""><option value="" disabled>Choose…</option>{products.map((p,i)=><option key={p.id} value={i}>{p.name}</option>)}</select></div><div><span className="text-xs uppercase tracking-wider block mb-1" style={{color:C.textDim}}>Scene</span><div className="grid grid-cols-3 gap-2">{["Rustic Wood","Bar Top","White Studio","Outdoor MT","Lifestyle","Flat Lay"].map(s=><button key={s} className="p-3 text-xs rounded-sm" style={{background:C.bgDark,border:`1px solid ${C.border}`,color:C.textSecondary,minHeight:44}}>{s}</button>)}</div></div><button className="w-full py-3 text-xs font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-2" style={{background:C.amber,color:C.bg,minHeight:48}}><Sparkles size={14} aria-hidden="true"/>Generate</button></div></Card>
+<Card className="p-4"><div className="flex items-center gap-2 mb-4"><Palette size={18} style={{color:C.amber}} aria-hidden="true"/><span className="text-sm font-bold" style={{color:C.cream}}>Listing Optimizer</span></div>{sel?<div><div className="flex items-center gap-3 mb-4 p-3 rounded-sm" style={{background:C.bgDark}}><img src={sel.img} alt="" className="w-14 h-14 rounded-sm object-cover" loading="lazy"/><div><div className="text-sm font-bold" style={{color:C.cream}}>{sel.name}</div><div className="text-xs" style={{color:C.textDim}}>{sel.price}</div></div></div>{[{l:"Title",s:sel.seo>60?78:42},{l:"Description",s:45},{l:"Images",s:62},{l:"Tags",s:sel.seo>60?85:55}].map((o,i)=><div key={o.l} className="py-2.5" style={{borderBottom:i<3?`1px solid ${C.border}`:'none'}}><div className="flex justify-between mb-1"><span className="text-xs font-semibold" style={{color:C.cream}}>{o.l}</span><span className="text-xs font-bold" style={{color:o.s>70?C.green:o.s>50?C.amber:C.red}}>{o.s}%</span></div><PB value={o.s} color={o.s>70?C.green:o.s>50?C.amber:C.red} label={`${o.l}: ${o.s}%`}/></div>)}<button className="w-full mt-3 py-3 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:`${C.amber}20`,color:C.amber,border:`1px solid ${C.amber}`,minHeight:44}}>Auto-Optimize</button></div>:<div className="flex flex-col items-center justify-center h-48 text-center"><Image size={32} style={{color:C.textDim}} aria-hidden="true" className="mb-2"/><p className="text-sm" style={{color:C.textDim}}>Select a product above</p></div>}</Card>
+</div>
+<Card className="p-4"><div className="text-sm font-semibold mb-3" style={{color:C.cream}}>Bar & Location SEO</div><div className="grid grid-cols-1 sm:grid-cols-3 gap-3">{[{t:"Google Business",d:"Photos, hours, reviews",s:68},{t:"Local SEO",d:"MT keywords, Maps",s:52},{t:"Location Content",d:"Events, specials",s:41}].map(l=><div key={l.t} className="p-3 rounded-sm" style={{background:C.bgDark,border:`1px solid ${C.border}`}}><div className="text-sm font-semibold mb-1" style={{color:C.cream}}>{l.t}</div><div className="text-xs mb-2" style={{color:C.textDim}}>{l.d}</div><PB value={l.s} color={l.s>60?C.amber:C.red} label={`${l.t}: ${l.s}`}/></div>)}</div></Card></div>)};
+
+/* Learning Center */
+const LearningCenter=()=>{const[exp,setExp]=useState(null);const topics=[
+{id:"llm",icon:Bot,title:"Advanced Reasoning LLMs",sub:"What powers this platform",txt:"Large Language Models like Claude reason, plan, and execute multi-step workflows — not just autocomplete.\n\nFor your business: An LLM analyzes your catalog, identifies SEO gaps, drafts descriptions, and publishes — in minutes. 'Agentic' means the AI takes ACTION: reads analytics, decides fixes, writes code, deploys. Your automations page is agentic AI in action."},
+{id:"api",icon:Plug,title:"APIs — The Pipes",sub:"How Shopify, Meta, TikTok talk",txt:"APIs let systems exchange data. In YOUR system:\n• Shopify REST API → order data in real-time\n• Meta Graph API → post to Facebook, read IG analytics\n• TikTok Commerce API → sync products to Shop\n• GSC API → live SEO data to dashboard\n\nOAuth 2.0 tokens expire quickly — even if intercepted, they're useless."},
+{id:"mcp",icon:Cpu,title:"MCP — Universal AI Connector",sub:"Model Context Protocol explained",txt:"MCP (by Anthropic) = USB-C for AI. One standard port connecting any AI to any tool.\n\nBefore: every integration was custom code. With MCP: deploy a server (small program), AI connects via standard protocol. Want Etsy? Deploy Etsy MCP server. AI immediately knows how to use it.\n\nArchitecture: Host (Claude) → Client (translates intent) → Server (exposes tools) → Transport (stdio/SSE)."},
+{id:"auto",icon:Zap,title:"Automation & Webhooks",sub:"Events trigger actions hands-free",txt:"Pattern: TRIGGER → CONDITION → ACTION.\n\nWebhooks are triggers. Shopify sends HTTP POST on events. Example: customer buys Stein → system gets data → checks stock<5 → Slack alert → auto IG Story → updates dashboard → welcome email if first purchase. Under 3 seconds, zero input.\n\nn8n: self-hosted engine, $0-$25/mo, UNLIMITED workflows (vs Zapier $50+/mo)."}
+];return(<div className="space-y-6 cv-auto"><SH icon={GraduationCap} title="Learning Center" sub="Understand the tech powering your growth"/>
+<div className="space-y-3">{topics.map(t=><Card key={t.id}><button className="w-full p-4 flex items-center gap-3 text-left" onClick={()=>setExp(exp===t.id?null:t.id)} aria-expanded={exp===t.id} aria-controls={`c-${t.id}`} style={{minHeight:60}}><div className="p-2.5 rounded-sm shrink-0" style={{background:C.amberGlow}}><t.icon size={20} style={{color:C.amber}} aria-hidden="true"/></div><div className="flex-1 min-w-0"><div className="text-sm font-bold" style={{color:C.cream}}>{t.title}</div><div className="text-xs" style={{color:C.textDim}}>{t.sub}</div></div><ChevronDown size={16} style={{color:C.textDim,transform:exp===t.id?'rotate(180deg)':'none',transition:'transform .3s'}} aria-hidden="true"/></button>{exp===t.id&&<div id={`c-${t.id}`} className="px-4 pb-4"><div className="p-4 rounded-sm text-sm leading-relaxed whitespace-pre-line" style={{background:C.bgDark,color:C.textSecondary,border:`1px solid ${C.border}`}}>{t.txt}</div></div>}</Card>)}</div>
+<Card className="p-4" style={{borderColor:`${C.amber}30`}}><div className="flex items-center gap-2 mb-3"><BookOpen size={18} style={{color:C.amber}} aria-hidden="true"/><span className="text-sm font-bold" style={{color:C.cream}}>Next Steps</span></div><ol className="list-none">{[{n:"1",t:"TikTok Shop Setup",d:"Biggest untapped channel",p:"high"},{n:"2",t:"Enable SEO Agent",d:"Continuous optimization",p:"high"},{n:"3",t:"Meta Ads Manager",d:"Retarget visitors",p:"med"},{n:"4",t:"Email Automation",d:"Welcome + cart recovery",p:"med"}].map((s,i)=><li key={s.n} className="flex items-start gap-3 py-2.5" style={{borderBottom:i<3?`1px solid ${C.border}`:'none'}}><div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style={{background:C.amberGlow,color:C.amber,border:`1px solid ${C.amber}`}}>{s.n}</div><div className="flex-1"><div className="text-sm font-medium" style={{color:C.cream}}>{s.t}</div><div className="text-xs" style={{color:C.textDim}}>{s.d}</div></div><span className="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded-full shrink-0" style={{background:s.p==="high"?`${C.red}20`:`${C.amber}20`,color:s.p==="high"?C.red:C.amber}}>{s.p}</span></li>)}</ol></Card></div>)};
+
+/* Setup Wizards */
+const SetupWizards=()=>{const[aw,setAw]=useState(null);const[ws,setWs]=useState(1);const wz=[
+{id:"shopify",icon:ShoppingBag,title:"Shopify API",status:"connected",desc:"Products, orders",steps:["Create App","Token","Permissions","Test"]},
+{id:"meta",icon:Globe,title:"Meta Business",status:"connected",desc:"FB, IG, Messenger",steps:["Create App","Permissions","Connect Page","Link IG"]},
+{id:"tiktok",icon:Play,title:"TikTok Shop",status:"disconnected",desc:"Catalog, shoppable",steps:["Business Acct","Apply Shop","Connector","Sync","Enable"]},
+{id:"gsc",icon:Search,title:"Search Console",status:"connected",desc:"SEO data, keywords",steps:["Verify Domain","Service Acct","JSON Key","MCP Server"]},
+{id:"ga4",icon:BarChart3,title:"Analytics 4",status:"disconnected",desc:"Traffic, conversions",steps:["Property","Tracking","Events","Link GSC"]},
+{id:"email",icon:MessageSquare,title:"Email Marketing",status:"disconnected",desc:"Campaigns, flows",steps:["Account","Import","Templates","Welcome"]},
+{id:"n8n",icon:Zap,title:"n8n Engine",status:"connected",desc:"Automation $0-$25/mo",steps:["Deploy","Webhooks","Trigger","Workflow"]},
+{id:"gbp",icon:Target,title:"Google Business",status:"disconnected",desc:"Local SEO, reviews",steps:["Claim","Verify","Photos","Alerts"]}
 ];
+if(aw){const w=wz.find(x=>x.id===aw);return(<div className="space-y-6"><div className="flex items-center gap-3"><button onClick={()=>{setAw(null);setWs(1)}} className="p-3 rounded-sm" style={{border:`1px solid ${C.border}`,minWidth:44,minHeight:44}} aria-label="Back"><ArrowLeft size={16} style={{color:C.textDim}}/></button><div><h2 className="text-lg font-bold" style={{color:C.cream,fontFamily:"'Playfair Display',serif"}}>{w.title}</h2><div className="text-xs" style={{color:C.textDim}}>Step {ws}/{w.steps.length}</div></div></div><PB value={ws} max={w.steps.length} label={`Step ${ws} of ${w.steps.length}`}/>
+<div className="space-y-2" role="list">{w.steps.map((s,i)=><div key={i} className="flex items-start gap-3 p-3 rounded-sm border" role="listitem" aria-current={ws===i+1?'step':undefined} style={{borderColor:ws>=i+1?C.amber:C.border,background:ws===i+1?C.amberGlow:'transparent',opacity:ws>=i+1?1:.5}}><div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style={{background:ws>i+1?C.amber:'transparent',color:ws>i+1?C.bg:C.amber,border:`1.5px solid ${C.amber}`}}>{ws>i+1?<Check size={14} aria-hidden="true"/>:i+1}</div><div><div className="text-sm font-semibold" style={{color:C.cream}}>Step {i+1}: {s}</div><div className="text-xs" style={{color:C.textDim}}>{ws>i+1?"Done":ws===i+1?"Current":"Upcoming"}</div></div></div>)}</div>
+<Card className="p-4" style={{borderColor:`${C.amber}40`}}><div className="text-sm font-bold mb-2" style={{color:C.cream}}>Instructions: {w.steps[ws-1]}</div><p className="text-sm" style={{color:C.textSecondary}}>{ws===1?`Go to ${w.title.split(' ')[0]} developer portal, create a new app with Business account type.`:ws===2?"Configure API permissions: product catalog, analytics (read), content publishing (write).":"Complete the auth flow. You'll receive an access token stored securely for all automated operations."}</p><div className="flex gap-2 mt-4 flex-wrap"><button onClick={()=>setWs(Math.max(1,ws-1))} className="px-4 py-3 text-xs font-bold uppercase tracking-wider rounded-sm" style={{color:C.textDim,border:`1px solid ${C.border}`,minHeight:44}}>Back</button><button onClick={()=>ws<w.steps.length?setWs(ws+1):setAw(null)} className="px-5 py-3 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:C.amber,color:C.bg,minHeight:44}}>{ws===w.steps.length?"Complete":"Next →"}</button></div></Card></div>)}
+return(<div className="space-y-6 cv-auto"><SH icon={Settings} title="Setup Wizards" sub="Guided connection walkthroughs"/><div className="grid grid-cols-1 sm:grid-cols-2 gap-3">{wz.map(w=><Card key={w.id} className="p-4" onClick={()=>setAw(w.id)} ariaLabel={`Setup ${w.title}`}><div className="flex items-center gap-3"><div className="p-2.5 rounded-sm shrink-0" style={{background:C.amberGlow}}><w.icon size={20} style={{color:C.amber}} aria-hidden="true"/></div><div className="flex-1 min-w-0"><div className="flex items-center gap-2 flex-wrap"><span className="text-sm font-bold" style={{color:C.cream}}>{w.title}</span><StatusBadge status={w.status}/></div><div className="text-xs" style={{color:C.textDim}}>{w.desc}</div></div><ChevronRight size={16} style={{color:C.textDim}} aria-hidden="true" className="shrink-0"/></div><div className="mt-2"><PB value={w.status==="connected"?100:w.status==="pending"?50:0} color={w.status==="connected"?C.green:w.status==="pending"?C.amber:C.textDim} label={`${w.title}: ${w.status}`}/></div></Card>)}</div></div>)};
 
-const seoKeywords = [
-  { keyword: "montana moonshine merchandise", position: 4, change: 3, volume: 880, ctr: 12.4 },
-  { keyword: "moonshine coffee mug", position: 8, change: -2, volume: 1200, ctr: 6.8 },
-  { keyword: "montucky moonshine shop", position: 2, change: 1, volume: 590, ctr: 18.2 },
-  { keyword: "moonshine themed gifts", position: 11, change: 5, volume: 2400, ctr: 3.1 },
-  { keyword: "funny drinking t-shirts", position: 15, change: -1, volume: 6600, ctr: 1.4 },
-  { keyword: "moonshine stein mug", position: 6, change: 2, volume: 720, ctr: 9.7 },
-  { keyword: "montana bar merchandise", position: 9, change: 4, volume: 440, ctr: 5.2 },
-  { keyword: "custom moonshine flask", position: 7, change: 0, volume: 1100, ctr: 7.8 }
-];
+/* NAV CONFIG */
+const nav=[{id:"dashboard",icon:LayoutDashboard,label:"Command Center"},{id:"social",icon:Share2,label:"Social Hub"},{id:"shopify",icon:ShoppingBag,label:"Shopify"},{id:"automation",icon:Zap,label:"Automations"},{id:"seo",icon:Search,label:"SEO"},{id:"studio",icon:Image,label:"Studio"},{id:"learn",icon:GraduationCap,label:"Learn"},{id:"setup",icon:Settings,label:"Setup"}];
 
-const seoScores = [
-  { subject: "Technical", A: 82, fullMark: 100 }, { subject: "Content", A: 65, fullMark: 100 },
-  { subject: "Authority", A: 45, fullMark: 100 }, { subject: "Speed", A: 91, fullMark: 100 },
-  { subject: "Mobile", A: 88, fullMark: 100 }, { subject: "UX", A: 72, fullMark: 100 }
-];
+/* APP */
+export default function App(){
+const[view,setView]=useState("storefront");
+const[page,setPage]=useState("dashboard");
+const[sb,setSb]=useState(false);
+const renderPage=()=>{switch(page){case"dashboard":return<Dashboard/>;case"social":return<SocialHub/>;case"shopify":return<ShopifySync/>;case"automation":return<AutomationMatrix/>;case"seo":return<SEOAnalytics/>;case"studio":return<ProductStudio/>;case"learn":return<LearningCenter/>;case"setup":return<SetupWizards/>;default:return<Dashboard/>}};
 
-const products = [
-  { name: "Montucky Moonshine Spirits E-Book", price: "$10.00", img: "https://montuckymoonshine.com/cdn/shop/products/bookcover_1024x.png?v=1642360814", url: "https://montuckymoonshine.com/products/montucky-moonshine-spirits-e-book", category: "merchandise", seoScore: 72, tag: "Digital" },
-  { name: "Wall Clock", price: "$35.00", img: "https://montuckymoonshine.com/cdn/shop/files/2096947309553618432_2048_1024x.jpg?v=1688013525", url: "https://montuckymoonshine.com/products/wall-clock", category: "merchandise", seoScore: 58, tag: "Home" },
-  { name: "Moonshine Stein", price: "$25.00", img: "https://montuckymoonshine.com/cdn/shop/products/pns73k8a6h07stpkhj1y3d2g_1024x.png?v=1547450598", url: "https://montuckymoonshine.com/products/moonshine-stein", category: "mugs", seoScore: 81, tag: "Drinkware" },
-  { name: "Sexy Coffee Mug", price: "$19.99", img: "https://montuckymoonshine.com/cdn/shop/files/12123678348230688733_2048_custom_1024x.jpg?v=1728695733", url: "https://montuckymoonshine.com/products/accent-coffee-mug-11-15oz-1", category: "mugs", seoScore: 67, tag: "Drinkware" },
-  { name: "Stainless Steel Flask", price: "$21.88", img: "https://montuckymoonshine.com/cdn/shop/files/13314165464068572653_2048_1024x.jpg?v=1737535598", url: "https://montuckymoonshine.com/products/stainless-steel-flask-6oz", category: "mugs", seoScore: 74, tag: "Drinkware" },
-  { name: "Distressed Dad Hat", price: "$22.00", img: "https://montuckymoonshine.com/cdn/shop/products/mockup-b7a59b9d_1024x.jpg?v=1589435140", url: "https://montuckymoonshine.com/products/distressed-dad-hat", category: "merchandise", seoScore: 55, tag: "Accessories" },
-  { name: "Drink Drank Drunk Tee", price: "$21.69", img: "https://montuckymoonshine.com/cdn/shop/files/15211927451420024901_2048_1024x.jpg?v=1738121468", url: "https://montuckymoonshine.com/products/funny-drink-drank-drunk-t-shirt", category: "tees", seoScore: 63, tag: "Apparel" },
-  { name: "Hobby Carpenter Tee", price: "$29.27", img: "https://montuckymoonshine.com/cdn/shop/files/12475718121083323152_2048_1024x.jpg?v=1774545601", url: "https://montuckymoonshine.com/products/hobby-carpenter-t-shirt", category: "tees", seoScore: 49, tag: "Apparel" },
-  { name: "Bold Graphic Tee", price: "$33.32", img: "https://montuckymoonshine.com/cdn/shop/files/8382319889231594197_2048_1024x.jpg?v=1774642794", url: "https://montuckymoonshine.com/products/t-shirt-found-out-already", category: "tees", seoScore: 44, tag: "Apparel" },
-  { name: "Heavyweight Hoodie", price: "$87.77", img: "https://montuckymoonshine.com/cdn/shop/files/6909327151717644564_2048_1024x.jpg?v=1774545469", url: "https://montuckymoonshine.com/products/unisex-heavyweight-hooded-sweatshirt", category: "tees", seoScore: 51, tag: "Apparel" },
-  { name: "Jersey Short Sleeve Tee", price: "$18.82", img: "https://montuckymoonshine.com/cdn/shop/files/8732487188133167477_2048_1024x.jpg?v=1774545435", url: "https://montuckymoonshine.com/products/unisex-jersey-short-sleeve-tee", category: "tees", seoScore: 46, tag: "Apparel" },
-  { name: "Velveteen Minky Blanket", price: "$32.15", img: "https://montuckymoonshine.com/cdn/shop/products/09193d3b46d306ced28add4a23b3e67e_1024x.jpg?v=1666326356", url: "https://montuckymoonshine.com/products/velveteen-minky-blanket", category: "merchandise", seoScore: 60, tag: "Home" }
-];
+if(view==="storefront"){return(
+<div style={{background:C.bg,color:C.textPrimary,fontFamily:"'Barlow',sans-serif",minHeight:'100dvh'}}>
+<Styles/><a href="#main" className="skip-link">Skip to content</a>
+<header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl safe-t safe-x" style={{background:'rgba(10,10,8,0.9)',borderBottom:`1px solid ${C.border}`}} role="banner">
+<div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<div className="flex items-center gap-2"><img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" className="h-10" style={{filter:'drop-shadow(0 0 8px rgba(200,146,42,0.3))'}}/><div><div className="text-base font-bold" style={{color:C.amber,fontFamily:"'Playfair Display',serif"}}>Montucky Moonshine</div><div className="text-[9px] uppercase tracking-[0.3em] font-semibold" style={{color:C.textDim}}>Est. Montana</div></div></div>
+<div className="flex items-center gap-3"><Ext href="https://montuckymoonshine.com/collections/all" className="hidden md:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:C.textSecondary,minHeight:44}}>Shop</Ext><button onClick={()=>setView("admin")} className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:C.amber,color:C.bg,minHeight:44}}>Admin →</button></div>
+</div></header>
+<main id="main">
+<section className="flex items-center justify-center relative overflow-hidden" style={{minHeight:'100dvh',background:`linear-gradient(135deg,${C.bg} 0%,#1a1408 50%,${C.bg} 100%)`}} aria-label="Hero">
+<div className="absolute inset-0" style={{background:'radial-gradient(ellipse at 30% 50%,rgba(200,146,42,0.06) 0%,transparent 50%)'}} aria-hidden="true"/>
+<div className="relative z-10 text-center px-4 safe-x" style={{animation:'fadeIn 1s ease-out'}}>
+<div className="inline-block text-xs font-semibold uppercase tracking-[0.35em] px-4 py-2 mb-8" style={{color:C.amber,border:`1px solid ${C.amber}`,fontFamily:"'Barlow Condensed',sans-serif"}}>Great Ideas — Fantastic Products</div>
+<h1 className="mb-4" style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(2.75rem,8vw,6rem)',fontWeight:900,lineHeight:.95,color:C.cream}}>Montucky<br/><em style={{color:C.amber,fontWeight:400}}>Moonshine</em></h1>
+<p className="text-sm uppercase tracking-[0.2em] mb-8" style={{color:C.textSecondary,fontFamily:"'Barlow Condensed',sans-serif"}}>Handcrafted goods from the heart of Montana</p>
+<div className="flex gap-3 justify-center flex-wrap">
+<Ext href="https://montuckymoonshine.com/collections/all" className="px-6 py-3.5 text-xs font-bold uppercase tracking-wider inline-flex items-center" style={{background:C.amber,color:C.bg,fontFamily:"'Barlow Condensed',sans-serif",minHeight:48}}>Shop Collection →</Ext>
+<button onClick={()=>setView("admin")} className="px-6 py-3.5 text-xs font-bold uppercase tracking-wider" style={{background:'transparent',color:C.cream,border:`1px solid ${C.border}`,fontFamily:"'Barlow Condensed',sans-serif",minHeight:48}}>Owner Dashboard</button>
+</div></div></section>
+<section className="max-w-6xl mx-auto px-4 py-16 safe-x" aria-label="Products">
+<div className="text-center mb-8"><div className="text-xs uppercase tracking-[0.35em] font-semibold mb-2" style={{color:C.amber}}>The Collection</div><h2 style={{fontFamily:"'Playfair Display',serif",fontSize:'2rem',color:C.cream}}>Shop <em style={{color:C.amber,fontWeight:400}}>Montucky</em></h2></div>
+<div className="grid grid-cols-2 md:grid-cols-4 gap-3" role="list" aria-label="Products">{products.slice(0,8).map(p=>(
+<Ext key={p.id} href={p.url} className="group block rounded-sm overflow-hidden transition-all hover:-translate-y-1" style={{background:C.bgCard,border:`1px solid ${C.border}`}}>
+<div className="aspect-square overflow-hidden"><img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/></div>
+<div className="p-3"><div className="text-[10px] uppercase tracking-wider font-semibold" style={{color:C.amber}}>{p.tag}</div><div className="text-sm font-semibold truncate" style={{color:C.cream}}>{p.name}</div><div className="text-sm font-bold mt-1" style={{color:C.amberLight}}>{p.price}</div></div>
+</Ext>))}</div></section></main></div>)}
 
-const automations = [
-  { name: "New Order → Instagram Story", trigger: "Shopify Order", action: "Post to IG Stories", status: "active", runs: 142 },
-  { name: "Low Stock Alert → Reorder", trigger: "Inventory < 5", action: "Email + Slack Alert", status: "active", runs: 23 },
-  { name: "New Review → Social Proof", trigger: "5-Star Review", action: "Share on Meta + TikTok", status: "active", runs: 67 },
-  { name: "Abandoned Cart → Recovery", trigger: "Cart Abandoned 1hr", action: "Email Sequence", status: "paused", runs: 89 },
-  { name: "Weekly SEO Audit", trigger: "Every Monday 6am", action: "Full Site Crawl + Report", status: "active", runs: 14 },
-  { name: "Product Photo Optimize", trigger: "New Product Added", action: "AI Enhance + Compress", status: "active", runs: 31 }
-];
-
-// ============================================================
-// REUSABLE COMPONENTS
-// ============================================================
-const Card = ({ children, className = "", onClick }) => (
-  <div onClick={onClick} className={`rounded-sm border transition-all duration-300 ${className}`}
-    style={{ background: COLORS.bgCard, borderColor: COLORS.border }}>
-    {children}
-  </div>
-);
-
-const KPI = ({ icon: Icon, label, value, change, positive }) => (
-  <Card className="p-4">
-    <div className="flex items-start justify-between mb-2">
-      <div className="p-2 rounded-sm" style={{ background: COLORS.amberGlow }}>
-        <Icon size={18} style={{ color: COLORS.amber }} />
-      </div>
-      {change && (
-        <span className="text-xs font-semibold flex items-center gap-1"
-          style={{ color: positive ? COLORS.green : COLORS.red }}>
-          {positive ? <TrendingUp size={12}/> : <TrendingDown size={12}/>}
-          {change}
-        </span>
-      )}
-    </div>
-    <div className="text-2xl font-bold" style={{ color: COLORS.cream, fontFamily: "'Playfair Display', serif" }}>{value}</div>
-    <div className="text-xs mt-1 uppercase tracking-widest" style={{ color: COLORS.textDim }}>{label}</div>
-  </Card>
-);
-
-const StatusBadge = ({ status }) => {
-  const colors = { active: COLORS.green, paused: COLORS.amber, error: COLORS.red, connected: COLORS.green, disconnected: COLORS.textDim, pending: COLORS.amber };
-  return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider"
-      style={{ background: `${colors[status]}20`, color: colors[status] }}>
-      <span className="w-1.5 h-1.5 rounded-full" style={{ background: colors[status] }}/>
-      {status}
-    </span>
-  );
-};
-
-const SectionHeader = ({ icon: Icon, title, subtitle, action }) => (
-  <div className="flex items-center justify-between mb-6">
-    <div>
-      <div className="flex items-center gap-2 mb-1">
-        {Icon && <Icon size={20} style={{ color: COLORS.amber }}/>}
-        <h2 className="text-xl font-bold" style={{ color: COLORS.cream, fontFamily: "'Playfair Display', serif" }}>{title}</h2>
-      </div>
-      {subtitle && <p className="text-sm" style={{ color: COLORS.textDim }}>{subtitle}</p>}
-    </div>
-    {action}
-  </div>
-);
-
-const WizardStep = ({ step, current, title, desc }) => (
-  <div className={`flex items-start gap-3 p-3 rounded-sm border transition-all ${current === step ? 'scale-[1.02]' : ''}`}
-    style={{ borderColor: current >= step ? COLORS.amber : COLORS.border, background: current === step ? COLORS.amberGlow : 'transparent', opacity: current >= step ? 1 : 0.4 }}>
-    <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-      style={{ background: current > step ? COLORS.amber : 'transparent', color: current > step ? COLORS.bg : COLORS.amber, border: `1.5px solid ${COLORS.amber}` }}>
-      {current > step ? <Check size={14}/> : step}
-    </div>
-    <div>
-      <div className="text-sm font-semibold" style={{ color: COLORS.cream }}>{title}</div>
-      <div className="text-xs mt-0.5" style={{ color: COLORS.textDim }}>{desc}</div>
-    </div>
-  </div>
-);
-
-const ProgressBar = ({ value, max = 100, color = COLORS.amber }) => (
-  <div className="w-full h-1.5 rounded-full" style={{ background: `${color}20` }}>
-    <div className="h-full rounded-full transition-all duration-700" style={{ width: `${(value/max)*100}%`, background: color }}/>
-  </div>
-);
-
-const TabBar = ({ tabs, active, onChange }) => (
-  <div className="flex gap-1 p-1 rounded-sm mb-6" style={{ background: COLORS.bgDark, border: `1px solid ${COLORS.border}` }}>
-    {tabs.map(t => (
-      <button key={t.id} onClick={() => onChange(t.id)}
-        className="flex-1 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-sm transition-all"
-        style={{ background: active === t.id ? COLORS.amberGlow : 'transparent', color: active === t.id ? COLORS.amber : COLORS.textDim, border: active === t.id ? `1px solid ${COLORS.amber}` : '1px solid transparent' }}>
-        {t.label}
-      </button>
-    ))}
-  </div>
-);
-
-// ============================================================
-// MAIN SECTIONS
-// ============================================================
-
-// --- DASHBOARD ---
-const Dashboard = () => (
-  <div className="space-y-6">
-    <SectionHeader icon={LayoutDashboard} title="Command Center" subtitle="Real-time overview of your Montucky empire"/>
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <KPI icon={DollarSign} label="Revenue (30d)" value="$4,250" change="+37%" positive/>
-      <KPI icon={ShoppingBag} label="Orders (30d)" value="58" change="+22%" positive/>
-      <KPI icon={Eye} label="Site Visitors" value="1,847" change="+18%" positive/>
-      <KPI icon={Users} label="Customers" value="312" change="+9%" positive/>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-      <Card className="p-4 md:col-span-2">
-        <div className="text-xs uppercase tracking-widest mb-3" style={{ color: COLORS.textDim }}>Revenue & Orders</div>
-        <ResponsiveContainer width="100%" height={220}>
-          <AreaChart data={revenueData}>
-            <defs>
-              <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={COLORS.amber} stopOpacity={0.3}/>
-                <stop offset="95%" stopColor={COLORS.amber} stopOpacity={0}/>
-              </linearGradient>
-            </defs>
-            <XAxis dataKey="month" tick={{ fill: COLORS.textDim, fontSize: 11 }} axisLine={false} tickLine={false}/>
-            <YAxis tick={{ fill: COLORS.textDim, fontSize: 11 }} axisLine={false} tickLine={false}/>
-            <Tooltip contentStyle={{ background: COLORS.bgCard, border: `1px solid ${COLORS.border}`, borderRadius: 2, color: COLORS.cream, fontSize: 12 }}/>
-            <Area type="monotone" dataKey="revenue" stroke={COLORS.amber} fill="url(#revGrad)" strokeWidth={2}/>
-          </AreaChart>
-        </ResponsiveContainer>
-      </Card>
-      <Card className="p-4">
-        <div className="text-xs uppercase tracking-widest mb-3" style={{ color: COLORS.textDim }}>Traffic Sources</div>
-        <ResponsiveContainer width="100%" height={220}>
-          <PieChart>
-            <Pie data={[{ name:'Organic', value:42 },{ name:'Social', value:33 },{ name:'Direct', value:18 },{ name:'Referral', value:7 }]}
-              cx="50%" cy="50%" innerRadius={50} outerRadius={75} paddingAngle={3} dataKey="value">
-              {[COLORS.amber, COLORS.purple, COLORS.blue, COLORS.green].map((c,i) => <Cell key={i} fill={c}/>)}
-            </Pie>
-            <Tooltip contentStyle={{ background: COLORS.bgCard, border: `1px solid ${COLORS.border}`, borderRadius: 2, color: COLORS.cream, fontSize: 12 }}/>
-          </PieChart>
-        </ResponsiveContainer>
-        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 justify-center">
-          {[{l:'Organic',c:COLORS.amber},{l:'Social',c:COLORS.purple},{l:'Direct',c:COLORS.blue},{l:'Referral',c:COLORS.green}].map(i=>
-            <span key={i.l} className="flex items-center gap-1 text-xs" style={{color:COLORS.textDim}}>
-              <span className="w-2 h-2 rounded-full" style={{background:i.c}}/>{i.l}
-            </span>
-          )}
-        </div>
-      </Card>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-      <Card className="p-4">
-        <div className="text-xs uppercase tracking-widest mb-3" style={{ color: COLORS.textDim }}>Quick Actions</div>
-        {[{icon:Package,label:"Add New Product",desc:"List on Shopify + all socials"},{icon:Sparkles,label:"Generate Product Photos",desc:"AI-powered studio"},{icon:Search,label:"Run SEO Audit",desc:"Full site analysis"},{icon:Zap,label:"Create Automation",desc:"Build a new workflow"}].map((a,i)=>
-          <div key={i} className="flex items-center gap-3 p-2.5 rounded-sm cursor-pointer transition-all hover:translate-x-1" style={{borderBottom: i < 3 ? `1px solid ${COLORS.border}` : 'none'}}>
-            <div className="p-2 rounded-sm" style={{background:COLORS.amberGlow}}><a.icon size={16} style={{color:COLORS.amber}}/></div>
-            <div className="flex-1">
-              <div className="text-sm font-semibold" style={{color:COLORS.cream}}>{a.label}</div>
-              <div className="text-xs" style={{color:COLORS.textDim}}>{a.desc}</div>
-            </div>
-            <ChevronRight size={14} style={{color:COLORS.textDim}}/>
-          </div>
-        )}
-      </Card>
-      <Card className="p-4">
-        <div className="text-xs uppercase tracking-widest mb-3" style={{ color: COLORS.textDim }}>Active Automations</div>
-        {automations.slice(0,4).map((a,i)=>
-          <div key={i} className="flex items-center justify-between p-2.5" style={{borderBottom: i < 3 ? `1px solid ${COLORS.border}` : 'none'}}>
-            <div>
-              <div className="text-sm font-medium" style={{color:COLORS.cream}}>{a.name}</div>
-              <div className="text-xs" style={{color:COLORS.textDim}}>{a.runs} runs</div>
-            </div>
-            <StatusBadge status={a.status}/>
-          </div>
-        )}
-      </Card>
-    </div>
-  </div>
-);
-
-// --- SOCIAL HUB ---
-const SocialHub = () => {
-  const [tab, setTab] = useState("overview");
-  const platforms = [
-    { name: "Meta Business", icon: Globe, status: "connected", followers: "2.4K", posts: 48, engagement: "3.2%", color: COLORS.blue },
-    { name: "Instagram", icon: Camera, status: "connected", followers: "1.8K", posts: 124, engagement: "4.7%", color: COLORS.pink },
-    { name: "TikTok Shop", icon: Play, status: "pending", followers: "890", posts: 32, engagement: "8.1%", color: COLORS.cyan },
-    { name: "TikTok Account", icon: Hash, status: "connected", followers: "890", posts: 32, engagement: "8.1%", color: COLORS.cyan }
-  ];
-  return (
-    <div className="space-y-6">
-      <SectionHeader icon={Share2} title="Social Command Center" subtitle="Manage Meta, Instagram, TikTok Shop & accounts from one place"/>
-      <TabBar tabs={[{id:"overview",label:"Overview"},{id:"meta",label:"Meta / IG"},{id:"tiktok",label:"TikTok Shop"},{id:"schedule",label:"Content Calendar"}]} active={tab} onChange={setTab}/>
-      {tab === "overview" && <>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {platforms.map(p => (
-            <Card key={p.name} className="p-4 cursor-pointer hover:border-amber-500/40">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-sm" style={{ background: `${p.color}20` }}><p.icon size={18} style={{ color: p.color }}/></div>
-                <StatusBadge status={p.status}/>
-              </div>
-              <div className="text-lg font-bold" style={{ color: COLORS.cream }}>{p.followers}</div>
-              <div className="text-xs" style={{ color: COLORS.textDim }}>{p.name} followers</div>
-              <div className="mt-2 flex items-center gap-2">
-                <span className="text-xs" style={{ color: COLORS.green }}>{p.engagement} engagement</span>
-              </div>
-            </Card>
-          ))}
-        </div>
-        <Card className="p-4">
-          <div className="text-xs uppercase tracking-widest mb-3" style={{ color: COLORS.textDim }}>Cross-Platform Engagement (7 days)</div>
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={trafficData}>
-              <XAxis dataKey="day" tick={{ fill: COLORS.textDim, fontSize: 11 }} axisLine={false} tickLine={false}/>
-              <YAxis tick={{ fill: COLORS.textDim, fontSize: 11 }} axisLine={false} tickLine={false}/>
-              <Tooltip contentStyle={{ background: COLORS.bgCard, border: `1px solid ${COLORS.border}`, borderRadius: 2, color: COLORS.cream, fontSize: 12 }}/>
-              <Bar dataKey="organic" fill={COLORS.amber} radius={[2,2,0,0]}/>
-              <Bar dataKey="social" fill={COLORS.purple} radius={[2,2,0,0]}/>
-              <Bar dataKey="direct" fill={COLORS.blue} radius={[2,2,0,0]}/>
-            </BarChart>
-          </ResponsiveContainer>
-        </Card>
-      </>}
-      {tab === "meta" && (
-        <div className="space-y-4">
-          <Card className="p-5">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-sm" style={{background:`${COLORS.blue}20`}}><Globe size={24} style={{color:COLORS.blue}}/></div>
-              <div>
-                <div className="text-lg font-bold" style={{color:COLORS.cream}}>Meta Business Suite</div>
-                <div className="text-sm" style={{color:COLORS.textDim}}>Manage Facebook Page, Instagram, Messenger & Meta Ads</div>
-              </div>
-              <StatusBadge status="connected"/>
-            </div>
-            <div className="grid grid-cols-3 gap-3 mb-4">
-              {[{l:"Page Reach",v:"12.4K",c:"+28%"},{l:"Post Engagement",v:"3.2%",c:"+0.4%"},{l:"Ad Spend",v:"$0",c:"No active campaigns"}].map(s=>
-                <div key={s.l} className="p-3 rounded-sm" style={{background:COLORS.bgDark, border:`1px solid ${COLORS.border}`}}>
-                  <div className="text-xs uppercase tracking-wider mb-1" style={{color:COLORS.textDim}}>{s.l}</div>
-                  <div className="text-xl font-bold" style={{color:COLORS.cream}}>{s.v}</div>
-                  <div className="text-xs" style={{color:COLORS.green}}>{s.c}</div>
-                </div>
-              )}
-            </div>
-            <div className="p-3 rounded-sm" style={{background:`${COLORS.amber}08`, border:`1px solid ${COLORS.border}`}}>
-              <div className="flex items-center gap-2 mb-2"><Lightbulb size={14} style={{color:COLORS.amber}}/><span className="text-xs font-semibold uppercase tracking-wider" style={{color:COLORS.amber}}>AI Recommendation</span></div>
-              <p className="text-sm" style={{color:COLORS.textSecondary}}>Your engagement peaks Thursday–Saturday. Schedule 3 posts per week during these days. Your mug photos generate 2.4x more engagement than apparel — consider a "Mug Monday" series to drive consistent traffic.</p>
-            </div>
-          </Card>
-          <Card className="p-5">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-sm" style={{background:`${COLORS.pink}20`}}><Camera size={24} style={{color:COLORS.pink}}/></div>
-              <div>
-                <div className="text-lg font-bold" style={{color:COLORS.cream}}>Instagram Management</div>
-                <div className="text-sm" style={{color:COLORS.textDim}}>Feed, Stories, Reels, Shopping tags</div>
-              </div>
-            </div>
-            <div className="grid grid-cols-4 gap-2">
-              {products.slice(0,4).map((p,i)=>
-                <div key={i} className="relative group cursor-pointer">
-                  <img src={p.img} alt={p.name} className="w-full aspect-square object-cover rounded-sm opacity-80 group-hover:opacity-100 transition-opacity"/>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" style={{background:'rgba(0,0,0,0.6)'}}>
-                    <Heart size={20} style={{color:COLORS.pink}}/>
-                  </div>
-                </div>
-              )}
-            </div>
-          </Card>
-        </div>
-      )}
-      {tab === "tiktok" && (
-        <div className="space-y-4">
-          <Card className="p-5">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-sm" style={{background:`${COLORS.cyan}20`}}><Store size={24} style={{color:COLORS.cyan}}/></div>
-              <div>
-                <div className="text-lg font-bold" style={{color:COLORS.cream}}>TikTok Shop Integration</div>
-                <div className="text-sm" style={{color:COLORS.textDim}}>Sync products, manage orders, track TikTok-driven revenue</div>
-              </div>
-              <StatusBadge status="pending"/>
-            </div>
-            <div className="p-4 rounded-sm text-center" style={{background:COLORS.bgDark, border:`1px dashed ${COLORS.amber}`}}>
-              <Plug size={32} style={{color:COLORS.amber}} className="mx-auto mb-2"/>
-              <div className="text-sm font-semibold mb-1" style={{color:COLORS.cream}}>TikTok Shop Setup Required</div>
-              <p className="text-xs mb-3" style={{color:COLORS.textDim}}>Connect your TikTok Business account to sync products from Shopify and enable in-app purchases.</p>
-              <button className="px-4 py-2 text-xs font-bold uppercase tracking-wider" style={{background:COLORS.amber, color:COLORS.bg}}>Launch Setup Wizard →</button>
-            </div>
-          </Card>
-          <Card className="p-4">
-            <div className="text-sm font-semibold mb-3" style={{color:COLORS.cream}}>What TikTok Shop enables:</div>
-            {[
-              {title:"Product Sync",desc:"Auto-sync all Shopify products to TikTok Shop catalog"},
-              {title:"Shoppable Videos",desc:"Tag products directly in TikTok videos for 1-tap purchase"},
-              {title:"Live Shopping",desc:"Sell products during TikTok LIVE sessions with real-time checkout"},
-              {title:"Affiliate Marketing",desc:"Let TikTok creators promote your products for commission"},
-              {title:"Order Sync",desc:"All TikTok orders flow back to Shopify for unified fulfillment"}
-            ].map((f,i) =>
-              <div key={i} className="flex items-start gap-3 py-2" style={{borderBottom: i < 4 ? `1px solid ${COLORS.border}` : 'none'}}>
-                <Check size={14} style={{color:COLORS.green}} className="mt-0.5 shrink-0"/>
-                <div>
-                  <div className="text-sm font-medium" style={{color:COLORS.cream}}>{f.title}</div>
-                  <div className="text-xs" style={{color:COLORS.textDim}}>{f.desc}</div>
-                </div>
-              </div>
-            )}
-          </Card>
-        </div>
-      )}
-      {tab === "schedule" && (
-        <Card className="p-5">
-          <div className="text-sm font-semibold mb-4" style={{color:COLORS.cream}}>Content Calendar — This Week</div>
-          <div className="grid grid-cols-7 gap-1">
-            {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d=>
-              <div key={d} className="text-center text-xs font-semibold py-1 uppercase tracking-wider" style={{color:COLORS.textDim}}>{d}</div>
-            )}
-            {[
-              {posts:1,platform:"IG"},null,{posts:1,platform:"Meta"},{posts:2,platform:"IG + TT"},null,
-              {posts:1,platform:"TikTok"},{posts:1,platform:"IG"}
-            ].map((d,i)=>
-              <div key={i} className="aspect-square rounded-sm flex flex-col items-center justify-center p-1"
-                style={{background: d ? COLORS.amberGlow : COLORS.bgDark, border:`1px solid ${d ? COLORS.amber : COLORS.border}`}}>
-                {d ? <>
-                  <div className="text-lg font-bold" style={{color:COLORS.amber}}>{d.posts}</div>
-                  <div className="text-[9px] uppercase" style={{color:COLORS.textDim}}>{d.platform}</div>
-                </> : <span className="text-xs" style={{color:COLORS.textDim}}>—</span>}
-              </div>
-            )}
-          </div>
-        </Card>
-      )}
-    </div>
-  );
-};
-
-// --- SHOPIFY SYNC ---
-const ShopifySync = () => {
-  const [tab, setTab] = useState("products");
-  return (
-    <div className="space-y-6">
-      <SectionHeader icon={ShoppingBag} title="Shopify Integration" subtitle="Unified product, order, and inventory management"/>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <KPI icon={Package} label="Total Products" value="15" change="+3 new"/>
-        <KPI icon={ShoppingBag} label="Pending Orders" value="4"/>
-        <KPI icon={DollarSign} label="Avg Order Value" value="$38.40" change="+12%" positive/>
-        <KPI icon={Star} label="Avg Rating" value="4.6"/>
-      </div>
-      <TabBar tabs={[{id:"products",label:"Products"},{id:"orders",label:"Orders"},{id:"inventory",label:"Inventory"}]} active={tab} onChange={setTab}/>
-      {tab === "products" && (
-        <div className="space-y-2">
-          {products.map((p,i)=>
-            <Card key={i} className="p-3 flex items-center gap-3 hover:border-amber-500/30 cursor-pointer">
-              <img src={p.img} alt={p.name} className="w-12 h-12 rounded-sm object-cover"/>
-              <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold truncate" style={{color:COLORS.cream}}>{p.name}</div>
-                <div className="text-xs" style={{color:COLORS.textDim}}>{p.tag} · {p.price}</div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="text-right">
-                  <div className="text-xs" style={{color:COLORS.textDim}}>SEO Score</div>
-                  <div className="text-sm font-bold" style={{color: p.seoScore > 70 ? COLORS.green : p.seoScore > 50 ? COLORS.amber : COLORS.red}}>{p.seoScore}/100</div>
-                </div>
-                <ProgressBar value={p.seoScore} color={p.seoScore > 70 ? COLORS.green : p.seoScore > 50 ? COLORS.amber : COLORS.red}/>
-              </div>
-            </Card>
-          )}
-        </div>
-      )}
-      {tab === "orders" && (
-        <Card className="p-4">
-          <div className="text-sm mb-3" style={{color:COLORS.textDim}}>Recent Orders</div>
-          {[
-            {id:"#1058",customer:"Mike T.",total:"$87.77",items:"Heavyweight Hoodie",status:"Shipped"},
-            {id:"#1057",customer:"Sarah L.",total:"$45.87",items:"Stein + Flask",status:"Processing"},
-            {id:"#1056",customer:"Jake R.",total:"$21.69",items:"Drink Drank Drunk Tee",status:"Delivered"},
-            {id:"#1055",customer:"Amy K.",total:"$19.99",items:"Sexy Coffee Mug",status:"Delivered"}
-          ].map((o,i)=>
-            <div key={i} className="flex items-center justify-between py-3" style={{borderBottom: i < 3 ? `1px solid ${COLORS.border}` : 'none'}}>
-              <div>
-                <span className="text-sm font-bold mr-2" style={{color:COLORS.amber}}>{o.id}</span>
-                <span className="text-sm" style={{color:COLORS.cream}}>{o.customer}</span>
-                <div className="text-xs mt-0.5" style={{color:COLORS.textDim}}>{o.items}</div>
-              </div>
-              <div className="text-right">
-                <div className="text-sm font-semibold" style={{color:COLORS.cream}}>{o.total}</div>
-                <StatusBadge status={o.status === "Shipped" ? "pending" : o.status === "Processing" ? "pending" : "active"}/>
-              </div>
-            </div>
-          )}
-        </Card>
-      )}
-      {tab === "inventory" && (
-        <Card className="p-4">
-          <div className="text-sm mb-3" style={{color:COLORS.textDim}}>Inventory Alerts</div>
-          {[
-            {name:"Moonshine Stein",stock:3,status:"Low Stock"},
-            {name:"Distressed Dad Hat",stock:8,status:"OK"},
-            {name:"E-Book (Digital)",stock:"∞",status:"Digital"},
-            {name:"Wall Clock",stock:5,status:"Low Stock"}
-          ].map((item,i)=>
-            <div key={i} className="flex items-center justify-between py-3" style={{borderBottom: i < 3 ? `1px solid ${COLORS.border}` : 'none'}}>
-              <div className="text-sm" style={{color:COLORS.cream}}>{item.name}</div>
-              <div className="flex items-center gap-3">
-                <span className="text-sm font-bold" style={{color: item.status==="Low Stock" ? COLORS.red : COLORS.green}}>{item.stock} units</span>
-                {item.status === "Low Stock" && <AlertTriangle size={14} style={{color:COLORS.red}}/>}
-              </div>
-            </div>
-          )}
-        </Card>
-      )}
-    </div>
-  );
-};
-
-// --- AUTOMATION MATRIX ---
-const AutomationMatrix = () => (
-  <div className="space-y-6">
-    <SectionHeader icon={Zap} title="Automation Matrix" subtitle="Workflows that scale your brand while you sleep"
-      action={<button className="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:COLORS.amber, color:COLORS.bg}}>+ New Workflow</button>}/>
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-      <KPI icon={Zap} label="Active Workflows" value="5"/>
-      <KPI icon={RefreshCw} label="Total Runs (30d)" value="366"/>
-      <KPI icon={Clock} label="Time Saved" value="~47 hrs"/>
-    </div>
-    <div className="space-y-2">
-      {automations.map((a,i)=>
-        <Card key={i} className="p-4">
-          <div className="flex items-center justify-between mb-2">
-            <div className="text-sm font-bold" style={{color:COLORS.cream}}>{a.name}</div>
-            <StatusBadge status={a.status}/>
-          </div>
-          <div className="flex items-center gap-2 text-xs" style={{color:COLORS.textDim}}>
-            <span className="px-2 py-0.5 rounded-sm" style={{background:COLORS.bgDark, border:`1px solid ${COLORS.border}`}}>{a.trigger}</span>
-            <ArrowRight size={12} style={{color:COLORS.amber}}/>
-            <span className="px-2 py-0.5 rounded-sm" style={{background:COLORS.bgDark, border:`1px solid ${COLORS.border}`}}>{a.action}</span>
-            <span className="ml-auto">{a.runs} runs</span>
-          </div>
-        </Card>
-      )}
-    </div>
-    <Card className="p-5">
-      <div className="text-sm font-bold mb-3" style={{color:COLORS.cream}}>Suggested Automations</div>
-      {[
-        {name:"Price Drop Alert → Email Blast",desc:"When you reduce a product price, auto-notify all past purchasers"},
-        {name:"UGC Collector → Social Proof Wall",desc:"Auto-collect tagged photos from IG/TikTok and display on site"},
-        {name:"Seasonal Collection Launcher",desc:"Auto-publish seasonal products across all channels on scheduled dates"}
-      ].map((s,i)=>
-        <div key={i} className="flex items-center gap-3 py-3 cursor-pointer" style={{borderBottom: i < 2 ? `1px solid ${COLORS.border}` : 'none'}}>
-          <Sparkles size={16} style={{color:COLORS.amber}}/>
-          <div className="flex-1">
-            <div className="text-sm font-medium" style={{color:COLORS.cream}}>{s.name}</div>
-            <div className="text-xs" style={{color:COLORS.textDim}}>{s.desc}</div>
-          </div>
-          <button className="text-xs font-semibold uppercase tracking-wider" style={{color:COLORS.amber}}>Enable</button>
-        </div>
-      )}
-    </Card>
-  </div>
-);
-
-// --- SEO & ANALYTICS ---
-const SEOAnalytics = () => {
-  const [tab, setTab] = useState("keywords");
-  return (
-    <div className="space-y-6">
-      <SectionHeader icon={Search} title="SEO & Analytics Command" subtitle="Deep intelligence on what's working, what needs culled, and where to attack"/>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <KPI icon={Eye} label="Impressions (30d)" value="24.6K" change="+42%" positive/>
-        <KPI icon={MousePointerClick} label="Clicks (30d)" value="847" change="+28%" positive/>
-        <KPI icon={Target} label="Avg Position" value="7.2" change="-2.1" positive/>
-        <KPI icon={BarChart3} label="Avg CTR" value="3.4%" change="+0.6%" positive/>
-      </div>
-      <TabBar tabs={[{id:"keywords",label:"Keywords"},{id:"health",label:"Site Health"},{id:"actions",label:"AI Actions"},{id:"cull",label:"Cull Report"}]} active={tab} onChange={setTab}/>
-      {tab === "keywords" && (
-        <Card className="p-4 overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr style={{borderBottom:`1px solid ${COLORS.border}`}}>
-                {["Keyword","Position","Change","Volume","CTR","Action"].map(h=>
-                  <th key={h} className="text-left py-2 px-2 text-xs uppercase tracking-wider font-semibold" style={{color:COLORS.textDim}}>{h}</th>
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {seoKeywords.map((k,i) => (
-                <tr key={i} style={{borderBottom:`1px solid ${COLORS.border}`}} className="hover:bg-white/[0.02]">
-                  <td className="py-2.5 px-2 font-medium" style={{color:COLORS.cream}}>{k.keyword}</td>
-                  <td className="py-2.5 px-2">
-                    <span className="font-bold" style={{color: k.position <= 5 ? COLORS.green : k.position <= 10 ? COLORS.amber : COLORS.red}}>#{k.position}</span>
-                  </td>
-                  <td className="py-2.5 px-2">
-                    <span className="flex items-center gap-1" style={{color: k.change > 0 ? COLORS.green : k.change < 0 ? COLORS.red : COLORS.textDim}}>
-                      {k.change > 0 ? <TrendingUp size={12}/> : k.change < 0 ? <TrendingDown size={12}/> : null}
-                      {k.change > 0 ? '+' : ''}{k.change}
-                    </span>
-                  </td>
-                  <td className="py-2.5 px-2" style={{color:COLORS.textSecondary}}>{k.volume.toLocaleString()}/mo</td>
-                  <td className="py-2.5 px-2" style={{color:COLORS.textSecondary}}>{k.ctr}%</td>
-                  <td className="py-2.5 px-2">
-                    {k.position >= 7 && k.position <= 12 ? (
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{background:`${COLORS.amber}20`, color:COLORS.amber}}>Striking Distance</span>
-                    ) : k.position <= 3 ? (
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{background:`${COLORS.green}20`, color:COLORS.green}}>Defend</span>
-                    ) : null}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Card>
-      )}
-      {tab === "health" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card className="p-4">
-            <div className="text-xs uppercase tracking-widest mb-3" style={{color:COLORS.textDim}}>SEO Health Radar</div>
-            <ResponsiveContainer width="100%" height={250}>
-              <RadarChart data={seoScores}>
-                <PolarGrid stroke={COLORS.border}/>
-                <PolarAngleAxis dataKey="subject" tick={{fill:COLORS.textDim, fontSize:11}}/>
-                <PolarRadiusAxis tick={false} axisLine={false}/>
-                <Radar dataKey="A" stroke={COLORS.amber} fill={COLORS.amber} fillOpacity={0.2}/>
-              </RadarChart>
-            </ResponsiveContainer>
-          </Card>
-          <Card className="p-4">
-            <div className="text-xs uppercase tracking-widest mb-3" style={{color:COLORS.textDim}}>Core Web Vitals</div>
-            {[
-              {metric:"Largest Contentful Paint",value:"1.8s",target:"< 2.5s",score:92,status:"pass"},
-              {metric:"First Input Delay",value:"12ms",target:"< 100ms",score:98,status:"pass"},
-              {metric:"Cumulative Layout Shift",value:"0.04",target:"< 0.1",score:96,status:"pass"},
-              {metric:"Time to First Byte",value:"0.6s",target:"< 0.8s",score:88,status:"pass"},
-              {metric:"Lighthouse Score",value:"96",target:"> 90",score:96,status:"pass"}
-            ].map((v,i) =>
-              <div key={i} className="py-2.5" style={{borderBottom: i < 4 ? `1px solid ${COLORS.border}` : 'none'}}>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm" style={{color:COLORS.cream}}>{v.metric}</span>
-                  <span className="text-sm font-bold" style={{color:COLORS.green}}>{v.value}</span>
-                </div>
-                <ProgressBar value={v.score} color={COLORS.green}/>
-              </div>
-            )}
-          </Card>
-        </div>
-      )}
-      {tab === "actions" && (
-        <div className="space-y-3">
-          <Card className="p-4" style={{borderColor:`${COLORS.amber}40`}}>
-            <div className="flex items-center gap-2 mb-2"><Sparkles size={16} style={{color:COLORS.amber}}/><span className="text-sm font-bold" style={{color:COLORS.amber}}>AI SEO Agent — Automated Actions</span></div>
-            <p className="text-sm mb-4" style={{color:COLORS.textSecondary}}>The agent continuously monitors your search performance and executes optimizations without manual intervention.</p>
-            {[
-              {action:"Generated optimized meta descriptions for 6 product pages",time:"2 hours ago",status:"completed"},
-              {action:"Identified 3 'striking distance' keywords — content brief created",time:"6 hours ago",status:"completed"},
-              {action:"Compressed 12 product images (avg 68% reduction, no quality loss)",time:"Yesterday",status:"completed"},
-              {action:"Schema markup (Product, Organization, LocalBusiness) added to all pages",time:"2 days ago",status:"completed"},
-              {action:"Internal linking audit — 8 orphan pages connected",time:"3 days ago",status:"completed"}
-            ].map((a,i) =>
-              <div key={i} className="flex items-start gap-3 py-2" style={{borderBottom: i < 4 ? `1px solid ${COLORS.border}` : 'none'}}>
-                <Check size={14} style={{color:COLORS.green}} className="mt-0.5 shrink-0"/>
-                <div className="flex-1">
-                  <div className="text-sm" style={{color:COLORS.cream}}>{a.action}</div>
-                  <div className="text-xs" style={{color:COLORS.textDim}}>{a.time}</div>
-                </div>
-              </div>
-            )}
-          </Card>
-        </div>
-      )}
-      {tab === "cull" && (
-        <div className="space-y-3">
-          <Card className="p-4" style={{borderColor:`${COLORS.red}30`}}>
-            <div className="flex items-center gap-2 mb-3"><AlertTriangle size={16} style={{color:COLORS.red}}/><span className="text-sm font-bold" style={{color:COLORS.red}}>Underperforming — Consider Culling</span></div>
-            {products.filter(p=>p.seoScore < 55).map((p,i)=>
-              <div key={i} className="flex items-center gap-3 py-2.5" style={{borderBottom:`1px solid ${COLORS.border}`}}>
-                <img src={p.img} alt={p.name} className="w-10 h-10 rounded-sm object-cover"/>
-                <div className="flex-1">
-                  <div className="text-sm" style={{color:COLORS.cream}}>{p.name}</div>
-                  <div className="text-xs" style={{color:COLORS.textDim}}>SEO: {p.seoScore}/100 · Low traffic · Low conversion</div>
-                </div>
-                <div className="flex gap-2">
-                  <button className="text-xs px-2 py-1 rounded-sm" style={{background:`${COLORS.amber}20`, color:COLORS.amber}}>Optimize</button>
-                  <button className="text-xs px-2 py-1 rounded-sm" style={{background:`${COLORS.red}20`, color:COLORS.red}}>Archive</button>
-                </div>
-              </div>
-            )}
-          </Card>
-          <Card className="p-4" style={{borderColor:`${COLORS.green}30`}}>
-            <div className="flex items-center gap-2 mb-3"><TrendingUp size={16} style={{color:COLORS.green}}/><span className="text-sm font-bold" style={{color:COLORS.green}}>Top Performers — Double Down</span></div>
-            {products.filter(p=>p.seoScore > 70).map((p,i)=>
-              <div key={i} className="flex items-center gap-3 py-2.5" style={{borderBottom:`1px solid ${COLORS.border}`}}>
-                <img src={p.img} alt={p.name} className="w-10 h-10 rounded-sm object-cover"/>
-                <div className="flex-1">
-                  <div className="text-sm" style={{color:COLORS.cream}}>{p.name}</div>
-                  <div className="text-xs" style={{color:COLORS.textDim}}>SEO: {p.seoScore}/100 · Strong traffic · Good conversion</div>
-                </div>
-                <button className="text-xs px-2 py-1 rounded-sm" style={{background:`${COLORS.green}20`, color:COLORS.green}}>Amplify</button>
-              </div>
-            )}
-          </Card>
-        </div>
-      )}
-    </div>
-  );
-};
-
-// --- PRODUCT STUDIO ---
-const ProductStudio = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  return (
-    <div className="space-y-6">
-      <SectionHeader icon={Image} title="AI Product Studio" subtitle="Generate photos, optimize listings, and enhance product presentation"/>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="p-5">
-          <div className="flex items-center gap-2 mb-4"><Wand2 size={18} style={{color:COLORS.amber}}/><span className="text-sm font-bold" style={{color:COLORS.cream}}>AI Photo Generator</span></div>
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs uppercase tracking-wider block mb-1" style={{color:COLORS.textDim}}>Select Product</label>
-              <select className="w-full p-2 rounded-sm text-sm" style={{background:COLORS.bgDark, color:COLORS.cream, border:`1px solid ${COLORS.border}`}}
-                onChange={e => setSelectedProduct(products[e.target.value])} defaultValue="">
-                <option value="" disabled>Choose a product...</option>
-                {products.map((p,i)=><option key={i} value={i}>{p.name}</option>)}
-              </select>
-            </div>
-            <div>
-              <label className="text-xs uppercase tracking-wider block mb-1" style={{color:COLORS.textDim}}>Scene / Style</label>
-              <div className="grid grid-cols-3 gap-2">
-                {["Rustic Wood","Bar Counter","White Studio","Outdoor Montana","Lifestyle Shot","Flat Lay"].map(s=>
-                  <button key={s} className="p-2 text-xs rounded-sm text-center transition-all hover:border-amber-500/40"
-                    style={{background:COLORS.bgDark, border:`1px solid ${COLORS.border}`, color:COLORS.textSecondary}}>
-                    {s}
-                  </button>
-                )}
-              </div>
-            </div>
-            <div>
-              <label className="text-xs uppercase tracking-wider block mb-1" style={{color:COLORS.textDim}}>Custom Prompt</label>
-              <textarea className="w-full p-2 rounded-sm text-sm h-16 resize-none" placeholder="e.g., Product on rustic wooden bar with warm amber lighting, Montana mountains visible through window..."
-                style={{background:COLORS.bgDark, color:COLORS.cream, border:`1px solid ${COLORS.border}`}}/>
-            </div>
-            <button className="w-full py-2.5 text-xs font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-2"
-              style={{background:COLORS.amber, color:COLORS.bg}}>
-              <Sparkles size={14}/> Generate Photos
-            </button>
-          </div>
-        </Card>
-        <Card className="p-5">
-          <div className="flex items-center gap-2 mb-4"><Palette size={18} style={{color:COLORS.amber}}/><span className="text-sm font-bold" style={{color:COLORS.cream}}>Listing Optimizer</span></div>
-          {selectedProduct ? (
-            <div>
-              <div className="flex items-center gap-3 mb-4 p-3 rounded-sm" style={{background:COLORS.bgDark}}>
-                <img src={selectedProduct.img} alt={selectedProduct.name} className="w-16 h-16 rounded-sm object-cover"/>
-                <div>
-                  <div className="text-sm font-bold" style={{color:COLORS.cream}}>{selectedProduct.name}</div>
-                  <div className="text-xs" style={{color:COLORS.textDim}}>{selectedProduct.price}</div>
-                </div>
-              </div>
-              {[
-                {label:"Title Optimization",score:selectedProduct.seoScore > 60 ? 78 : 42, suggestion: selectedProduct.seoScore > 60 ? "Strong — includes key search terms" : "Needs work — add primary keyword"},
-                {label:"Description Quality",score:45, suggestion:"Too short. Add 150+ words with benefits, materials, and use cases"},
-                {label:"Image Quality",score:62, suggestion:"Good resolution but missing lifestyle context shots"},
-                {label:"Tags & Categories",score:selectedProduct.seoScore > 60 ? 85 : 55, suggestion: selectedProduct.seoScore > 60 ? "Well-tagged" : "Add more specific tags"}
-              ].map((o,i)=>
-                <div key={i} className="py-2.5" style={{borderBottom: i < 3 ? `1px solid ${COLORS.border}` : 'none'}}>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-xs font-semibold" style={{color:COLORS.cream}}>{o.label}</span>
-                    <span className="text-xs font-bold" style={{color: o.score > 70 ? COLORS.green : o.score > 50 ? COLORS.amber : COLORS.red}}>{o.score}%</span>
-                  </div>
-                  <ProgressBar value={o.score} color={o.score > 70 ? COLORS.green : o.score > 50 ? COLORS.amber : COLORS.red}/>
-                  <div className="text-xs mt-1" style={{color:COLORS.textDim}}>{o.suggestion}</div>
-                </div>
-              )}
-              <button className="w-full mt-3 py-2 text-xs font-bold uppercase tracking-wider rounded-sm"
-                style={{background:`${COLORS.amber}20`, color:COLORS.amber, border:`1px solid ${COLORS.amber}`}}>
-                Auto-Optimize This Listing
-              </button>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-48 text-center">
-              <Image size={32} style={{color:COLORS.textDim}} className="mb-2"/>
-              <p className="text-sm" style={{color:COLORS.textDim}}>Select a product to see optimization recommendations</p>
-            </div>
-          )}
-        </Card>
-      </div>
-      <Card className="p-4">
-        <div className="text-sm font-semibold mb-3" style={{color:COLORS.cream}}>Bar & Location Optimization</div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {[
-            {title:"Google Business Profile",desc:"Optimize photos, hours, menu items, and respond to reviews automatically",score:68},
-            {title:"Local SEO",desc:"Montana-specific keywords, Google Maps visibility, local backlink strategy",score:52},
-            {title:"Location Content",desc:"Auto-generate event announcements, happy hour posts, and seasonal specials",score:41}
-          ].map((l,i)=>
-            <div key={i} className="p-3 rounded-sm" style={{background:COLORS.bgDark, border:`1px solid ${COLORS.border}`}}>
-              <div className="text-sm font-semibold mb-1" style={{color:COLORS.cream}}>{l.title}</div>
-              <div className="text-xs mb-2" style={{color:COLORS.textDim}}>{l.desc}</div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs" style={{color:COLORS.textDim}}>Score</span>
-                <span className="text-sm font-bold" style={{color: l.score > 60 ? COLORS.amber : COLORS.red}}>{l.score}/100</span>
-              </div>
-              <ProgressBar value={l.score} color={l.score > 60 ? COLORS.amber : COLORS.red}/>
-            </div>
-          )}
-        </div>
-      </Card>
-    </div>
-  );
-};
-
-// --- LEARNING CENTER ---
-const LearningCenter = () => {
-  const [expanded, setExpanded] = useState(null);
-  const topics = [
-    {
-      id: "llm", icon: Bot, title: "Advanced Reasoning LLMs", subtitle: "What powers this entire platform",
-      content: `Large Language Models (LLMs) like Claude are neural networks trained on vast text datasets. They don't just autocomplete — they reason, plan, and execute multi-step workflows.\n\n**Why this matters for your business:**\n• An LLM can analyze your entire product catalog, identify SEO gaps, draft optimized descriptions, and publish them — in minutes, not days\n• It understands context: "improve my moonshine stein listing" triggers product analysis, competitor research, keyword extraction, and copywriting in one shot\n• Advanced reasoning means it catches things humans miss: keyword cannibalization, schema markup errors, inconsistent pricing across platforms\n\n**What "agentic" means:** Instead of just answering questions, agentic AI takes ACTION. It reads your analytics, decides what needs fixing, writes the fix, and deploys it. Your automations page? That's agentic AI in action.`
-    },
-    {
-      id: "api", icon: Plug, title: "APIs — The Pipes Between Your Tools", subtitle: "How Shopify, Meta, TikTok, and your site all talk to each other",
-      content: `An API (Application Programming Interface) is a structured way for two systems to exchange data. Think of it as a waiter in a restaurant — you (the client) don't go into the kitchen (the server). You give your order to the waiter (the API), who brings back exactly what you asked for.\n\n**Real examples in YOUR system:**\n• Shopify REST API: When someone buys a mug, this API sends order data to your dashboard in real-time\n• Meta Graph API: Lets this platform post to your Facebook page and read Instagram analytics without you logging into Meta\n• TikTok Commerce API: Syncs your Shopify products to TikTok Shop so they appear in your videos\n• Google Search Console API: Feeds live SEO data into your analytics dashboard\n\n**Authentication:** APIs use tokens (like passwords) so only YOUR platform can access YOUR data. OAuth 2.0 is the standard — it's why you see "Login with Google" buttons. The token expires, so even if intercepted, it's useless quickly.`
-    },
-    {
-      id: "mcp", icon: Cpu, title: "MCP — The Universal AI Connector", subtitle: "Model Context Protocol: how AI agents securely access your tools",
-      content: `The Model Context Protocol (MCP) is an open standard created by Anthropic. Think of it as USB-C for AI — one standardized port that connects any AI model to any external tool.\n\n**Before MCP:** Every AI integration was custom-built. Want Claude to check your Shopify orders? Custom code. Want it to post to Meta? More custom code. Each connection was fragile and expensive.\n\n**With MCP:** You deploy an MCP Server (a small program that exposes specific capabilities). The AI connects to it through a standardized protocol. Now Claude can:\n• Read your Google Search Console data (GSC MCP Server)\n• Manage your Shopify products (Shopify MCP Server)\n• Post to social media (Meta MCP Server)\n• Deploy your website (Netlify MCP Server)\n\n**The Architecture:**\n→ MCP Host: Where the AI runs (Claude Code terminal)\n→ MCP Client: Translates AI intent into structured requests\n→ MCP Server: Exposes tools the AI can use\n→ Transport: How they communicate (stdio locally, SSE remotely)\n\n**Why it matters:** MCP means you can add NEW integrations without rebuilding anything. Want to add Etsy? Deploy an Etsy MCP server. The AI immediately knows how to use it.`
-    },
-    {
-      id: "auto", icon: Zap, title: "Automation & Webhooks", subtitle: "How events trigger actions without you lifting a finger",
-      content: `Automation replaces repetitive human tasks with event-driven workflows. The core pattern:\n\n**TRIGGER** → **CONDITION** → **ACTION**\n\n**Webhooks** are the trigger mechanism. When something happens in Shopify (new order, stock change), Shopify sends an HTTP POST request to a URL you specify — that's a webhook. Your system receives it and decides what to do.\n\n**Example automation in YOUR system:**\n1. Customer buys a Moonshine Stein (Shopify webhook fires)\n2. System receives the order data\n3. Checks if stock is now below 5 units → sends you a Slack alert\n4. Auto-generates an Instagram Story: "Another Stein leaving the shelf!"\n5. Updates your analytics dashboard in real-time\n6. If it's their first purchase, triggers a welcome email sequence\n\nAll of that happens in under 3 seconds, with zero manual input.\n\n**n8n** is the self-hosted automation engine in your stack. Unlike Zapier ($50+/mo), n8n runs on your own server for $0–$25/mo with UNLIMITED workflows.`
-    }
-  ];
-  return (
-    <div className="space-y-6">
-      <SectionHeader icon={GraduationCap} title="Learning Center" subtitle="Understand the technology powering your brand's growth"/>
-      <div className="space-y-3">
-        {topics.map(t => (
-          <Card key={t.id} className={`overflow-hidden cursor-pointer transition-all ${expanded === t.id ? '' : 'hover:border-amber-500/30'}`}
-            style={{borderColor: expanded === t.id ? `${COLORS.amber}60` : undefined}}
-            onClick={() => setExpanded(expanded === t.id ? null : t.id)}>
-            <div className="p-4 flex items-center gap-3">
-              <div className="p-2.5 rounded-sm shrink-0" style={{background:COLORS.amberGlow}}><t.icon size={20} style={{color:COLORS.amber}}/></div>
-              <div className="flex-1">
-                <div className="text-sm font-bold" style={{color:COLORS.cream}}>{t.title}</div>
-                <div className="text-xs" style={{color:COLORS.textDim}}>{t.subtitle}</div>
-              </div>
-              <ChevronDown size={16} style={{color:COLORS.textDim, transform: expanded === t.id ? 'rotate(180deg)' : 'none', transition:'transform 0.3s'}}/>
-            </div>
-            {expanded === t.id && (
-              <div className="px-4 pb-4 pt-0">
-                <div className="p-4 rounded-sm text-sm leading-relaxed whitespace-pre-line" style={{background:COLORS.bgDark, color:COLORS.textSecondary, border:`1px solid ${COLORS.border}`}}>
-                  {t.content}
-                </div>
-              </div>
-            )}
-          </Card>
-        ))}
-      </div>
-      <Card className="p-5" style={{borderColor:`${COLORS.amber}30`}}>
-        <div className="flex items-center gap-2 mb-3"><BookOpen size={18} style={{color:COLORS.amber}}/><span className="text-sm font-bold" style={{color:COLORS.cream}}>Recommended Next Steps</span></div>
-        {[
-          {step:"1",title:"Complete TikTok Shop Setup",desc:"Biggest untapped revenue channel for your demographic",priority:"high"},
-          {step:"2",title:"Enable Automated SEO Agent",desc:"Let AI continuously optimize your product listings",priority:"high"},
-          {step:"3",title:"Set Up Meta Ads Manager",desc:"Retarget site visitors with dynamic product ads",priority:"medium"},
-          {step:"4",title:"Build Email Automation Flow",desc:"Welcome series + abandoned cart recovery",priority:"medium"}
-        ].map((s,i)=>
-          <div key={i} className="flex items-start gap-3 py-2.5" style={{borderBottom: i < 3 ? `1px solid ${COLORS.border}` : 'none'}}>
-            <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-              style={{background:COLORS.amberGlow, color:COLORS.amber, border:`1px solid ${COLORS.amber}`}}>{s.step}</div>
-            <div className="flex-1">
-              <div className="text-sm font-medium" style={{color:COLORS.cream}}>{s.title}</div>
-              <div className="text-xs" style={{color:COLORS.textDim}}>{s.desc}</div>
-            </div>
-            <span className="text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
-              style={{background: s.priority === "high" ? `${COLORS.red}20` : `${COLORS.amber}20`, color: s.priority === "high" ? COLORS.red : COLORS.amber}}>
-              {s.priority}
-            </span>
-          </div>
-        )}
-      </Card>
-    </div>
-  );
-};
-
-// --- SETUP WIZARDS ---
-const SetupWizards = () => {
-  const [activeWizard, setActiveWizard] = useState(null);
-  const [wizardStep, setWizardStep] = useState(1);
-  const wizards = [
-    { id: "shopify", icon: ShoppingBag, title: "Shopify Storefront API", status: "connected", desc: "Product sync, orders, inventory", steps: ["Create Private App", "Generate Storefront Token", "Configure Permissions", "Test Connection"] },
-    { id: "meta", icon: Globe, title: "Meta Business Suite", status: "connected", desc: "Facebook Page, Instagram, Messenger", steps: ["Create Meta App", "Configure Permissions", "Connect Facebook Page", "Link Instagram"] },
-    { id: "tiktok", icon: Play, title: "TikTok Shop + Account", status: "disconnected", desc: "Product catalog, shoppable videos, analytics", steps: ["Create TikTok Business Account", "Apply for TikTok Shop", "Install Shopify Connector", "Sync Product Catalog", "Enable Shoppable Videos"] },
-    { id: "gsc", icon: Search, title: "Google Search Console", status: "connected", desc: "SEO data, keyword tracking, indexing", steps: ["Verify Domain Ownership", "Create Service Account", "Generate JSON Key", "Configure MCP Server"] },
-    { id: "analytics", icon: BarChart3, title: "Google Analytics 4", status: "disconnected", desc: "Traffic, conversions, audience insights", steps: ["Create GA4 Property", "Install Tracking Code", "Configure Events", "Link to Search Console"] },
-    { id: "email", icon: MessageSquare, title: "Email Marketing (Mailchimp/Klaviyo)", status: "disconnected", desc: "Campaigns, automations, segmentation", steps: ["Create Account", "Import Subscribers", "Design Templates", "Build Welcome Flow"] },
-    { id: "n8n", icon: Zap, title: "n8n Workflow Engine", status: "connected", desc: "Self-hosted automation ($0-$25/mo)", steps: ["Deploy on Cloud Run", "Configure Webhook URLs", "Connect Shopify Trigger", "Build First Workflow"] },
-    { id: "gbp", icon: Target, title: "Google Business Profile", status: "disconnected", desc: "Local SEO, reviews, bar location", steps: ["Claim Business Listing", "Verify Location", "Add Photos & Menu", "Enable Review Alerts"] }
-  ];
-
-  if (activeWizard) {
-    const w = wizards.find(x => x.id === activeWizard);
-    return (
-      <div className="space-y-6">
-        <div className="flex items-center gap-3">
-          <button onClick={() => { setActiveWizard(null); setWizardStep(1); }} className="p-2 rounded-sm" style={{border:`1px solid ${COLORS.border}`}}>
-            <ArrowLeft size={16} style={{color:COLORS.textDim}}/>
-          </button>
-          <div>
-            <div className="text-lg font-bold" style={{color:COLORS.cream, fontFamily:"'Playfair Display', serif"}}>{w.title} Setup</div>
-            <div className="text-xs" style={{color:COLORS.textDim}}>Step {wizardStep} of {w.steps.length}</div>
-          </div>
-        </div>
-        <ProgressBar value={wizardStep} max={w.steps.length}/>
-        <div className="space-y-2">
-          {w.steps.map((s,i) => <WizardStep key={i} step={i+1} current={wizardStep} title={`Step ${i+1}: ${s}`} desc={
-            i+1 < wizardStep ? "Completed" : i+1 === wizardStep ? "Current step — follow the instructions below" : "Upcoming"
-          }/>)}
-        </div>
-        <Card className="p-5" style={{borderColor:`${COLORS.amber}40`}}>
-          <div className="text-sm font-bold mb-2" style={{color:COLORS.cream}}>Instructions for: {w.steps[wizardStep-1]}</div>
-          <div className="text-sm leading-relaxed" style={{color:COLORS.textSecondary}}>
-            {wizardStep === 1 && `Navigate to the ${w.title.split(' ')[0]} developer portal and create a new application. Select the appropriate account type (Business) and provide your Montucky Moonshine business details.`}
-            {wizardStep === 2 && `Configure the required API permissions. For read operations, enable product catalog and analytics access. For write operations, enable content publishing and order management.`}
-            {wizardStep >= 3 && `Follow the platform-specific authentication flow. You'll receive an access token that this dashboard stores securely and uses for all automated operations.`}
-          </div>
-          <div className="flex gap-2 mt-4">
-            <button onClick={() => setWizardStep(Math.max(1, wizardStep - 1))}
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm"
-              style={{background:'transparent', color:COLORS.textDim, border:`1px solid ${COLORS.border}`}}>Back</button>
-            <button onClick={() => wizardStep < w.steps.length ? setWizardStep(wizardStep + 1) : setActiveWizard(null)}
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm"
-              style={{background:COLORS.amber, color:COLORS.bg}}>
-              {wizardStep === w.steps.length ? "Complete Setup" : "Next Step →"}
-            </button>
-          </div>
-        </Card>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-6">
-      <SectionHeader icon={Settings} title="Setup Wizards" subtitle="Connect every platform with guided step-by-step walkthroughs"/>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {wizards.map(w => (
-          <Card key={w.id} className="p-4 cursor-pointer hover:border-amber-500/30" onClick={() => setActiveWizard(w.id)}>
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-sm" style={{background:COLORS.amberGlow}}><w.icon size={20} style={{color:COLORS.amber}}/></div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold" style={{color:COLORS.cream}}>{w.title}</span>
-                  <StatusBadge status={w.status}/>
-                </div>
-                <div className="text-xs" style={{color:COLORS.textDim}}>{w.desc}</div>
-              </div>
-              <ChevronRight size={16} style={{color:COLORS.textDim}}/>
-            </div>
-            <div className="mt-2">
-              <ProgressBar value={w.status === "connected" ? 100 : w.status === "pending" ? 50 : 0}
-                color={w.status === "connected" ? COLORS.green : w.status === "pending" ? COLORS.amber : COLORS.textDim}/>
-              <div className="text-xs mt-1" style={{color:COLORS.textDim}}>{w.steps.length} steps · {w.status === "connected" ? "Completed" : w.status === "pending" ? "In progress" : "Not started"}</div>
-            </div>
-          </Card>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// ============================================================
-// MAIN APP
-// ============================================================
-const navItems = [
-  { id: "dashboard", icon: LayoutDashboard, label: "Command Center" },
-  { id: "social", icon: Share2, label: "Social Hub" },
-  { id: "shopify", icon: ShoppingBag, label: "Shopify Sync" },
-  { id: "automation", icon: Zap, label: "Automations" },
-  { id: "seo", icon: Search, label: "SEO & Analytics" },
-  { id: "studio", icon: Image, label: "Product Studio" },
-  { id: "learn", icon: GraduationCap, label: "Learning Center" },
-  { id: "setup", icon: Settings, label: "Setup Wizards" }
-];
-
-export default function App() {
-  const [view, setView] = useState("storefront");
-  const [page, setPage] = useState("dashboard");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const renderPage = () => {
-    switch (page) {
-      case "dashboard": return <Dashboard />;
-      case "social": return <SocialHub />;
-      case "shopify": return <ShopifySync />;
-      case "automation": return <AutomationMatrix />;
-      case "seo": return <SEOAnalytics />;
-      case "studio": return <ProductStudio />;
-      case "learn": return <LearningCenter />;
-      case "setup": return <SetupWizards />;
-      default: return <Dashboard />;
-    }
-  };
-
-  // ===== STOREFRONT VIEW =====
-  if (view === "storefront") {
-    return (
-      <div style={{ background: COLORS.bg, color: COLORS.textPrimary, fontFamily: "'Barlow', sans-serif", minHeight: '100vh' }}>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
-
-        {/* NAV */}
-        <div className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl" style={{ background: 'rgba(10,10,8,0.9)', borderBottom: `1px solid ${COLORS.border}` }}>
-          <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Logo" className="h-10" style={{ filter: 'drop-shadow(0 0 8px rgba(200,146,42,0.3))' }}/>
-              <div>
-                <div className="text-base font-bold" style={{ color: COLORS.amber, fontFamily: "'Playfair Display', serif" }}>Montucky Moonshine</div>
-                <div className="text-[9px] uppercase tracking-[0.3em] font-semibold" style={{ color: COLORS.textDim }}>Est. Montana</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <a href="https://montuckymoonshine.com/collections/all" target="_blank" className="hidden md:inline-block text-xs font-semibold uppercase tracking-wider px-3 py-1.5"
-                style={{ color: COLORS.textSecondary }}>Shop</a>
-              <button onClick={() => setView("admin")} className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-sm"
-                style={{ background: COLORS.amber, color: COLORS.bg }}>Admin →</button>
-            </div>
-          </div>
-        </div>
-
-        {/* HERO */}
-        <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${COLORS.bg} 0%, #1a1408 50%, ${COLORS.bg} 100%)` }}>
-          <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 30% 50%, rgba(200,146,42,0.06) 0%, transparent 50%)` }}/>
-          <div className="relative z-10 text-center px-4" style={{ animation: 'fadeIn 1s ease-out' }}>
-            <div className="inline-block text-xs font-semibold uppercase tracking-[0.35em] px-4 py-2 mb-8" style={{ color: COLORS.amber, border: `1px solid ${COLORS.amber}`, fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Great Ideas — Fantastic Products
-            </div>
-            <h1 className="mb-4" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(3rem,8vw,6rem)', fontWeight: 900, lineHeight: 0.95, color: COLORS.cream }}>
-              Montucky<br/><em style={{ color: COLORS.amber, fontWeight: 400 }}>Moonshine</em>
-            </h1>
-            <p className="text-sm uppercase tracking-[0.2em] mb-8" style={{ color: COLORS.textSecondary, fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Handcrafted goods from the heart of Montana
-            </p>
-            <div className="flex gap-3 justify-center flex-wrap">
-              <a href="https://montuckymoonshine.com/collections/all" target="_blank"
-                className="px-6 py-3 text-xs font-bold uppercase tracking-wider inline-block"
-                style={{ background: COLORS.amber, color: COLORS.bg, fontFamily: "'Barlow Condensed', sans-serif" }}>
-                Shop Collection →
-              </a>
-              <button onClick={() => setView("admin")}
-                className="px-6 py-3 text-xs font-bold uppercase tracking-wider"
-                style={{ background: 'transparent', color: COLORS.cream, border: `1px solid ${COLORS.border}`, fontFamily: "'Barlow Condensed', sans-serif" }}>
-                Owner Dashboard
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* PRODUCTS */}
-        <div className="max-w-6xl mx-auto px-4 py-16">
-          <div className="text-center mb-8">
-            <div className="text-xs uppercase tracking-[0.35em] font-semibold mb-2" style={{ color: COLORS.amber }}>The Collection</div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem', color: COLORS.cream }}>Shop <em style={{ color: COLORS.amber, fontWeight: 400 }}>Montucky</em></h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {products.slice(0,8).map((p,i) => (
-              <a key={i} href={p.url} target="_blank" className="group block rounded-sm overflow-hidden transition-all hover:-translate-y-1"
-                style={{ background: COLORS.bgCard, border: `1px solid ${COLORS.border}` }}>
-                <div className="aspect-square overflow-hidden"><img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/></div>
-                <div className="p-3">
-                  <div className="text-[10px] uppercase tracking-wider font-semibold" style={{ color: COLORS.amber }}>{p.tag}</div>
-                  <div className="text-sm font-semibold truncate" style={{ color: COLORS.cream }}>{p.name}</div>
-                  <div className="text-sm font-bold mt-1" style={{ color: COLORS.amberLight }}>{p.price}</div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-        <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }`}</style>
-      </div>
-    );
-  }
-
-  // ===== ADMIN VIEW =====
-  return (
-    <div className="flex h-screen overflow-hidden" style={{ background: COLORS.bg, color: COLORS.textPrimary, fontFamily: "'Barlow', sans-serif" }}>
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
-
-      {/* SIDEBAR */}
-      <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 fixed md:static z-40 w-56 h-full flex flex-col transition-transform duration-300`}
-        style={{ background: COLORS.bgDark, borderRight: `1px solid ${COLORS.border}` }}>
-        <div className="p-4 flex items-center gap-2" style={{ borderBottom: `1px solid ${COLORS.border}` }}>
-          <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Logo" className="h-8"/>
-          <div>
-            <div className="text-sm font-bold" style={{ color: COLORS.amber, fontFamily: "'Playfair Display', serif" }}>Montucky</div>
-            <div className="text-[8px] uppercase tracking-[0.2em]" style={{ color: COLORS.textDim }}>Commerce Platform</div>
-          </div>
-        </div>
-        <nav className="flex-1 py-2 overflow-y-auto">
-          {navItems.map(item => (
-            <button key={item.id} onClick={() => { setPage(item.id); setSidebarOpen(false); }}
-              className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left transition-all text-sm"
-              style={{ color: page === item.id ? COLORS.amber : COLORS.textDim, background: page === item.id ? COLORS.amberGlow : 'transparent', borderRight: page === item.id ? `2px solid ${COLORS.amber}` : '2px solid transparent' }}>
-              <item.icon size={16}/> {item.label}
-            </button>
-          ))}
-        </nav>
-        <div className="p-3" style={{ borderTop: `1px solid ${COLORS.border}` }}>
-          <button onClick={() => setView("storefront")} className="w-full flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-sm"
-            style={{ color: COLORS.textDim, border: `1px solid ${COLORS.border}` }}>
-            <Home size={14}/> View Storefront
-          </button>
-        </div>
-      </div>
-
-      {/* Backdrop */}
-      {sidebarOpen && <div className="fixed inset-0 z-30 bg-black/60 md:hidden" onClick={() => setSidebarOpen(false)}/>}
-
-      {/* MAIN */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-3 md:px-6" style={{ borderBottom: `1px solid ${COLORS.border}`, background: COLORS.bgDark }}>
-          <div className="flex items-center gap-3">
-            <button className="md:hidden p-1" onClick={() => setSidebarOpen(true)}><Menu size={20} style={{ color: COLORS.cream }}/></button>
-            <div className="text-sm font-bold" style={{ color: COLORS.cream }}>{navItems.find(n => n.id === page)?.label}</div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full" style={{ background: COLORS.green }}/>
-            <span className="text-xs" style={{ color: COLORS.textDim }}>All systems operational</span>
-          </div>
-        </div>
-        <div className="flex-1 overflow-y-auto p-4 md:p-6">
-          {renderPage()}
-        </div>
-      </div>
-    </div>
-  );
-}
+/* ADMIN */
+return(
+<div className="flex overflow-hidden" style={{background:C.bg,color:C.textPrimary,fontFamily:"'Barlow',sans-serif",height:'100dvh'}}>
+<Styles/><a href="#admin-main" className="skip-link">Skip to content</a>
+<aside className={`${sb?'translate-x-0':'-translate-x-full'} md:translate-x-0 fixed md:static z-40 w-56 h-full flex flex-col transition-transform duration-300`} style={{background:C.bgDark,borderRight:`1px solid ${C.border}`}} role="navigation" aria-label="Admin nav">
+<div className="p-4 flex items-center gap-2 safe-t" style={{borderBottom:`1px solid ${C.border}`}}><img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="" className="h-8" aria-hidden="true"/><div><div className="text-sm font-bold" style={{color:C.amber,fontFamily:"'Playfair Display',serif"}}>Montucky</div><div className="text-[8px] uppercase tracking-[0.2em]" style={{color:C.textDim}}>Commerce Platform</div></div></div>
+<nav className="flex-1 py-1 overflow-y-auto sc" aria-label="Main">{nav.map(item=>(
+<button key={item.id} onClick={()=>{setPage(item.id);setSb(false)}} className="w-full flex items-center gap-2.5 px-4 text-left transition-all text-sm" style={{color:page===item.id?C.amber:C.textDim,background:page===item.id?C.amberGlow:'transparent',borderRight:page===item.id?`2px solid ${C.amber}`:'2px solid transparent',minHeight:48}} aria-current={page===item.id?'page':undefined}><item.icon size={16} aria-hidden="true"/>{item.label}</button>
+))}</nav>
+<div className="p-3 safe-b" style={{borderTop:`1px solid ${C.border}`}}><button onClick={()=>setView("storefront")} className="w-full flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-semibold rounded-sm" style={{color:C.textDim,border:`1px solid ${C.border}`,minHeight:44}}><Home size={14} aria-hidden="true"/>Storefront</button></div>
+</aside>
+{sb&&<div className="fixed inset-0 z-30 bg-black/60 md:hidden" onClick={()=>setSb(false)} aria-hidden="true"/>}
+<div className="flex-1 flex flex-col overflow-hidden">
+<header className="flex items-center justify-between px-4 py-2 md:px-6 safe-t safe-x" style={{borderBottom:`1px solid ${C.border}`,background:C.bgDark,minHeight:52}} role="banner">
+<div className="flex items-center gap-3"><button className="md:hidden p-3 -ml-2 rounded-sm" onClick={()=>setSb(true)} aria-label="Open menu" aria-expanded={sb} style={{minWidth:44,minHeight:44}}><Menu size={20} style={{color:C.cream}}/></button><h1 className="text-sm font-bold" style={{color:C.cream}}>{nav.find(n=>n.id===page)?.label}</h1></div>
+<div className="flex items-center gap-2" role="status"><div className="w-2 h-2 rounded-full" style={{background:C.green}} aria-hidden="true"/><span className="text-xs hidden sm:inline" style={{color:C.textDim}}>Systems OK</span></div>
+</header>
+<main id="admin-main" className="flex-1 overflow-y-auto sc p-4 md:p-6 safe-x safe-b" style={{scrollbarGutter:'stable'}}>{renderPage()}</main>
+</div></div>)}
