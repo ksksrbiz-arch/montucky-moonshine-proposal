@@ -198,13 +198,110 @@
     .page{display:none}
     .page.active{display:block}
 
+    /*===== PRELOADER =====*/
+    .preloader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .6s,visibility .6s}
+    .preloader.done{opacity:0;visibility:hidden;pointer-events:none}
+    .preloader-logo{width:64px;height:64px;animation:pulse 1.2s ease-in-out infinite}
+    .preloader-bar{width:120px;height:2px;background:var(--bdr);margin-top:1.5rem;border-radius:2px;overflow:hidden}
+    .preloader-fill{height:100%;background:var(--amber);width:0%;transition:width .3s}
+    @keyframes pulse{0%,100%{opacity:.4;transform:scale(.95)}50%{opacity:1;transform:scale(1)}}
+
+    /*===== SCROLL PROGRESS =====*/
+    .scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--amber-l));z-index:101;width:0%;transition:width .05s linear;pointer-events:none}
+
     /*===== ANIMATION =====*/
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes slideRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes blurIn{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:blur(0)}}
     .fade-in{animation:fadeUp .8s ease-out both}
     .fade-in-d1{animation-delay:.1s}.fade-in-d2{animation-delay:.2s}.fade-in-d3{animation-delay:.3s}.fade-in-d4{animation-delay:.4s}
+
+    /*===== SCROLL REVEAL =====*/
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease}
+    .reveal.from-left{transform:translateX(-50px)}
+    .reveal.from-right{transform:translateX(50px)}
+    .reveal.from-scale{transform:scale(.9)}
+    .reveal.from-blur{filter:blur(6px);transform:translateY(20px)}
+    .reveal.visible{opacity:1;transform:translateY(0) translateX(0) scale(1);filter:blur(0)}
+
+    /*===== STAGGER CHILDREN =====*/
+    .stagger-children .reveal:nth-child(1){transition-delay:.05s}
+    .stagger-children .reveal:nth-child(2){transition-delay:.1s}
+    .stagger-children .reveal:nth-child(3){transition-delay:.15s}
+    .stagger-children .reveal:nth-child(4){transition-delay:.2s}
+    .stagger-children .reveal:nth-child(5){transition-delay:.25s}
+    .stagger-children .reveal:nth-child(6){transition-delay:.3s}
+    .stagger-children .reveal:nth-child(7){transition-delay:.35s}
+    .stagger-children .reveal:nth-child(8){transition-delay:.4s}
+    .stagger-children .reveal:nth-child(9){transition-delay:.45s}
+    .stagger-children .reveal:nth-child(10){transition-delay:.5s}
+    .stagger-children .reveal:nth-child(11){transition-delay:.55s}
+    .stagger-children .reveal:nth-child(12){transition-delay:.6s}
+
+    /*===== SKELETON IMAGE LOADING =====*/
+    .img-wrap{position:relative;overflow:hidden;background:linear-gradient(110deg,#1a1a16 8%,#222218 18%,#1a1a16 33%);background-size:200% 100%;animation:shimmer 1.5s linear infinite}
+    .img-wrap.loaded{background:none;animation:none}
+    .img-wrap img{opacity:0;transition:opacity .6s ease}
+    .img-wrap.loaded img{opacity:1}
+    @keyframes shimmer{to{background-position:-200% 0}}
+
+    /*===== PARALLAX =====*/
+    .parallax-bg{will-change:transform;transition:transform .1s linear}
+
+    /*===== LIGHTBOX =====*/
+    .lightbox{position:fixed;inset:0;z-index:10000;background:rgba(10,10,8,.95);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;cursor:zoom-out}
+    .lightbox.open{opacity:1;visibility:visible}
+    .lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:4px;box-shadow:0 20px 80px rgba(0,0,0,.6);transform:scale(.9);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+    .lightbox.open img{transform:scale(1)}
+    .lightbox-cap{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);text-align:center}
+    .lightbox-cap strong{display:block;font-family:var(--ff-c);font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+    .lightbox-cap span{font-size:.85rem;color:var(--t3)}
+    .lightbox-close{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(200,146,42,.1);border:1px solid var(--bdr);border-radius:50%;color:var(--cream);font-size:1.2rem;cursor:pointer;transition:all .3s}
+    .lightbox-close:hover{background:var(--amber);color:var(--bg)}
+    .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(200,146,42,.08);border:1px solid var(--bdr);border-radius:50%;color:var(--cream);font-size:1.2rem;cursor:pointer;transition:all .3s}
+    .lightbox-nav:hover{background:var(--amber);color:var(--bg)}
+    .lightbox-prev{left:1.5rem}
+    .lightbox-next{right:1.5rem}
+
+    /*===== MAGNETIC BUTTONS =====*/
+    .btn{position:relative;overflow:hidden}
+    .btn::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.12) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+    .btn:hover::after{opacity:1}
+
+    /*===== COUNTER ANIMATE =====*/
+    .counter{font-family:var(--ff-d);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--amber);line-height:1}
+    .counter-label{font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-top:.5rem}
+    .stats-row{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:2rem}
+    .stat-item{text-align:center}
+
+    /*===== FLOATING PARTICLES =====*/
+    .particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+    .particle{position:absolute;width:2px;height:2px;background:var(--amber);border-radius:50%;opacity:0;animation:float 8s ease-in-out infinite}
+    @keyframes float{0%{opacity:0;transform:translateY(100vh) scale(0)}20%{opacity:.3}80%{opacity:.1}100%{opacity:0;transform:translateY(-20vh) scale(1)}}
   </style>
 </head>
 <body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <img class="preloader-logo" src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="">
+    <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close">✕</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous image">‹</button>
+    <button class="lightbox-nav lightbox-next" aria-label="Next image">›</button>
+    <img src="" alt="">
+    <div class="lightbox-cap"><strong></strong><span></span></div>
+  </div>
+
   <a href="#main" class="skip">Skip to content</a>
 
   <!--===== NAV =====-->
@@ -231,9 +328,10 @@
 
     <!--=== HERO ===-->
     <section class="hero">
-      <div class="hero-bg"><img src="venue/bar_long.webp" alt="" loading="eager" fetchpriority="high"></div>
+      <div class="hero-bg"><img src="venue/bar_long.webp" alt="" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.3"></div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
+      <div class="particles" id="heroParticles" aria-hidden="true"></div>
       <div class="hero-content">
         <div class="hero-badge fade-in">Private Venue — Helena, Montana</div>
         <h1 class="fade-in fade-in-d1">Montucky<br><em>Moonshine</em></h1>
@@ -249,43 +347,48 @@
     <!--=== PHOTO STRIP ===-->
     <div class="strip">
       <div class="scroll-x" style="display:flex;gap:.5rem;padding:0 .5rem">
-        <img src="venue/bar.webp" alt="Private bar counter" loading="lazy" onclick="document.getElementById('venue').scrollIntoView({behavior:'smooth'})">
-        <img src="venue/bar_right.webp" alt="Bar seating area" loading="lazy">
-        <img src="venue/barback.webp" alt="Spirits collection" loading="lazy">
-        <img src="venue/lounge.webp" alt="Lounge area" loading="lazy">
-        <img src="venue/pool_table.webp" alt="Pool table room" loading="lazy">
-        <img src="venue/bar_long.webp" alt="Full bar view" loading="lazy">
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar.webp" alt="Private bar counter" loading="lazy" onclick="document.getElementById('venue').scrollIntoView({behavior:'smooth'})" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_right.webp" alt="Bar seating area" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/barback.webp" alt="Spirits collection" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/lounge.webp" alt="Lounge area" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/pool_table.webp" alt="Pool table room" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_long.webp" alt="Full bar view" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
       </div>
     </div>
 
     <!--=== PRODUCTS ===-->
     <section id="shop">
       <div class="sec-in">
-        <div class="sec-hdr">
+        <div class="sec-hdr reveal from-blur">
           <p class="sec-label">The Collection</p>
           <h2 class="sec-title">Shop <em>Montucky</em></h2>
           <div class="sec-line"></div>
         </div>
-        <div class="products" id="productGrid" role="list" aria-label="Products"></div>
+        <div class="products stagger-children" id="productGrid" role="list" aria-label="Products"></div>
       </div>
     </section>
 
     <!--=== VENUE GALLERY ===-->
     <section id="venue">
       <div class="sec-in">
-        <div class="sec-hdr">
+        <div class="sec-hdr reveal from-blur">
           <p class="sec-label">The Montucky Experience</p>
           <h2 class="sec-title">A Private <em>Venue</em></h2>
           <div class="sec-line"></div>
           <p class="sec-desc">Montucky Moonshine isn't just a brand — it's a space. A handbuilt, rustic private venue in Helena, Montana featuring a full bar, lounge area, pool table, and big-screen entertainment. Available by inquiry for private events, brand collaborations, and intimate gatherings.</p>
         </div>
-        <div class="v-grid">
-          <div class="v-card v-hero"><img src="venue/bar_long.webp" alt="Full Montucky bar panoramic" loading="lazy"><div class="v-cap"><strong>The Bar</strong><span>Hand-built rustic counter with full spirits selection</span></div></div>
-          <div class="v-card"><img src="venue/barback.webp" alt="Back bar with mason jar infusions" style="height:200px" loading="lazy"><div class="v-cap"><strong>Back Bar</strong><span>Mason jar infusions & curated spirits</span></div></div>
-          <div class="v-card"><img src="venue/bar_right.webp" alt="Bar seating with vintage decor" style="height:200px" loading="lazy"><div class="v-cap"><strong>Bar Seating</strong><span>Vintage Americana & warm wood tones</span></div></div>
-          <div class="v-card"><img src="venue/lounge.webp" alt="Lounge with big screen TV" style="height:200px" loading="lazy"><div class="v-cap"><strong>The Lounge</strong><span>Big screen, cozy seating, board games</span></div></div>
-          <div class="v-card"><img src="venue/pool_table.webp" alt="Pool table and chevron wall" style="height:200px" loading="lazy"><div class="v-cap"><strong>Game Room</strong><span>Pool table & chevron accent wall</span></div></div>
-          <div class="v-card"><img src="venue/bar.webp" alt="Private bar sign and bottles" style="height:200px" loading="lazy"><div class="v-cap"><strong>Private Bar</strong><span>"We are always here, unless we are gone"</span></div></div>
+        <div class="stats-row reveal">
+          <div class="stat-item"><div class="counter" data-target="6">0</div><div class="counter-label">Unique Spaces</div></div>
+          <div class="stat-item"><div class="counter" data-target="100">0</div><div class="counter-label">% Handbuilt</div></div>
+          <div class="stat-item"><div class="counter" data-target="12">0</div><div class="counter-label">Products</div></div>
+        </div>
+        <div class="v-grid stagger-children" style="margin-top:2.5rem">
+          <div class="v-card v-hero reveal from-scale" data-lightbox="0" style="cursor:zoom-in"><div class="img-wrap"><img src="venue/bar_long.webp" alt="Full Montucky bar panoramic" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Bar</strong><span>Hand-built rustic counter with full spirits selection</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="1" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/barback.webp" alt="Back bar with mason jar infusions" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Back Bar</strong><span>Mason jar infusions & curated spirits</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="2" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar_right.webp" alt="Bar seating with vintage decor" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Bar Seating</strong><span>Vintage Americana & warm wood tones</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="3" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/lounge.webp" alt="Lounge with big screen TV" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Lounge</strong><span>Big screen, cozy seating, board games</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="4" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/pool_table.webp" alt="Pool table and chevron wall" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Game Room</strong><span>Pool table & chevron accent wall</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="5" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar.webp" alt="Private bar sign and bottles" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Private Bar</strong><span>"We are always here, unless we are gone"</span></div></div>
         </div>
       </div>
     </section>
@@ -294,8 +397,8 @@
     <section id="about">
       <div class="sec-in">
         <div class="about-grid">
-          <div class="about-img"><img src="https://montuckymoonshine.com/cdn/shop/files/IMG_20241011_141051534_HDR_300x.jpg?v=1737682523" alt="Montucky Moonshine workshop" loading="lazy"></div>
-          <div class="about-text">
+          <div class="about-img reveal from-left"><div class="img-wrap"><img src="https://montuckymoonshine.com/cdn/shop/files/IMG_20241011_141051534_HDR_300x.jpg?v=1737682523" alt="Montucky Moonshine workshop" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div></div>
+          <div class="about-text reveal from-right">
             <p class="sec-label" style="text-align:left">Our Story</p>
             <h2 class="sec-title" style="text-align:left">Born in <em>Montana,</em><br>Made with Grit</h2>
             <p>Montucky Moonshine brings you handcrafted products born from great ideas and a passion for quality. From custom-designed mugs and steins to bold graphic tees and unique merchandise — every item carries the spirit of Montana craftsmanship.</p>
@@ -308,13 +411,13 @@
     <!--=== BOOKING INQUIRY ===-->
     <section id="book">
       <div class="sec-in">
-        <div class="sec-hdr">
+        <div class="sec-hdr reveal from-blur">
           <p class="sec-label">By Inquiry Only</p>
           <h2 class="sec-title">Book the <em>Experience</em></h2>
           <div class="sec-line"></div>
           <p class="sec-desc">Montucky Moonshine is a personal brand venue — not a commercial bar. Inquiries welcome for private gatherings, collaborations, photo shoots, and brand events.</p>
         </div>
-        <div class="form-card">
+        <div class="form-card reveal from-scale">
           <div style="display:flex;flex-direction:column;gap:1rem">
             <div class="form-row">
               <div><label for="bk-name">Your Name</label><input id="bk-name" type="text" placeholder="Full name"></div>
@@ -445,11 +548,11 @@
       {n:"Velveteen Blanket",p:"$32.15",img:"https://montuckymoonshine.com/cdn/shop/products/09193d3b46d306ced28add4a23b3e67e_1024x.jpg?v=1666326356",url:"https://montuckymoonshine.com/products/velveteen-minky-blanket-two-sided-print",tag:"Home"}
     ];
 
-    // Render products
+    // ===== RENDER PRODUCTS (with skeleton + reveal) =====
     const grid = document.getElementById('productGrid');
     grid.innerHTML = products.map(p => `
-      <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="p-card" role="listitem">
-        <div class="p-img"><img src="${p.img}" alt="${p.n}" loading="lazy"><div class="p-hover"><span>View Product</span></div></div>
+      <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="p-card reveal" role="listitem">
+        <div class="p-img img-wrap"><img src="${p.img}" alt="${p.n}" loading="lazy" onload="this.parentElement.classList.add('loaded')"><div class="p-hover"><span>View Product</span></div></div>
         <div class="p-info"><div class="p-tag">${p.tag}</div><div class="p-name">${p.n}</div><div class="p-price">${p.p}</div></div>
       </a>
     `).join('');
@@ -461,9 +564,165 @@
       window.scrollTo(0, 0);
     }
 
+    // ===== PRELOADER =====
+    (function initPreloader() {
+      const fill = document.getElementById('preloaderFill');
+      const loader = document.getElementById('preloader');
+      let progress = 0;
+      const tick = setInterval(() => {
+        progress += Math.random() * 25 + 10;
+        if (progress > 90 && document.readyState !== 'complete') progress = 90;
+        if (progress >= 100) progress = 100;
+        fill.style.width = progress + '%';
+        if (progress >= 100) clearInterval(tick);
+      }, 200);
+      window.addEventListener('load', () => {
+        fill.style.width = '100%';
+        setTimeout(() => loader.classList.add('done'), 400);
+      });
+    })();
+
+    // ===== SCROLL PROGRESS BAR =====
+    const scrollBar = document.getElementById('scrollProgress');
+    function updateScrollProgress() {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      scrollBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+    }
+
     // ===== NAV SCROLL =====
     window.addEventListener('scroll', () => {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+      updateScrollProgress();
+    }, { passive: true });
+
+    // ===== INTERSECTION OBSERVER — SCROLL REVEAL =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ===== PARALLAX ENGINE =====
+    const parallaxEls = document.querySelectorAll('[data-parallax]');
+    let ticking = false;
+    function updateParallax() {
+      const sy = window.scrollY;
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.dataset.parallax);
+        el.style.transform = 'translateY(' + (sy * speed) + 'px) scale(1.1)';
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive: true });
+
+    // ===== HERO PARTICLES =====
+    (function initParticles() {
+      const container = document.getElementById('heroParticles');
+      if (!container || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 8 + 's';
+        p.style.animationDuration = (6 + Math.random() * 6) + 's';
+        p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+        container.appendChild(p);
+      }
+    })();
+
+    // ===== COUNTER ANIMATION =====
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          const duration = 2000;
+          const start = performance.now();
+          function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target);
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // ===== VENUE LIGHTBOX =====
+    const venueImages = [
+      { src: 'venue/bar_long.webp', title: 'The Bar', desc: 'Hand-built rustic counter with full spirits selection' },
+      { src: 'venue/barback.webp', title: 'Back Bar', desc: 'Mason jar infusions & curated spirits' },
+      { src: 'venue/bar_right.webp', title: 'Bar Seating', desc: 'Vintage Americana & warm wood tones' },
+      { src: 'venue/lounge.webp', title: 'The Lounge', desc: 'Big screen, cozy seating, board games' },
+      { src: 'venue/pool_table.webp', title: 'Game Room', desc: 'Pool table & chevron accent wall' },
+      { src: 'venue/bar.webp', title: 'Private Bar', desc: '"We are always here, unless we are gone"' }
+    ];
+    let lightboxIdx = 0;
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    const lbTitle = lb.querySelector('.lightbox-cap strong');
+    const lbDesc = lb.querySelector('.lightbox-cap span');
+
+    function openLightbox(idx) {
+      lightboxIdx = idx;
+      const v = venueImages[idx];
+      lbImg.src = v.src;
+      lbImg.alt = v.title;
+      lbTitle.textContent = v.title;
+      lbDesc.textContent = v.desc;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-lightbox]').forEach(card => {
+      card.addEventListener('click', () => openLightbox(parseInt(card.dataset.lightbox)));
+    });
+    lb.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+    lb.querySelector('.lightbox-prev').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLightbox((lightboxIdx - 1 + venueImages.length) % venueImages.length);
+    });
+    lb.querySelector('.lightbox-next').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLightbox((lightboxIdx + 1) % venueImages.length);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') openLightbox((lightboxIdx - 1 + venueImages.length) % venueImages.length);
+      if (e.key === 'ArrowRight') openLightbox((lightboxIdx + 1) % venueImages.length);
+    });
+
+    // ===== MAGNETIC BUTTON EFFECT =====
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        btn.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    });
+
+    // ===== SMOOTH IMAGE REVEAL ON ALL LAZY IMAGES =====
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      if (img.complete) {
+        const wrap = img.closest('.img-wrap');
+        if (wrap) wrap.classList.add('loaded');
+      }
     });
   </script>
 </body>
