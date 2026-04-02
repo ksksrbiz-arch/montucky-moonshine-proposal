@@ -85,36 +85,8 @@ Each HTML page is a standalone document referencing shared `css/style.css` and `
 - Product links go to `montuckymoonshine.com/products/...` (Shopify)
 - Booking form uses Netlify Forms (`data-netlify="true"`) with honeypot spam protection
 - Product count in venue stats is dynamically set from the `products` array length
-- Copyright year in footer is dynamically generated
-
-## admin.jsx (Not Deployed)
-
-A React/JSX admin dashboard prototype using:
-- React hooks (`useState`)
-- Recharts for data visualization
-- Lucide React icons
-- Tailwind CSS classes
-
-Contains these dashboard sections:
-- **Dashboard** — KPIs, revenue chart, traffic sources, quick actions
-- **Social Hub** — Meta/IG/TikTok management tabs
-- **Shopify Sync** — Products, orders, inventory tabs
-- **Automations** — Workflow automation management
-- **SEO Analytics** — Keywords, health radar, AI actions
-- **Product Studio** — AI photo generator, listing optimizer
-- **Learning Center** — Educational content about LLMs, APIs, MCP
-- **Setup Wizards** — Guided integration setup flows
-- **Legal Pages** — Refund, Privacy, Terms components
-
-This file is a standalone design prototype; it is **not** bundled or served.
-
-## Design Conventions
-
-- **Color palette:** Dark backgrounds (#0a0a08, #121210, #1a1a16), amber accents (#c8922a), cream text (#f5f0e6)
-- **Typography:** Playfair Display for headings, Barlow for body, Barlow Condensed for labels/buttons
-- **UI elements:** 2px border-radius, subtle borders with amber at 12% opacity, uppercase tracking on labels
-- **Buttons:** `.btn-p` (primary/amber fill), `.btn-o` (outline/ghost)
-- **Accessibility:** Skip-to-content link, ARIA labels, focus-visible outlines, 44px min touch targets
+- Copyright year in footer is dynamically generated via JS
+- Page transitions via `body.page-loaded` class
 
 ## Deployment
 
