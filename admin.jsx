@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BarChart, Bar, AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
-import { LayoutDashboard, ShoppingBag, Share2, Zap, Search, Image, GraduationCap, Settings, ChevronRight, TrendingUp, TrendingDown, Eye, MousePointerClick, DollarSign, Users, Package, Star, Check, AlertTriangle, ArrowRight, ArrowLeft, Globe, Bot, Cpu, BookOpen, Lightbulb, Target, BarChart3, RefreshCw, Sparkles, Wand2, Camera, Palette, Clock, Plug, MessageSquare, Hash, Heart, Play, Store, ChevronDown, Menu, Home } from "lucide-react";
+import { LayoutDashboard, ShoppingBag, Share2, Zap, Search, Image, GraduationCap, Settings, ChevronRight, TrendingUp, TrendingDown, Eye, MousePointerClick, DollarSign, Users, Package, Star, Check, AlertTriangle, ArrowRight, ArrowLeft, Globe, Bot, Cpu, BookOpen, Lightbulb, Target, BarChart3, RefreshCw, Sparkles, Wand2, Camera, Palette, Clock, Plug, MessageSquare, Hash, Heart, Play, Store, ChevronDown, Menu, Home, ShieldCheck, Mail, MapPin, FileText, Facebook } from "lucide-react";
 
 const C={amber:"#c8922a",amberLight:"#e6b04a",amberGlow:"rgba(200,146,42,0.15)",bg:"#0a0a08",bgDark:"#121210",bgCard:"#1a1a16",bgCardHover:"#222218",cream:"#f5f0e6",creamMuted:"#c4bfb2",textPrimary:"#eae5d8",textSecondary:"#9e9a8f",textDim:"#8a8578",border:"rgba(200,146,42,0.12)",green:"#4ade80",red:"#f87171",blue:"#60a5fa",purple:"#a78bfa",pink:"#f472b6",cyan:"#22d3ee",orange:"#fb923c",focus:"rgba(200,146,42,0.6)"};
 
@@ -148,6 +148,94 @@ if(aw){const w=wz.find(x=>x.id===aw);return(<div className="space-y-6"><div clas
 <Card className="p-4" style={{borderColor:`${C.amber}40`}}><div className="text-sm font-bold mb-2" style={{color:C.cream}}>Instructions: {w.steps[ws-1]}</div><p className="text-sm" style={{color:C.textSecondary}}>{ws===1?`Go to ${w.title.split(' ')[0]} developer portal, create a new app with Business account type.`:ws===2?"Configure API permissions: product catalog, analytics (read), content publishing (write).":"Complete the auth flow. You'll receive an access token stored securely for all automated operations."}</p><div className="flex gap-2 mt-4 flex-wrap"><button onClick={()=>setWs(Math.max(1,ws-1))} className="px-4 py-3 text-xs font-bold uppercase tracking-wider rounded-sm" style={{color:C.textDim,border:`1px solid ${C.border}`,minHeight:44}}>Back</button><button onClick={()=>ws<w.steps.length?setWs(ws+1):setAw(null)} className="px-5 py-3 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:C.amber,color:C.bg,minHeight:44}}>{ws===w.steps.length?"Complete":"Next →"}</button></div></Card></div>)}
 return(<div className="space-y-6 cv-auto"><SH icon={Settings} title="Setup Wizards" sub="Guided connection walkthroughs"/><div className="grid grid-cols-1 sm:grid-cols-2 gap-3">{wz.map(w=><Card key={w.id} className="p-4" onClick={()=>setAw(w.id)} ariaLabel={`Setup ${w.title}`}><div className="flex items-center gap-3"><div className="p-2.5 rounded-sm shrink-0" style={{background:C.amberGlow}}><w.icon size={20} style={{color:C.amber}} aria-hidden="true"/></div><div className="flex-1 min-w-0"><div className="flex items-center gap-2 flex-wrap"><span className="text-sm font-bold" style={{color:C.cream}}>{w.title}</span><StatusBadge status={w.status}/></div><div className="text-xs" style={{color:C.textDim}}>{w.desc}</div></div><ChevronRight size={16} style={{color:C.textDim}} aria-hidden="true" className="shrink-0"/></div><div className="mt-2"><PB value={w.status==="connected"?100:w.status==="pending"?50:0} color={w.status==="connected"?C.green:w.status==="pending"?C.amber:C.textDim} label={`${w.title}: ${w.status}`}/></div></Card>)}</div></div>)};
 
+/* LEGAL PAGES */
+const BUSINESS={name:"D & V Enterprises LLC",address:"3420 Byron Road, Helena MT 59602",email:"montuckymoonshine@gmail.com",fb:"https://www.facebook.com/Montucky-Moonshine-661364020944905/"};
+
+const LegalPage=({title,children,onBack})=>(<div className="max-w-3xl mx-auto px-4 py-24 safe-x">
+<button onClick={onBack} className="flex items-center gap-2 mb-8 px-4 py-3 rounded-sm text-xs font-semibold uppercase tracking-wider" style={{color:C.textDim,border:`1px solid ${C.border}`,minHeight:44}}><ArrowLeft size={14} aria-hidden="true"/>Back to Store</button>
+<h1 className="text-3xl font-bold mb-8" style={{fontFamily:"'Playfair Display',serif",color:C.cream}}>{title}</h1>
+<div className="prose-sm space-y-4" style={{color:C.textSecondary}}>{children}</div>
+</div>);
+
+const RefundPolicy=({onBack})=>(<LegalPage title="Refund Policy" onBack={onBack}>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Returns</h2>
+<p>Our policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can't offer you a refund or exchange.</p>
+<p>To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</p>
+<p>Several types of goods are exempt from being returned. Perishable goods such as food, flowers, newspapers or magazines cannot be returned. We also do not accept products that are intimate or sanitary goods, hazardous materials, or flammable liquids or gases.</p>
+<p><strong style={{color:C.cream}}>Additional non-returnable items:</strong> Gift cards, downloadable software products, some health and personal care items.</p>
+<p>To complete your return, we require a receipt or proof of purchase. Please do not send your purchase back to the manufacturer.</p>
+<h3 className="text-base font-bold mt-6" style={{color:C.cream}}>Partial Refunds (if applicable)</h3>
+<p>There are certain situations where only partial refunds are granted:</p>
+<ul className="list-disc pl-5 space-y-1">
+<li>Book with obvious signs of use</li>
+<li>CD, DVD, VHS tape, software, video game, cassette tape, or vinyl record that has been opened</li>
+<li>Any item not in its original condition, is damaged or missing parts for reasons not due to our error</li>
+<li>Any item that is returned more than 30 days after delivery</li>
+</ul>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Refunds</h2>
+<p>Once your return is received and inspected, we will send you an email to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund.</p>
+<p>If you are approved, then your refund will be processed, and a credit will automatically be applied to your credit card or original method of payment, within a certain amount of days.</p>
+<h3 className="text-base font-bold mt-6" style={{color:C.cream}}>Late or Missing Refunds</h3>
+<p>If you haven't received a refund yet, first check your bank account again. Then contact your credit card company — it may take some time before your refund is officially posted. Next contact your bank. There is often some processing time before a refund is posted.</p>
+<p>If you've done all of this and you still have not received your refund, please contact us at <Ext href={`mailto:${BUSINESS.email}`} style={{color:C.amber}}>{BUSINESS.email}</Ext>.</p>
+<h3 className="text-base font-bold mt-6" style={{color:C.cream}}>Sale Items</h3>
+<p>Only regular priced items may be refunded. Unfortunately sale items cannot be refunded.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Exchanges</h2>
+<p>We only replace items if they are defective or damaged. If you need to exchange it for the same item, send us an email at <Ext href={`mailto:${BUSINESS.email}`} style={{color:C.amber}}>{BUSINESS.email}</Ext> and send your item to: {BUSINESS.name}, {BUSINESS.address}.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Gifts</h2>
+<p>If the item was marked as a gift when purchased and shipped directly to you, you'll receive a gift credit for the value of your return. Once the returned item is received, a gift certificate will be mailed to you.</p>
+<p>If the item wasn't marked as a gift when purchased, or the gift giver had the order shipped to themselves to give to you later, we will send a refund to the gift giver.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Shipping</h2>
+<p>To return your product, mail it to: <strong style={{color:C.cream}}>{BUSINESS.name}, {BUSINESS.address}</strong>.</p>
+<p>You will be responsible for paying for your own shipping costs for returning your item. Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be deducted from your refund.</p>
+<p>If you are shipping an item over $75, you should consider using a trackable shipping service or purchasing shipping insurance. We don't guarantee that we will receive your returned item.</p>
+</LegalPage>);
+
+const PrivacyPolicy=({onBack})=>(<LegalPage title="Privacy Policy" onBack={onBack}>
+<p>This privacy policy describes how Montucky Moonshine ({BUSINESS.name}) collects, uses, and shares your personal information when you visit or make a purchase from our store.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Information We Collect</h2>
+<p>When you visit the site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device.</p>
+<p>When you make a purchase or attempt to make a purchase, we collect your name, billing address, shipping address, payment information, email address, and phone number ("Order Information").</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>How We Use Your Information</h2>
+<p>We use the Order Information to fulfill orders, process payments, arrange shipping, provide invoices and order confirmations, communicate with you, screen orders for potential risk or fraud, and provide you with information or advertising relating to our products or services (when in line with your preferences).</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Sharing Your Information</h2>
+<p>We share your Personal Information with third parties to help us use it as described above. We use Shopify to power our online store. We may also share your information to comply with applicable laws and regulations, respond to lawful requests, or protect our rights.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Your Rights</h2>
+<p>If you are a European resident, you have the right to access, correct, update or request deletion of your personal information. You can opt out of targeted advertising via the DAA (<Ext href="http://optout.aboutads.info/" style={{color:C.amber}}>optout.aboutads.info</Ext>).</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Contact Us</h2>
+<p>For questions about this privacy policy or your personal information, contact us at <Ext href={`mailto:${BUSINESS.email}`} style={{color:C.amber}}>{BUSINESS.email}</Ext> or by mail: {BUSINESS.name}, {BUSINESS.address}.</p>
+</LegalPage>);
+
+const TermsOfService=({onBack})=>(<LegalPage title="Terms of Service" onBack={onBack}>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Overview</h2>
+<p>This website is operated by {BUSINESS.name} ("Montucky Moonshine"). Throughout the site, "we", "us", and "our" refer to Montucky Moonshine. We offer this website, including all information, tools, and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.</p>
+<p>By visiting our site and/or purchasing something from us, you engage in our "Service" and agree to be bound by these terms and conditions.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Online Store Terms</h2>
+<p>You may not use our products for any illegal or unauthorized purpose, nor may you violate any laws in your jurisdiction. You must not transmit any worms, viruses, or any code of a destructive nature. A breach of any of the Terms will result in immediate termination of your Services.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Accuracy of Information</h2>
+<p>We are not responsible if information made available on this site is not accurate, complete or current. The material on this site is provided for general information only and should not be relied upon as the sole basis for making decisions.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Products and Pricing</h2>
+<p>Prices for our products are subject to change without notice. We reserve the right to discontinue any product at any time. We do not warrant that the quality of any products, services, information, or other material obtained by you will meet your expectations.</p>
+<h2 className="text-lg font-bold mt-6" style={{color:C.cream}}>Contact</h2>
+<p>Questions about the Terms of Service should be sent to us at <Ext href={`mailto:${BUSINESS.email}`} style={{color:C.amber}}>{BUSINESS.email}</Ext>.</p>
+<p>{BUSINESS.name}, {BUSINESS.address}</p>
+</LegalPage>);
+
+const Footer=({onNavigate})=>(<footer className="safe-x safe-b" style={{background:C.bgDark,borderTop:`1px solid ${C.border}`}} role="contentinfo">
+<div className="max-w-6xl mx-auto px-4 py-12">
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+<div><div className="text-base font-bold mb-1" style={{fontFamily:"'Playfair Display',serif",color:C.amber}}>Montucky Moonshine</div><div className="text-[9px] uppercase tracking-[0.2em] mb-3" style={{color:C.textDim}}>Est. Montana</div><p className="text-sm leading-relaxed" style={{color:C.textDim}}>Great ideas and fantastic products, handcrafted with Montana spirit.</p><div className="flex items-center gap-2 mt-3"><MapPin size={12} style={{color:C.textDim}} aria-hidden="true"/><span className="text-xs" style={{color:C.textDim}}>{BUSINESS.address}</span></div><div className="flex items-center gap-2 mt-1"><Mail size={12} style={{color:C.textDim}} aria-hidden="true"/><Ext href={`mailto:${BUSINESS.email}`} className="text-xs" style={{color:C.amber}}>{BUSINESS.email}</Ext></div></div>
+<div><h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{color:C.amber}}>Shop</h3><nav aria-label="Shop links" className="space-y-2">{[{l:"Mugs",u:"https://montuckymoonshine.com/collections/mugs"},{l:"Tees",u:"https://montuckymoonshine.com/collections/tee-shirts"},{l:"Merchandise",u:"https://montuckymoonshine.com/collections/merchandise"},{l:"All Products",u:"https://montuckymoonshine.com/collections/all"}].map(lnk=><Ext key={lnk.l} href={lnk.u} className="block text-sm py-1 transition-colors hover:text-amber-400" style={{color:C.textDim}}>{lnk.l}</Ext>)}</nav></div>
+<div><h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{color:C.amber}}>Company</h3><nav aria-label="Company links" className="space-y-2"><Ext href="https://montuckymoonshine.com/pages/contact-us" className="block text-sm py-1" style={{color:C.textDim}}>Contact Us</Ext><Ext href="https://montuckymoonshine.com/pages/book-now" className="block text-sm py-1" style={{color:C.textDim}}>Book Now</Ext><Ext href={BUSINESS.fb} className="block text-sm py-1" style={{color:C.textDim}}>Facebook</Ext></nav></div>
+<div><h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{color:C.amber}}>Policies</h3><nav aria-label="Policy links" className="space-y-2"><button onClick={()=>onNavigate("refund")} className="block text-sm py-1 text-left" style={{color:C.textDim,background:'none',border:'none'}}>Refund Policy</button><button onClick={()=>onNavigate("privacy")} className="block text-sm py-1 text-left" style={{color:C.textDim,background:'none',border:'none'}}>Privacy Policy</button><button onClick={()=>onNavigate("terms")} className="block text-sm py-1 text-left" style={{color:C.textDim,background:'none',border:'none'}}>Terms of Service</button></nav></div>
+</div>
+<div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4" style={{borderTop:`1px solid ${C.border}`}}>
+<p className="text-xs" style={{color:C.textDim}}>© {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</p>
+<div className="flex gap-1.5 flex-wrap justify-center">{["VISA","MC","AMEX","PAYPAL","APPLE PAY","GOOGLE PAY","SHOP PAY","DISCOVER","DINERS","AMAZON"].map(p=><span key={p} className="px-2 py-1 text-[9px] font-semibold uppercase tracking-wider rounded-sm" style={{background:C.bgCard,border:`1px solid ${C.border}`,color:C.textDim}}>{p}</span>)}</div>
+</div>
+</div>
+</footer>);
+
 /* NAV CONFIG */
 const nav=[{id:"dashboard",icon:LayoutDashboard,label:"Command Center"},{id:"social",icon:Share2,label:"Social Hub"},{id:"shopify",icon:ShoppingBag,label:"Shopify"},{id:"automation",icon:Zap,label:"Automations"},{id:"seo",icon:Search,label:"SEO"},{id:"studio",icon:Image,label:"Studio"},{id:"learn",icon:GraduationCap,label:"Learn"},{id:"setup",icon:Settings,label:"Setup"}];
 
@@ -155,18 +243,28 @@ const nav=[{id:"dashboard",icon:LayoutDashboard,label:"Command Center"},{id:"soc
 export default function App(){
 const[view,setView]=useState("storefront");
 const[page,setPage]=useState("dashboard");
+const[storePage,setStorePage]=useState("home");
 const[sb,setSb]=useState(false);
 const renderPage=()=>{switch(page){case"dashboard":return<Dashboard/>;case"social":return<SocialHub/>;case"shopify":return<ShopifySync/>;case"automation":return<AutomationMatrix/>;case"seo":return<SEOAnalytics/>;case"studio":return<ProductStudio/>;case"learn":return<LearningCenter/>;case"setup":return<SetupWizards/>;default:return<Dashboard/>}};
+const goStore=(pg)=>{setStorePage(pg);window.scrollTo(0,0)};
 
 if(view==="storefront"){return(
 <div style={{background:C.bg,color:C.textPrimary,fontFamily:"'Barlow',sans-serif",minHeight:'100dvh'}}>
 <Styles/><a href="#main" className="skip-link">Skip to content</a>
 <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl safe-t safe-x" style={{background:'rgba(10,10,8,0.9)',borderBottom:`1px solid ${C.border}`}} role="banner">
 <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-<div className="flex items-center gap-2"><img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" className="h-10" style={{filter:'drop-shadow(0 0 8px rgba(200,146,42,0.3))'}}/><div><div className="text-base font-bold" style={{color:C.amber,fontFamily:"'Playfair Display',serif"}}>Montucky Moonshine</div><div className="text-[9px] uppercase tracking-[0.3em] font-semibold" style={{color:C.textDim}}>Est. Montana</div></div></div>
-<div className="flex items-center gap-3"><Ext href="https://montuckymoonshine.com/collections/all" className="hidden md:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:C.textSecondary,minHeight:44}}>Shop</Ext><button onClick={()=>setView("admin")} className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:C.amber,color:C.bg,minHeight:44}}>Admin →</button></div>
-</div></header>
+<div className="flex items-center gap-2 cursor-pointer" onClick={()=>goStore("home")}><img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" className="h-10" style={{filter:'drop-shadow(0 0 8px rgba(200,146,42,0.3))'}}/><div><div className="text-base font-bold" style={{color:C.amber,fontFamily:"'Playfair Display',serif"}}>Montucky Moonshine</div><div className="text-[9px] uppercase tracking-[0.3em] font-semibold" style={{color:C.textDim}}>Est. Montana</div></div></div>
+<div className="flex items-center gap-1 sm:gap-3">
+<button onClick={()=>goStore("home")} className="hidden sm:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:storePage==="home"?C.amber:C.textSecondary,background:'none',border:'none',minHeight:44}}>Home</button>
+<Ext href="https://montuckymoonshine.com/collections/all" className="hidden sm:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:C.textSecondary,minHeight:44}}>Shop</Ext>
+<Ext href="https://montuckymoonshine.com/pages/book-now" className="hidden md:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:C.textSecondary,minHeight:44}}>Book Now</Ext>
+<button onClick={()=>setView("admin")} className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:C.amber,color:C.bg,minHeight:44}}>Admin →</button>
+</div></div></header>
 <main id="main">
+{storePage==="refund"&&<RefundPolicy onBack={()=>goStore("home")}/>}
+{storePage==="privacy"&&<PrivacyPolicy onBack={()=>goStore("home")}/>}
+{storePage==="terms"&&<TermsOfService onBack={()=>goStore("home")}/>}
+{storePage==="home"&&<>
 <section className="flex items-center justify-center relative overflow-hidden" style={{minHeight:'100dvh',background:`linear-gradient(135deg,${C.bg} 0%,#1a1408 50%,${C.bg} 100%)`}} aria-label="Hero">
 <div className="absolute inset-0" style={{background:'radial-gradient(ellipse at 30% 50%,rgba(200,146,42,0.06) 0%,transparent 50%)'}} aria-hidden="true"/>
 <div className="relative z-10 text-center px-4 safe-x" style={{animation:'fadeIn 1s ease-out'}}>
@@ -183,7 +281,11 @@ if(view==="storefront"){return(
 <Ext key={p.id} href={p.url} className="group block rounded-sm overflow-hidden transition-all hover:-translate-y-1" style={{background:C.bgCard,border:`1px solid ${C.border}`}}>
 <div className="aspect-square overflow-hidden"><img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/></div>
 <div className="p-3"><div className="text-[10px] uppercase tracking-wider font-semibold" style={{color:C.amber}}>{p.tag}</div><div className="text-sm font-semibold truncate" style={{color:C.cream}}>{p.name}</div><div className="text-sm font-bold mt-1" style={{color:C.amberLight}}>{p.price}</div></div>
-</Ext>))}</div></section></main></div>)}
+</Ext>))}</div></section>
+</>}
+</main>
+<Footer onNavigate={goStore}/>
+</div>)}
 
 /* ADMIN */
 return(
