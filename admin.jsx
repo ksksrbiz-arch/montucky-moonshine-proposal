@@ -258,6 +258,7 @@ if(view==="storefront"){return(
 <button onClick={()=>goStore("home")} className="hidden sm:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:storePage==="home"?C.amber:C.textSecondary,background:'none',border:'none',minHeight:44}}>Home</button>
 <Ext href="https://montuckymoonshine.com/collections/all" className="hidden sm:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:C.textSecondary,minHeight:44}}>Shop</Ext>
 <Ext href="https://montuckymoonshine.com/pages/book-now" className="hidden md:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:C.textSecondary,minHeight:44}}>Book Now</Ext>
+<button onClick={()=>goStore("venue")} className="hidden sm:inline-flex items-center text-xs font-semibold uppercase tracking-wider px-3 py-2" style={{color:storePage==="venue"?C.amber:C.textSecondary,background:'none',border:'none',minHeight:44}}>Venue</button>
 <button onClick={()=>setView("admin")} className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:C.amber,color:C.bg,minHeight:44}}>Admin →</button>
 </div></div></header>
 <main id="main">
@@ -265,23 +266,138 @@ if(view==="storefront"){return(
 {storePage==="privacy"&&<PrivacyPolicy onBack={()=>goStore("home")}/>}
 {storePage==="terms"&&<TermsOfService onBack={()=>goStore("home")}/>}
 {storePage==="home"&&<>
-<section className="flex items-center justify-center relative overflow-hidden" style={{minHeight:'100dvh',background:`linear-gradient(135deg,${C.bg} 0%,#1a1408 50%,${C.bg} 100%)`}} aria-label="Hero">
-<div className="absolute inset-0" style={{background:'radial-gradient(ellipse at 30% 50%,rgba(200,146,42,0.06) 0%,transparent 50%)'}} aria-hidden="true"/>
-<div className="relative z-10 text-center px-4 safe-x" style={{animation:'fadeIn 1s ease-out'}}>
-<div className="inline-block text-xs font-semibold uppercase tracking-[0.35em] px-4 py-2 mb-8" style={{color:C.amber,border:`1px solid ${C.amber}`,fontFamily:"'Barlow Condensed',sans-serif"}}>Great Ideas — Fantastic Products</div>
-<h1 className="mb-4" style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(2.75rem,8vw,6rem)',fontWeight:900,lineHeight:.95,color:C.cream}}>Montucky<br/><em style={{color:C.amber,fontWeight:400}}>Moonshine</em></h1>
-<p className="text-sm uppercase tracking-[0.2em] mb-8" style={{color:C.textSecondary,fontFamily:"'Barlow Condensed',sans-serif"}}>Handcrafted goods from the heart of Montana</p>
+{/* HERO - with venue photo background */}
+<section className="relative overflow-hidden flex items-center justify-center" style={{minHeight:'100dvh'}} aria-label="Hero">
+<div className="absolute inset-0"><img src="https://ksksrbiz-arch.github.io/montucky-moonshine-proposal/venue/bar_long.webp" alt="" className="w-full h-full object-cover" aria-hidden="true" style={{filter:'brightness(0.25) saturate(0.8)'}}/></div>
+<div className="absolute inset-0" style={{background:'linear-gradient(to bottom, rgba(10,10,8,0.4) 0%, rgba(10,10,8,0.8) 70%, rgba(10,10,8,1) 100%)'}} aria-hidden="true"/>
+<div className="absolute inset-0" style={{background:'radial-gradient(ellipse at 50% 40%, rgba(200,146,42,0.08) 0%, transparent 60%)'}} aria-hidden="true"/>
+<div className="relative z-10 text-center px-4 safe-x max-w-4xl" style={{animation:'fadeIn 1s ease-out'}}>
+<div className="inline-block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.4em] px-5 py-2.5 mb-6" style={{color:C.amber,border:`1px solid ${C.amber}`,fontFamily:"'Barlow Condensed',sans-serif",backdropFilter:'blur(8px)',background:'rgba(200,146,42,0.06)'}}>Private Venue — Helena, Montana</div>
+<h1 className="mb-3" style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(2.5rem,9vw,7rem)',fontWeight:900,lineHeight:.9,color:C.cream,textShadow:'0 4px 60px rgba(0,0,0,0.6)'}}>Montucky<br/><em style={{color:C.amber,fontWeight:400,fontStyle:'italic'}}>Moonshine</em></h1>
+<p className="text-sm sm:text-base uppercase tracking-[0.15em] mb-4 max-w-lg mx-auto" style={{color:C.textSecondary,fontFamily:"'Barlow Condensed',sans-serif"}}>Handcrafted Goods & Brand Experience</p>
+<p className="text-xs sm:text-sm mb-8 max-w-md mx-auto leading-relaxed" style={{color:C.textDim}}>A rustic private venue in the heart of Montana, born from great ideas and a passion for authentic craftsmanship.</p>
 <div className="flex gap-3 justify-center flex-wrap">
-<Ext href="https://montuckymoonshine.com/collections/all" className="px-6 py-3.5 text-xs font-bold uppercase tracking-wider inline-flex items-center" style={{background:C.amber,color:C.bg,fontFamily:"'Barlow Condensed',sans-serif",minHeight:48}}>Shop Collection →</Ext>
-<button onClick={()=>setView("admin")} className="px-6 py-3.5 text-xs font-bold uppercase tracking-wider" style={{background:'transparent',color:C.cream,border:`1px solid ${C.border}`,fontFamily:"'Barlow Condensed',sans-serif",minHeight:48}}>Owner Dashboard</button>
-</div></div></section>
-<section className="max-w-6xl mx-auto px-4 py-16 safe-x" aria-label="Products">
-<div className="text-center mb-8"><div className="text-xs uppercase tracking-[0.35em] font-semibold mb-2" style={{color:C.amber}}>The Collection</div><h2 style={{fontFamily:"'Playfair Display',serif",fontSize:'2rem',color:C.cream}}>Shop <em style={{color:C.amber,fontWeight:400}}>Montucky</em></h2></div>
-<div className="grid grid-cols-2 md:grid-cols-4 gap-3" role="list" aria-label="Products">{products.slice(0,8).map(p=>(
-<Ext key={p.id} href={p.url} className="group block rounded-sm overflow-hidden transition-all hover:-translate-y-1" style={{background:C.bgCard,border:`1px solid ${C.border}`}}>
-<div className="aspect-square overflow-hidden"><img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/></div>
-<div className="p-3"><div className="text-[10px] uppercase tracking-wider font-semibold" style={{color:C.amber}}>{p.tag}</div><div className="text-sm font-semibold truncate" style={{color:C.cream}}>{p.name}</div><div className="text-sm font-bold mt-1" style={{color:C.amberLight}}>{p.price}</div></div>
-</Ext>))}</div></section>
+<Ext href="https://montuckymoonshine.com/collections/all" className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider inline-flex items-center rounded-sm" style={{background:C.amber,color:C.bg,fontFamily:"'Barlow Condensed',sans-serif",minHeight:48}}>Shop Collection →</Ext>
+<button onClick={()=>goStore("venue")} className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider rounded-sm" style={{background:'rgba(200,146,42,0.1)',color:C.cream,border:`1px solid ${C.amber}`,fontFamily:"'Barlow Condensed',sans-serif",minHeight:48,backdropFilter:'blur(8px)'}}>Explore the Venue</button>
+</div>
+</div>
+</section>
+
+{/* VENUE PHOTO STRIP - horizontal scroll preview */}
+<section className="py-2" style={{background:C.bgDark,borderTop:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`}}>
+<div className="scroll-x flex gap-2 px-2" aria-label="Venue preview">
+{[{s:"bar",a:"Rustic bar counter"},{s:"bar_right",a:"Bar seating area"},{s:"barback",a:"Spirits collection"},{s:"lounge",a:"Lounge area"},{s:"pool_table",a:"Pool table room"},{s:"bar_long",a:"Full bar view"}].map(v=>
+<img key={v.s} src={`https://ksksrbiz-arch.github.io/montucky-moonshine-proposal/venue/${v.s}.webp`} alt={v.a} className="h-24 sm:h-32 w-auto rounded-sm object-cover flex-shrink-0 opacity-70 hover:opacity-100 transition-opacity cursor-pointer" loading="lazy" onClick={()=>goStore("venue")}/>
+)}
+</div>
+</section>
+
+{/* PRODUCTS - all 12 */}
+<section className="max-w-6xl mx-auto px-4 py-16 safe-x cv-auto" aria-label="Products">
+<div className="text-center mb-10">
+<div className="text-xs uppercase tracking-[0.35em] font-semibold mb-2" style={{color:C.amber,fontFamily:"'Barlow Condensed',sans-serif"}}>The Collection</div>
+<h2 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(1.75rem,4vw,2.5rem)',color:C.cream}}>Shop <em style={{color:C.amber,fontWeight:400}}>Montucky</em></h2>
+<div className="w-12 h-px mx-auto mt-3" style={{background:C.amber}}/>
+</div>
+<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" role="list" aria-label="Products">{products.map(p=>(
+<Ext key={p.id} href={p.url} className="group block rounded-sm overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl" style={{background:C.bgCard,border:`1px solid ${C.border}`}}>
+<div className="aspect-square overflow-hidden relative"><img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy"/>
+<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-3" style={{background:'linear-gradient(to top, rgba(10,10,8,0.8) 0%, transparent 60%)'}}><span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5" style={{background:C.amber,color:C.bg}}>View Product</span></div>
+</div>
+<div className="p-3"><div className="text-[9px] uppercase tracking-wider font-semibold" style={{color:C.amber}}>{p.tag}</div><div className="text-sm font-semibold truncate" style={{color:C.cream}}>{p.name}</div><div className="text-sm font-bold mt-1" style={{color:C.amberLight}}>{p.price}</div></div>
+</Ext>))}</div>
+</section>
+
+{/* VENUE GALLERY - "The Montucky Experience" */}
+<section className="py-16 safe-x cv-auto" style={{background:C.bgDark,borderTop:`1px solid ${C.border}`}} aria-label="The Venue" id="venue-section">
+<div className="max-w-6xl mx-auto px-4">
+<div className="text-center mb-10">
+<div className="text-xs uppercase tracking-[0.35em] font-semibold mb-2" style={{color:C.amber,fontFamily:"'Barlow Condensed',sans-serif"}}>The Montucky Experience</div>
+<h2 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(1.75rem,4vw,2.5rem)',color:C.cream}}>A Private <em style={{color:C.amber,fontWeight:400}}>Venue</em></h2>
+<div className="w-12 h-px mx-auto mt-3" style={{background:C.amber}}/>
+<p className="text-sm mt-4 max-w-xl mx-auto leading-relaxed" style={{color:C.textDim}}>Montucky Moonshine isn't just a brand — it's a space. A handbuilt, rustic private venue in Helena, Montana featuring a full bar, lounge area, pool table, and big-screen entertainment. Available by inquiry for private events, brand collaborations, and intimate gatherings.</p>
+</div>
+{/* Masonry-style grid */}
+<div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+<div className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-sm">
+<img src="https://ksksrbiz-arch.github.io/montucky-moonshine-proposal/venue/bar_long.webp" alt="Full view of the Montucky Moonshine private bar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" style={{minHeight:300}} loading="lazy"/>
+<div className="absolute bottom-0 left-0 right-0 p-4" style={{background:'linear-gradient(to top, rgba(10,10,8,0.9) 0%, transparent 100%)'}}><div className="text-xs uppercase tracking-wider font-semibold" style={{color:C.amber}}>The Bar</div><div className="text-sm" style={{color:C.cream}}>Hand-built rustic counter with full spirits selection</div></div>
+</div>
+{[
+{s:"barback",t:"The Back Bar",d:"Mason jar infusions & curated spirits",h:200},
+{s:"bar_right",t:"Bar Seating",d:"Vintage Americana & warm wood tones",h:200},
+{s:"lounge",t:"The Lounge",d:"Big screen, cozy seating, board games",h:200},
+{s:"pool_table",t:"Game Room",d:"Rolling Rock pool table & chevron accent wall",h:200},
+{s:"bar",t:"Private Bar Sign",d:"\"We are always here, unless we are gone\"",h:200}
+].map(v=>
+<div key={v.s} className="relative group overflow-hidden rounded-sm">
+<img src={`https://ksksrbiz-arch.github.io/montucky-moonshine-proposal/venue/${v.s}.webp`} alt={v.d} className="w-full object-cover group-hover:scale-105 transition-transform duration-700" style={{height:v.h,minHeight:v.h}} loading="lazy"/>
+<div className="absolute bottom-0 left-0 right-0 p-3" style={{background:'linear-gradient(to top, rgba(10,10,8,0.9) 0%, transparent 100%)'}}><div className="text-[10px] uppercase tracking-wider font-semibold" style={{color:C.amber}}>{v.t}</div><div className="text-xs" style={{color:C.textDim}}>{v.d}</div></div>
+</div>
+)}
+</div>
+</div>
+</section>
+
+{/* BOOKING INQUIRY - Private Venue / Brand Experience */}
+<section className="py-16 safe-x relative overflow-hidden cv-auto" style={{background:C.bg}} aria-label="Book the Venue">
+<div className="absolute inset-0" style={{background:'radial-gradient(ellipse at 50% 50%, rgba(200,146,42,0.06) 0%, transparent 60%)'}} aria-hidden="true"/>
+<div className="max-w-2xl mx-auto px-4 relative z-10">
+<div className="text-center mb-8">
+<div className="text-xs uppercase tracking-[0.35em] font-semibold mb-2" style={{color:C.amber,fontFamily:"'Barlow Condensed',sans-serif"}}>By Inquiry Only</div>
+<h2 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(1.75rem,4vw,2.5rem)',color:C.cream}}>Book the <em style={{color:C.amber,fontWeight:400}}>Experience</em></h2>
+<div className="w-12 h-px mx-auto mt-3" style={{background:C.amber}}/>
+<p className="text-sm mt-4 max-w-md mx-auto" style={{color:C.textDim}}>Montucky Moonshine is a personal brand venue — not a commercial bar. Inquiries welcome for private gatherings, collaborations, photo shoots, and brand events.</p>
+</div>
+<div className="rounded-sm p-6 md:p-8" style={{background:C.bgCard,border:`1px solid ${C.border}`}}>
+<div className="space-y-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div><label htmlFor="bk-name" className="text-xs uppercase tracking-wider block mb-1.5 font-semibold" style={{color:C.textDim}}>Your Name</label>
+<input id="bk-name" type="text" placeholder="Full name" className="w-full p-3 rounded-sm text-sm" style={{background:C.bgDark,color:C.cream,border:`1px solid ${C.border}`,minHeight:44}}/></div>
+<div><label htmlFor="bk-email" className="text-xs uppercase tracking-wider block mb-1.5 font-semibold" style={{color:C.textDim}}>Email</label>
+<input id="bk-email" type="email" placeholder="you@example.com" className="w-full p-3 rounded-sm text-sm" style={{background:C.bgDark,color:C.cream,border:`1px solid ${C.border}`,minHeight:44}}/></div>
+</div>
+<div><label htmlFor="bk-type" className="text-xs uppercase tracking-wider block mb-1.5 font-semibold" style={{color:C.textDim}}>Event Type</label>
+<select id="bk-type" className="w-full p-3 rounded-sm text-sm" style={{background:C.bgDark,color:C.cream,border:`1px solid ${C.border}`,minHeight:44}} defaultValue="">
+<option value="" disabled>Select event type…</option>
+<option>Private Gathering</option>
+<option>Brand Collaboration</option>
+<option>Photo / Video Shoot</option>
+<option>Product Launch Event</option>
+<option>Other Inquiry</option>
+</select></div>
+<div><label htmlFor="bk-msg" className="text-xs uppercase tracking-wider block mb-1.5 font-semibold" style={{color:C.textDim}}>Message</label>
+<textarea id="bk-msg" placeholder="Tell us about your event, preferred dates, and guest count…" className="w-full p-3 rounded-sm text-sm h-24 resize-none" style={{background:C.bgDark,color:C.cream,border:`1px solid ${C.border}`}}/></div>
+<button className="w-full py-3.5 text-xs font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-2" style={{background:C.amber,color:C.bg,minHeight:48}}>
+<Mail size={14} aria-hidden="true"/>Submit Inquiry
+</button>
+<p className="text-[10px] text-center" style={{color:C.textDim}}>This is a private venue — not a commercial establishment. All events are by invitation or approved inquiry only.</p>
+</div>
+</div>
+</div>
+</section>
+</>}
+
+{/* VENUE DETAIL PAGE */}
+{storePage==="venue"&&<>
+<div className="pt-20 pb-16 max-w-6xl mx-auto px-4 safe-x">
+<button onClick={()=>goStore("home")} className="flex items-center gap-2 mb-8 px-4 py-3 rounded-sm text-xs font-semibold uppercase tracking-wider" style={{color:C.textDim,border:`1px solid ${C.border}`,minHeight:44}}><ArrowLeft size={14} aria-hidden="true"/>Back</button>
+<div className="text-center mb-10">
+<div className="text-xs uppercase tracking-[0.35em] font-semibold mb-2" style={{color:C.amber}}>Helena, Montana</div>
+<h1 className="text-3xl md:text-5xl font-bold mb-4" style={{fontFamily:"'Playfair Display',serif",color:C.cream}}>The Montucky <em style={{color:C.amber,fontWeight:400}}>Venue</em></h1>
+<p className="text-sm max-w-lg mx-auto" style={{color:C.textDim}}>A hand-built, rustic private space featuring a full bar, lounge, game room, and entertainment area. Available by inquiry for private events and brand experiences.</p>
+</div>
+<div className="space-y-3">
+{[{s:"bar_long",a:"Full bar panoramic view"},{s:"bar",a:"Private bar sign and spirits"},{s:"bar_right",a:"Bar counter and vintage decor"},{s:"barback",a:"Back bar with mason jar infusions"},{s:"lounge",a:"Lounge with big screen TV"},{s:"pool_table",a:"Pool table and game area"}].map(v=>
+<img key={v.s} src={`https://ksksrbiz-arch.github.io/montucky-moonshine-proposal/venue/${v.s}.webp`} alt={v.a} className="w-full rounded-sm object-cover" style={{maxHeight:500}} loading="lazy"/>
+)}
+</div>
+<div className="text-center mt-12">
+<button onClick={()=>goStore("home")} className="px-8 py-3.5 text-xs font-bold uppercase tracking-wider rounded-sm inline-flex items-center gap-2" style={{background:C.amber,color:C.bg,minHeight:48}}>
+<Mail size={14} aria-hidden="true"/>Inquire About Booking
+</button>
+</div>
+</div>
 </>}
 </main>
 <Footer onNavigate={goStore}/>
