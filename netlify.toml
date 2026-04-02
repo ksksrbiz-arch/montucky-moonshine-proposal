@@ -2,39 +2,9 @@
   publish = "."
 
 [[redirects]]
-  from = "/deliverables"
-  to = "/deliverables.html"
-  status = 200
-
-[[redirects]]
-  from = "/shop"
-  to = "/shop.html"
-  status = 200
-
-[[redirects]]
-  from = "/venue"
-  to = "/venue.html"
-  status = 200
-
-[[redirects]]
-  from = "/about"
-  to = "/about.html"
-  status = 200
-
-[[redirects]]
-  from = "/refund"
-  to = "/refund.html"
-  status = 200
-
-[[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
-
-[[redirects]]
-  from = "/terms"
-  to = "/terms.html"
-  status = 200
+  from = "/*"
+  to = "/404.html"
+  status = 404
 
 [[headers]]
   for = "/*"

@@ -80,7 +80,7 @@
 
     <!--=== HERO ===-->
     <section class="hero">
-      <div class="hero-bg"><img src="venue/bar_long.webp" alt="" width="1215" height="911" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.3"></div>
+      <div class="hero-bg"><img src="venue/bar_long.webp" alt="" loading="eager" fetchpriority="high" width="1215" height="911" class="parallax-bg" data-parallax="0.3"></div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="particles" id="heroParticles" aria-hidden="true"></div>
@@ -99,7 +99,7 @@
     <!--=== PHOTO STRIP ===-->
     <div class="strip">
       <div class="scroll-x" style="display:flex;gap:.5rem;padding:0 .5rem">
-        <a href="venue.html" class="img-wrap" style="flex-shrink:0"><img src="venue/bar.webp" alt="Private bar counter" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></a>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar.webp" alt="Private bar counter" width="1215" height="911" loading="lazy" onclick="document.getElementById('venue').scrollIntoView({behavior:'smooth'})" onload="this.parentElement.classList.add('loaded')"></div>
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_right.webp" alt="Bar seating area" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/barback.webp" alt="Spirits collection" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/lounge.webp" alt="Lounge area" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
@@ -140,14 +140,11 @@
         </div>
         <div class="v-grid stagger-children" style="margin-top:2.5rem">
           <div class="v-card v-hero reveal from-scale" data-lightbox="0" style="cursor:zoom-in"><div class="img-wrap"><img src="venue/bar_long.webp" alt="Full Montucky bar panoramic" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Bar</strong><span>Hand-built rustic counter with full spirits selection</span></div></div>
-          <div class="v-card reveal from-scale" data-lightbox="1" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/barback.webp" alt="Back bar with mason jar infusions" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Back Bar</strong><span>Mason jar infusions &amp; curated spirits</span></div></div>
-          <div class="v-card reveal from-scale" data-lightbox="2" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar_right.webp" alt="Bar seating with vintage decor" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Bar Seating</strong><span>Vintage Americana &amp; warm wood tones</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="1" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/barback.webp" alt="Back bar with mason jar infusions" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Back Bar</strong><span>Mason jar infusions & curated spirits</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="2" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar_right.webp" alt="Bar seating with vintage decor" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Bar Seating</strong><span>Vintage Americana & warm wood tones</span></div></div>
           <div class="v-card reveal from-scale" data-lightbox="3" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/lounge.webp" alt="Lounge with big screen TV" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Lounge</strong><span>Big screen, cozy seating, board games</span></div></div>
-          <div class="v-card reveal from-scale" data-lightbox="4" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/pool_table.webp" alt="Pool table and chevron wall" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Game Room</strong><span>Pool table &amp; chevron accent wall</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="4" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/pool_table.webp" alt="Pool table and chevron wall" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Game Room</strong><span>Pool table & chevron accent wall</span></div></div>
           <div class="v-card reveal from-scale" data-lightbox="5" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar.webp" alt="Private bar sign and bottles" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Private Bar</strong><span>"We are always here, unless we are gone"</span></div></div>
-        </div>
-        <div style="text-align:center;margin-top:2.5rem">
-          <a href="venue.html" class="btn btn-p">Book the Venue &rarr;</a>
         </div>
       </div>
     </section>
@@ -167,6 +164,96 @@
         </div>
       </div>
     </section>
+
+    <!--=== BOOKING INQUIRY ===-->
+    <section id="book">
+      <div class="sec-in">
+        <div class="sec-hdr reveal from-blur">
+          <p class="sec-label">By Inquiry Only</p>
+          <h2 class="sec-title">Book the <em>Experience</em></h2>
+          <div class="sec-line"></div>
+          <p class="sec-desc">Montucky Moonshine is a personal brand venue — not a commercial bar. Inquiries welcome for private gatherings, collaborations, photo shoots, and brand events.</p>
+        </div>
+        <form class="form-card reveal from-scale" id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="booking">
+          <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div class="form-row">
+              <div><label for="bk-name">Your Name</label><input id="bk-name" name="name" type="text" placeholder="Full name" required></div>
+              <div><label for="bk-email">Email</label><input id="bk-email" name="email" type="email" placeholder="you@example.com" required></div>
+            </div>
+            <div><label for="bk-type">Event Type</label>
+              <select id="bk-type" name="event-type" required><option value="" disabled selected>Select event type…</option><option>Private Gathering</option><option>Brand Collaboration</option><option>Photo / Video Shoot</option><option>Product Launch Event</option><option>Other Inquiry</option></select>
+            </div>
+            <div><label for="bk-msg">Message</label><textarea id="bk-msg" name="message" placeholder="Tell us about your event, preferred dates, and guest count…"></textarea></div>
+            <button type="submit" class="btn btn-p" style="width:100%;justify-content:center">✉ Submit Inquiry</button>
+            <p class="form-note">This is a private venue — not a commercial establishment. All events are by invitation or approved inquiry only.</p>
+          </div>
+          <div id="formSuccess" style="display:none;text-align:center;padding:2rem 0">
+            <div style="font-size:2rem;margin-bottom:.75rem">✓</div>
+            <p style="font-family:var(--ff-d);font-size:1.25rem;font-weight:700;color:var(--cream);margin-bottom:.5rem">Inquiry Received</p>
+            <p style="font-size:.85rem;color:var(--t3)">Thank you! We'll be in touch soon about your event.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </div><!--/page-home-->
+
+  <!--===== REFUND POLICY =====-->
+  <div class="page" id="page-refund">
+    <div class="legal">
+      <button class="back-btn" onclick="showPage('home')">← Back to Store</button>
+      <h1>Refund Policy</h1>
+      <h2>Returns</h2>
+      <p>Our policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can't offer you a refund or exchange.</p>
+      <p>To be eligible for a return, your item must be unused and in the same condition that you received it, in the original packaging.</p>
+      <p>Several types of goods are exempt: perishable goods, intimate/sanitary goods, hazardous materials, flammable liquids or gases, gift cards, downloadable software, and some health/personal care items.</p>
+      <p>To complete your return, we require a receipt or proof of purchase. Please do not send your purchase back to the manufacturer.</p>
+      <h3>Partial Refunds (if applicable)</h3>
+      <ul><li>Book with obvious signs of use</li><li>Opened CDs, DVDs, software, video games, records</li><li>Items not in original condition or missing parts</li><li>Items returned more than 30 days after delivery</li></ul>
+      <h2>Refunds</h2>
+      <p>Once your return is received and inspected, we'll email you about approval or rejection. If approved, a credit will be applied to your original payment method within a certain number of days.</p>
+      <h3>Late or Missing Refunds</h3>
+      <p>Check your bank account, then contact your credit card company and bank. If you still haven't received it, contact us at <a href="mailto:montuckymoonshine@gmail.com">montuckymoonshine@gmail.com</a>.</p>
+      <h2>Exchanges</h2>
+      <p>We only replace defective or damaged items. Email us at <a href="mailto:montuckymoonshine@gmail.com">montuckymoonshine@gmail.com</a> and send your item to: D & V Enterprises LLC, 3420 Byron Road, Helena MT 59602.</p>
+      <h2>Shipping</h2>
+      <p>You are responsible for return shipping costs. Shipping costs are non-refundable. For items over $75, consider using trackable shipping or insurance. We don't guarantee receipt of returned items.</p>
+    </div>
+  </div>
+
+  <!--===== PRIVACY POLICY =====-->
+  <div class="page" id="page-privacy">
+    <div class="legal">
+      <button class="back-btn" onclick="showPage('home')">← Back to Store</button>
+      <h1>Privacy Policy</h1>
+      <h2>Information We Collect</h2>
+      <p>When you visit, we collect device information (browser, IP, time zone, cookies). When you purchase, we collect name, address, payment info, email, and phone number.</p>
+      <h2>How We Use Your Information</h2>
+      <p>We use it to fulfill orders, process payments, arrange shipping, communicate with you, screen for fraud, and provide relevant information about our products.</p>
+      <h2>Sharing Your Information</h2>
+      <p>We share with third parties to help us operate (Shopify powers our store). We may share to comply with laws or protect our rights.</p>
+      <h2>Contact</h2>
+      <p>For questions, contact us at <a href="mailto:montuckymoonshine@gmail.com">montuckymoonshine@gmail.com</a> or: D & V Enterprises LLC, 3420 Byron Road, Helena MT 59602.</p>
+    </div>
+  </div>
+
+  <!--===== TERMS =====-->
+  <div class="page" id="page-terms">
+    <div class="legal">
+      <button class="back-btn" onclick="showPage('home')">← Back to Store</button>
+      <h1>Terms of Service</h1>
+      <h2>Overview</h2>
+      <p>This website is operated by D & V Enterprises LLC ("Montucky Moonshine"). By visiting and/or purchasing, you agree to these terms.</p>
+      <h2>Online Store Terms</h2>
+      <p>You may not use products for illegal purposes or violate any laws. Transmitting worms, viruses, or destructive code will result in immediate termination of Services.</p>
+      <h2>Products and Pricing</h2>
+      <p>Prices are subject to change without notice. We reserve the right to discontinue any product. We do not warrant that product quality will meet your expectations.</p>
+      <h2>Contact</h2>
+      <p>Questions? <a href="mailto:montuckymoonshine@gmail.com">montuckymoonshine@gmail.com</a> · D & V Enterprises LLC, 3420 Byron Road, Helena MT 59602.</p>
+    </div>
+  </div>
 
   </main>
 
@@ -200,7 +287,7 @@
         </div>
       </div>
       <div class="foot-bottom">
-        <p>&copy; <span id="copyrightYear"></span> D &amp; V Enterprises LLC. All rights reserved.</p>
+        <p>© <script>document.write(new Date().getFullYear())</script> D & V Enterprises LLC. All rights reserved.</p>
         <div class="pay">
           <span>VISA</span><span>MC</span><span>AMEX</span><span>PAYPAL</span><span>APPLE PAY</span><span>GOOGLE PAY</span><span>SHOP PAY</span><span>DISCOVER</span><span>AMAZON</span>
         </div>
@@ -208,6 +295,217 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script>
+    // ===== PRODUCTS DATA =====
+    const products = [
+      {n:"Montucky Spirits E-Book",p:"$10.00",img:"https://montuckymoonshine.com/cdn/shop/products/bookcover_1024x.png?v=1642360814",url:"https://montuckymoonshine.com/products/montucky-moonshine-spirits-e-book",tag:"Digital"},
+      {n:"Wall Clock",p:"$35.00",img:"https://montuckymoonshine.com/cdn/shop/files/2096947309553618432_2048_1024x.jpg?v=1688013525",url:"https://montuckymoonshine.com/products/wall-clock",tag:"Home"},
+      {n:"Moonshine Stein",p:"$25.00",img:"https://montuckymoonshine.com/cdn/shop/products/pns73k8a6h07stpkhj1y3d2g_1024x.png?v=1547450598",url:"https://montuckymoonshine.com/products/moonshine-stein",tag:"Drinkware"},
+      {n:"Sexy Coffee Mug",p:"$19.99",img:"https://montuckymoonshine.com/cdn/shop/files/12123678348230688733_2048_custom_1024x.jpg?v=1728695733",url:"https://montuckymoonshine.com/products/accent-coffee-mug-11-15oz-1",tag:"Drinkware"},
+      {n:"Accent Coffee Mug",p:"$19.99",img:"https://montuckymoonshine.com/cdn/shop/files/15556593331530897933_2048_1024x.jpg?v=1728747048",url:"https://montuckymoonshine.com/products/accent-coffee-mug-11-15oz-2",tag:"Drinkware"},
+      {n:"Stainless Steel Flask",p:"$21.88",img:"https://montuckymoonshine.com/cdn/shop/files/13314165464068572653_2048_1024x.jpg?v=1737535598",url:"https://montuckymoonshine.com/products/stainless-steel-flask-6oz",tag:"Drinkware"},
+      {n:"Distressed Dad Hat",p:"$22.00",img:"https://montuckymoonshine.com/cdn/shop/products/mockup-b7a59b9d_1024x.jpg?v=1589435140",url:"https://montuckymoonshine.com/products/distressed-dad-hat",tag:"Accessories"},
+      {n:"Drink Drank Drunk Tee",p:"$21.69",img:"https://montuckymoonshine.com/cdn/shop/files/15211927451420024901_2048_1024x.jpg?v=1738121468",url:"https://montuckymoonshine.com/products/funny-drink-drank-drunk-t-shirt",tag:"Apparel"},
+      {n:"Hobby Carpenter Tee",p:"$29.27",img:"https://montuckymoonshine.com/cdn/shop/files/12475718121083323152_2048_1024x.jpg?v=1774545601",url:"https://montuckymoonshine.com/products/hobby-carpenter-t-shirt",tag:"Apparel"},
+      {n:"Bold Graphic Tee",p:"$33.32",img:"https://montuckymoonshine.com/cdn/shop/files/8382319889231594197_2048_1024x.jpg?v=1774642794",url:"https://montuckymoonshine.com/products/t-shirt-found-out-already",tag:"Apparel"},
+      {n:"Heavyweight Hoodie",p:"$87.77",img:"https://montuckymoonshine.com/cdn/shop/files/6909327151717644564_2048_1024x.jpg?v=1774545469",url:"https://montuckymoonshine.com/products/unisex-heavyweight-hooded-sweatshirt",tag:"Apparel"},
+      {n:"Velveteen Blanket",p:"$32.15",img:"https://montuckymoonshine.com/cdn/shop/products/09193d3b46d306ced28add4a23b3e67e_1024x.jpg?v=1666326356",url:"https://montuckymoonshine.com/products/velveteen-minky-blanket-two-sided-print",tag:"Home"}
+    ];
+
+    // ===== RENDER PRODUCTS (with skeleton + reveal) =====
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = products.map(p => `
+      <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="p-card reveal" role="listitem">
+        <div class="p-img img-wrap"><img src="${p.img}" alt="${p.n}" loading="lazy" onload="this.parentElement.classList.add('loaded')"><div class="p-hover"><span>View Product</span></div></div>
+        <div class="p-info"><div class="p-tag">${p.tag}</div><div class="p-name">${p.n}</div><div class="p-price">${p.p}</div></div>
+      </a>
+    `).join('');
+    document.getElementById('productCount').dataset.target = products.length;
+
+    // ===== PAGE ROUTING =====
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    // ===== PRELOADER =====
+    (function initPreloader() {
+      const fill = document.getElementById('preloaderFill');
+      const loader = document.getElementById('preloader');
+      let progress = 0;
+      const tick = setInterval(() => {
+        progress += Math.random() * 25 + 10;
+        if (progress > 90 && document.readyState !== 'complete') progress = 90;
+        if (progress >= 100) progress = 100;
+        fill.style.width = progress + '%';
+        if (progress >= 100) clearInterval(tick);
+      }, 200);
+      window.addEventListener('load', () => {
+        fill.style.width = '100%';
+        setTimeout(() => loader.classList.add('done'), 400);
+      });
+    })();
+
+    // ===== SCROLL PROGRESS BAR =====
+    const scrollBar = document.getElementById('scrollProgress');
+    function updateScrollProgress() {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      scrollBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+    }
+
+    // ===== NAV SCROLL =====
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+      updateScrollProgress();
+    }, { passive: true });
+
+    // ===== INTERSECTION OBSERVER — SCROLL REVEAL =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ===== PARALLAX ENGINE =====
+    const parallaxEls = document.querySelectorAll('[data-parallax]');
+    let ticking = false;
+    function updateParallax() {
+      const sy = window.scrollY;
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.dataset.parallax);
+        el.style.transform = 'translateY(' + (sy * speed) + 'px) scale(1.1)';
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive: true });
+
+    // ===== HERO PARTICLES =====
+    (function initParticles() {
+      const container = document.getElementById('heroParticles');
+      if (!container || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 8 + 's';
+        p.style.animationDuration = (6 + Math.random() * 6) + 's';
+        p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+        container.appendChild(p);
+      }
+    })();
+
+    // ===== COUNTER ANIMATION =====
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          const duration = 2000;
+          const start = performance.now();
+          function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target);
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // ===== VENUE LIGHTBOX =====
+    const venueImages = [
+      { src: 'venue/bar_long.webp', title: 'The Bar', desc: 'Hand-built rustic counter with full spirits selection' },
+      { src: 'venue/barback.webp', title: 'Back Bar', desc: 'Mason jar infusions & curated spirits' },
+      { src: 'venue/bar_right.webp', title: 'Bar Seating', desc: 'Vintage Americana & warm wood tones' },
+      { src: 'venue/lounge.webp', title: 'The Lounge', desc: 'Big screen, cozy seating, board games' },
+      { src: 'venue/pool_table.webp', title: 'Game Room', desc: 'Pool table & chevron accent wall' },
+      { src: 'venue/bar.webp', title: 'Private Bar', desc: '"We are always here, unless we are gone"' }
+    ];
+    let lightboxIdx = 0;
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    const lbTitle = lb.querySelector('.lightbox-cap strong');
+    const lbDesc = lb.querySelector('.lightbox-cap span');
+
+    function openLightbox(idx) {
+      lightboxIdx = idx;
+      const v = venueImages[idx];
+      lbImg.src = v.src;
+      lbImg.alt = v.title;
+      lbTitle.textContent = v.title;
+      lbDesc.textContent = v.desc;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-lightbox]').forEach(card => {
+      card.addEventListener('click', () => openLightbox(parseInt(card.dataset.lightbox)));
+    });
+    lb.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+    lb.querySelector('.lightbox-prev').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLightbox((lightboxIdx - 1 + venueImages.length) % venueImages.length);
+    });
+    lb.querySelector('.lightbox-next').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLightbox((lightboxIdx + 1) % venueImages.length);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') openLightbox((lightboxIdx - 1 + venueImages.length) % venueImages.length);
+      if (e.key === 'ArrowRight') openLightbox((lightboxIdx + 1) % venueImages.length);
+    });
+
+    // ===== MAGNETIC BUTTON EFFECT =====
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        btn.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    });
+
+    // ===== SMOOTH IMAGE REVEAL ON ALL LAZY IMAGES =====
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      if (img.complete) {
+        const wrap = img.closest('.img-wrap');
+        if (wrap) wrap.classList.add('loaded');
+      }
+    });
+
+    // ===== BOOKING FORM SUBMIT =====
+    const bookingForm = document.getElementById('bookingForm');
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(bookingForm);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      }).then(() => {
+        bookingForm.querySelector('div[style]').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      }).catch(() => {
+        alert('Something went wrong. Please email montuckymoonshine@gmail.com directly.');
+      });
+    });
+  </script>
 </body>
 </html>
