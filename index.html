@@ -9,6 +9,7 @@
   <meta property="og:title" content="Montucky Moonshine — Helena, Montana">
   <meta property="og:description" content="Handcrafted goods & private venue experience. Shop the collection or book an event.">
   <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <meta property="og:url" content="https://montucky-moonshine-proposal.netlify.app/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Montucky Moonshine — Helena, Montana">
@@ -403,7 +404,7 @@
     <section id="about">
       <div class="sec-in">
         <div class="about-grid">
-          <div class="about-img reveal from-left"><div class="img-wrap"><img src="https://montuckymoonshine.com/cdn/shop/files/IMG_20241011_141051534_HDR_300x.jpg?v=1737682523" alt="Montucky Moonshine workshop" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div></div>
+          <div class="about-img reveal from-left"><div class="img-wrap"><img src="https://montuckymoonshine.com/cdn/shop/files/IMG_20241011_141051534_HDR_300x.jpg?v=1737682523" alt="Montucky Moonshine workshop" width="300" height="225" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div></div>
           <div class="about-text reveal from-right">
             <p class="sec-label" style="text-align:left">Our Story</p>
             <h2 class="sec-title" style="text-align:left">Born in <em>Montana,</em><br>Made with Grit</h2>
@@ -423,7 +424,7 @@
           <div class="sec-line"></div>
           <p class="sec-desc">Montucky Moonshine is a personal brand venue — not a commercial bar. Inquiries welcome for private gatherings, collaborations, photo shoots, and brand events.</p>
         </div>
-        <form class="form-card reveal from-scale" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form class="form-card reveal from-scale" id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="booking">
           <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div style="display:flex;flex-direction:column;gap:1rem">
@@ -437,6 +438,11 @@
             <div><label for="bk-msg">Message</label><textarea id="bk-msg" name="message" placeholder="Tell us about your event, preferred dates, and guest count…"></textarea></div>
             <button type="submit" class="btn btn-p" style="width:100%;justify-content:center">✉ Submit Inquiry</button>
             <p class="form-note">This is a private venue — not a commercial establishment. All events are by invitation or approved inquiry only.</p>
+          </div>
+          <div id="formSuccess" style="display:none;text-align:center;padding:2rem 0">
+            <div style="font-size:2rem;margin-bottom:.75rem">✓</div>
+            <p style="font-family:var(--ff-d);font-size:1.25rem;font-weight:700;color:var(--cream);margin-bottom:.5rem">Inquiry Received</p>
+            <p style="font-size:.85rem;color:var(--t3)">Thank you! We'll be in touch soon about your event.</p>
           </div>
         </form>
       </div>
@@ -732,6 +738,23 @@
         const wrap = img.closest('.img-wrap');
         if (wrap) wrap.classList.add('loaded');
       }
+    });
+
+    // ===== BOOKING FORM SUBMIT =====
+    const bookingForm = document.getElementById('bookingForm');
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(bookingForm);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      }).then(() => {
+        bookingForm.querySelector('div[style]').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      }).catch(() => {
+        alert('Something went wrong. Please email montuckymoonshine@gmail.com directly.');
+      });
     });
   </script>
 </body>
