@@ -10,10 +10,16 @@
   <meta property="og:description" content="Handcrafted goods & private venue experience. Shop the collection or book an event.">
   <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Montucky Moonshine — Helena, Montana">
+  <meta name="twitter:description" content="Handcrafted goods & private venue experience. Shop the collection or book an event.">
+  <meta name="twitter:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
   <title>Montucky Moonshine — Handcrafted Goods & Private Venue | Helena, MT</title>
-  <link rel="canonical" href="https://ksksrbiz-arch.github.io/montucky-moonshine-proposal/">
+  <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="venue/bar_long.webp" type="image/webp">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -328,7 +334,7 @@
 
     <!--=== HERO ===-->
     <section class="hero">
-      <div class="hero-bg"><img src="venue/bar_long.webp" alt="" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.3"></div>
+      <div class="hero-bg"><img src="venue/bar_long.webp" alt="" loading="eager" fetchpriority="high" width="1215" height="911" class="parallax-bg" data-parallax="0.3"></div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="particles" id="heroParticles" aria-hidden="true"></div>
@@ -347,12 +353,12 @@
     <!--=== PHOTO STRIP ===-->
     <div class="strip">
       <div class="scroll-x" style="display:flex;gap:.5rem;padding:0 .5rem">
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar.webp" alt="Private bar counter" loading="lazy" onclick="document.getElementById('venue').scrollIntoView({behavior:'smooth'})" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_right.webp" alt="Bar seating area" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/barback.webp" alt="Spirits collection" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/lounge.webp" alt="Lounge area" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/pool_table.webp" alt="Pool table room" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_long.webp" alt="Full bar view" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar.webp" alt="Private bar counter" width="1215" height="911" loading="lazy" onclick="document.getElementById('venue').scrollIntoView({behavior:'smooth'})" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_right.webp" alt="Bar seating area" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/barback.webp" alt="Spirits collection" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/lounge.webp" alt="Lounge area" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/pool_table.webp" alt="Pool table room" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_long.webp" alt="Full bar view" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
       </div>
     </div>
 
@@ -380,15 +386,15 @@
         <div class="stats-row reveal">
           <div class="stat-item"><div class="counter" data-target="6">0</div><div class="counter-label">Unique Spaces</div></div>
           <div class="stat-item"><div class="counter" data-target="100">0</div><div class="counter-label">% Handbuilt</div></div>
-          <div class="stat-item"><div class="counter" data-target="12">0</div><div class="counter-label">Products</div></div>
+          <div class="stat-item"><div class="counter" id="productCount" data-target="12">0</div><div class="counter-label">Products</div></div>
         </div>
         <div class="v-grid stagger-children" style="margin-top:2.5rem">
-          <div class="v-card v-hero reveal from-scale" data-lightbox="0" style="cursor:zoom-in"><div class="img-wrap"><img src="venue/bar_long.webp" alt="Full Montucky bar panoramic" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Bar</strong><span>Hand-built rustic counter with full spirits selection</span></div></div>
-          <div class="v-card reveal from-scale" data-lightbox="1" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/barback.webp" alt="Back bar with mason jar infusions" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Back Bar</strong><span>Mason jar infusions & curated spirits</span></div></div>
-          <div class="v-card reveal from-scale" data-lightbox="2" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar_right.webp" alt="Bar seating with vintage decor" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Bar Seating</strong><span>Vintage Americana & warm wood tones</span></div></div>
-          <div class="v-card reveal from-scale" data-lightbox="3" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/lounge.webp" alt="Lounge with big screen TV" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Lounge</strong><span>Big screen, cozy seating, board games</span></div></div>
-          <div class="v-card reveal from-scale" data-lightbox="4" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/pool_table.webp" alt="Pool table and chevron wall" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Game Room</strong><span>Pool table & chevron accent wall</span></div></div>
-          <div class="v-card reveal from-scale" data-lightbox="5" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar.webp" alt="Private bar sign and bottles" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Private Bar</strong><span>"We are always here, unless we are gone"</span></div></div>
+          <div class="v-card v-hero reveal from-scale" data-lightbox="0" style="cursor:zoom-in"><div class="img-wrap"><img src="venue/bar_long.webp" alt="Full Montucky bar panoramic" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Bar</strong><span>Hand-built rustic counter with full spirits selection</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="1" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/barback.webp" alt="Back bar with mason jar infusions" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Back Bar</strong><span>Mason jar infusions & curated spirits</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="2" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar_right.webp" alt="Bar seating with vintage decor" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Bar Seating</strong><span>Vintage Americana & warm wood tones</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="3" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/lounge.webp" alt="Lounge with big screen TV" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Lounge</strong><span>Big screen, cozy seating, board games</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="4" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/pool_table.webp" alt="Pool table and chevron wall" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Game Room</strong><span>Pool table & chevron accent wall</span></div></div>
+          <div class="v-card reveal from-scale" data-lightbox="5" style="cursor:zoom-in"><div class="img-wrap" style="height:200px"><img src="venue/bar.webp" alt="Private bar sign and bottles" width="1215" height="911" style="height:200px" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Private Bar</strong><span>"We are always here, unless we are gone"</span></div></div>
         </div>
       </div>
     </section>
@@ -417,20 +423,22 @@
           <div class="sec-line"></div>
           <p class="sec-desc">Montucky Moonshine is a personal brand venue — not a commercial bar. Inquiries welcome for private gatherings, collaborations, photo shoots, and brand events.</p>
         </div>
-        <div class="form-card reveal from-scale">
+        <form class="form-card reveal from-scale" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="booking">
+          <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div style="display:flex;flex-direction:column;gap:1rem">
             <div class="form-row">
-              <div><label for="bk-name">Your Name</label><input id="bk-name" type="text" placeholder="Full name"></div>
-              <div><label for="bk-email">Email</label><input id="bk-email" type="email" placeholder="you@example.com"></div>
+              <div><label for="bk-name">Your Name</label><input id="bk-name" name="name" type="text" placeholder="Full name" required></div>
+              <div><label for="bk-email">Email</label><input id="bk-email" name="email" type="email" placeholder="you@example.com" required></div>
             </div>
             <div><label for="bk-type">Event Type</label>
-              <select id="bk-type"><option value="" disabled selected>Select event type…</option><option>Private Gathering</option><option>Brand Collaboration</option><option>Photo / Video Shoot</option><option>Product Launch Event</option><option>Other Inquiry</option></select>
+              <select id="bk-type" name="event-type" required><option value="" disabled selected>Select event type…</option><option>Private Gathering</option><option>Brand Collaboration</option><option>Photo / Video Shoot</option><option>Product Launch Event</option><option>Other Inquiry</option></select>
             </div>
-            <div><label for="bk-msg">Message</label><textarea id="bk-msg" placeholder="Tell us about your event, preferred dates, and guest count…"></textarea></div>
-            <button class="btn btn-p" style="width:100%;justify-content:center">✉ Submit Inquiry</button>
+            <div><label for="bk-msg">Message</label><textarea id="bk-msg" name="message" placeholder="Tell us about your event, preferred dates, and guest count…"></textarea></div>
+            <button type="submit" class="btn btn-p" style="width:100%;justify-content:center">✉ Submit Inquiry</button>
             <p class="form-note">This is a private venue — not a commercial establishment. All events are by invitation or approved inquiry only.</p>
           </div>
-        </div>
+        </form>
       </div>
     </section>
 
@@ -523,7 +531,7 @@
         </div>
       </div>
       <div class="foot-bottom">
-        <p>© 2026 D & V Enterprises LLC. All rights reserved.</p>
+        <p>© <script>document.write(new Date().getFullYear())</script> D & V Enterprises LLC. All rights reserved.</p>
         <div class="pay">
           <span>VISA</span><span>MC</span><span>AMEX</span><span>PAYPAL</span><span>APPLE PAY</span><span>GOOGLE PAY</span><span>SHOP PAY</span><span>DISCOVER</span><span>AMAZON</span>
         </div>
@@ -556,6 +564,7 @@
         <div class="p-info"><div class="p-tag">${p.tag}</div><div class="p-name">${p.n}</div><div class="p-price">${p.p}</div></div>
       </a>
     `).join('');
+    document.getElementById('productCount').dataset.target = products.length;
 
     // ===== PAGE ROUTING =====
     function showPage(id) {
