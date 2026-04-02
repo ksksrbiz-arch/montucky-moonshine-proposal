@@ -69,6 +69,9 @@ Client-side page routing via `.page` / `.page.active` classes:
 - Scroll reveals: `.reveal` elements get `.visible` via IntersectionObserver
 - All external links use `target="_blank" rel="noopener noreferrer"`
 - Product links go to `montuckymoonshine.com/products/...` (Shopify)
+- Booking form uses Netlify Forms (`data-netlify="true"`) with honeypot spam protection
+- Product count in venue stats is dynamically set from the `products` array length
+- Copyright year in footer is dynamically generated
 
 ## admin.jsx (Not Deployed)
 
