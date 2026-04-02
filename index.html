@@ -1,1148 +1,467 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="color-scheme:dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Montucky Moonshine — Official Store</title>
-  <meta name="description" content="Montucky Moonshine — Great Ideas, Fantastic Products. Shop mugs, tees, merchandise and more.">
+  <meta name="theme-color" content="#0a0a08">
+  <meta name="description" content="Montucky Moonshine — Handcrafted goods and private venue experience in Helena, Montana. Shop mugs, tees, merchandise, and book events.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Montucky Moonshine — Helena, Montana">
+  <meta property="og:description" content="Handcrafted goods & private venue experience. Shop the collection or book an event.">
+  <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <meta property="og:type" content="website">
+  <title>Montucky Moonshine — Handcrafted Goods & Private Venue | Helena, MT</title>
+  <link rel="canonical" href="https://ksksrbiz-arch.github.io/montucky-moonshine-proposal/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"Montucky Moonshine",
+    "description":"Handcrafted goods and private venue experience in Helena, Montana.",
+    "url":"https://montuckymoonshine.com",
+    "address":{"@type":"PostalAddress","streetAddress":"3420 Byron Road","addressLocality":"Helena","addressRegion":"MT","postalCode":"59602","addressCountry":"US"},
+    "email":"montuckymoonshine@gmail.com",
+    "sameAs":["https://www.facebook.com/Montucky-Moonshine-661364020944905/"]
+  }
+  </script>
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-deep: #0a0a08;
-      --bg-dark: #121210;
-      --bg-card: #1a1a16;
-      --bg-card-hover: #222218;
-      --amber: #c8922a;
-      --amber-light: #e6b04a;
-      --amber-glow: rgba(200, 146, 42, 0.15);
-      --cream: #f5f0e6;
-      --cream-muted: #c4bfb2;
-      --text-primary: #eae5d8;
-      --text-secondary: #9e9a8f;
-      --text-dim: #6b675e;
-      --rust: #8b4513;
-      --copper: #b87333;
-      --border: rgba(200, 146, 42, 0.12);
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-body: 'Barlow', sans-serif;
-      --font-condensed: 'Barlow Condensed', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font-body);
-      background: var(--bg-deep);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ========== GRAIN OVERLAY ========== */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* ========== NAVIGATION ========== */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: rgba(10, 10, 8, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.4s ease;
-    }
-
-    nav.scrolled {
-      background: rgba(10, 10, 8, 0.95);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    }
-
-    .nav-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0.8rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
-
-    .nav-logo img {
-      height: 48px;
-      width: auto;
-      filter: drop-shadow(0 0 8px rgba(200, 146, 42, 0.3));
-    }
-
-    .nav-logo-text {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--amber);
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-    }
-
-    .nav-logo-text span {
-      display: block;
-      font-size: 0.65rem;
-      font-family: var(--font-condensed);
-      font-weight: 600;
-      color: var(--text-secondary);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--font-condensed);
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.3s;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--amber);
-      transition: width 0.3s;
-    }
-
-    .nav-links a:hover { color: var(--amber); }
-    .nav-links a:hover::after { width: 100%; }
-
-    .nav-cta {
-      background: var(--amber) !important;
-      color: var(--bg-deep) !important;
-      padding: 0.5rem 1.25rem !important;
-      border-radius: 2px;
-      font-weight: 700 !important;
-      transition: all 0.3s !important;
-    }
-
-    .nav-cta:hover {
-      background: var(--amber-light) !important;
-      box-shadow: 0 0 20px var(--amber-glow);
-    }
-
-    .nav-cta::after { display: none !important; }
-
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    .mobile-toggle span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--cream);
-      margin: 5px 0;
-      transition: all 0.3s;
-    }
-
-    /* ========== HERO ========== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--bg-deep) 0%, #1a1408 50%, var(--bg-deep) 100%);
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(ellipse at 30% 50%, rgba(200, 146, 42, 0.06) 0%, transparent 50%),
-                  radial-gradient(ellipse at 70% 30%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
-      animation: drift 20s ease-in-out infinite;
-    }
-
-    @keyframes drift {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(2%, -1%) rotate(1deg); }
-      66% { transform: translate(-1%, 1%) rotate(-0.5deg); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 900px;
-      padding: 2rem;
-      animation: fadeUp 1.2s ease-out;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-badge {
-      display: inline-block;
-      font-family: var(--font-condensed);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--amber);
-      padding: 0.5rem 1.5rem;
-      border: 1px solid var(--amber);
-      margin-bottom: 2.5rem;
-      animation: fadeUp 1.2s ease-out 0.2s both;
-    }
-
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 900;
-      line-height: 0.95;
-      color: var(--cream);
-      margin-bottom: 1.5rem;
-      animation: fadeUp 1.2s ease-out 0.4s both;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--amber);
-      font-weight: 400;
-    }
-
-    .hero-tagline {
-      font-family: var(--font-condensed);
-      font-size: 1.3rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 3rem;
-      animation: fadeUp 1.2s ease-out 0.6s both;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1.25rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeUp 1.2s ease-out 0.8s both;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 1rem 2.5rem;
-      font-family: var(--font-condensed);
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.4s ease;
-    }
-
-    .btn-primary {
-      background: var(--amber);
-      color: var(--bg-deep);
-    }
-
-    .btn-primary:hover {
-      background: var(--amber-light);
-      box-shadow: 0 8px 40px rgba(200, 146, 42, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--cream);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--amber);
-      color: var(--amber);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-dim);
-      font-family: var(--font-condensed);
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      animation: fadeUp 1.2s ease-out 1s both;
-    }
-
-    .hero-scroll .line {
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, var(--amber), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-      50% { opacity: 1; transform: scaleY(1); }
-    }
-
-    /* ========== SECTION STYLES ========== */
-    section {
-      padding: 6rem 2rem;
-    }
-
-    .section-inner {
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-label {
-      font-family: var(--font-condensed);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.25rem);
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.15;
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--amber);
-      font-weight: 400;
-    }
-
-    .section-divider {
-      width: 60px;
-      height: 1px;
-      background: var(--amber);
-      margin: 1.5rem auto 0;
-    }
-
-    /* ========== COLLECTIONS BAR ========== */
-    .collections-bar {
-      background: var(--bg-dark);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 2rem;
-    }
-
-    .collections-inner {
-      max-width: 1300px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .collection-chip {
-      padding: 0.65rem 1.75rem;
-      font-family: var(--font-condensed);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .collection-chip:hover,
-    .collection-chip.active {
-      color: var(--amber);
-      border-color: var(--amber);
-      background: var(--amber-glow);
-    }
-
-    /* ========== PRODUCT GRID ========== */
-    #shop {
-      background: var(--bg-deep);
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .product-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      transition: all 0.5s ease;
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: cardIn 0.6s ease-out forwards;
-    }
-
-    .product-card:nth-child(1) { animation-delay: 0.05s; }
-    .product-card:nth-child(2) { animation-delay: 0.1s; }
-    .product-card:nth-child(3) { animation-delay: 0.15s; }
-    .product-card:nth-child(4) { animation-delay: 0.2s; }
-    .product-card:nth-child(5) { animation-delay: 0.25s; }
-    .product-card:nth-child(6) { animation-delay: 0.3s; }
-    .product-card:nth-child(7) { animation-delay: 0.35s; }
-    .product-card:nth-child(8) { animation-delay: 0.4s; }
-    .product-card:nth-child(9) { animation-delay: 0.45s; }
-    .product-card:nth-child(10) { animation-delay: 0.5s; }
-    .product-card:nth-child(11) { animation-delay: 0.55s; }
-    .product-card:nth-child(12) { animation-delay: 0.6s; }
-    .product-card:nth-child(13) { animation-delay: 0.65s; }
-    .product-card:nth-child(14) { animation-delay: 0.7s; }
-    .product-card:nth-child(15) { animation-delay: 0.75s; }
-
-    @keyframes cardIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .product-card:hover {
-      border-color: var(--amber);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--amber-glow);
-    }
-
-    .product-img-wrap {
-      position: relative;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #151512;
-    }
-
-    .product-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .product-card:hover .product-img-wrap img {
-      transform: scale(1.08);
-    }
-
-    .product-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10, 10, 8, 0.7) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.4s;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 1.5rem;
-    }
-
-    .product-card:hover .product-overlay {
-      opacity: 1;
-    }
-
-    .product-quick-buy {
-      padding: 0.65rem 2rem;
-      background: var(--amber);
-      color: var(--bg-deep);
-      font-family: var(--font-condensed);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transform: translateY(10px);
-      transition: all 0.4s;
-      display: inline-block;
-    }
-
-    .product-card:hover .product-quick-buy {
-      transform: translateY(0);
-    }
-
-    .product-quick-buy:hover {
-      background: var(--amber-light);
-    }
-
-    .product-info {
-      padding: 1.25rem 1.5rem 1.5rem;
-    }
-
-    .product-category {
-      font-family: var(--font-condensed);
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.4rem;
-    }
-
-    .product-name {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--cream);
-      margin-bottom: 0.6rem;
-      line-height: 1.3;
-    }
-
-    .product-name a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .product-price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .product-price {
-      font-family: var(--font-condensed);
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--amber-light);
-    }
-
-    .product-price .from {
-      font-size: 0.7rem;
-      font-weight: 400;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .product-variants {
-      font-family: var(--font-condensed);
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      letter-spacing: 0.1em;
-    }
-
-    /* ========== ABOUT / STORY ========== */
-    #about {
-      background: var(--bg-dark);
-      border-top: 1px solid var(--border);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .about-image {
-      position: relative;
-    }
-
-    .about-image img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border: 1px solid var(--border);
-    }
-
-    .about-image::before {
-      content: '';
-      position: absolute;
-      top: -12px;
-      left: -12px;
-      right: 12px;
-      bottom: 12px;
-      border: 1px solid var(--amber);
-      z-index: -1;
-    }
-
-    .about-text .section-label { text-align: left; }
-    .about-text .section-title { text-align: left; }
-
-    .about-text p {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-top: 1.5rem;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .stat-item .stat-number {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--amber);
-    }
-
-    .stat-item .stat-label {
-      font-family: var(--font-condensed);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-top: 0.25rem;
-    }
-
-    /* ========== BOOK NOW / CTA ========== */
-    .cta-section {
-      background: linear-gradient(135deg, #1a1408 0%, var(--bg-deep) 50%, #0d0d08 100%);
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 8rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(ellipse at center, var(--amber-glow), transparent 70%);
-    }
-
-    .cta-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .cta-content h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      color: var(--cream);
-      margin-bottom: 1rem;
-    }
-
-    .cta-content p {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      margin-bottom: 2.5rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ========== FOOTER ========== */
-    footer {
-      background: var(--bg-deep);
-      border-top: 1px solid var(--border);
-      padding: 4rem 2rem 2rem;
-    }
-
-    .footer-inner {
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-brand .nav-logo-text {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .footer-brand p {
-      color: var(--text-dim);
-      font-size: 0.9rem;
-      line-height: 1.7;
-      max-width: 300px;
-    }
-
-    .footer-col h4 {
-      font-family: var(--font-condensed);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1.25rem;
-    }
-
-    .footer-col a {
-      display: block;
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-bottom: 0.6rem;
-      transition: color 0.3s;
-    }
-
-    .footer-col a:hover { color: var(--amber); }
-
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-bottom p {
-      color: var(--text-dim);
-      font-size: 0.8rem;
-    }
-
-    .payment-icons {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-
-    .payment-icons span {
-      display: inline-block;
-      padding: 0.25rem 0.6rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      font-family: var(--font-condensed);
-      font-size: 0.6rem;
-      font-weight: 600;
-      color: var(--text-dim);
-      letter-spacing: 0.05em;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1024px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .mobile-toggle { display: block; }
-
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(10, 10, 8, 0.97);
-        backdrop-filter: blur(20px);
-        padding: 1.5rem 2rem;
-        border-bottom: 1px solid var(--border);
-        gap: 1rem;
-      }
-
-      .products-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
-      .about-stats { grid-template-columns: repeat(3, 1fr); }
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: clamp(2.5rem, 10vw, 4.5rem); }
-      section { padding: 4rem 1.25rem; }
-    }
-
-    @media (max-width: 480px) {
-      .products-grid { grid-template-columns: 1fr; }
-      .hero-actions { flex-direction: column; align-items: center; }
-      .btn { width: 100%; justify-content: center; }
-    }
+    /*===== RESET + 2026 STANDARDS =====*/
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+    *:focus{outline:none}
+    *:focus-visible{outline:2px solid rgba(200,146,42,0.6);outline-offset:2px;border-radius:2px}
+    button,a,[role="button"],select,input,textarea{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    h1,h2,h3,h4{text-wrap:balance}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+    img{display:block;max-width:100%}
+    a{text-decoration:none}
+    .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:1rem;background:#c8922a;color:#0a0a08;font-weight:700}
+    .skip:focus{left:1rem;top:1rem;width:auto;height:auto}
+
+    /*===== TOKENS =====*/
+    :root{
+      --bg:#0a0a08;--bg2:#121210;--card:#1a1a16;
+      --amber:#c8922a;--amber-l:#e6b04a;--amber-g:rgba(200,146,42,0.15);
+      --cream:#f5f0e6;--t1:#eae5d8;--t2:#9e9a8f;--t3:#8a8578;
+      --bdr:rgba(200,146,42,0.12);
+      --ff-d:'Playfair Display',Georgia,serif;
+      --ff-b:'Barlow',sans-serif;
+      --ff-c:'Barlow Condensed',sans-serif;
+    }
+    body{font-family:var(--ff-b);background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E")}
+
+    /*===== SCROLL =====*/
+    .scroll-x{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+    .scroll-x::-webkit-scrollbar{display:none}
+    .scroll-x>*{scroll-snap-align:start}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
+
+    /*===== SAFE AREAS =====*/
+    .safe-b{padding-bottom:max(.75rem,env(safe-area-inset-bottom))}
+    .safe-t{padding-top:max(.75rem,env(safe-area-inset-top))}
+    .safe-x{padding-left:max(1rem,env(safe-area-inset-left));padding-right:max(1rem,env(safe-area-inset-right))}
+
+    /*===== NAV =====*/
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,8,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);transition:background .4s}
+    nav.scrolled{background:rgba(10,10,8,0.96);box-shadow:0 4px 30px rgba(0,0,0,.5)}
+    .nav-in{max-width:1300px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:.6rem;cursor:pointer}
+    .nav-logo img{height:44px;filter:drop-shadow(0 0 8px rgba(200,146,42,.3))}
+    .nav-brand{font-family:var(--ff-d);font-size:1.15rem;font-weight:700;color:var(--amber);line-height:1.1}
+    .nav-brand small{display:block;font-family:var(--ff-c);font-size:.55rem;font-weight:600;color:var(--t3);letter-spacing:.3em;text-transform:uppercase}
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-links a,.nav-links button{font-family:var(--ff-c);font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--t2);background:none;border:none;padding:.5rem .75rem;min-height:44px;display:inline-flex;align-items:center;cursor:pointer;transition:color .3s}
+    .nav-links a:hover,.nav-links button:hover{color:var(--amber)}
+    .nav-cta{background:var(--amber)!important;color:var(--bg)!important;padding:.5rem 1rem!important;border-radius:2px}
+    .nav-cta:hover{background:var(--amber-l)!important}
+    @media(max-width:640px){.nav-links .hide-m{display:none}}
+
+    /*===== HERO =====*/
+    .hero{min-height:100dvh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.22) saturate(.7)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.3) 0%,rgba(10,10,8,.75) 65%,rgba(10,10,8,1) 100%)}
+    .hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(200,146,42,.07) 0%,transparent 60%)}
+    .hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:2rem;animation:fadeUp 1s ease-out}
+    .hero-badge{display:inline-block;font-family:var(--ff-c);font-size:.6rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--amber);padding:.6rem 1.5rem;border:1px solid var(--amber);background:rgba(200,146,42,.05);backdrop-filter:blur(8px);margin-bottom:2rem}
+    .hero h1{font-family:var(--ff-d);font-size:clamp(2.5rem,9vw,7rem);font-weight:900;line-height:.9;color:var(--cream);margin-bottom:.75rem;text-shadow:0 4px 60px rgba(0,0,0,.6)}
+    .hero h1 em{color:var(--amber);font-weight:400}
+    .hero-sub{font-family:var(--ff-c);font-size:clamp(.8rem,2vw,1rem);letter-spacing:.15em;text-transform:uppercase;color:var(--t2);margin-bottom:.75rem}
+    .hero-desc{font-size:.85rem;color:var(--t3);max-width:420px;margin:0 auto 2rem;line-height:1.7}
+    .hero-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+
+    /*===== BUTTONS =====*/
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;font-family:var(--ff-c);font-size:.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:all .4s;min-height:48px}
+    .btn-p{background:var(--amber);color:var(--bg)}
+    .btn-p:hover{background:var(--amber-l);box-shadow:0 8px 40px rgba(200,146,42,.3);transform:translateY(-2px)}
+    .btn-o{background:rgba(200,146,42,.08);color:var(--cream);border:1px solid var(--amber);backdrop-filter:blur(8px)}
+    .btn-o:hover{background:rgba(200,146,42,.15)}
+
+    /*===== PHOTO STRIP =====*/
+    .strip{padding:.5rem;background:var(--bg2);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
+    .strip img{height:6rem;width:auto;border-radius:2px;object-fit:cover;flex-shrink:0;opacity:.65;transition:opacity .3s;cursor:pointer}
+    .strip img:hover{opacity:1}
+    @media(min-width:640px){.strip img{height:8rem}}
+
+    /*===== SECTIONS =====*/
+    section{padding:5rem 1.5rem}
+    .sec-in{max-width:1300px;margin:0 auto}
+    .sec-hdr{text-align:center;margin-bottom:3rem}
+    .sec-label{font-family:var(--ff-c);font-size:.7rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem}
+    .sec-title{font-family:var(--ff-d);font-size:clamp(1.6rem,4vw,2.5rem);font-weight:700;color:var(--cream);line-height:1.15}
+    .sec-title em{color:var(--amber);font-weight:400}
+    .sec-line{width:50px;height:1px;background:var(--amber);margin:1rem auto 0}
+    .sec-desc{font-size:.85rem;color:var(--t3);max-width:560px;margin:1rem auto 0;line-height:1.7;text-align:center}
+
+    /*===== PRODUCT GRID =====*/
+    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+    @media(min-width:640px){.products{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:1024px){.products{grid-template-columns:repeat(4,1fr)}}
+    .p-card{background:var(--card);border:1px solid var(--bdr);border-radius:2px;overflow:hidden;transition:all .5s;position:relative}
+    .p-card:hover{border-color:var(--amber);transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,.4),0 0 30px var(--amber-g)}
+    .p-img{aspect-ratio:1;overflow:hidden;position:relative;background:#151512}
+    .p-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+    .p-card:hover .p-img img{transform:scale(1.1)}
+    .p-hover{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,8,.8) 0%,transparent 60%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:.75rem;opacity:0;transition:opacity .3s}
+    .p-card:hover .p-hover{opacity:1}
+    .p-hover span{font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:var(--amber);color:var(--bg);padding:.4rem 1rem}
+    .p-info{padding:.75rem 1rem 1rem}
+    .p-tag{font-family:var(--ff-c);font-size:.55rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--amber)}
+    .p-name{font-family:var(--ff-d);font-size:.9rem;font-weight:700;color:var(--cream);margin-top:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .p-price{font-family:var(--ff-c);font-size:1rem;font-weight:700;color:var(--amber-l);margin-top:.25rem}
+
+    /*===== VENUE GALLERY =====*/
+    #venue{background:var(--bg2);border-top:1px solid var(--bdr)}
+    .v-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+    @media(min-width:768px){.v-grid{grid-template-columns:repeat(3,1fr);gap:.75rem}}
+    .v-card{position:relative;overflow:hidden;border-radius:2px}
+    .v-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+    .v-card:hover img{transform:scale(1.05)}
+    .v-hero{grid-column:span 2;min-height:250px}
+    @media(min-width:768px){.v-hero{grid-column:span 2;grid-row:span 2;min-height:400px}}
+    .v-cap{position:absolute;bottom:0;left:0;right:0;padding:.75rem;background:linear-gradient(to top,rgba(10,10,8,.9) 0%,transparent 100%)}
+    .v-cap strong{display:block;font-family:var(--ff-c);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+    .v-cap span{font-size:.75rem;color:var(--t3)}
+
+    /*===== BOOKING FORM =====*/
+    #book{position:relative;overflow:hidden}
+    #book::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(200,146,42,.06) 0%,transparent 60%)}
+    .form-card{background:var(--card);border:1px solid var(--bdr);border-radius:2px;padding:2rem;max-width:640px;margin:0 auto;position:relative;z-index:2}
+    .form-card label{display:block;font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:.4rem}
+    .form-card input,.form-card select,.form-card textarea{width:100%;padding:.75rem;border-radius:2px;font-family:var(--ff-b);font-size:.85rem;background:var(--bg2);color:var(--cream);border:1px solid var(--bdr);min-height:44px}
+    .form-card textarea{height:5rem;resize:none}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:480px){.form-row{grid-template-columns:1fr}}
+    .form-note{font-size:.6rem;color:var(--t3);text-align:center;margin-top:1rem}
+
+    /*===== ABOUT =====*/
+    #about{background:var(--bg)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+    @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2rem}}
+    .about-img{position:relative;border-radius:2px;overflow:hidden}
+    .about-img img{width:100%;aspect-ratio:4/3;object-fit:cover}
+    .about-img::before{content:'';position:absolute;top:-10px;left:-10px;right:10px;bottom:10px;border:1px solid var(--amber);z-index:-1;border-radius:2px}
+    .about-text p{color:var(--t2);font-size:.95rem;line-height:1.8;margin-top:1rem}
+
+    /*===== FOOTER =====*/
+    footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:3.5rem 1.5rem 1.5rem}
+    .foot-in{max-width:1300px;margin:0 auto}
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+    @media(max-width:768px){.foot-grid{grid-template-columns:1fr 1fr;gap:1.5rem}}
+    @media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
+    .foot-brand p{color:var(--t3);font-size:.85rem;line-height:1.7;margin-top:.5rem;max-width:280px}
+    .foot-col h4{font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+    .foot-col a,.foot-col button{display:block;color:var(--t3);font-size:.85rem;margin-bottom:.4rem;background:none;border:none;cursor:pointer;text-align:left;padding:0;font-family:inherit;transition:color .3s}
+    .foot-col a:hover,.foot-col button:hover{color:var(--amber)}
+    .foot-bottom{border-top:1px solid var(--bdr);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .foot-bottom p{color:var(--t3);font-size:.7rem}
+    .pay{display:flex;gap:.35rem;flex-wrap:wrap}
+    .pay span{padding:.2rem .5rem;background:var(--card);border:1px solid var(--bdr);border-radius:2px;font-family:var(--ff-c);font-size:.5rem;font-weight:600;color:var(--t3);letter-spacing:.05em}
+
+    /*===== LEGAL PAGES =====*/
+    .legal{max-width:720px;margin:0 auto;padding:6rem 1.5rem 4rem}
+    .legal h1{font-family:var(--ff-d);font-size:2rem;font-weight:700;color:var(--cream);margin-bottom:2rem}
+    .legal h2{font-size:1.1rem;font-weight:700;color:var(--cream);margin-top:2rem}
+    .legal h3{font-size:.95rem;font-weight:700;color:var(--cream);margin-top:1.5rem}
+    .legal p,.legal li{color:var(--t2);font-size:.9rem;line-height:1.8;margin-top:.75rem}
+    .legal ul{padding-left:1.25rem;margin-top:.5rem}
+    .legal a{color:var(--amber)}
+    .back-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--ff-c);font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);border:1px solid var(--bdr);padding:.6rem 1.25rem;margin-bottom:2rem;cursor:pointer;background:none;min-height:44px;transition:border-color .3s}
+    .back-btn:hover{border-color:var(--amber);color:var(--amber)}
+
+    /*===== PAGE ROUTING =====*/
+    .page{display:none}
+    .page.active{display:block}
+
+    /*===== ANIMATION =====*/
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .fade-in{animation:fadeUp .8s ease-out both}
+    .fade-in-d1{animation-delay:.1s}.fade-in-d2{animation-delay:.2s}.fade-in-d3{animation-delay:.3s}.fade-in-d4{animation-delay:.4s}
   </style>
 </head>
 <body>
+  <a href="#main" class="skip">Skip to content</a>
 
-  <!-- ===== NAVIGATION ===== -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine Logo">
-        <div class="nav-logo-text">
-          Montucky Moonshine
-          <span>Est. Montana</span>
-        </div>
-      </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#shop">Shop</a></li>
-        <li><a href="#about">Our Story</a></li>
-        <li><a href="https://montuckymoonshine.com/pages/book-now" target="_blank">Book Now</a></li>
-        <li><a href="https://montuckymoonshine.com/pages/contact-us" target="_blank">Contact</a></li>
-        <li><a href="https://montuckymoonshine.com/collections/all" target="_blank" class="nav-cta">Visit Store</a></li>
-      </ul>
-      <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+  <!--===== NAV =====-->
+  <nav id="navbar" role="banner">
+    <div class="nav-in">
+      <div class="nav-logo" onclick="showPage('home')" tabindex="0" role="button" aria-label="Home">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
+        <div class="nav-brand">Montucky Moonshine<small>Est. Montana</small></div>
+      </div>
+      <div class="nav-links">
+        <button class="hide-m" onclick="showPage('home')">Home</button>
+        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="hide-m">Shop</a>
+        <button onclick="showPage('home');setTimeout(()=>document.getElementById('venue').scrollIntoView({behavior:'smooth'}),100)">Venue</button>
+        <a href="https://montuckymoonshine.com/pages/book-now" target="_blank" rel="noopener noreferrer" class="hide-m">Book</a>
+        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
+      </div>
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">Great Ideas — Fantastic Products</div>
-      <h1>Montucky<br><em>Moonshine</em></h1>
-      <p class="hero-tagline">Handcrafted goods from the heart of Montana</p>
-      <div class="hero-actions">
-        <a href="#shop" class="btn btn-primary">Shop Collection →</a>
-        <a href="https://montuckymoonshine.com/pages/book-now" target="_blank" class="btn btn-outline">Book Now</a>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="line"></div>
-    </div>
-  </section>
+  <main id="main">
 
-  <!-- ===== COLLECTIONS BAR ===== -->
-  <div class="collections-bar">
-    <div class="collections-inner">
-      <button class="collection-chip active" data-filter="all">All Products</button>
-      <button class="collection-chip" data-filter="mugs">Mugs & Drinkware</button>
-      <button class="collection-chip" data-filter="tees">Tees & Apparel</button>
-      <button class="collection-chip" data-filter="merchandise">Merchandise</button>
-    </div>
-  </div>
+  <!--===== HOME PAGE =====-->
+  <div class="page active" id="page-home">
 
-  <!-- ===== PRODUCT GRID ===== -->
-  <section id="shop">
-    <div class="section-inner">
-      <div class="section-header">
-        <p class="section-label">The Collection</p>
-        <h2 class="section-title">Shop <em>Montucky</em></h2>
-        <div class="section-divider"></div>
-      </div>
-      <div class="products-grid" id="productsGrid">
-        <!-- Products injected by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ABOUT ===== -->
-  <section id="about">
-    <div class="section-inner">
-      <div class="about-grid">
-        <div class="about-image">
-          <img src="https://montuckymoonshine.com/cdn/shop/files/IMG_20241011_141051534_HDR_300x.jpg?v=1737682523" alt="Montucky Moonshine Workshop">
+    <!--=== HERO ===-->
+    <section class="hero">
+      <div class="hero-bg"><img src="venue/bar_long.webp" alt="" loading="eager" fetchpriority="high"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-badge fade-in">Private Venue — Helena, Montana</div>
+        <h1 class="fade-in fade-in-d1">Montucky<br><em>Moonshine</em></h1>
+        <p class="hero-sub fade-in fade-in-d2">Handcrafted Goods & Brand Experience</p>
+        <p class="hero-desc fade-in fade-in-d3">A rustic private venue in the heart of Montana, born from great ideas and a passion for authentic craftsmanship.</p>
+        <div class="hero-actions fade-in fade-in-d4">
+          <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="btn btn-p">Shop Collection →</a>
+          <button class="btn btn-o" onclick="document.getElementById('venue').scrollIntoView({behavior:'smooth'})">Explore Venue</button>
         </div>
-        <div class="about-text">
-          <p class="section-label">Our Story</p>
-          <h2 class="section-title">Born in <em>Montana,</em><br>Made with Grit</h2>
-          <p>Montucky Moonshine brings you handcrafted products born from great ideas and a passion for quality. From custom-designed mugs and steins to bold graphic tees and unique merchandise — every item carries the spirit of Montana craftsmanship.</p>
-          <p>Whether you're sipping from one of our signature mugs, rocking a Montucky tee, or gifting something truly unique, you're supporting independent creativity and authentic American-made goods.</p>
-          <div class="about-stats">
-            <div class="stat-item">
-              <div class="stat-number">15+</div>
-              <div class="stat-label">Unique Products</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">MT</div>
-              <div class="stat-label">Montana Made</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">★★★★★</div>
-              <div class="stat-label">Quality Goods</div>
-            </div>
+      </div>
+    </section>
+
+    <!--=== PHOTO STRIP ===-->
+    <div class="strip">
+      <div class="scroll-x" style="display:flex;gap:.5rem;padding:0 .5rem">
+        <img src="venue/bar.webp" alt="Private bar counter" loading="lazy" onclick="document.getElementById('venue').scrollIntoView({behavior:'smooth'})">
+        <img src="venue/bar_right.webp" alt="Bar seating area" loading="lazy">
+        <img src="venue/barback.webp" alt="Spirits collection" loading="lazy">
+        <img src="venue/lounge.webp" alt="Lounge area" loading="lazy">
+        <img src="venue/pool_table.webp" alt="Pool table room" loading="lazy">
+        <img src="venue/bar_long.webp" alt="Full bar view" loading="lazy">
+      </div>
+    </div>
+
+    <!--=== PRODUCTS ===-->
+    <section id="shop">
+      <div class="sec-in">
+        <div class="sec-hdr">
+          <p class="sec-label">The Collection</p>
+          <h2 class="sec-title">Shop <em>Montucky</em></h2>
+          <div class="sec-line"></div>
+        </div>
+        <div class="products" id="productGrid" role="list" aria-label="Products"></div>
+      </div>
+    </section>
+
+    <!--=== VENUE GALLERY ===-->
+    <section id="venue">
+      <div class="sec-in">
+        <div class="sec-hdr">
+          <p class="sec-label">The Montucky Experience</p>
+          <h2 class="sec-title">A Private <em>Venue</em></h2>
+          <div class="sec-line"></div>
+          <p class="sec-desc">Montucky Moonshine isn't just a brand — it's a space. A handbuilt, rustic private venue in Helena, Montana featuring a full bar, lounge area, pool table, and big-screen entertainment. Available by inquiry for private events, brand collaborations, and intimate gatherings.</p>
+        </div>
+        <div class="v-grid">
+          <div class="v-card v-hero"><img src="venue/bar_long.webp" alt="Full Montucky bar panoramic" loading="lazy"><div class="v-cap"><strong>The Bar</strong><span>Hand-built rustic counter with full spirits selection</span></div></div>
+          <div class="v-card"><img src="venue/barback.webp" alt="Back bar with mason jar infusions" style="height:200px" loading="lazy"><div class="v-cap"><strong>Back Bar</strong><span>Mason jar infusions & curated spirits</span></div></div>
+          <div class="v-card"><img src="venue/bar_right.webp" alt="Bar seating with vintage decor" style="height:200px" loading="lazy"><div class="v-cap"><strong>Bar Seating</strong><span>Vintage Americana & warm wood tones</span></div></div>
+          <div class="v-card"><img src="venue/lounge.webp" alt="Lounge with big screen TV" style="height:200px" loading="lazy"><div class="v-cap"><strong>The Lounge</strong><span>Big screen, cozy seating, board games</span></div></div>
+          <div class="v-card"><img src="venue/pool_table.webp" alt="Pool table and chevron wall" style="height:200px" loading="lazy"><div class="v-cap"><strong>Game Room</strong><span>Pool table & chevron accent wall</span></div></div>
+          <div class="v-card"><img src="venue/bar.webp" alt="Private bar sign and bottles" style="height:200px" loading="lazy"><div class="v-cap"><strong>Private Bar</strong><span>"We are always here, unless we are gone"</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!--=== ABOUT ===-->
+    <section id="about">
+      <div class="sec-in">
+        <div class="about-grid">
+          <div class="about-img"><img src="https://montuckymoonshine.com/cdn/shop/files/IMG_20241011_141051534_HDR_300x.jpg?v=1737682523" alt="Montucky Moonshine workshop" loading="lazy"></div>
+          <div class="about-text">
+            <p class="sec-label" style="text-align:left">Our Story</p>
+            <h2 class="sec-title" style="text-align:left">Born in <em>Montana,</em><br>Made with Grit</h2>
+            <p>Montucky Moonshine brings you handcrafted products born from great ideas and a passion for quality. From custom-designed mugs and steins to bold graphic tees and unique merchandise — every item carries the spirit of Montana craftsmanship.</p>
+            <p>The Montucky venue is a personal brand experience — a hand-built space where every plank, every sign, and every mason jar tells a story. This isn't a commercial bar; it's a living expression of the brand, available for private gatherings and collaborations.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== CTA ===== -->
-  <div class="cta-section">
-    <div class="cta-content">
-      <p class="section-label">Ready to Experience Montucky?</p>
-      <h2>Book Your <em>Event</em></h2>
-      <p>Planning a party, event, or private gathering? Montucky Moonshine is available for bookings and special occasions.</p>
-      <a href="https://montuckymoonshine.com/pages/book-now" target="_blank" class="btn btn-primary">Book Now →</a>
+    <!--=== BOOKING INQUIRY ===-->
+    <section id="book">
+      <div class="sec-in">
+        <div class="sec-hdr">
+          <p class="sec-label">By Inquiry Only</p>
+          <h2 class="sec-title">Book the <em>Experience</em></h2>
+          <div class="sec-line"></div>
+          <p class="sec-desc">Montucky Moonshine is a personal brand venue — not a commercial bar. Inquiries welcome for private gatherings, collaborations, photo shoots, and brand events.</p>
+        </div>
+        <div class="form-card">
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div class="form-row">
+              <div><label for="bk-name">Your Name</label><input id="bk-name" type="text" placeholder="Full name"></div>
+              <div><label for="bk-email">Email</label><input id="bk-email" type="email" placeholder="you@example.com"></div>
+            </div>
+            <div><label for="bk-type">Event Type</label>
+              <select id="bk-type"><option value="" disabled selected>Select event type…</option><option>Private Gathering</option><option>Brand Collaboration</option><option>Photo / Video Shoot</option><option>Product Launch Event</option><option>Other Inquiry</option></select>
+            </div>
+            <div><label for="bk-msg">Message</label><textarea id="bk-msg" placeholder="Tell us about your event, preferred dates, and guest count…"></textarea></div>
+            <button class="btn btn-p" style="width:100%;justify-content:center">✉ Submit Inquiry</button>
+            <p class="form-note">This is a private venue — not a commercial establishment. All events are by invitation or approved inquiry only.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!--/page-home-->
+
+  <!--===== REFUND POLICY =====-->
+  <div class="page" id="page-refund">
+    <div class="legal">
+      <button class="back-btn" onclick="showPage('home')">← Back to Store</button>
+      <h1>Refund Policy</h1>
+      <h2>Returns</h2>
+      <p>Our policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can't offer you a refund or exchange.</p>
+      <p>To be eligible for a return, your item must be unused and in the same condition that you received it, in the original packaging.</p>
+      <p>Several types of goods are exempt: perishable goods, intimate/sanitary goods, hazardous materials, flammable liquids or gases, gift cards, downloadable software, and some health/personal care items.</p>
+      <p>To complete your return, we require a receipt or proof of purchase. Please do not send your purchase back to the manufacturer.</p>
+      <h3>Partial Refunds (if applicable)</h3>
+      <ul><li>Book with obvious signs of use</li><li>Opened CDs, DVDs, software, video games, records</li><li>Items not in original condition or missing parts</li><li>Items returned more than 30 days after delivery</li></ul>
+      <h2>Refunds</h2>
+      <p>Once your return is received and inspected, we'll email you about approval or rejection. If approved, a credit will be applied to your original payment method within a certain number of days.</p>
+      <h3>Late or Missing Refunds</h3>
+      <p>Check your bank account, then contact your credit card company and bank. If you still haven't received it, contact us at <a href="mailto:montuckymoonshine@gmail.com">montuckymoonshine@gmail.com</a>.</p>
+      <h2>Exchanges</h2>
+      <p>We only replace defective or damaged items. Email us at <a href="mailto:montuckymoonshine@gmail.com">montuckymoonshine@gmail.com</a> and send your item to: D & V Enterprises LLC, 3420 Byron Road, Helena MT 59602.</p>
+      <h2>Shipping</h2>
+      <p>You are responsible for return shipping costs. Shipping costs are non-refundable. For items over $75, consider using trackable shipping or insurance. We don't guarantee receipt of returned items.</p>
     </div>
   </div>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="nav-logo-text">
-            Montucky Moonshine
-            <span>Est. Montana</span>
-          </div>
-          <p>Great ideas and fantastic products, handcrafted with Montana spirit. Every purchase supports independent creativity.</p>
+  <!--===== PRIVACY POLICY =====-->
+  <div class="page" id="page-privacy">
+    <div class="legal">
+      <button class="back-btn" onclick="showPage('home')">← Back to Store</button>
+      <h1>Privacy Policy</h1>
+      <h2>Information We Collect</h2>
+      <p>When you visit, we collect device information (browser, IP, time zone, cookies). When you purchase, we collect name, address, payment info, email, and phone number.</p>
+      <h2>How We Use Your Information</h2>
+      <p>We use it to fulfill orders, process payments, arrange shipping, communicate with you, screen for fraud, and provide relevant information about our products.</p>
+      <h2>Sharing Your Information</h2>
+      <p>We share with third parties to help us operate (Shopify powers our store). We may share to comply with laws or protect our rights.</p>
+      <h2>Contact</h2>
+      <p>For questions, contact us at <a href="mailto:montuckymoonshine@gmail.com">montuckymoonshine@gmail.com</a> or: D & V Enterprises LLC, 3420 Byron Road, Helena MT 59602.</p>
+    </div>
+  </div>
+
+  <!--===== TERMS =====-->
+  <div class="page" id="page-terms">
+    <div class="legal">
+      <button class="back-btn" onclick="showPage('home')">← Back to Store</button>
+      <h1>Terms of Service</h1>
+      <h2>Overview</h2>
+      <p>This website is operated by D & V Enterprises LLC ("Montucky Moonshine"). By visiting and/or purchasing, you agree to these terms.</p>
+      <h2>Online Store Terms</h2>
+      <p>You may not use products for illegal purposes or violate any laws. Transmitting worms, viruses, or destructive code will result in immediate termination of Services.</p>
+      <h2>Products and Pricing</h2>
+      <p>Prices are subject to change without notice. We reserve the right to discontinue any product. We do not warrant that product quality will meet your expectations.</p>
+      <h2>Contact</h2>
+      <p>Questions? <a href="mailto:montuckymoonshine@gmail.com">montuckymoonshine@gmail.com</a> · D & V Enterprises LLC, 3420 Byron Road, Helena MT 59602.</p>
+    </div>
+  </div>
+
+  </main>
+
+  <!--===== FOOTER =====-->
+  <footer class="safe-b" role="contentinfo">
+    <div class="foot-in">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <div class="nav-brand" style="font-size:1.25rem">Montucky Moonshine<small>Est. Montana</small></div>
+          <p>Great ideas and fantastic products, handcrafted with Montana spirit. The venue is a personal brand experience — by inquiry only.</p>
+          <p style="margin-top:.75rem;font-size:.75rem;color:var(--t3)">📍 3420 Byron Road, Helena MT 59602<br>✉ <a href="mailto:montuckymoonshine@gmail.com" style="color:var(--amber)">montuckymoonshine@gmail.com</a></p>
         </div>
-        <div class="footer-col">
+        <div class="foot-col">
           <h4>Shop</h4>
-          <a href="https://montuckymoonshine.com/collections/mugs" target="_blank">Mugs</a>
-          <a href="https://montuckymoonshine.com/collections/tee-shirts" target="_blank">Tees</a>
-          <a href="https://montuckymoonshine.com/collections/merchandise" target="_blank">Merchandise</a>
-          <a href="https://montuckymoonshine.com/collections/all" target="_blank">All Products</a>
+          <a href="https://montuckymoonshine.com/collections/mugs" target="_blank" rel="noopener noreferrer">Mugs</a>
+          <a href="https://montuckymoonshine.com/collections/tee-shirts" target="_blank" rel="noopener noreferrer">Tees</a>
+          <a href="https://montuckymoonshine.com/collections/merchandise" target="_blank" rel="noopener noreferrer">Merchandise</a>
+          <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer">All Products</a>
         </div>
-        <div class="footer-col">
+        <div class="foot-col">
           <h4>Company</h4>
-          <a href="https://montuckymoonshine.com/pages/contact-us" target="_blank">Contact Us</a>
-          <a href="https://montuckymoonshine.com/pages/book-now" target="_blank">Book Now</a>
-          <a href="https://www.facebook.com/Montucky-Moonshine-661364020944905/" target="_blank">Facebook</a>
+          <a href="https://montuckymoonshine.com/pages/contact-us" target="_blank" rel="noopener noreferrer">Contact Us</a>
+          <a href="https://montuckymoonshine.com/pages/book-now" target="_blank" rel="noopener noreferrer">Book Now</a>
+          <a href="https://www.facebook.com/Montucky-Moonshine-661364020944905/" target="_blank" rel="noopener noreferrer">Facebook</a>
         </div>
-        <div class="footer-col">
+        <div class="foot-col">
           <h4>Policies</h4>
-          <a href="https://montuckymoonshine.com/pages/refund-policy" target="_blank">Refund Policy</a>
-          <a href="https://montuckymoonshine.com/pages/privacy-policy" target="_blank">Privacy Policy</a>
-          <a href="https://montuckymoonshine.com/policies/terms-of-service" target="_blank">Terms of Service</a>
+          <button onclick="showPage('refund')">Refund Policy</button>
+          <button onclick="showPage('privacy')">Privacy Policy</button>
+          <button onclick="showPage('terms')">Terms of Service</button>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Montucky Moonshine. All rights reserved.</p>
-        <div class="payment-icons">
-          <span>VISA</span>
-          <span>MASTERCARD</span>
-          <span>AMEX</span>
-          <span>PAYPAL</span>
-          <span>APPLE PAY</span>
-          <span>GOOGLE PAY</span>
-          <span>SHOP PAY</span>
+      <div class="foot-bottom">
+        <p>© 2026 D & V Enterprises LLC. All rights reserved.</p>
+        <div class="pay">
+          <span>VISA</span><span>MC</span><span>AMEX</span><span>PAYPAL</span><span>APPLE PAY</span><span>GOOGLE PAY</span><span>SHOP PAY</span><span>DISCOVER</span><span>AMAZON</span>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // ===== PRODUCT DATA (from Shopify store) =====
+    // ===== PRODUCTS DATA =====
     const products = [
-      {
-        name: "Montucky Moonshine Spirits E-Book",
-        price: "$10.00",
-        img: "https://montuckymoonshine.com/cdn/shop/products/bookcover_1024x.png?v=1642360814",
-        url: "https://montuckymoonshine.com/products/montucky-moonshine-spirits-e-book",
-        category: "merchandise",
-        tag: "Digital"
-      },
-      {
-        name: "Wall Clock",
-        price: "$35.00",
-        img: "https://montuckymoonshine.com/cdn/shop/files/2096947309553618432_2048_1024x.jpg?v=1688013525",
-        url: "https://montuckymoonshine.com/products/wall-clock",
-        category: "merchandise",
-        tag: "Home"
-      },
-      {
-        name: "Moonshine Stein",
-        price: "$25.00",
-        img: "https://montuckymoonshine.com/cdn/shop/products/pns73k8a6h07stpkhj1y3d2g_1024x.png?v=1547450598",
-        url: "https://montuckymoonshine.com/products/moonshine-stein",
-        category: "mugs",
-        tag: "Drinkware"
-      },
-      {
-        name: "Sexy Coffee Mug (11, 15oz)",
-        price: "$19.99",
-        img: "https://montuckymoonshine.com/cdn/shop/files/12123678348230688733_2048_custom_1024x.jpg?v=1728695733",
-        url: "https://montuckymoonshine.com/products/accent-coffee-mug-11-15oz-1",
-        category: "mugs",
-        variants: "5 colors",
-        tag: "Drinkware"
-      },
-      {
-        name: "Accent Coffee Mug (11, 15oz)",
-        price: "$19.99",
-        img: "https://montuckymoonshine.com/cdn/shop/files/15556593331530897933_2048_1024x.jpg?v=1728747048",
-        url: "https://montuckymoonshine.com/products/accent-coffee-mug-11-15oz-2",
-        category: "mugs",
-        variants: "Multiple styles",
-        tag: "Drinkware"
-      },
-      {
-        name: "Stainless Steel Flask, 6oz",
-        price: "$21.88",
-        img: "https://montuckymoonshine.com/cdn/shop/files/13314165464068572653_2048_1024x.jpg?v=1737535598",
-        url: "https://montuckymoonshine.com/products/stainless-steel-flask-6oz",
-        category: "mugs",
-        tag: "Drinkware"
-      },
-      {
-        name: "Distressed Dad Hat",
-        price: "$22.00",
-        img: "https://montuckymoonshine.com/cdn/shop/products/mockup-b7a59b9d_1024x.jpg?v=1589435140",
-        url: "https://montuckymoonshine.com/products/distressed-dad-hat",
-        category: "merchandise",
-        tag: "Accessories"
-      },
-      {
-        name: "Funny Drink Drank Drunk T-Shirt",
-        price: "$21.69",
-        hasPlus: true,
-        img: "https://montuckymoonshine.com/cdn/shop/files/15211927451420024901_2048_1024x.jpg?v=1738121468",
-        url: "https://montuckymoonshine.com/products/funny-drink-drank-drunk-t-shirt",
-        category: "tees",
-        variants: "Multiple sizes",
-        tag: "Apparel"
-      },
-      {
-        name: "Hobby Carpenter Woodworking Tee",
-        price: "$29.27",
-        hasPlus: true,
-        img: "https://montuckymoonshine.com/cdn/shop/files/12475718121083323152_2048_1024x.jpg?v=1774545601",
-        url: "https://montuckymoonshine.com/products/hobby-carpenter-t-shirt-everybody-has-a-hobby-want-to-try-mine-woodworking-tee",
-        category: "tees",
-        variants: "Multiple sizes",
-        tag: "Apparel"
-      },
-      {
-        name: "\"Found Out Already\" Bold Graphic Tee",
-        price: "$33.32",
-        hasPlus: true,
-        img: "https://montuckymoonshine.com/cdn/shop/files/8382319889231594197_2048_1024x.jpg?v=1774642794",
-        url: "https://montuckymoonshine.com/products/t-shirt-found-out-already-time-to-fuck-around-bold-graphic-tee",
-        category: "tees",
-        variants: "Multiple sizes",
-        tag: "Apparel"
-      },
-      {
-        name: "Unisex Heavyweight Hooded Sweatshirt",
-        price: "$87.77",
-        hasPlus: true,
-        img: "https://montuckymoonshine.com/cdn/shop/files/6909327151717644564_2048_1024x.jpg?v=1774545469",
-        url: "https://montuckymoonshine.com/products/unisex-heavyweight-hooded-sweatshirt",
-        category: "tees",
-        variants: "Multiple sizes",
-        tag: "Apparel"
-      },
-      {
-        name: "Unisex Jersey Short Sleeve Tee",
-        price: "$18.82",
-        hasPlus: true,
-        img: "https://montuckymoonshine.com/cdn/shop/files/8732487188133167477_2048_1024x.jpg?v=1774545435",
-        url: "https://montuckymoonshine.com/products/unisex-jersey-short-sleeve-tee",
-        category: "tees",
-        variants: "Multiple sizes",
-        tag: "Apparel"
-      },
-      {
-        name: "Velveteen Minky Blanket",
-        price: "$32.15",
-        img: "https://montuckymoonshine.com/cdn/shop/products/09193d3b46d306ced28add4a23b3e67e_1024x.jpg?v=1666326356",
-        url: "https://montuckymoonshine.com/products/velveteen-minky-blanket-two-sided-print",
-        category: "merchandise",
-        tag: "Home"
-      },
-      {
-        name: "WD & Duct Tape Tee",
-        price: "$22.99",
-        hasPlus: true,
-        img: "https://montuckymoonshine.com/cdn/shop/files/5977245853495543666_2048_1024x.jpg?v=1774545663",
-        url: "https://montuckymoonshine.com/products/wd-ducttape-tee",
-        category: "tees",
-        variants: "Multiple sizes",
-        tag: "Apparel"
-      },
-      {
-        name: "Women's Thongs (AOP)",
-        price: "$22.38",
-        img: "https://montuckymoonshine.com/cdn/shop/files/3122953234843618473_2048_1024x.jpg?v=1738052717",
-        url: "https://montuckymoonshine.com/products/womens-thongs-aop",
-        category: "merchandise",
-        tag: "Apparel"
-      }
+      {n:"Montucky Spirits E-Book",p:"$10.00",img:"https://montuckymoonshine.com/cdn/shop/products/bookcover_1024x.png?v=1642360814",url:"https://montuckymoonshine.com/products/montucky-moonshine-spirits-e-book",tag:"Digital"},
+      {n:"Wall Clock",p:"$35.00",img:"https://montuckymoonshine.com/cdn/shop/files/2096947309553618432_2048_1024x.jpg?v=1688013525",url:"https://montuckymoonshine.com/products/wall-clock",tag:"Home"},
+      {n:"Moonshine Stein",p:"$25.00",img:"https://montuckymoonshine.com/cdn/shop/products/pns73k8a6h07stpkhj1y3d2g_1024x.png?v=1547450598",url:"https://montuckymoonshine.com/products/moonshine-stein",tag:"Drinkware"},
+      {n:"Sexy Coffee Mug",p:"$19.99",img:"https://montuckymoonshine.com/cdn/shop/files/12123678348230688733_2048_custom_1024x.jpg?v=1728695733",url:"https://montuckymoonshine.com/products/accent-coffee-mug-11-15oz-1",tag:"Drinkware"},
+      {n:"Accent Coffee Mug",p:"$19.99",img:"https://montuckymoonshine.com/cdn/shop/files/15556593331530897933_2048_1024x.jpg?v=1728747048",url:"https://montuckymoonshine.com/products/accent-coffee-mug-11-15oz-2",tag:"Drinkware"},
+      {n:"Stainless Steel Flask",p:"$21.88",img:"https://montuckymoonshine.com/cdn/shop/files/13314165464068572653_2048_1024x.jpg?v=1737535598",url:"https://montuckymoonshine.com/products/stainless-steel-flask-6oz",tag:"Drinkware"},
+      {n:"Distressed Dad Hat",p:"$22.00",img:"https://montuckymoonshine.com/cdn/shop/products/mockup-b7a59b9d_1024x.jpg?v=1589435140",url:"https://montuckymoonshine.com/products/distressed-dad-hat",tag:"Accessories"},
+      {n:"Drink Drank Drunk Tee",p:"$21.69",img:"https://montuckymoonshine.com/cdn/shop/files/15211927451420024901_2048_1024x.jpg?v=1738121468",url:"https://montuckymoonshine.com/products/funny-drink-drank-drunk-t-shirt",tag:"Apparel"},
+      {n:"Hobby Carpenter Tee",p:"$29.27",img:"https://montuckymoonshine.com/cdn/shop/files/12475718121083323152_2048_1024x.jpg?v=1774545601",url:"https://montuckymoonshine.com/products/hobby-carpenter-t-shirt",tag:"Apparel"},
+      {n:"Bold Graphic Tee",p:"$33.32",img:"https://montuckymoonshine.com/cdn/shop/files/8382319889231594197_2048_1024x.jpg?v=1774642794",url:"https://montuckymoonshine.com/products/t-shirt-found-out-already",tag:"Apparel"},
+      {n:"Heavyweight Hoodie",p:"$87.77",img:"https://montuckymoonshine.com/cdn/shop/files/6909327151717644564_2048_1024x.jpg?v=1774545469",url:"https://montuckymoonshine.com/products/unisex-heavyweight-hooded-sweatshirt",tag:"Apparel"},
+      {n:"Velveteen Blanket",p:"$32.15",img:"https://montuckymoonshine.com/cdn/shop/products/09193d3b46d306ced28add4a23b3e67e_1024x.jpg?v=1666326356",url:"https://montuckymoonshine.com/products/velveteen-minky-blanket-two-sided-print",tag:"Home"}
     ];
 
-    // ===== RENDER PRODUCTS =====
-    const grid = document.getElementById('productsGrid');
+    // Render products
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = products.map(p => `
+      <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="p-card" role="listitem">
+        <div class="p-img"><img src="${p.img}" alt="${p.n}" loading="lazy"><div class="p-hover"><span>View Product</span></div></div>
+        <div class="p-info"><div class="p-tag">${p.tag}</div><div class="p-name">${p.n}</div><div class="p-price">${p.p}</div></div>
+      </a>
+    `).join('');
 
-    function renderProducts(filter = 'all') {
-      const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
-      grid.innerHTML = filtered.map(p => `
-        <div class="product-card" data-category="${p.category}">
-          <div class="product-img-wrap">
-            <img src="${p.img}" alt="${p.name}" loading="lazy">
-            <div class="product-overlay">
-              <a href="${p.url}" target="_blank" class="product-quick-buy">Buy Now →</a>
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="product-category">${p.tag}</div>
-            <h3 class="product-name"><a href="${p.url}" target="_blank">${p.name}</a></h3>
-            <div class="product-price-row">
-              <span class="product-price">${p.hasPlus ? '<span class="from">from </span>' : ''}${p.price}</span>
-              ${p.variants ? `<span class="product-variants">${p.variants}</span>` : ''}
-            </div>
-          </div>
-        </div>
-      `).join('');
+    // ===== PAGE ROUTING =====
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      window.scrollTo(0, 0);
     }
 
-    renderProducts();
-
-    // ===== COLLECTION FILTERS =====
-    document.querySelectorAll('.collection-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        document.querySelectorAll('.collection-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        renderProducts(chip.dataset.filter);
-      });
-    });
-
-    // ===== NAVBAR SCROLL =====
+    // ===== NAV SCROLL =====
     window.addEventListener('scroll', () => {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
     });
