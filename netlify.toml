@@ -32,6 +32,21 @@
   status = 200
 
 [[redirects]]
+  from = "/product"
+  to = "/product.html"
+  status = 200
+
+[[redirects]]
+  from = "/email-flows"
+  to = "/email-flows.html"
+  status = 200
+
+[[redirects]]
+  from = "/growth-plan"
+  to = "/growth-plan.html"
+  status = 200
+
+[[redirects]]
   from = "/thank-you"
   to = "/thank-you.html"
   status = 200
