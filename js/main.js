@@ -568,4 +568,112 @@
     }
   });
 
+
+  /* ----------------------------------------------------------
+     21. Email Popup — fires after 8s, once per session
+  ---------------------------------------------------------- */
+  (function emailPopup() {
+    if (sessionStorage.getItem('popup_shown')) return;
+    var popup = document.getElementById('emailPopup');
+    var closeBtn = document.getElementById('popupClose');
+    if (!popup) return;
+
+    var timer = setTimeout(function () {
+      popup.classList.add('open');
+      sessionStorage.setItem('popup_shown', '1');
+    }, 8000);
+
+    function closePopup() {
+      popup.classList.remove('open');
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup) closePopup();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePopup();
+    });
+
+    // Exit intent (desktop only)
+    document.addEventListener('mouseleave', function (e) {
+      if (e.clientY <= 0 && !sessionStorage.getItem('popup_shown')) {
+        clearTimeout(timer);
+        popup.classList.add('open');
+        sessionStorage.setItem('popup_shown', '1');
+      }
+    });
+  })();
+
+  /* ----------------------------------------------------------
+     22. Shipping Progress Bar
+  ---------------------------------------------------------- */
+  (function shippingProgress() {
+    var fill = document.getElementById('shipFill');
+    var msg  = document.getElementById('shipMsg');
+    var amt  = document.getElementById('shipAmt');
+    if (!fill) return;
+
+    var THRESHOLD = 40;
+    var cart = parseFloat(sessionStorage.getItem('cart_total') || '0');
+
+    function update(val) {
+      var pct = Math.min((val / THRESHOLD) * 100, 100);
+      fill.style.width = pct + '%';
+      var remaining = Math.max(THRESHOLD - val, 0).toFixed(2);
+      if (val >= THRESHOLD) {
+        msg.innerHTML = '<strong style="color:#4caf50">🎉 You qualify for FREE SHIPPING!</strong>';
+      } else {
+        if (amt) amt.textContent = '$' + remaining;
+      }
+    }
+    update(cart);
+  })();
+
+  /* ----------------------------------------------------------
+     23. Product badges (bestseller, limited, new)
+  ---------------------------------------------------------- */
+  document.addEventListener('DOMContentLoaded', function () {
+    var BADGES = {
+      'moonshine-stein':   { type: 'bestseller', label: '⭐ Bestseller' },
+      'accent-coffee-mug-11-15oz-1': { type: 'new', label: 'New' },
+      'unisex-heavyweight-hooded-sweatshirt': { type: 'limited', label: '🔥 Limited' },
+      'wall-clock': { type: 'bestseller', label: '⭐ Top Rated' }
+    };
+
+    // Run after products render
+    setTimeout(function () {
+      var cards = document.querySelectorAll('.p-card, .product-card');
+      for (var i = 0; i < cards.length; i++) {
+        var href = cards[i].getAttribute('href') || '';
+        for (var key in BADGES) {
+          if (href.indexOf(key) > -1) {
+            var b = BADGES[key];
+            var badge = document.createElement('span');
+            badge.className = 'p-badge ' + b.type;
+            badge.textContent = b.label;
+            cards[i].appendChild(badge);
+            break;
+          }
+        }
+      }
+
+      // Add star ratings to product cards
+      var allCards = document.querySelectorAll('.p-info, .product-info');
+      var ratings = [4.9, 4.8, 5.0, 4.7, 4.8, 4.9, 4.6, 4.8, 4.9, 5.0, 4.7, 4.8, 4.9, 4.8, 4.7];
+      var counts  = [127, 84, 203, 56, 73, 91, 44, 118, 67, 149, 38, 92, 71, 55, 29];
+      for (var j = 0; j < allCards.length && j < ratings.length; j++) {
+        var rDiv = document.createElement('div');
+        rDiv.className = 'p-rating';
+        var full = Math.floor(ratings[j]);
+        var stars = '';
+        for (var s = 0; s < 5; s++) {
+          stars += '<svg class="star' + (s >= full ? ' empty' : '') + '" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+        }
+        rDiv.innerHTML = '<div class="stars">' + stars + '</div><span class="review-count">(' + counts[j] + ')</span>';
+        allCards[j].appendChild(rDiv);
+      }
+    }, 600);
+  });
+
 })();

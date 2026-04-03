@@ -85,6 +85,15 @@
     <!-- Filter + Products -->
     <section id="shop">
       <div class="container">
+        <!-- Shipping Progress -->
+        <div class="ship-progress">
+          <div class="ship-progress-text">
+            <span id="shipMsg">Add <span id="shipAmt">$40.00</span> more for <strong style="color:var(--amber)">FREE SHIPPING</strong></span>
+            <span>🚚 Free over $40</span>
+          </div>
+          <div class="ship-bar-track"><div class="ship-bar-fill" id="shipFill"></div></div>
+        </div>
+
         <div class="filter-bar">
           <button class="filter-btn active" data-cat="all">All</button>
           <button class="filter-btn" data-cat="mugs">Drinkware</button>
@@ -93,6 +102,78 @@
         </div>
         <div id="productGrid" class="products stagger-children" role="list" aria-label="Products"></div>
         <p style="text-align:center;margin-top:3rem;font-size:.95rem;color:var(--t3)">All purchases completed through the official <a href="https://montuckymoonshine.com" target="_blank" rel="noopener noreferrer" style="color:var(--amber)">Montucky Moonshine Shopify store</a>. Secure checkout with all major payment methods.</p>
+      </div>
+    </section>
+
+    <!-- Gift Bundles -->
+    <section style="background:var(--bg2);border-top:1px solid var(--bdr);padding:5rem 1.5rem">
+      <div class="container">
+        <div class="sec-hdr reveal from-blur">
+          <p class="sec-label">Save More</p>
+          <h2 class="sec-title">Montana <em>Gift Bundles</em></h2>
+          <div class="sec-line"></div>
+          <p class="sec-desc">Hand-curated sets built to impress. Perfect for gifting — or treating yourself. Free shipping on all bundles.</p>
+        </div>
+        <div class="bundle-grid stagger-children">
+          <div class="bundle-card reveal from-scale">
+            <div class="bundle-img"><img src="assets/montucky-visuals/08_vintage_label_large.png" alt="The Montana Starter Pack" loading="lazy"></div>
+            <div class="bundle-body">
+              <p class="sec-label" style="text-align:left;margin-bottom:.35rem">Most Popular</p>
+              <h3 style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--cream)">The Montana Starter Pack</h3>
+              <div class="bundle-items">
+                <span class="bundle-item-tag">Moonshine Stein</span>
+                <span class="bundle-item-tag">Graphic Tee</span>
+                <span class="bundle-item-tag">Flask</span>
+              </div>
+              <p style="color:var(--t2);font-size:.85rem;line-height:1.6">Everything you need to rep Montana properly. The stein, the tee, and the flask — the holy trinity of Montucky living.</p>
+              <div class="bundle-pricing">
+                <span class="bundle-price-new">$59.99</span>
+                <span class="bundle-price-old">$68.57</span>
+                <span class="bundle-savings">Save $8.58</span>
+              </div>
+              <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="btn btn-p" style="width:100%;margin-top:1rem">Shop Bundle &rarr;</a>
+            </div>
+          </div>
+          <div class="bundle-card reveal from-scale">
+            <div class="bundle-img"><img src="assets/montucky-visuals/bottletucky.jpeg" alt="The Distiller's Gift Set" loading="lazy"></div>
+            <div class="bundle-body">
+              <p class="sec-label" style="text-align:left;margin-bottom:.35rem">Premium Gift</p>
+              <h3 style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--cream)">The Distiller's Gift Set</h3>
+              <div class="bundle-items">
+                <span class="bundle-item-tag">Moonshine Stein</span>
+                <span class="bundle-item-tag">Wall Clock</span>
+                <span class="bundle-item-tag">E-Book</span>
+              </div>
+              <p style="color:var(--t2);font-size:.85rem;line-height:1.6">For the person who takes their Montana lifestyle seriously. Curated to impress, impossible to forget — this is the gift that gets talked about.</p>
+              <div class="bundle-pricing">
+                <span class="bundle-price-new">$64.99</span>
+                <span class="bundle-price-old">$70.00</span>
+                <span class="bundle-savings">Save $5.01</span>
+              </div>
+              <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="btn btn-p" style="width:100%;margin-top:1rem">Shop Bundle &rarr;</a>
+            </div>
+          </div>
+          <div class="bundle-card reveal from-scale">
+            <div class="bundle-img"><img src="assets/montucky-visuals/cabinCommerce.jpeg" alt="The Full Montana Experience" loading="lazy"></div>
+            <div class="bundle-body">
+              <p class="sec-label" style="text-align:left;margin-bottom:.35rem">Ultimate Set</p>
+              <h3 style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--cream)">The Full Montana Experience</h3>
+              <div class="bundle-items">
+                <span class="bundle-item-tag">Hoodie</span>
+                <span class="bundle-item-tag">Stein</span>
+                <span class="bundle-item-tag">Clock</span>
+                <span class="bundle-item-tag">Flask</span>
+              </div>
+              <p style="color:var(--t2);font-size:.85rem;line-height:1.6">The full Montucky lifestyle in one box. Premium hoodie, signature stein, handcrafted wall clock, and stainless flask. Ships free.</p>
+              <div class="bundle-pricing">
+                <span class="bundle-price-new">$129.99</span>
+                <span class="bundle-price-old">$166.80</span>
+                <span class="bundle-savings">Save $36.81</span>
+              </div>
+              <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="btn btn-p" style="width:100%;margin-top:1rem">Shop Bundle &rarr;</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
