@@ -23,6 +23,13 @@
   <link rel="preload" as="image" href="venue/bar_long.webp" type="image/webp">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2.5s cubic-bezier(.4,0,.2,1)}
+    .hero-slide.active{opacity:1}
+    .hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.22) saturate(.7)}
+    .brand-divider-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.18) saturate(.55)}
+  </style>
+
   <!-- JSON-LD -->
   <script type="application/ld+json">
   {
@@ -80,7 +87,12 @@
 
     <!--=== HERO ===-->
     <section class="hero">
-      <div class="hero-bg"><img src="venue/bar_long.webp" alt="" width="1215" height="911" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.3"></div>
+      <div class="hero-bg" id="heroCarousel">
+    <div class="hero-slide active"><img src="venue/bar_long.webp" alt="" width="1215" height="911" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.3"></div>
+    <div class="hero-slide"><img src="assets/montucky-visuals/09_hero_bar_hero.png" alt="" loading="lazy" class="parallax-bg" data-parallax="0.3"></div>
+    <div class="hero-slide"><img src="assets/montucky-visuals/10_metal_80s_hero.png" alt="" loading="lazy" class="parallax-bg" data-parallax="0.3"></div>
+    <div class="hero-slide"><img src="assets/montucky-visuals/01_vintage_poster_hero.png" alt="" loading="lazy" class="parallax-bg" data-parallax="0.3"></div>
+  </div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="particles" id="heroParticles" aria-hidden="true"></div>
@@ -105,28 +117,18 @@
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/lounge.webp" alt="Lounge area" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/pool_table.webp" alt="Pool table room" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_long.webp" alt="Full bar view" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/01_vintage_poster_medium.png" alt="Vintage Heritage" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/02_neon_sign_medium.png" alt="Neon Sign" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/05_steampunk_medium.png" alt="Steampunk" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/07_wolf_mystical_medium.png" alt="Wild Montana" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/06_grunge_90s_medium.png" alt="Grunge Era" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/08_vintage_label_medium.png" alt="Vintage Label" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/04_tattoo_skull_medium.png" alt="Tattoo Skull" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/03_psychedelic_medium.png" alt="Psychedelic" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/10_metal_80s_medium.png" alt="Metal 80s" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
       </div>
     </div>
 
-    <!--=== BRAND ART STRIP ===-->
-    <section style="background:var(--bg2);padding:4rem 0;border-top:1px solid var(--bdr)">
-      <div class="sec-in">
-        <div class="sec-hdr reveal from-blur">
-          <p class="sec-label">The Aesthetic</p>
-          <h2 class="sec-title">The <em>Montucky</em> World</h2>
-          <div class="sec-line"></div>
-          <p class="sec-desc">From vintage Montana heritage to raw steampunk grit — the many faces of the brand.</p>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:2.5rem" class="stagger-children">
-          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:220px"><img src="assets/montucky-visuals/01_vintage_poster_medium.png" alt="Vintage Heritage" loading="lazy" style="height:220px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Vintage Heritage</strong></div></div>
-          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:220px"><img src="assets/montucky-visuals/02_neon_sign_medium.png" alt="Neon Nights" loading="lazy" style="height:220px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Neon Nights</strong></div></div>
-          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:220px"><img src="assets/montucky-visuals/05_steampunk_medium.png" alt="Steampunk Craft" loading="lazy" style="height:220px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Steampunk Craft</strong></div></div>
-          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:220px"><img src="assets/montucky-visuals/07_wolf_mystical_medium.png" alt="Wild Montana" loading="lazy" style="height:220px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Wild Montana</strong></div></div>
-          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:220px"><img src="assets/montucky-visuals/08_vintage_label_medium.png" alt="Label Heritage" loading="lazy" style="height:220px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Label Heritage</strong></div></div>
-          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:220px"><img src="assets/montucky-visuals/06_grunge_90s_medium.png" alt="Grunge Era" loading="lazy" style="height:220px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Grunge Era</strong></div></div>
-        </div>
-      </div>
-    </section>
 
     <!--=== FEATURED PRODUCTS ===-->
     <section id="shop">
@@ -143,6 +145,20 @@
         </div>
       </div>
     </section>
+
+    <!--=== BRAND DIVIDER ===-->
+    <div style="position:relative;height:440px;overflow:hidden">
+      <img src="assets/montucky-visuals/09_hero_bar_large.png" alt="" aria-hidden="true" class="brand-divider-img parallax-bg" data-parallax="0.15">
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,8,.97) 0%,rgba(10,10,8,.45) 50%,rgba(10,10,8,.97) 100%)"></div>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(200,146,42,.07) 0%,transparent 55%)"></div>
+      <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem">
+        <p class="sec-label">Helena, Montana</p>
+        <h2 class="sec-title" style="font-size:clamp(2rem,6vw,4rem);margin:.75rem 0"><em>Born wild.</em><br>Built by hand.</h2>
+        <div class="sec-line" style="margin:1.25rem auto"></div>
+        <p style="color:var(--t3);font-size:.9rem;max-width:460px;line-height:1.9;margin-top:1rem">Every plank, every pour, every product carries the spirit of Montana craftsmanship. This isn't just a brand — it's a way of life.</p>
+        <a href="about.html" class="btn btn-o" style="margin-top:2rem">Our Story &rarr;</a>
+      </div>
+    </div>
 
     <!--=== VENUE TEASER ===-->
     <section id="venue" style="background:var(--bg2);border-top:1px solid var(--bdr)">
@@ -229,5 +245,25 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    (function(){
+      var slides = document.querySelectorAll('.hero-slide');
+      if(!slides.length) return;
+      // Time-of-day starting image: 0=venue bar, 1=hero bar, 2=metal80s, 3=vintage poster
+      var h = new Date().getHours();
+      var start = h>=5&&h<12 ? 3 : h>=12&&h<18 ? 1 : h>=18&&h<22 ? 0 : 2;
+      slides[0].classList.remove('active');
+      slides[start].classList.add('active');
+      var cur = start;
+      if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+        setInterval(function(){
+          slides[cur].classList.remove('active');
+          cur = (cur+1)%slides.length;
+          slides[cur].classList.add('active');
+        }, 8000);
+      }
+    })();
+  </script>
+
 </body>
 </html>

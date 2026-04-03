@@ -57,6 +57,7 @@
     <section class="hero" style="min-height:40vh;padding-top:8rem;padding-bottom:3rem;text-align:center">
       <div class="hero-bg"><img src="assets/montucky-visuals/10_metal_80s_hero.png" alt="" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.2" style="object-position:center top"></div>
       <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-content" style="position:relative;z-index:2">
         <p class="sec-label">The Collection</p>
         <h1 class="sec-title" style="font-size:clamp(2rem,6vw,3.5rem)">Shop <em>Montucky</em></h1>
@@ -65,22 +66,25 @@
       </div>
     </section>
 
+    <!-- Brand Mood Strip -->
+    <div class="strip">
+      <div class="scroll-x" style="display:flex;gap:.5rem;padding:0 .5rem">
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/04_tattoo_skull_medium.png" alt="Tattoo Skull" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/10_metal_80s_medium.png" alt="Metal 80s" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/05_steampunk_medium.png" alt="Steampunk" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/06_grunge_90s_medium.png" alt="Grunge Era" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/03_psychedelic_medium.png" alt="Psychedelic" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/02_neon_sign_medium.png" alt="Neon Sign" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/01_vintage_poster_medium.png" alt="Vintage Poster" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/07_wolf_mystical_medium.png" alt="Wild Montana" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/08_vintage_label_medium.png" alt="Heritage Label" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/09_hero_bar_medium.png" alt="The Bar" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+      </div>
+    </div>
+
     <!-- Filter + Products -->
     <section id="shop">
       <div class="container">
-        <!-- Brand thumbnail strip -->
-        <div style="display:flex;gap:.75rem;overflow-x:auto;padding:.5rem 0 1.5rem;scrollbar-width:none;margin-bottom:1rem">
-          <img src="assets/montucky-visuals/04_tattoo_skull_thumbnail.png" alt="Tattoo skull" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/03_psychedelic_thumbnail.png" alt="Psychedelic" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/05_steampunk_thumbnail.png" alt="Steampunk" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/01_vintage_poster_thumbnail.png" alt="Vintage poster" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/06_grunge_90s_thumbnail.png" alt="Grunge" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/07_wolf_mystical_thumbnail.png" alt="Wolf mystical" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/08_vintage_label_thumbnail.png" alt="Vintage label" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/02_neon_sign_thumbnail.png" alt="Neon sign" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/10_metal_80s_thumbnail.png" alt="Metal 80s" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-          <img src="assets/montucky-visuals/09_hero_bar_thumbnail.png" alt="Hero bar" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-        </div>
         <div class="filter-bar">
           <button class="filter-btn active" data-cat="all">All</button>
           <button class="filter-btn" data-cat="mugs">Drinkware</button>

@@ -131,24 +131,27 @@
     <section style="background:var(--bg);padding:5rem 0">
       <div class="container" style="padding:0 1.5rem">
         <div class="sec-hdr reveal from-blur">
-          <p class="sec-label">Brand Identity</p>
+          <p class="sec-label">Visual Identity</p>
           <h2 class="sec-title">The <em>Aesthetic</em></h2>
           <div class="sec-line"></div>
-          <p class="sec-desc">The visual language of Montucky — raw, bold, and unmistakably Montana.</p>
+          <p class="sec-desc">The many faces of Montucky — every image a piece of the brand story.</p>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem">
-          <div class="v-card reveal from-left" style="grid-column:span 2"><div class="img-wrap" style="height:340px"><img src="assets/montucky-visuals/09_hero_bar_large.png" alt="Montucky bar hero" loading="lazy" style="height:340px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Bar</strong><span>Where every great Montucky story starts</span></div></div>
-          <div class="v-card reveal from-left"><div class="img-wrap" style="height:240px"><img src="assets/montucky-visuals/bottletucky.jpeg" alt="Montucky steampunk bottle" loading="lazy" style="height:240px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Bottle</strong><span>Steampunk industrial craft</span></div></div>
-          <div class="v-card reveal from-right"><div class="img-wrap" style="height:240px"><img src="assets/montucky-visuals/skulltucky.jpeg" alt="Montucky skull art" loading="lazy" style="height:240px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Spirit</strong><span>Bold, untamed, Montana-made</span></div></div>
-          <div class="v-card reveal from-left"><div class="img-wrap" style="height:240px"><img src="assets/montucky-visuals/07_wolf_mystical_large.png" alt="Wolf mystical art" loading="lazy" style="height:240px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Wild Montana</strong><span>The mystical spirit of the West</span></div></div>
-          <div class="v-card reveal from-right"><div class="img-wrap" style="height:240px"><img src="assets/montucky-visuals/BnW.jpeg" alt="Montucky grunge poster" loading="lazy" style="height:240px;object-fit:cover" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Grunge Soul</strong><span>Raw. Honest. Montana.</span></div></div>
+        <div class="v-grid stagger-children" style="margin-top:2.5rem">
+          <div class="v-card v-hero reveal from-scale"><div class="img-wrap"><img src="assets/montucky-visuals/09_hero_bar_large.png" alt="The Montucky bar panoramic" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Bar</strong><span>Hand-built in Helena — the heart of the brand</span></div></div>
+          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:200px"><img src="assets/montucky-visuals/bottletucky.jpeg" alt="Steampunk Montucky bottle" loading="lazy" style="height:200px" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Bottle</strong><span>Industrial craft, copper-forged</span></div></div>
+          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:200px"><img src="assets/montucky-visuals/skulltucky.jpeg" alt="Montucky skull illustration" loading="lazy" style="height:200px" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>The Spirit</strong><span>Bold, untamed, Montana-made</span></div></div>
+          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:200px"><img src="assets/montucky-visuals/07_wolf_mystical_large.png" alt="Wild Montana wolf art" loading="lazy" style="height:200px" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Wild Montana</strong><span>The mystical spirit of the West</span></div></div>
+          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:200px"><img src="assets/montucky-visuals/BnW.jpeg" alt="Grunge rave poster" loading="lazy" style="height:200px" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Grunge Soul</strong><span>Raw. Honest. Montana.</span></div></div>
+          <div class="v-card reveal from-scale"><div class="img-wrap" style="height:200px"><img src="assets/montucky-visuals/08_vintage_label_large.png" alt="Vintage label heritage" loading="lazy" style="height:200px" onload="this.parentElement.classList.add('loaded')"></div><div class="v-cap"><strong>Heritage Label</strong><span>Timeless Montana craft</span></div></div>
         </div>
       </div>
     </section>
 
     <!-- Values -->
-    <section style="background:var(--bg)">
-      <div class="container" style="padding:5rem 1.5rem">
+    <section style="position:relative;background:var(--bg);overflow:hidden">
+      <div style="position:absolute;inset:0;pointer-events:none;z-index:0"><img src="assets/montucky-visuals/07_wolf_mystical_large.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;filter:brightness(.06) saturate(.4);transform:scale(1.05)"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,var(--bg) 0%,rgba(10,10,8,.92) 40%,rgba(10,10,8,.92) 60%,var(--bg) 100%);z-index:1;pointer-events:none"></div>
+      <div class="container" style="padding:5rem 1.5rem;position:relative;z-index:2">
         <div class="sec-hdr reveal from-blur">
           <p class="sec-label">What We Stand For</p>
           <h2 class="sec-title">Our <em>Values</em></h2>
