@@ -355,7 +355,8 @@ body.page-loaded{opacity:1}
 .bundle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem}
 .bundle-card{background:var(--card);border:1px solid var(--bdr);border-radius:2px;overflow:hidden;transition:all .5s;position:relative}
 .bundle-card:hover{border-color:var(--amber);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px var(--amber-g)}
-.bundle-card::before{content:'BEST VALUE';position:absolute;top:1rem;right:-1rem;background:var(--amber);color:var(--bg);font-family:var(--ff-c);font-size:.55rem;font-weight:700;letter-spacing:.15em;padding:.3rem 1.5rem;transform:rotate(45deg) translateX(0);transform-origin:top right;width:90px;text-align:center;z-index:2}
+.bundle-card::before{display:none}
+.bundle-card:last-child::before{display:block;content:'BEST VALUE';position:absolute;top:1rem;right:-1rem;background:var(--amber);color:var(--bg);font-family:var(--ff-c);font-size:.55rem;font-weight:700;letter-spacing:.15em;padding:.3rem 1.5rem;transform:rotate(45deg) translateX(0);transform-origin:top right;width:90px;text-align:center;z-index:2}
 .bundle-img{height:220px;overflow:hidden;position:relative}
 .bundle-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s;filter:brightness(.7) saturate(.7)}
 .bundle-card:hover .bundle-img img{transform:scale(1.06)}
