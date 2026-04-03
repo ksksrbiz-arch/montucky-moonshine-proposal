@@ -83,10 +83,24 @@
         <a href="index.html" class="active">Home</a>
         <a href="shop.html">Shop</a>
         <a href="venue.html">Venue</a>
-        <a href="about.html" class="hide-m">About</a>
+        <a href="about.html">About</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="contact.html">Contact</a>
         <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
       </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="index.html" class="active">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="venue.html">Venue</a>
+    <a href="about.html">About</a>
+    <a href="recipes.html">Recipes</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="mobile-cta">Shop Now &rarr;</a>
   </nav>
 
   <main id="main">
@@ -284,7 +298,8 @@
         <div class="foot-col">
           <h4>Company</h4>
           <a href="https://montuckymoonshine.com/pages/contact-us" target="_blank" rel="noopener noreferrer">Contact Us</a>
-          <a href="https://montuckymoonshine.com/pages/book-now" target="_blank" rel="noopener noreferrer">Book Now</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="recipes.html">Recipes</a>
           <a href="https://www.facebook.com/Montucky-Moonshine-661364020944905/" target="_blank" rel="noopener noreferrer">Facebook</a>
         </div>
         <div class="foot-col">
@@ -302,6 +317,32 @@
       </div>
     </div>
   </footer>
+
+
+  <!-- Email Capture Popup -->
+  <div class="popup-overlay" id="emailPopup" role="dialog" aria-modal="true" aria-label="Get 15% off">
+    <div class="popup-box">
+      <button class="popup-close" id="popupClose" aria-label="Close">&#10005;</button>
+      <div class="popup-img">
+        <img src="assets/montucky-visuals/bottletucky.jpeg" alt="" aria-hidden="true">
+        <div class="popup-img-overlay"></div>
+        <div class="popup-img-text">
+          <p class="sec-label" style="margin:0 0 .5rem">Join the Inner Circle</p>
+          <h2 style="font-family:var(--ff-d);font-size:1.9rem;font-weight:900;color:var(--cream);line-height:1.05">Get <em style="color:var(--amber)">15% Off</em><br>Your First Order</h2>
+        </div>
+      </div>
+      <div class="popup-body">
+        <p style="color:var(--t2);font-size:.9rem;line-height:1.7;margin-bottom:1.25rem">Early access to limited drops, cocktail recipes, and exclusive Helena venue events. No spam — ever.</p>
+        <form name="email-capture" netlify netlify-honeypot="bot-field" action="/thank-you" method="POST">
+          <input type="hidden" name="form-name" value="email-capture">
+          <p style="display:none"><input name="bot-field"></p>
+          <input class="popup-input" type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+          <button type="submit" class="btn btn-p" style="width:100%">Claim 15% Off &rarr;</button>
+        </form>
+        <p class="popup-fine">No spam. Unsubscribe anytime. Offer valid on first purchase only.</p>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
   <script>

@@ -12,8 +12,8 @@
       name:'Moonshine Stein',
       cat:'Drinkware',
       price:25.00,
-      rating:5.0,
-      reviews:203,
+      rating:0,
+      reviews:0,
       tag:'Bestseller',
       scarcity:'Only 8 left in stock',
       url:'https://montuckymoonshine.com/products/moonshine-stein',
@@ -24,19 +24,15 @@
         'venue/barback.webp'
       ],
       desc:'Hand-designed in Helena, the Moonshine Stein isn\'t just drinkware — it\'s a statement. Whether you\'re pouring your morning black or something stronger after sundown, this stein holds 16oz of whatever Montana demands. Thick walls, weighty base, built to outlast trends and bad days alike.\n\nEvery stein is a piece of the Montucky story. Bold graphic, dishwasher-safe, and made to be seen on every shelf and campfire ring from Bozeman to Billings.',
-      reviewsList:[
-        {name:'Jake M.',loc:'Bozeman, MT',rating:5,title:'Built like the state it comes from',body:'These mugs are built like the state they come from — tough, beautiful, and full of character. My whole crew wanted one after they saw mine.',date:'Nov 2024'},
-        {name:'TanyaW',loc:'Billings, MT',rating:5,title:'Perfect Father\'s Day gift',body:'Perfect Father\'s Day gift. Solid, heavy, looks like it belongs in a proper Montana man cave. Dad actually got emotional. Worth every dollar.',date:'Jan 2025'},
-        {name:'C.Reeves',loc:'Helena, MT',rating:5,title:'Best in the cabinet',body:'Replaced three other mugs with this one. Nothing else compares — quality and design are both top tier. Already bought two as gifts.',date:'Mar 2025'}
-      ]
+      reviewsList:[]
     },
     {
       slug:'funny-drink-drank-drunk-t-shirt',
       name:'Drink Drank Drunk Tee',
       cat:'Apparel',
       price:21.69,
-      rating:4.8,
-      reviews:118,
+      rating:0,
+      reviews:0,
       tag:'Top Rated',
       scarcity:null,
       url:'https://montuckymoonshine.com/products/funny-drink-drank-drunk-t-shirt',
@@ -46,18 +42,15 @@
         'assets/montucky-visuals/04_tattoo_skull_medium.png'
       ],
       desc:'Montana doesn\'t do subtle — and neither does this tee. The Drink Drank Drunk graphic hits different on a Friday night or a Sunday morning. Soft, breathable cotton blend that holds up to Montana weather and back-to-back washes without fading the attitude.\n\nUnisex fit. Available S–3XL. Screen-printed graphic, not heat transfer — so it stays bold long after the first hundred wears.',
-      reviewsList:[
-        {name:'Sarah K.',loc:'Missoula, MT',rating:5,title:'Gift that actually landed',body:'Bought as a gift. It arrived fast, looks exactly like the photos, and the quality is way above what I expected for the price. He wore it to the river the next day.',date:'Feb 2025'},
-        {name:'MikeT',loc:'Whitefish, MT',rating:5,title:'Wearing it right now',body:'Ordered Thursday, wore it Saturday. The graphic is crisp, the fit is perfect, and everyone asked where I got it. Going back for the hoodie.',date:'Mar 2025'}
-      ]
+      reviewsList:[]
     },
     {
       slug:'wall-clock',
       name:'Wall Clock',
       cat:'Home Goods',
       price:35.00,
-      rating:4.9,
-      reviews:91,
+      rating:0,
+      reviews:0,
       tag:'Top Rated',
       scarcity:'Only 5 left in stock',
       url:'https://montuckymoonshine.com/products/wall-clock',
@@ -67,18 +60,15 @@
         'venue/lounge.webp'
       ],
       desc:'The Montucky Wall Clock doesn\'t just tell time — it tells a story. Silent sweep movement so there\'s no tick to interrupt the quiet of a Montana morning. Bold face, clean numbers, wide enough to anchor any room without overwhelming it.\n\nWall-mount hardware included. 12-inch diameter. Runs on one AA battery. Built to look good in a cabin, a kitchen, or a man cave — because that\'s exactly the kind of place it belongs.',
-      reviewsList:[
-        {name:'TanyaW',loc:'Billings, MT',rating:5,title:'Gorgeous piece',body:'The wall clock is gorgeous — solid, heavy, looks like it belongs in a proper Montana man cave. Dad actually cried a little. Already ordered a second one for the garage.',date:'Dec 2024'},
-        {name:'D.Hoover',loc:'Great Falls, MT',rating:5,title:'Centerpiece of the room',body:'Went above and beyond every expectation. The silent movement is a game-changer. Fast shipping, beautiful packaging, and it looks incredible.',date:'Jan 2025'}
-      ]
+      reviewsList:[]
     },
     {
       slug:'stainless-steel-flask-6oz',
       name:'Stainless Steel Flask',
       cat:'Drinkware',
       price:21.88,
-      rating:4.7,
-      reviews:67,
+      rating:0,
+      reviews:0,
       tag:'New',
       scarcity:null,
       url:'https://montuckymoonshine.com/products/stainless-steel-flask-6oz',
@@ -88,18 +78,15 @@
         'venue/bar.webp'
       ],
       desc:'6oz stainless steel — the right size for a long walk or a short night. Leak-proof screw cap, polished finish, and the Montucky spirit embossed where it counts. Fits a back pocket, a jacket pocket, or a tackle box without complaint.\n\nFood-grade 304 stainless. Wide-mouth opening for easy filling. The kind of flask you keep, not lose.',
-      reviewsList:[
-        {name:'B.Morris',loc:'Helena, MT',rating:5,title:'Perfect trail companion',body:'Took this on a 3-day backpacking trip. Didn\'t leak once, kept everything cold longer than expected, and the weight is barely noticeable. Montana approved.',date:'Feb 2025'},
-        {name:'K.Lane',loc:'Bozeman, MT',rating:4,title:'Solid flask',body:'Great quality for the price. The Montucky branding is clean and subtle. Would love a larger size option.',date:'Mar 2025'}
-      ]
+      reviewsList:[]
     },
     {
       slug:'unisex-heavyweight-hooded-sweatshirt',
       name:'Heavyweight Hoodie',
       cat:'Apparel',
       price:87.77,
-      rating:4.9,
-      reviews:149,
+      rating:0,
+      reviews:0,
       tag:'Limited',
       scarcity:'Only 3 left in this size',
       url:'https://montuckymoonshine.com/products/unisex-heavyweight-hooded-sweatshirt',
@@ -109,11 +96,7 @@
         'assets/montucky-visuals/07_wolf_mystical_medium.png'
       ],
       desc:'Not a hoodie. A statement. 14oz heavyweight fleece that laughs at wind, rain, and every season Montana throws at you. Double-stitched seams, kangaroo pocket deep enough for both hands and a flask, and a fit that works on the mountain or in town.\n\nLimited run — once these are gone, they\'re gone. Pre-shrunk cotton-polyester blend. Size up if you like an oversized fit.',
-      reviewsList:[
-        {name:'Mike G.',loc:'Bozeman, MT',rating:5,title:'Worth every penny',body:'I\'ve had cheaper hoodies fall apart in a season. This one feels like it was built for a decade. The weight is unreal — thick without being stiff. Already my favorite piece of clothing.',date:'Jan 2025'},
-        {name:'CampDad',loc:'Missoula, MT',rating:5,title:'My whole family wants one',body:'Wore it camping for three straight days. The pocket is enormous (fits snacks, a book, and my phone). My wife and kids all want their own now.',date:'Feb 2025'},
-        {name:'T.Nakamura',loc:'Helena, MT',rating:5,title:'The only hoodie I\'ll buy again',body:'The quality speaks for itself. Ordered it Friday, wore it all weekend. Warm, soft, and the Montucky branding is exactly right — present without being loud.',date:'Mar 2025'}
-      ]
+      reviewsList:[]
     }
   ];
 

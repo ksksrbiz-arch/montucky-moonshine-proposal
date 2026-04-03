@@ -673,4 +673,42 @@
   })();
 
 
+  /* ----------------------------------------------------------
+     24. Mobile hamburger menu
+  ---------------------------------------------------------- */
+  (function mobileNav() {
+    var toggle = document.getElementById('navToggle');
+    var menu   = document.getElementById('mobileMenu');
+    if (!toggle || !menu) return;
+
+    function close() {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', function () {
+      var isOpen = menu.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close on link click
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', close);
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function (e) {
+      if (!toggle.contains(e.target) && !menu.contains(e.target)) close();
+    });
+
+    // Close on escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+  })();
+
 })();

@@ -29,17 +29,31 @@
   <nav id="navbar" role="banner">
     <div class="nav-in">
       <a class="nav-logo" href="index.html" aria-label="Home">
-        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine" width="44" height="44">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
         <div class="nav-brand">Montucky Moonshine<small>Est. Montana</small></div>
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="shop.html" class="active">Shop</a>
         <a href="venue.html">Venue</a>
-        <a href="about.html" class="hide-m">About</a>
+        <a href="about.html">About</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="contact.html">Contact</a>
         <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
       </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="venue.html">Venue</a>
+    <a href="about.html">About</a>
+    <a href="recipes.html">Recipes</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="mobile-cta">Shop Now &rarr;</a>
   </nav>
 
   <main id="main">
@@ -58,7 +72,7 @@
       <div class="product-info-col">
         <p class="product-cat" id="prodCat"></p>
         <h1 class="product-title" id="prodTitle"></h1>
-        <div class="product-rating-row">
+        <div class="product-rating-row" style="display:none">
           <div class="stars" id="prodStars"></div>
           <span class="review-count" id="prodReviewCount"></span>
           <a href="#reviews" style="font-family:var(--ff-c);font-size:.6rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-left:.25rem">Read reviews</a>
@@ -110,7 +124,7 @@
     <section class="product-reviews-section" id="reviews">
       <div class="sec-in">
         <div class="sec-hdr reveal from-blur" style="margin-bottom:2rem">
-          <p class="sec-label">Verified Reviews</p>
+          <p class="sec-label">Be the First to Review</p>
           <h2 class="sec-title" id="reviewsHeadline">Customer Reviews</h2>
           <div class="sec-line"></div>
           <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1rem">

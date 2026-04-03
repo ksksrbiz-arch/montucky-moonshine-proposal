@@ -35,19 +35,34 @@
   <a href="#main" class="skip">Skip to content</a>
 
   <!-- Navigation -->
-  <nav id="navbar">
+  <nav id="navbar" role="banner">
     <div class="nav-in">
-      <a href="index.html" class="nav-logo">
-        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine" width="40" height="40">
+      <a class="nav-logo" href="index.html" aria-label="Home">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
+        <div class="nav-brand">Montucky Moonshine<small>Est. Montana</small></div>
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="shop.html">Shop</a>
         <a href="venue.html">Venue</a>
         <a href="about.html" class="active">About</a>
-        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="btn btn-p">Shop Now</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
       </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="venue.html">Venue</a>
+    <a href="about.html" class="active">About</a>
+    <a href="recipes.html">Recipes</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="mobile-cta">Shop Now &rarr;</a>
   </nav>
 
   <!-- Main Content -->
