@@ -7,7 +7,7 @@
   <meta name="description" content="Shop Montucky Moonshine merchandise — mugs, steins, tees, hoodies, and Montana-crafted goods. Ships nationwide.">
   <meta property="og:title" content="Shop — Montucky Moonshine">
   <meta property="og:description" content="Handcrafted mugs, tees, and merchandise from Montana.">
-  <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <meta property="og:image" content="https://montucky-moonshine-proposal.netlify.app/assets/montucky-visuals/bottletucky.jpeg">
   <meta property="og:url" content="https://montucky-moonshine-proposal.netlify.app/shop">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Shop — Montucky Moonshine">
@@ -54,8 +54,10 @@
   <main id="main">
 
     <!-- Page Hero -->
-    <section style="padding-top:8rem;padding-bottom:3rem;text-align:center;background:var(--bg2);border-bottom:1px solid var(--bdr)">
-      <div class="container">
+    <section class="hero" style="min-height:40vh;padding-top:8rem;padding-bottom:3rem;text-align:center">
+      <div class="hero-bg"><img src="assets/montucky-visuals/10_metal_80s_hero.png" alt="" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.2" style="object-position:center top"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content" style="position:relative;z-index:2">
         <p class="sec-label">The Collection</p>
         <h1 class="sec-title" style="font-size:clamp(2rem,6vw,3.5rem)">Shop <em>Montucky</em></h1>
         <div class="sec-line"></div>
@@ -66,6 +68,19 @@
     <!-- Filter + Products -->
     <section id="shop">
       <div class="container">
+        <!-- Brand thumbnail strip -->
+        <div style="display:flex;gap:.75rem;overflow-x:auto;padding:.5rem 0 1.5rem;scrollbar-width:none;margin-bottom:1rem">
+          <img src="assets/montucky-visuals/04_tattoo_skull_thumbnail.png" alt="Tattoo skull" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/03_psychedelic_thumbnail.png" alt="Psychedelic" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/05_steampunk_thumbnail.png" alt="Steampunk" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/01_vintage_poster_thumbnail.png" alt="Vintage poster" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/06_grunge_90s_thumbnail.png" alt="Grunge" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/07_wolf_mystical_thumbnail.png" alt="Wolf mystical" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/08_vintage_label_thumbnail.png" alt="Vintage label" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/02_neon_sign_thumbnail.png" alt="Neon sign" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/10_metal_80s_thumbnail.png" alt="Metal 80s" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+          <img src="assets/montucky-visuals/09_hero_bar_thumbnail.png" alt="Hero bar" style="height:64px;width:64px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
+        </div>
         <div class="filter-bar">
           <button class="filter-btn active" data-cat="all">All</button>
           <button class="filter-btn" data-cat="mugs">Drinkware</button>
@@ -78,8 +93,10 @@
     </section>
 
     <!-- CTA Banner -->
-    <section style="background:var(--card);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);text-align:center;padding:4rem 1.5rem">
-      <div class="container reveal from-blur">
+    <section style="position:relative;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);text-align:center;padding:4rem 1.5rem;overflow:hidden">
+      <div style="position:absolute;inset:0;z-index:0"><img src="assets/montucky-visuals/08_vintage_label_large.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;opacity:.18;filter:blur(2px)"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,var(--bg) 0%,rgba(10,10,8,.85) 100%);z-index:1"></div>
+      <div class="container reveal from-blur" style="position:relative;z-index:2">
         <p class="sec-label">Can't Decide?</p>
         <h2 class="sec-title">Visit the <em>Full Store</em></h2>
         <p class="sec-desc" style="margin-bottom:2rem">Browse the complete Montucky Moonshine catalog on Shopify.</p>
