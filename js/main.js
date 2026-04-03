@@ -328,12 +328,22 @@
       {n:"Women's Thongs (AOP)",p:"$22.38",img:"https://montuckymoonshine.com/cdn/shop/files/3122953234843618473_2048_1024x.jpg?v=1738052717",url:"https://montuckymoonshine.com/products/womens-thongs-aop",tag:"Apparel",cat:"merchandise"}
     ];
 
+
+  // ── Product slug mapping for detail pages ──────────────
+  var PRODUCT_SLUGS = {
+    'Moonshine Stein': 'moonshine-stein',
+    'Drink Drank Drunk Tee': 'funny-drink-drank-drunk-t-shirt',
+    'Wall Clock': 'wall-clock',
+    'Stainless Steel Flask': 'stainless-steel-flask-6oz',
+    'Heavyweight Hoodie': 'unisex-heavyweight-hooded-sweatshirt'
+  };
+
     function renderProducts(list, container) {
       var html = '';
       for (var i = 0; i < list.length; i++) {
         var item = list[i];
         html +=
-          '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="product-card" data-cat="' + item.cat + '" style="animation-delay:' + (i * 60) + 'ms">' +
+          (PRODUCT_SLUGS[item.n] ? '<a href="product.html?id=' + PRODUCT_SLUGS[item.n] + '"' : '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer"') + ' class="product-card" data-cat="' + item.cat + '" style="animation-delay:' + (i * 60) + 'ms">' +
             '<div class="img-wrap">' +
               '<img src="' + item.img + '" alt="' + item.n + '" loading="lazy" onload="this.parentElement.classList.add(\'loaded\')">' +
               '<div class="product-overlay"><span class="btn btn-o">Buy Now</span></div>' +
@@ -606,74 +616,61 @@
   })();
 
   /* ----------------------------------------------------------
-     22. Shipping Progress Bar
+     22. Shipping Progress Bar — interactive demo
+     Accumulates cart value as user clicks "Buy Now" links
   ---------------------------------------------------------- */
   (function shippingProgress() {
-    var fill = document.getElementById('shipFill');
-    var msg  = document.getElementById('shipMsg');
-    var amt  = document.getElementById('shipAmt');
-    if (!fill) return;
-
     var THRESHOLD = 40;
-    var cart = parseFloat(sessionStorage.getItem('cart_total') || '0');
 
-    function update(val) {
+    // Get cart total from sessionStorage
+    var cartTotal = parseFloat(sessionStorage.getItem('mm_cart_total') || '0');
+
+    function updateBar(val, fillId, msgId, amtId) {
+      var fill = document.getElementById(fillId);
+      var msg  = document.getElementById(msgId);
+      var amt  = document.getElementById(amtId);
+      if (!fill) return;
       var pct = Math.min((val / THRESHOLD) * 100, 100);
       fill.style.width = pct + '%';
-      var remaining = Math.max(THRESHOLD - val, 0).toFixed(2);
       if (val >= THRESHOLD) {
-        msg.innerHTML = '<strong style="color:#4caf50">🎉 You qualify for FREE SHIPPING!</strong>';
+        if (msg) msg.innerHTML = '<strong style="color:#4caf50">🎉 You qualify for FREE SHIPPING!</strong>';
       } else {
-        if (amt) amt.textContent = '$' + remaining;
+        var rem = Math.max(THRESHOLD - val, 0).toFixed(2);
+        if (amt) amt.textContent = '$' + rem;
+        if (msg && !amt) msg.innerHTML = 'Add <span>$' + rem + '</span> more for <strong style="color:var(--amber)">FREE SHIPPING</strong>';
       }
     }
-    update(cart);
+
+    // Update both bars (shop page + product page)
+    function refreshAll() {
+      cartTotal = parseFloat(sessionStorage.getItem('mm_cart_total') || '0');
+      updateBar(cartTotal, 'shipFill', 'shipMsg', 'shipAmt');
+      updateBar(cartTotal, 'prodShipFill', 'prodShipMsg', 'prodShipAmt');
+    }
+
+    refreshAll();
+
+    // Intercept clicks on product buy buttons to simulate adding to cart
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.btn-p, .btn.btn-p');
+      if (!btn) return;
+      var href = btn.getAttribute('href') || '';
+      // Only intercept actual product links
+      if (href.indexOf('montuckymoonshine.com/products') > -1 ||
+          href.indexOf('montuckymoonshine.com/collections') > -1 ||
+          href.indexOf('montuckymoonshine.com/cart') > -1) {
+        // Extract price from sibling or parent if possible
+        var priceEl = btn.closest('.product-info-col, .p-card, .bundle-body');
+        var priceText = priceEl ? (priceEl.querySelector('.product-price, .p-price, .bundle-price-new') || {}).textContent || '' : '';
+        var price = parseFloat(priceText.replace(/[^0-9.]/g,'')) || 25;
+        var newTotal = Math.min(cartTotal + price, 120);
+        sessionStorage.setItem('mm_cart_total', newTotal);
+        cartTotal = newTotal;
+        // Animate the bar
+        setTimeout(refreshAll, 100);
+      }
+    });
   })();
 
-  /* ----------------------------------------------------------
-     23. Product badges (bestseller, limited, new)
-  ---------------------------------------------------------- */
-  document.addEventListener('DOMContentLoaded', function () {
-    var BADGES = {
-      'moonshine-stein':   { type: 'bestseller', label: '⭐ Bestseller' },
-      'accent-coffee-mug-11-15oz-1': { type: 'new', label: 'New' },
-      'unisex-heavyweight-hooded-sweatshirt': { type: 'limited', label: '🔥 Limited' },
-      'wall-clock': { type: 'bestseller', label: '⭐ Top Rated' }
-    };
-
-    // Run after products render
-    setTimeout(function () {
-      var cards = document.querySelectorAll('.p-card, .product-card');
-      for (var i = 0; i < cards.length; i++) {
-        var href = cards[i].getAttribute('href') || '';
-        for (var key in BADGES) {
-          if (href.indexOf(key) > -1) {
-            var b = BADGES[key];
-            var badge = document.createElement('span');
-            badge.className = 'p-badge ' + b.type;
-            badge.textContent = b.label;
-            cards[i].appendChild(badge);
-            break;
-          }
-        }
-      }
-
-      // Add star ratings to product cards
-      var allCards = document.querySelectorAll('.p-info, .product-info');
-      var ratings = [4.9, 4.8, 5.0, 4.7, 4.8, 4.9, 4.6, 4.8, 4.9, 5.0, 4.7, 4.8, 4.9, 4.8, 4.7];
-      var counts  = [127, 84, 203, 56, 73, 91, 44, 118, 67, 149, 38, 92, 71, 55, 29];
-      for (var j = 0; j < allCards.length && j < ratings.length; j++) {
-        var rDiv = document.createElement('div');
-        rDiv.className = 'p-rating';
-        var full = Math.floor(ratings[j]);
-        var stars = '';
-        for (var s = 0; s < 5; s++) {
-          stars += '<svg class="star' + (s >= full ? ' empty' : '') + '" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
-        }
-        rDiv.innerHTML = '<div class="stars">' + stars + '</div><span class="review-count">(' + counts[j] + ')</span>';
-        allCards[j].appendChild(rDiv);
-      }
-    }, 600);
-  });
 
 })();
