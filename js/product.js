@@ -12,6 +12,7 @@
       name:'Moonshine Stein',
       cat:'Drinkware',
       price:25.00,
+      flavor:[8,7,6,9,9], // Sweetness, Character, Craftsmanship, Value, Boldness
       rating:0,
       reviews:0,
       tag:'Bestseller',
@@ -31,6 +32,7 @@
       name:'Drink Drank Drunk Tee',
       cat:'Apparel',
       price:21.69,
+      flavor:[5,9,4,8,10],
       rating:0,
       reviews:0,
       tag:'Top Rated',
@@ -49,6 +51,7 @@
       name:'Wall Clock',
       cat:'Home Goods',
       price:35.00,
+      flavor:[4,8,9,7,7],
       rating:0,
       reviews:0,
       tag:'Top Rated',
@@ -67,6 +70,7 @@
       name:'Stainless Steel Flask',
       cat:'Drinkware',
       price:21.88,
+      flavor:[6,8,7,9,8],
       rating:0,
       reviews:0,
       tag:'New',
@@ -85,6 +89,7 @@
       name:'Heavyweight Hoodie',
       cat:'Apparel',
       price:87.77,
+      flavor:[3,10,9,6,10],
       rating:0,
       reviews:0,
       tag:'Limited',
@@ -268,13 +273,32 @@
     document.getElementById('prodPrice').textContent = '$' + p.price.toFixed(2);
     document.getElementById('prodDesc').innerHTML = p.desc.replace(/\n\n/g,'</p><p>').replace(/^/,'<p>').replace(/$/, '</p>');
 
+    // ── Buy button → Add to Cart ──────────────────────────
     var buyBtn = document.getElementById('prodBuyBtn');
     if (buyBtn) {
-      buyBtn.href = p.url;
-      buyBtn.textContent = 'Buy Now on Shopify — $' + p.price.toFixed(2) + ' →';
+      buyBtn.removeAttribute('href');
+      buyBtn.removeAttribute('target');
+      buyBtn.removeAttribute('rel');
+      buyBtn.tagName === 'A' && buyBtn.setAttribute('role','button');
+      buyBtn.textContent = 'Add to Cart — $' + p.price.toFixed(2);
+      buyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var qty = parseInt(document.getElementById('qtyVal').textContent, 10) || 1;
+        if (window.mmCart) {
+          window.mmCart.add({ id: p.slug, name: p.name, price: p.price, img: p.imgs[0], qty: qty });
+        }
+        // Visual feedback on button
+        var orig = buyBtn.textContent;
+        buyBtn.textContent = '✓ Added to Cart!';
+        buyBtn.style.background = '#2a6e1a';
+        setTimeout(function(){
+          buyBtn.textContent = orig;
+          buyBtn.style.background = '';
+        }, 1800);
+      });
     }
 
-    // Scarcity
+    // ── Scarcity ─────────────────────────────────────────
     if (p.scarcity) {
       var sc = document.getElementById('prodScarcity');
       var st = document.getElementById('scarcityText');
@@ -288,7 +312,108 @@
     injectSchema(p);
     initStickyCart(p);
 
-    // Make product cards on shop page link here
+    // ── Flavor Wheel ─────────────────────────────────────
+    if (p.flavor) buildFlavorWheel(p);
+
+    // ── Image Lightbox on main photo ─────────────────────
+    var mainImgWrap = document.getElementById('mainImg');
+    if (mainImgWrap) {
+      mainImgWrap.addEventListener('click', function() {
+        var src = document.getElementById('mainImgEl').src;
+        openProductLightbox(src);
+      });
+    }
   });
+
+  // ── Flavor Wheel (SVG Radar) ─────────────────────────────
+  function buildFlavorWheel(p) {
+    var infoCol = document.querySelector('.product-info-col');
+    if (!infoCol) return;
+    var LABELS = ['Sweetness','Character','Craftsmanship','Value','Boldness'];
+    var vals = p.flavor; // 0-10 each
+    var N = LABELS.length;
+    var CX = 90, CY = 90, R = 68, RInner = 12;
+    var amber = '#c8922a', amberA = 'rgba(200,146,42,0.22)', grid = 'rgba(200,146,42,0.1)';
+
+    function pt(angle, r) {
+      return { x: CX + r * Math.cos(angle), y: CY + r * Math.sin(angle) };
+    }
+
+    var svgLines = '', svgGrids = '', svgPoly = '', svgDots = '';
+    var angles = [];
+    for (var i = 0; i < N; i++) {
+      angles.push((Math.PI * 2 * i / N) - Math.PI / 2);
+    }
+
+    // Grid rings
+    [0.2,0.4,0.6,0.8,1].forEach(function(frac) {
+      var pts = angles.map(function(a){ var p2 = pt(a, RInner + (R - RInner) * frac); return p2.x + ',' + p2.y; });
+      svgGrids += '<polygon points="' + pts.join(' ') + '" fill="none" stroke="' + grid + '" stroke-width="0.5"/>';
+    });
+
+    // Axis lines
+    angles.forEach(function(a) {
+      var outer = pt(a, R);
+      svgLines += '<line x1="' + CX + '" y1="' + CY + '" x2="' + outer.x + '" y2="' + outer.y + '" stroke="' + grid + '" stroke-width="0.5"/>';
+    });
+
+    // Data polygon
+    var polyPts = angles.map(function(a, i) {
+      var r2 = RInner + (R - RInner) * (vals[i] / 10);
+      var p2 = pt(a, r2);
+      return p2.x + ',' + p2.y;
+    });
+    svgPoly = '<polygon points="' + polyPts.join(' ') + '" fill="' + amberA + '" stroke="' + amber + '" stroke-width="1.5"/>';
+
+    // Dots
+    angles.forEach(function(a, i) {
+      var r2 = RInner + (R - RInner) * (vals[i] / 10);
+      var p2 = pt(a, r2);
+      svgDots += '<circle cx="' + p2.x + '" cy="' + p2.y + '" r="3" fill="' + amber + '" stroke="#0a0a08" stroke-width="1.5"/>';
+    });
+
+    var svgEl = '<svg class="flavor-wheel-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">' +
+      svgGrids + svgLines + svgPoly + svgDots + '</svg>';
+
+    var labelsHTML = LABELS.map(function(l, i) {
+      return '<div class="fw-lbl"><span class="fw-dot"></span>' + l + ' <span style="margin-left:auto;color:var(--amber);font-weight:700">' + vals[i] + '/10</span></div>';
+    }).join('');
+
+    var wrap = document.createElement('div');
+    wrap.className = 'flavor-wheel-wrap';
+    wrap.innerHTML = '<span class="flavor-wheel-title">Product Profile</span>' + svgEl +
+      '<div class="fw-labels">' + labelsHTML + '</div>';
+
+    // Insert before product-actions
+    var actions = infoCol.querySelector('.product-actions');
+    if (actions) infoCol.insertBefore(wrap, actions);
+    else infoCol.appendChild(wrap);
+  }
+
+  // ── Product Image Lightbox ───────────────────────────────
+  function openProductLightbox(src) {
+    var existing = document.getElementById('pdLightbox');
+    if (existing) {
+      existing.querySelector('img').src = src;
+      existing.classList.add('open');
+      return;
+    }
+    var lb = document.createElement('div');
+    lb.id = 'pdLightbox';
+    lb.className = 'pd-lb';
+    lb.setAttribute('role','dialog');
+    lb.setAttribute('aria-modal','true');
+    lb.setAttribute('aria-label','Product image');
+    lb.innerHTML =
+      '<button class="pd-lb-close" id="pdLbClose" aria-label="Close image">&#10005;</button>' +
+      '<img src="' + src + '" alt="Product image">';
+    document.body.appendChild(lb);
+    requestAnimationFrame(function(){ lb.classList.add('open'); });
+
+    function closeLb() { lb.classList.remove('open'); }
+    lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+    document.getElementById('pdLbClose').addEventListener('click', closeLb);
+    document.addEventListener('keydown', function kd(e){ if(e.key==='Escape'){ closeLb(); document.removeEventListener('keydown',kd); } });
+  }
 
 })();

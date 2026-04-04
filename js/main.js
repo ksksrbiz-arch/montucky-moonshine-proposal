@@ -370,44 +370,45 @@
       var countEl = document.getElementById('productCount');
       if (countEl) countEl.setAttribute('data-target', products.length);
 
-      // Filter buttons
+      // Filter buttons + badge counts
       var filterBtns = document.querySelectorAll('.filter-btn');
       if (!filterBtns.length) return;
 
+      // Inject count badges
+      for (var b = 0; b < filterBtns.length; b++) {
+        var btn = filterBtns[b];
+        var cat = btn.getAttribute('data-cat');
+        var count = cat === 'all' ? products.length : products.filter(function(p){ return p.cat === cat; }).length;
+        if (count > 0) btn.innerHTML = btn.textContent + '<span class="f-badge">' + count + '</span>';
+      }
+
+      function staggerCards() {
+        var cards = grid.querySelectorAll('.p-card');
+        for (var m = 0; m < cards.length; m++) {
+          cards[m].style.opacity = '0';
+          cards[m].style.transform = 'translateY(16px)';
+          (function (card, delay) {
+            setTimeout(function () {
+              card.style.transition = 'opacity .35s ease, transform .35s ease';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, delay);
+          })(cards[m], m * 50);
+        }
+      }
+
       for (var i = 0; i < filterBtns.length; i++) {
         filterBtns[i].addEventListener('click', function () {
-          // Remove active from all
           for (var j = 0; j < filterBtns.length; j++) {
             filterBtns[j].classList.remove('active');
           }
           this.classList.add('active');
 
-          var cat = this.getAttribute('data-cat');
-          var filtered;
-          if (cat === 'all') {
-            filtered = products;
-          } else {
-            filtered = [];
-            for (var k = 0; k < products.length; k++) {
-              if (products[k].cat === cat) filtered.push(products[k]);
-            }
-          }
+          var filterCat = this.getAttribute('data-cat');
+          var filtered = filterCat === 'all' ? products : products.filter(function(p){ return p.cat === filterCat; });
 
           renderProducts(filtered, grid);
-
-          // Staggered fade-in
-          var cards = grid.querySelectorAll('.product-card');
-          for (var m = 0; m < cards.length; m++) {
-            cards[m].style.opacity = '0';
-            cards[m].style.transform = 'translateY(20px)';
-            (function (card, delay) {
-              setTimeout(function () {
-                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-              }, delay);
-            })(cards[m], m * 60);
-          }
+          staggerCards();
         });
       }
     });
@@ -826,3 +827,199 @@
   })();
 
 })();
+
+  /* ----------------------------------------------------------
+     27. Cart Drawer — state machine, DOM injection, nav icon
+  ---------------------------------------------------------- */
+  (function cartSystem() {
+    // ── State ─────────────────────────────────────────────
+    var STORAGE_KEY = 'mm_cart_v2';
+    var cart = { items: [] };
+
+    function cartSave() {
+      try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch(e){}
+    }
+    function cartLoad() {
+      try { var d = sessionStorage.getItem(STORAGE_KEY); if (d) cart = JSON.parse(d); } catch(e){}
+    }
+    function cartCount() {
+      return cart.items.reduce(function(s, i){ return s + i.qty; }, 0);
+    }
+    function cartSubtotal() {
+      return cart.items.reduce(function(s, i){ return s + (i.price * i.qty); }, 0);
+    }
+    function cartAdd(item) {
+      var existing = cart.items.find(function(x){ return x.id === item.id; });
+      if (existing) {
+        existing.qty = Math.min(existing.qty + (item.qty || 1), 10);
+      } else {
+        cart.items.push({ id: item.id, name: item.name, price: item.price, img: item.img, qty: item.qty || 1 });
+      }
+      cartSave();
+      cartRender();
+      openDrawer();
+      shakeCartBtn();
+    }
+    function cartRemove(id) {
+      cart.items = cart.items.filter(function(x){ return x.id !== id; });
+      cartSave(); cartRender();
+    }
+    function cartChangeQty(id, delta) {
+      var item = cart.items.find(function(x){ return x.id === id; });
+      if (!item) return;
+      item.qty = Math.max(1, Math.min(10, item.qty + delta));
+      cartSave(); cartRender();
+    }
+
+    // ── Inject HTML ───────────────────────────────────────
+    function injectDrawer() {
+      var drawerHTML =
+        '<div id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart">' +
+          '<div class="cart-hdr">' +
+            '<h3>Your Cart <span class="cart-hdr-count" id="cartHdrCount">0</span></h3>' +
+            '<button class="cart-close-x" id="cartCloseBtn" aria-label="Close cart">&#10005;</button>' +
+          '</div>' +
+          '<div class="cart-items" id="cartItemsEl"></div>' +
+          '<div class="cart-ftr" id="cartFtrEl">' +
+            '<div class="cart-sub-row"><span class="cart-sub-label">Subtotal</span><span class="cart-sub-val" id="cartSubtotalEl">$0.00</span></div>' +
+            '<p class="cart-ftr-note">Shipping &amp; taxes calculated at checkout</p>' +
+            '<a href="https://montuckymoonshine.com/cart" target="_blank" rel="noopener noreferrer" class="btn btn-p cart-checkout-btn" id="cartCheckoutBtn">Checkout on Shopify &rarr;</a>' +
+            '<button class="cart-continue-btn" id="cartContinueBtn">Continue Shopping</button>' +
+          '</div>' +
+        '</div>' +
+        '<div id="cartBackdrop" class="cart-backdrop"></div>';
+      var div = document.createElement('div');
+      div.innerHTML = drawerHTML;
+      while (div.firstChild) document.body.appendChild(div.firstChild);
+    }
+
+    function injectNavIcon() {
+      var navLinks = document.querySelector('.nav-links');
+      if (!navLinks) return;
+      var btn = document.createElement('button');
+      btn.id = 'cartNavBtn';
+      btn.className = 'cart-nav-btn';
+      btn.setAttribute('aria-label', 'Open cart');
+      btn.innerHTML =
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>' +
+        'Cart' +
+        '<span class="cart-nav-badge" id="cartNavBadge">0</span>';
+      navLinks.appendChild(btn);
+      btn.addEventListener('click', openDrawer);
+    }
+
+    // ── Open / close ──────────────────────────────────────
+    function openDrawer() {
+      var d = document.getElementById('cartDrawer');
+      var bd = document.getElementById('cartBackdrop');
+      if (!d || !bd) return;
+      d.classList.add('open');
+      bd.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      var closeBtn = document.getElementById('cartCloseBtn');
+      if (closeBtn) setTimeout(function(){ closeBtn.focus(); }, 100);
+    }
+    function closeDrawer() {
+      var d = document.getElementById('cartDrawer');
+      var bd = document.getElementById('cartBackdrop');
+      if (!d || !bd) return;
+      d.classList.remove('open');
+      bd.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function shakeCartBtn() {
+      var btn = document.getElementById('cartNavBtn');
+      if (!btn) return;
+      btn.classList.remove('shake');
+      void btn.offsetWidth;
+      btn.classList.add('shake');
+      setTimeout(function(){ btn.classList.remove('shake'); }, 450);
+    }
+
+    // ── Render ────────────────────────────────────────────
+    function cartRender() {
+      var count = cartCount();
+      var total = cartSubtotal();
+
+      // Update badge
+      var badge = document.getElementById('cartNavBadge');
+      if (badge) {
+        badge.textContent = count;
+        badge.classList.toggle('show', count > 0);
+      }
+
+      // Update header count
+      var hdrCount = document.getElementById('cartHdrCount');
+      if (hdrCount) hdrCount.textContent = count;
+
+      // Update subtotal
+      var sub = document.getElementById('cartSubtotalEl');
+      if (sub) sub.textContent = '$' + total.toFixed(2);
+
+      // Update items area
+      var el = document.getElementById('cartItemsEl');
+      if (!el) return;
+
+      if (cart.items.length === 0) {
+        el.innerHTML =
+          '<div class="cart-empty">' +
+            '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>' +
+            '<p>Your cart is empty.<br>Browse the shop to find something Montana-worthy.</p>' +
+            '<a href="shop.html" class="btn btn-o" style="font-size:.7rem;padding:.65rem 1.25rem">Shop Now</a>' +
+          '</div>';
+        return;
+      }
+
+      var html = '';
+      cart.items.forEach(function(item) {
+        html +=
+          '<div class="cart-item" data-id="' + item.id + '">' +
+            '<img class="cart-item-img" src="' + item.img + '" alt="' + item.name + '" loading="lazy">' +
+            '<div>' +
+              '<div class="cart-item-name">' + item.name + '</div>' +
+              '<div class="cart-item-price">$' + (item.price * item.qty).toFixed(2) + '</div>' +
+              '<div class="cart-item-row">' +
+                '<button class="c-qty-btn" data-id="' + item.id + '" data-d="-1" aria-label="Decrease quantity">&#8722;</button>' +
+                '<span class="c-qty-val">' + item.qty + '</span>' +
+                '<button class="c-qty-btn" data-id="' + item.id + '" data-d="1" aria-label="Increase quantity">&#43;</button>' +
+              '</div>' +
+            '</div>' +
+            '<button class="cart-item-remove" data-id="' + item.id + '" aria-label="Remove ' + item.name + '">&#10005;</button>' +
+          '</div>';
+      });
+      el.innerHTML = html;
+
+      // Wire qty + remove buttons
+      el.querySelectorAll('.c-qty-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(){
+          cartChangeQty(this.getAttribute('data-id'), parseInt(this.getAttribute('data-d'), 10));
+        });
+      });
+      el.querySelectorAll('.cart-item-remove').forEach(function(btn) {
+        btn.addEventListener('click', function(){
+          cartRemove(this.getAttribute('data-id'));
+        });
+      });
+    }
+
+    // ── Expose globally for product.js ────────────────────
+    window.mmCart = { add: cartAdd, open: openDrawer, close: closeDrawer };
+
+    // ── Init ──────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+      cartLoad();
+      injectDrawer();
+      injectNavIcon();
+      cartRender();
+
+      // Close listeners
+      document.addEventListener('click', function(e) {
+        if (e.target.id === 'cartBackdrop') closeDrawer();
+        if (e.target.id === 'cartCloseBtn' || e.target.closest('#cartCloseBtn')) closeDrawer();
+        if (e.target.id === 'cartContinueBtn') closeDrawer();
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') closeDrawer();
+      });
+    });
+  })();
