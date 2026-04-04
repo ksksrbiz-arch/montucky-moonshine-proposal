@@ -12,3 +12,4 @@ Disallow: /admin.jsx
 Disallow: /push_assets.sh
 
 Sitemap: https://montucky-moonshine-proposal.netlify.app/sitemap.xml
+Sitemap: https://montucky-moonshine-proposal.netlify.app/sitemap-images.xml
