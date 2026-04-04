@@ -1,4 +1,29 @@
 [[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/history"
+  to = "/history.html"
+  status = 200
+
+[[redirects]]
+  from = "/recipe-montana-mule"
+  to = "/recipe-montana-mule.html"
+  status = 200
+
+[[redirects]]
+  from = "/recipe-huckleberry-shine"
+  to = "/recipe-huckleberry-shine.html"
+  status = 200
+
+[[redirects]]
+  from = "/recipe-midnight-smoke"
+  to = "/recipe-midnight-smoke.html"
+  status = 200
+
+[[redirects]]
   from = "/contact"
   to = "/contact.html"
   status = 200

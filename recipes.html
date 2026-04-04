@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a0a08">
-  <meta name="description" content="Montana moonshine cocktail recipes from Montucky Moonshine. Classic moonshine drinks, campfire cocktails, and Helena-inspired pours.">
+  <meta name="description" content="Montana moonshine cocktail recipes — the Montana Mule, Huckleberry Shine, Midnight Smoke, Campfire Sour, and more. Real drinks for real Montana moments.">
   <meta property="og:title" content="Recipes — Montucky Moonshine | Montana Cocktails">
   <meta property="og:description" content="Classic moonshine drinks and Montana-inspired cocktails. From the still to your glass.">
   <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
-  <title>Recipes — Montucky Moonshine | Montana Cocktails</title>
+  <title>Recipes — Montucky Moonshine | Montana Cocktails & Moonshine Drinks</title>
   <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
   <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/recipes">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,10 +111,29 @@
           <p class="sec-desc">Every recipe here is built around the same principle as Montucky itself — keep it real, keep it Montana, and don't overthink it.</p>
         </div>
 
-        <div class="recipe-grid stagger-children">
+        <!-- Filter Bar -->
+        <div class="recipe-filters stagger-children" style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2.5rem">
+          <div style="display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;width:100%;margin-bottom:.5rem">
+            <button class="filter-btn active" data-filter="all" onclick="filterRecipes(this)">All Recipes</button>
+            <button class="filter-btn" data-filter="moment:campfire" onclick="filterRecipes(this)">🔥 Campfire</button>
+            <button class="filter-btn" data-filter="moment:trail" onclick="filterRecipes(this)">🏔 Trail</button>
+            <button class="filter-btn" data-filter="moment:cabin" onclick="filterRecipes(this)">🏚 Cabin</button>
+            <button class="filter-btn" data-filter="moment:porch" onclick="filterRecipes(this)">🌅 Porch Pour</button>
+          </div>
+          <div style="display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;width:100%">
+            <button class="filter-btn" data-filter="difficulty:easy" onclick="filterRecipes(this)">Easy</button>
+            <button class="filter-btn" data-filter="difficulty:intermediate" onclick="filterRecipes(this)">Intermediate</button>
+            <button class="filter-btn" data-filter="difficulty:advanced" onclick="filterRecipes(this)">Advanced</button>
+            <button class="filter-btn" data-filter="season:summer" onclick="filterRecipes(this)">Summer</button>
+            <button class="filter-btn" data-filter="season:winter" onclick="filterRecipes(this)">Winter</button>
+          </div>
+        </div>
+        <p id="recipeCount" style="text-align:center;font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:1.5rem">Showing all 6 recipes</p>
+
+        <div class="recipe-grid stagger-children" id="recipeGrid">
 
           <!-- Recipe 1 -->
-          <div class="recipe-card reveal from-scale">
+          <div class="recipe-card reveal from-scale" data-moment="trail" data-season="summer" data-difficulty="easy">
             <div class="recipe-img">
               <img src="assets/recipe-photos/recipe-montana-mule.jpg" alt="Montana Mule — moonshine with ginger beer and lime in a mason jar" loading="lazy">
               <div class="recipe-img-overlay"></div>
@@ -131,6 +150,7 @@
               <button class="recipe-expand-btn" onclick="toggleRecipe(this)" aria-expanded="false">
                 See Recipe <span class="expand-arrow">↓</span>
               </button>
+              <a href="recipe-montana-mule.html" style="font-family:var(--ff-c);font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:inline-flex;align-items:center;gap:.3rem;margin-top:.5rem;transition:color .3s" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--t3)'">Full recipe page &rarr;</a>
             </div>
             <div class="recipe-detail">
               <p style="font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem">Ingredients</p>
@@ -150,7 +170,7 @@
           </div>
 
           <!-- Recipe 2 -->
-          <div class="recipe-card reveal from-scale">
+          <div class="recipe-card reveal from-scale" data-moment="campfire" data-season="all" data-difficulty="intermediate">
             <div class="recipe-img">
               <img src="assets/recipe-photos/recipe-campfire-sour.jpg" alt="Campfire Sour — moonshine with honey and lemon" loading="lazy">
               <div class="recipe-img-overlay"></div>
@@ -187,7 +207,7 @@
           </div>
 
           <!-- Recipe 3 -->
-          <div class="recipe-card reveal from-scale">
+          <div class="recipe-card reveal from-scale" data-moment="porch" data-season="summer" data-difficulty="easy">
             <div class="recipe-img">
               <img src="assets/recipe-photos/recipe-huckleberry-shine.jpg" alt="Huckleberry Shine — Montana huckleberry moonshine cocktail" loading="lazy">
               <div class="recipe-img-overlay"></div>
@@ -223,7 +243,7 @@
           </div>
 
           <!-- Recipe 4 -->
-          <div class="recipe-card reveal from-scale">
+          <div class="recipe-card reveal from-scale" data-moment="cabin" data-season="winter" data-difficulty="advanced">
             <div class="recipe-img">
               <img src="assets/recipe-photos/recipe-midnight-smoke.jpg" alt="Midnight Smoke — cold brew and moonshine cocktail" loading="lazy">
               <div class="recipe-img-overlay"></div>
@@ -258,7 +278,7 @@
           </div>
 
           <!-- Recipe 5 -->
-          <div class="recipe-card reveal from-scale">
+          <div class="recipe-card reveal from-scale" data-moment="porch" data-season="summer" data-difficulty="easy">
             <div class="recipe-img">
               <img src="assets/recipe-photos/recipe-peach-shine.jpg" alt="Montana Peach Shine — peach moonshine cocktail" loading="lazy">
               <div class="recipe-img-overlay"></div>
@@ -293,7 +313,7 @@
           </div>
 
           <!-- Recipe 6 -->
-          <div class="recipe-card reveal from-scale">
+          <div class="recipe-card reveal from-scale" data-moment="porch" data-season="all" data-difficulty="expert">
             <div class="recipe-img">
               <img src="assets/recipe-photos/recipe-straight-pour.jpg" alt="The Straight Pour — moonshine neat" loading="lazy">
               <div class="recipe-img-overlay"></div>
@@ -358,6 +378,8 @@
           <a href="shop.html">Shop</a>
           <a href="venue.html">Venue</a>
           <a href="about.html">Our Story</a>
+          <a href="faq.html">FAQ</a>
+          <a href="history.html">Our History</a>
           <a href="recipes.html">Recipes</a>
         </div>
         <div class="foot-col"><h4>Shop</h4>
@@ -379,6 +401,34 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    function filterRecipes(btn) {
+      var all = document.querySelectorAll('.filter-btn');
+      all.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      var cards = document.querySelectorAll('#recipeGrid .recipe-card');
+      var shown = 0;
+      cards.forEach(function(card) {
+        if (filter === 'all') {
+          card.style.display = '';
+          shown++;
+        } else {
+          var parts = filter.split(':');
+          var attr = parts[0], val = parts[1];
+          if (card.getAttribute('data-'+attr) === val) {
+            card.style.display = '';
+            shown++;
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+      var countEl = document.getElementById('recipeCount');
+      if (countEl) countEl.textContent = 'Showing ' + shown + ' recipe' + (shown !== 1 ? 's' : '');
+    }
+  </script>
+
   <script>
     function toggleRecipe(btn) {
       var card = btn.closest('.recipe-card');
