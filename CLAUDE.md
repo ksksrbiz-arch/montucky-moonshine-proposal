@@ -12,8 +12,15 @@ Montucky Moonshine proposal site — a premium storefront and venue showcase for
 .
 ├── index.html          # Home — hero, photo strip, featured products, venue teaser, about teaser
 ├── shop.html           # Shop — category filter tabs, full product grid, Shopify CTA
+├── product.html        # Product detail — dynamic page via ?id=SLUG, gallery, reviews, recs
 ├── venue.html          # Venue — immersive hero, gallery with lightbox, features, booking form
 ├── about.html          # About — brand story, timeline, values, CTA
+├── contact.html        # Contact — form, business info, JSON-LD LocalBusiness schema
+├── recipes.html        # Recipes page
+├── deliverables.html   # Proposal deliverables overview (self-contained styles, not shared CSS)
+├── email-flows.html    # Email marketing flows proposal page
+├── growth-plan.html    # Growth strategy proposal page
+├── thank-you.html      # Post-signup confirmation (discount code delivery)
 ├── refund.html         # Refund policy (legal)
 ├── privacy.html        # Privacy policy (legal)
 ├── terms.html          # Terms of service (legal)
@@ -21,8 +28,9 @@ Montucky Moonshine proposal site — a premium storefront and venue showcase for
 ├── css/
 │   └── style.css       # Shared stylesheet — tokens, components, animations, premium effects
 ├── js/
-│   └── main.js         # Shared JavaScript — preloader, parallax, lightbox, filters, forms
-├── venue/              # Local venue photos (6 WebP images, 1215x911, ~200-250KB each)
+│   ├── main.js         # Shared JavaScript — preloader, parallax, lightbox, filters, forms
+│   └── product.js      # Product detail page logic — reads ?id=SLUG, renders product data
+├── venue/              # Local venue photos (6 WebP images, 1215x911, ~160-250KB each)
 │   ├── bar.webp
 │   ├── bar_long.webp
 │   ├── bar_right.webp
@@ -30,6 +38,7 @@ Montucky Moonshine proposal site — a premium storefront and venue showcase for
 │   ├── lounge.webp
 │   └── pool_table.webp
 ├── admin.jsx           # React admin dashboard prototype (not deployed)
+├── push_assets.sh      # Bulk asset upload script (GitHub API, not for site deployment)
 ├── netlify.toml        # Netlify config — redirects, security headers, caching
 └── README.md
 ```
@@ -78,22 +87,38 @@ Each HTML page is a standalone document referencing shared `css/style.css` and `
 - Dynamic copyright year
 - Smooth scroll for anchor links
 
+### js/product.js
+- Separate IIFE for `product.html` — reads `?id=SLUG` from URL query string
+- Contains its own `PRODUCTS` array (mirrors main.js but with extended fields: `imgs[]`, `desc`, `reviewsList[]`, `scarcity`, `tag`)
+- Multi-image gallery with thumbnail switching
+- Star rating rendering, review cards, aggregate ratings
+- Quantity selector (1–10, exposed as `window.changeQty`)
+- Free-shipping progress bar (threshold: $40)
+- "You may also like" recommendations grid (filters out current product)
+- JSON-LD Product schema injection
+- Sticky add-to-cart bar on mobile (IntersectionObserver on buy button)
+
 ### Key Patterns
 - Images use skeleton loading: `.img-wrap` with shimmer → `.loaded` class on `onload`
 - Scroll reveals: `.reveal` elements get `.visible` via IntersectionObserver
 - All external links use `target="_blank" rel="noopener noreferrer"`
-- Product links go to `montuckymoonshine.com/products/...` (Shopify)
+- Product links go to `montuckymoonshine.com/products/...` (Shopify) or internal `product.html?id=SLUG`
 - Booking form uses Netlify Forms (`data-netlify="true"`) with honeypot spam protection
 - Product count in venue stats is dynamically set from the `products` array length
 - Copyright year in footer is dynamically generated via JS
 - Page transitions via `body.page-loaded` class
+- Product detail pages use URL query params (`?id=SLUG`) for dynamic rendering
+- `deliverables.html` uses self-contained inline `<style>` (does not use shared `css/style.css`)
+- Proposal pages (`email-flows.html`, `growth-plan.html`) share the site nav and link to `deliverables.html` as "Proposal"
 
 ## Deployment
 
 - **Host:** Netlify
 - **Domain:** montucky-moonshine-proposal.netlify.app
-- **Config:** `netlify.toml` — clean URL redirects, custom 404, security headers, tiered caching
+- **Config:** `netlify.toml` — clean URL redirects, security headers, tiered caching
+- **Clean URLs:** All pages have `/page` → `/page.html` redirects (including contact, recipes, product, email-flows, growth-plan, thank-you, deliverables)
 - **Security headers:** X-Frame-Options DENY, X-Content-Type-Options nosniff, CSP, strict Referrer-Policy
+- **CSP:** Allows `'unsafe-inline'` for scripts/styles, Google Fonts, Shopify CDN images
 - **Caching:** 1hr HTML, 24hr CSS/JS, 7d venue images
 
 ## Development Workflow
@@ -113,6 +138,9 @@ Each HTML page is a standalone document referencing shared `css/style.css` and `
 - **admin.jsx is separate** — it's a React prototype, not connected to the main site
 - **Venue images are real photos** — do not replace with placeholders
 - **Business info is real** — D & V Enterprises LLC, Helena MT address, email are actual business details
-- **Products are defined in js/main.js** — the product data array lives in the shared JS file
-- **JSON-LD structured data** is in `index.html` `<head>` for LocalBusiness schema
+- **Products are defined in TWO places** — `js/main.js` (shop grid, 13 products) AND `js/product.js` (detail pages, 5 products with extended data). Keep them in sync when modifying products.
+- **JSON-LD structured data** is in `index.html` and `contact.html` `<head>` for LocalBusiness schema; `product.html` injects Product schema dynamically
 - **SEO meta tags** (Open Graph, Twitter Cards, canonical) are on every page
+- **deliverables.html is self-contained** — it uses inline styles, not the shared `css/style.css`. Edit its `<style>` block directly.
+- **New pages must be added to `netlify.toml`** — add a `[[redirects]]` block for clean URLs
+- **push_assets.sh** is a utility script for uploading assets via GitHub API — not part of the site itself
