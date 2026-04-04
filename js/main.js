@@ -343,15 +343,17 @@
       for (var i = 0; i < list.length; i++) {
         var item = list[i];
         html +=
-          (PRODUCT_SLUGS[item.n] ? '<a href="product.html?id=' + PRODUCT_SLUGS[item.n] + '"' : '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer"') + ' class="product-card" data-cat="' + item.cat + '" style="animation-delay:' + (i * 60) + 'ms">' +
-            '<div class="img-wrap">' +
-              '<img src="' + item.img + '" alt="' + item.n + '" loading="lazy" onload="this.parentElement.classList.add(\'loaded\')">' +
-              '<div class="product-overlay"><span class="btn btn-o">Buy Now</span></div>' +
+          (PRODUCT_SLUGS[item.n] ? '<a href="product.html?id=' + PRODUCT_SLUGS[item.n] + '"' : '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer"') + ' class="p-card reveal from-scale" data-cat="' + item.cat + '" style="animation-delay:' + (i * 60) + 'ms" role="listitem">' +
+            '<div class="p-img">' +
+              '<div class="img-wrap">' +
+                '<img src="' + item.img + '" alt="' + item.n + '" loading="lazy" onload="this.parentElement.classList.add(\'loaded\')">' +
+              '</div>' +
+              '<div class="p-hover"><span>Shop Now</span></div>' +
             '</div>' +
-            '<div class="product-info">' +
-              '<span class="product-tag">' + item.tag + '</span>' +
-              '<h3>' + item.n + '</h3>' +
-              '<span class="product-price">' + item.p + '</span>' +
+            '<div class="p-info">' +
+              '<span class="p-tag">' + item.tag + '</span>' +
+              '<h3 class="p-name">' + item.n + '</h3>' +
+              '<span class="p-price">' + item.p + '</span>' +
             '</div>' +
           '</a>';
       }
