@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme:dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a08">
+  <meta name="description" content="Moonshine Lemonade recipe — a refreshing summer cocktail made with Montucky Moonshine, fresh lemonade, and simple syrup. Perfect for river days and trail adventures.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Moonshine Lemonade — Montucky Moonshine Recipe">
+  <meta property="og:description" content="A refreshing summer cocktail made with Montucky Moonshine, fresh lemonade, and simple syrup. Perfect for river days and trail adventures.">
+  <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <meta property="og:url" content="https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/moonshine-lemonade">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Moonshine Lemonade — Montucky Moonshine Recipe">
+  <meta name="twitter:description" content="A refreshing summer cocktail made with Montucky Moonshine, fresh lemonade, and simple syrup.">
+  <meta name="twitter:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <title>Moonshine Lemonade — Montucky Moonshine Recipe</title>
+  <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/moonshine-lemonade">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .recipe-hero{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
+    .recipe-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.18) saturate(.6)}
+    .recipe-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.3),rgba(10,10,8,.95))}
+    .recipe-hero-content{position:relative;z-index:2;text-align:center;padding:6rem 1.5rem 3rem}
+    .recipe-category{font-family:var(--ff-c);font-size:.7rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:#2E86AB;margin-bottom:.75rem}
+    .recipe-hero-title{font-family:var(--ff-d);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:1rem}
+    .recipe-meta{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;font-family:var(--ff-c);font-size:.75rem;color:var(--t2);letter-spacing:.1em;text-transform:uppercase}
+    .recipe-meta span{display:flex;align-items:center;gap:.4rem}
+
+    .jump-to-recipe{position:fixed;bottom:2rem;right:2rem;z-index:90;background:var(--amber);color:var(--bg);font-family:var(--ff-c);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.75rem 1.25rem;border:none;border-radius:2px;cursor:pointer;box-shadow:0 4px 20px rgba(200,146,42,.4);transition:transform .3s,box-shadow .3s}
+    .jump-to-recipe:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(200,146,42,.6)}
+
+    .recipe-story{max-width:720px;margin:0 auto;padding:4rem 1.5rem}
+    .recipe-story p{font-size:1.05rem;line-height:1.85;color:var(--t1);margin-bottom:1.5rem}
+    .recipe-story p:first-of-type::first-letter{font-family:var(--ff-d);font-size:3.5rem;float:left;line-height:1;margin-right:.5rem;color:var(--amber);font-weight:700}
+
+    .recipe-card{max-width:700px;margin:0 auto 4rem;background:var(--card);border:1px solid var(--bdr);border-radius:4px;overflow:hidden}
+    .recipe-card-header{background:linear-gradient(135deg,rgba(46,134,171,.15),rgba(200,146,42,.1));padding:2rem;text-align:center;border-bottom:1px solid var(--bdr)}
+    .recipe-card-header h2{font-family:var(--ff-d);font-size:1.6rem;color:var(--cream);margin-bottom:.5rem}
+    .recipe-card-details{display:flex;gap:2rem;justify-content:center;font-family:var(--ff-c);font-size:.7rem;color:var(--t2);letter-spacing:.15em;text-transform:uppercase}
+    .recipe-card-body{padding:2rem}
+    .recipe-card-body h3{font-family:var(--ff-c);font-size:.75rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+    .ingredients-list{list-style:none;padding:0;margin-bottom:2rem}
+    .ingredients-list li{padding:.6rem 0;border-bottom:1px solid var(--bdr);color:var(--t1);font-size:.95rem;display:flex;align-items:baseline;gap:.75rem}
+    .ingredients-list li::before{content:'';display:inline-block;width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:.4rem}
+    .instructions-list{list-style:none;padding:0;counter-reset:step}
+    .instructions-list li{counter-increment:step;padding:.75rem 0;border-bottom:1px solid var(--bdr);color:var(--t1);font-size:.95rem;display:flex;gap:1rem;align-items:baseline}
+    .instructions-list li::before{content:counter(step);font-family:var(--ff-d);font-size:1.3rem;font-weight:700;color:var(--amber);flex-shrink:0;width:1.5rem;text-align:center}
+
+    .recipe-extras{max-width:700px;margin:0 auto;padding:0 1.5rem 4rem}
+    .recipe-extra-card{background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:2rem;margin-bottom:2rem}
+    .recipe-extra-card h3{font-family:var(--ff-c);font-size:.75rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+    .recipe-extra-card p{color:var(--t1);font-size:.95rem;line-height:1.7}
+    .recipe-extra-card a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
+
+    .recipe-faq{max-width:700px;margin:0 auto;padding:0 1.5rem 4rem}
+    .recipe-faq h2{font-family:var(--ff-d);font-size:1.4rem;color:var(--cream);margin-bottom:2rem;text-align:center}
+    .faq-item{border-bottom:1px solid var(--bdr);padding:1.25rem 0}
+    .faq-item h4{font-family:var(--ff-b);font-weight:600;color:var(--cream);font-size:.95rem;margin-bottom:.5rem}
+    .faq-item p{color:var(--t2);font-size:.9rem;line-height:1.7}
+
+    .related-recipes{padding:4rem 1.5rem;background:var(--bg2)}
+    .related-recipes .sec-in{max-width:1000px;margin:0 auto}
+    .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem}
+    .related-card{background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:1.5rem;transition:border-color .3s,transform .3s}
+    .related-card:hover{border-color:var(--amber);transform:translateY(-3px)}
+    .related-card .related-cat{font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.5rem}
+    .related-card h4{font-family:var(--ff-d);font-size:1rem;color:var(--cream);margin-bottom:.4rem}
+    .related-card p{font-size:.8rem;color:var(--t3);line-height:1.5}
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Moonshine Lemonade",
+    "description": "A refreshing summer cocktail made with Montucky Moonshine, fresh lemonade, and simple syrup. Perfect for river days and trail adventures.",
+    "author": {"@type": "Organization", "name": "Montucky Moonshine"},
+    "prepTime": "PT5M",
+    "totalTime": "PT5M",
+    "recipeYield": "1 serving",
+    "recipeCategory": "Cocktail",
+    "recipeCuisine": "American",
+    "keywords": "moonshine, lemonade, summer cocktail, Montana",
+    "recipeIngredient": [
+      "2 oz Montucky Moonshine",
+      "4 oz fresh lemonade",
+      "1 oz simple syrup",
+      "Lemon wheel for garnish",
+      "Ice"
+    ],
+    "recipeInstructions": [
+      {"@type": "HowToStep", "text": "Fill a tall glass with ice."},
+      {"@type": "HowToStep", "text": "Pour 2 oz Montucky Moonshine over the ice."},
+      {"@type": "HowToStep", "text": "Add 4 oz fresh lemonade and 1 oz simple syrup."},
+      {"@type": "HowToStep", "text": "Stir gently to combine."},
+      {"@type": "HowToStep", "text": "Garnish with a lemon wheel and serve."}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <a href="#main" class="skip">Skip to content</a>
+
+  <!--===== NAV =====-->
+  <nav id="navbar" role="banner">
+    <div class="nav-in">
+      <a class="nav-logo" href="../../index.html" aria-label="Home">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
+        <div class="nav-brand">Montucky Moonshine<small>Est. Montana</small></div>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="../../shop.html">Shop</a>
+        <a href="../../venue.html">Venue</a>
+        <a href="../../about.html">About</a>
+        <a href="../index.html" class="active">Lifestyle</a>
+        <a href="../../contact.html">Contact</a>
+        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="../../index.html">Home</a>
+    <a href="../../shop.html">Shop</a>
+    <a href="../../venue.html">Venue</a>
+    <a href="../../about.html">About</a>
+    <a href="../index.html" class="active">Lifestyle</a>
+    <a href="../../contact.html">Contact</a>
+    <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="mobile-cta">Shop Now &rarr;</a>
+  </nav>
+
+  <!-- Jump to Recipe -->
+  <a href="#recipe-card" class="jump-to-recipe">Jump to Recipe</a>
+
+  <main id="main">
+
+    <!--===== HERO =====-->
+    <section class="recipe-hero">
+      <img src="../../assets/montucky-visuals/09_hero_bar_large.png" alt="Montucky Moonshine bar scene" class="recipe-hero-bg">
+      <div class="recipe-hero-overlay"></div>
+      <div class="recipe-hero-content">
+        <div class="recipe-category" style="color:#2E86AB">River &amp; Trail</div>
+        <h1 class="recipe-hero-title">Moonshine Lemonade</h1>
+        <div class="recipe-meta">
+          <span>&#9202; 5 min</span>
+          <span>&#127860; 1 serving</span>
+          <span>&#9728; Summer</span>
+        </div>
+      </div>
+    </section>
+
+    <!--===== STORY =====-->
+    <section class="recipe-story reveal">
+      <p>There is a particular stretch of the Missouri River just outside Helena where the cottonwoods lean so far over the water they practically whisper to the current. You have been on the river since morning, floating lazy bends and watching osprey dive from impossible heights. The sun has shifted from forgiving to relentless, and the cooler wedged between your knees is the most important piece of equipment on the raft. This is the moment that calls for a Moonshine Lemonade.</p>
+      <p>It is not a complicated drink, and that is precisely the point. When the afternoon heat sits heavy on the water and conversation has slowed to the rhythm of the paddle, you want something bright, cold, and effortless. The tartness of fresh lemonade cuts through the warmth while the moonshine adds just enough backbone to remind you this is not just any summer day. This is a Montana summer day, and you have earned every sip of it. Squeeze the lemon, pour generously, and let the river do the rest.</p>
+    </section>
+
+    <!--===== RECIPE CARD =====-->
+    <section id="recipe-card">
+      <div class="recipe-card reveal">
+        <div class="recipe-card-header">
+          <h2>Moonshine Lemonade</h2>
+          <div class="recipe-card-details">
+            <span>Prep: 5 min</span>
+            <span>Serves: 1</span>
+            <span>Difficulty: Easy</span>
+          </div>
+        </div>
+        <div class="recipe-card-body">
+          <h3>Ingredients</h3>
+          <ul class="ingredients-list">
+            <li>2 oz Montucky Moonshine</li>
+            <li>4 oz fresh lemonade</li>
+            <li>1 oz simple syrup</li>
+            <li>Lemon wheel for garnish</li>
+            <li>Ice</li>
+          </ul>
+          <h3>Instructions</h3>
+          <ol class="instructions-list">
+            <li>Fill a tall glass with ice.</li>
+            <li>Pour 2 oz Montucky Moonshine over the ice.</li>
+            <li>Add 4 oz fresh lemonade and 1 oz simple syrup.</li>
+            <li>Stir gently to combine.</li>
+            <li>Garnish with a lemon wheel and serve immediately.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!--===== EXTRAS =====-->
+    <section class="recipe-extras">
+      <div class="recipe-extra-card reveal">
+        <h3>Serve It In</h3>
+        <p>A classic Mason jar or a tall Collins glass. If you are on the river, a durable tumbler with a lid keeps things cold and spill-free. The wide mouth lets you catch the lemon aroma with every sip.</p>
+      </div>
+      <div class="recipe-extra-card reveal">
+        <h3>Complete the Moment</h3>
+        <p>Pair your Moonshine Lemonade with the <a href="https://montuckymoonshine.com/products/montucky-moonshine-mug" target="_blank" rel="noopener noreferrer">Montucky Moonshine Mug</a> — a rugged enamel camp mug built for river days, tailgates, and everything in between.</p>
+      </div>
+    </section>
+
+    <!--===== FAQ =====-->
+    <section class="recipe-faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item reveal">
+        <h4>Can I make this ahead of time for a float trip?</h4>
+        <p>Absolutely. Mix the moonshine, lemonade, and simple syrup in a sealed container and keep it on ice. Add fresh ice and the lemon garnish when you are ready to serve. It holds up well for several hours.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h4>What if I do not have simple syrup?</h4>
+        <p>Dissolve equal parts sugar and hot water, stir until clear, and let it cool. Or skip it entirely if your lemonade is already sweet enough. Taste and adjust as you go.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h4>Can I use a different citrus instead of lemon?</h4>
+        <p>Lime works beautifully for a slightly different profile. Grapefruit adds bitterness that pairs well with the moonshine. Use whatever citrus you have on hand and adjust the syrup accordingly.</p>
+      </div>
+    </section>
+
+    <!--===== RELATED =====-->
+    <section class="related-recipes">
+      <div class="sec-in">
+        <div class="sec-hdr">
+          <div class="sec-label">More Recipes</div>
+          <h2 class="sec-title">Keep <em>Mixing</em></h2>
+          <div class="sec-line"></div>
+        </div>
+        <div class="related-grid">
+          <a href="huckleberry-moonshine-smash.html" class="related-card reveal">
+            <div class="related-cat" style="color:#2E86AB">River &amp; Trail</div>
+            <h4>Huckleberry Moonshine Smash</h4>
+            <p>Wild huckleberry syrup, fresh mint, and a hit of Montana moonshine.</p>
+          </a>
+          <a href="montana-mule.html" class="related-card reveal">
+            <div class="related-cat" style="color:#2E86AB">River &amp; Trail</div>
+            <h4>Montana Mule</h4>
+            <p>The classic mule gets a Montana twist with moonshine and ginger beer.</p>
+          </a>
+          <a href="sweet-tea-moonshine.html" class="related-card reveal">
+            <div class="related-cat" style="color:#2E86AB">River &amp; Trail</div>
+            <h4>Sweet Tea Moonshine</h4>
+            <p>Southern charm meets Big Sky country in one tall, refreshing glass.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--===== FOOTER =====-->
+  <footer class="safe-b" role="contentinfo">
+    <div class="foot-in">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <div class="nav-brand" style="font-size:1.25rem">Montucky Moonshine<small>Est. Montana</small></div>
+          <p>Great ideas and fantastic products, handcrafted with Montana spirit.</p>
+        </div>
+        <div class="foot-col"><h4>Shop</h4>
+          <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer">All Products</a>
+        </div>
+        <div class="foot-col"><h4>Explore</h4>
+          <a href="../../venue.html">The Venue</a>
+          <a href="../index.html">Lifestyle</a>
+          <a href="../../about.html">Our Story</a>
+        </div>
+        <div class="foot-col"><h4>Policies</h4>
+          <a href="../../refund.html">Refund Policy</a>
+          <a href="../../privacy.html">Privacy Policy</a>
+          <a href="../../terms.html">Terms of Service</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p>&copy; <span id="copyrightYear"></span> D &amp; V Enterprises LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>
