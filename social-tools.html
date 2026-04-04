@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Montucky Moonshine — Social Media Tools | 1Commerce</title>
+<meta name="description" content="Social media content tools for Montucky Moonshine — caption generator, hashtag sets, content calendar, and post templates.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a08;--bg2:#121210;--card:#1a1a16;--amber:#c8922a;--amber-l:#e6b04a;--cream:#f5f0e6;--t2:#c4bfb2;--t3:#8a8578;--bdr:rgba(200,146,42,.12);--ff-d:'Playfair Display',Georgia,serif;--ff-b:'Barlow',system-ui,sans-serif;--ff-c:'Barlow Condensed',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--ff-b);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+a{color:var(--amber);text-decoration:none;transition:color .3s}
+a:hover{color:var(--amber-l)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--amber)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,8,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);padding:.75rem 1.5rem}
+.nav-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-logo img{width:38px;height:38px;border-radius:2px}
+.nav-brand{font-family:var(--ff-d);font-size:1rem;font-weight:700;color:var(--cream)}
+.nav-brand small{display:block;font-family:var(--ff-c);font-size:.55rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--t3)}
+.nav-links{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.nav-links a{font-family:var(--ff-c);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t2)}
+.nav-links a.active,.nav-links a:hover{color:var(--amber)}
+.nav-links a.nav-cta{background:var(--amber);color:var(--bg);padding:.4rem .9rem;border-radius:2px}
+
+/* LAYOUT */
+.page-hero{padding:5rem 1.5rem 2.5rem;border-bottom:1px solid var(--bdr);background:linear-gradient(160deg,rgba(200,146,42,.05) 0%,transparent 60%)}
+.page-hero-in{max-width:900px;margin:0 auto}
+.label{font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem}
+h1{font-family:var(--ff-d);font-size:clamp(2rem,5vw,3.25rem);font-weight:900;color:var(--cream);line-height:1.15;margin-bottom:.75rem}
+.hero-sub{font-size:1rem;color:var(--t2);max-width:620px;line-height:1.75}
+.sec-in{max-width:1100px;margin:0 auto}
+.section{padding:3rem 1.5rem}
+.section-alt{background:var(--bg2);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
+h2{font-family:var(--ff-d);font-size:1.5rem;font-weight:700;color:var(--cream);margin-bottom:1rem}
+h3{font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:.6rem}
+p{color:var(--t2);font-size:.9rem;line-height:1.75}
+
+/* TOOLS */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;margin-top:2rem}
+.tool-card{background:var(--card);border:1px solid var(--bdr);border-radius:2px;padding:1.75rem;transition:border-color .3s}
+.tool-card:hover{border-color:rgba(200,146,42,.3)}
+.tool-icon{font-size:1.75rem;margin-bottom:.75rem}
+.tool-card h3{color:var(--amber)}
+
+/* CAPTION GEN */
+.cap-form{display:flex;flex-direction:column;gap:.75rem;margin-top:1.25rem}
+.cap-form label{font-family:var(--ff-c);font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+.cap-form select,.cap-form input,.cap-form textarea{width:100%;background:var(--bg2);border:1px solid var(--bdr);border-radius:2px;padding:.65rem .85rem;color:var(--cream);font-family:var(--ff-b);font-size:.85rem;outline:none;transition:border-color .3s}
+.cap-form select:focus,.cap-form input:focus,.cap-form textarea:focus{border-color:var(--amber)}
+.cap-form select option{background:var(--bg2)}
+.btn-primary{background:var(--amber);color:var(--bg);border:none;border-radius:2px;padding:.75rem 1.5rem;font-family:var(--ff-c);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .3s;width:100%}
+.btn-primary:hover{background:var(--amber-l)}
+.btn-copy{background:transparent;border:1px solid var(--bdr);border-radius:2px;padding:.4rem .85rem;font-family:var(--ff-c);font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);cursor:pointer;transition:all .3s}
+.btn-copy:hover{border-color:var(--amber);color:var(--amber)}
+.cap-output{margin-top:1rem;background:var(--bg);border:1px solid var(--bdr);border-radius:2px;padding:1.25rem;display:none}
+.cap-output.show{display:block}
+.cap-text{font-size:.85rem;line-height:1.8;color:var(--cream);white-space:pre-line;margin-bottom:.75rem}
+.cap-tags{font-size:.75rem;color:var(--amber);line-height:1.8;margin-bottom:.75rem}
+.cap-meta{font-family:var(--ff-c);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+
+/* HASHTAG SETS */
+.hashtag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-top:1.5rem}
+.hash-card{background:var(--card);border:1px solid var(--bdr);border-radius:2px;padding:1.25rem}
+.hash-card h4{font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+.hash-list{font-size:.75rem;color:var(--t2);line-height:2;word-break:break-word}
+.hash-list span{color:var(--amber);margin-right:.25rem}
+
+/* CONTENT CALENDAR */
+.cal-week{margin-top:1.5rem;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-day{background:var(--card);border:1px solid var(--bdr);border-radius:2px;padding:.6rem .5rem;text-align:center}
+.cal-day-label{font-family:var(--ff-c);font-size:.5rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:.4rem}
+.cal-day-type{font-size:.6rem;color:var(--t2);line-height:1.4}
+.cal-day.amber{border-color:var(--amber)}
+.cal-day.amber .cal-day-type{color:var(--amber)}
+.cal-day.green{border-color:#3B6D11}
+.cal-day.green .cal-day-type{color:#97C459}
+.cal-day.blue{border-color:#185FA5}
+.cal-day.blue .cal-day-type{color:#85B7EB}
+@media(max-width:600px){.cal-week{grid-template-columns:repeat(3,1fr)}}
+
+/* POST TEMPLATES */
+.template-tabs{display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.tab-btn{background:transparent;border:1px solid var(--bdr);border-radius:2px;padding:.4rem .85rem;font-family:var(--ff-c);font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);cursor:pointer;transition:all .3s}
+.tab-btn.active,.tab-btn:hover{border-color:var(--amber);color:var(--amber)}
+.template-panel{display:none}
+.template-panel.active{display:block}
+.template-item{background:var(--card);border:1px solid var(--bdr);border-radius:2px;padding:1.25rem;margin-bottom:1rem}
+.template-platform{font-family:var(--ff-c);font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem}
+.template-body{font-size:.85rem;line-height:1.8;color:var(--t2);white-space:pre-line;border-left:2px solid var(--bdr);padding-left:.85rem}
+.template-note{font-family:var(--ff-c);font-size:.55rem;letter-spacing:.08em;color:var(--t3);margin-top:.6rem}
+.copy-row{display:flex;justify-content:flex-end;margin-top:.5rem}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:2rem 1.5rem;text-align:center;margin-top:4rem}
+footer p{font-size:.8rem;color:var(--t3)}
+.copied-toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--amber);color:var(--bg);font-family:var(--ff-c);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.25rem;border-radius:2px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9998}
+.copied-toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="copied-toast" id="copiedToast">Copied to clipboard ✓</div>
+
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="index.html" aria-label="Home">
+      <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine" width="38" height="38">
+      <div class="nav-brand">Montucky Moonshine<small>Social Tools</small></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="deliverables.html">Deliverables</a>
+      <a href="email-flows.html">Email Flows</a>
+      <a href="growth-plan.html">Growth Plan</a>
+      <a href="builder-kit.html">Builder Kit</a>
+      <a href="social-tools.html" class="active">Social Tools</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-in">
+    <p class="label">Stream 4 — Automation</p>
+    <h1>Social Media <em style="font-style:italic;color:var(--amber)">Tools</em></h1>
+    <p class="hero-sub">Caption generator, hashtag sets, a 7-day content calendar, and ready-to-post templates across Facebook, Instagram, and TikTok. Built for Montucky — copy and deploy.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-in">
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-icon">✍️</div>
+        <h3>Caption Generator</h3>
+        <p>Select a content type, add optional context, and get a complete caption with hashtags formatted for each platform.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🏷️</div>
+        <h3>Hashtag Sets</h3>
+        <p>Pre-researched hashtag groups organized by category — product, venue, lifestyle, and Montana culture.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📅</div>
+        <h3>7-Day Content Calendar</h3>
+        <p>A repeatable posting framework showing what type of content to post each day of the week.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📋</div>
+        <h3>Post Templates</h3>
+        <p>Plug-and-play post templates for product launches, venue promos, recipe reveals, and brand storytelling.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAPTION GENERATOR -->
+<div class="section section-alt">
+  <div class="sec-in" style="max-width:800px">
+    <h2>Caption Generator</h2>
+    <p>Select a post type and platform. Add any specific context (a product name, a recipe, an event date). Hit generate.</p>
+    <div class="cap-form">
+      <div>
+        <label for="postType">Post Type</label>
+        <select id="postType">
+          <option value="product">Product Highlight</option>
+          <option value="recipe">Recipe / Cocktail</option>
+          <option value="venue">Venue &amp; Events</option>
+          <option value="culture">Montana Heritage &amp; Culture</option>
+          <option value="lifestyle">Lifestyle / Outdoor</option>
+          <option value="promo">Promotion / Sale</option>
+          <option value="ugc">UGC / Customer Feature</option>
+        </select>
+      </div>
+      <div>
+        <label for="platform">Platform</label>
+        <select id="platform">
+          <option value="instagram">Instagram</option>
+          <option value="facebook">Facebook</option>
+          <option value="tiktok">TikTok</option>
+        </select>
+      </div>
+      <div>
+        <label for="context">Context (optional)</label>
+        <input id="context" type="text" placeholder="e.g. Montana Mule recipe, enamel camping mugs, Friday night event...">
+      </div>
+      <button class="btn-primary" onclick="generateCaption()">Generate Caption</button>
+    </div>
+    <div class="cap-output" id="capOutput">
+      <div class="cap-text" id="capText"></div>
+      <div class="cap-tags" id="capTags"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="cap-meta" id="capMeta"></span>
+        <button class="btn-copy" onclick="copyCaption()">Copy Full Caption</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HASHTAG SETS -->
+<div class="section">
+  <div class="sec-in">
+    <h2>Hashtag Sets</h2>
+    <p>Use the appropriate set for each content type. Mix sets to stay under 30 tags on Instagram. Copy entire sets with one click.</p>
+    <div class="hashtag-grid">
+
+      <div class="hash-card">
+        <h4>🥃 Core Brand</h4>
+        <div class="hash-list">
+          <span>#MontuckyMoonshine</span><span>#MontanaMoonshine</span><span>#CraftMoonshine</span><span>#HelenaMT</span><span>#MontanaSpirits</span><span>#MontanaDistillery</span><span>#HandcraftedSpirits</span><span>#MontanaProud</span><span>#BigSkySpirits</span><span>#MontanaMade</span>
+        </div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyHashtags('core')">Copy Set</button></div>
+      </div>
+
+      <div class="hash-card">
+        <h4>🍋 Recipe &amp; Cocktail</h4>
+        <div class="hash-list">
+          <span>#MoonshineRecipe</span><span>#MoonshinecocktailS</span><span>#CocktailsOfInstagram</span><span>#DrinkRecipes</span><span>#CraftCocktails</span><span>#MixologyMonday</span><span>#HuckleberryMoonshine</span><span>#MontanaMule</span><span>#WhiskeyDrinks</span><span>#HomeBartender</span>
+        </div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyHashtags('recipe')">Copy Set</button></div>
+      </div>
+
+      <div class="hash-card">
+        <h4>🏔️ Montana Lifestyle</h4>
+        <div class="hash-list">
+          <span>#MontanaLife</span><span>#BigSkyCountry</span><span>#MontanaOutdoors</span><span>#VisitMontana</span><span>#GlacierNationalPark</span><span>#MontanaWild</span><span>#OutdoorDrinks</span><span>#CampfireDrinks</span><span>#MontanaLiving</span><span>#PublicLands</span>
+        </div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyHashtags('lifestyle')">Copy Set</button></div>
+      </div>
+
+      <div class="hash-card">
+        <h4>🎪 Venue &amp; Events</h4>
+        <div class="hash-list">
+          <span>#HelenaEvents</span><span>#MontanaEvents</span><span>#PrivateVenue</span><span>#EventVenue</span><span>#DrinkLocal</span><span>#LocalBar</span><span>#BarScene</span><span>#HelenaBar</span><span>#MontanaBar</span><span>#SpiritsTasting</span>
+        </div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyHashtags('venue')">Copy Set</button></div>
+      </div>
+
+      <div class="hash-card">
+        <h4>🏛️ Heritage &amp; Culture</h4>
+        <div class="hash-list">
+          <span>#MoonshineHistory</span><span>#ProhibitionEra</span><span>#MontanaHistory</span><span>#AppalachianCulture</span><span>#CraftDistilling</span><span>#WhiskyRebellion</span><span>#BootleggerTrail</span><span>#WesternHeritage</span><span>#AmericanSpirits</span><span>#MoonshineRoots</span>
+        </div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyHashtags('heritage')">Copy Set</button></div>
+      </div>
+
+      <div class="hash-card">
+        <h4>🛍️ Shop &amp; Products</h4>
+        <div class="hash-list">
+          <span>#ShopLocal</span><span>#HandmadeGoods</span><span>#MontanaMerchandise</span><span>#WhiskeyCup</span><span>#EnamelMug</span><span>#MasonJar</span><span>#DrinkwareDesign</span><span>#GiftIdeas</span><span>#MontanaGift</span><span>#SmallBusiness</span>
+        </div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyHashtags('shop')">Copy Set</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7-DAY CONTENT CALENDAR -->
+<div class="section section-alt">
+  <div class="sec-in">
+    <h2>7-Day Content Framework</h2>
+    <p>Repeat this weekly structure. Amber = high-priority post. Green = engagement driver. Blue = storytelling/value.</p>
+    <div class="cal-week">
+      <div class="cal-day amber"><div class="cal-day-label">Mon</div><div class="cal-day-type">Product Highlight</div></div>
+      <div class="cal-day blue"><div class="cal-day-label">Tue</div><div class="cal-day-type">Culture Story / History</div></div>
+      <div class="cal-day green"><div class="cal-day-label">Wed</div><div class="cal-day-type">Recipe Drop</div></div>
+      <div class="cal-day"><div class="cal-day-label">Thu</div><div class="cal-day-type">Behind the Scenes</div></div>
+      <div class="cal-day amber"><div class="cal-day-label">Fri</div><div class="cal-day-type">Venue / Events CTA</div></div>
+      <div class="cal-day green"><div class="cal-day-label">Sat</div><div class="cal-day-type">UGC or Montana Lifestyle</div></div>
+      <div class="cal-day blue"><div class="cal-day-label">Sun</div><div class="cal-day-type">Long-form Guide / Educational</div></div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.8rem;color:var(--t3)">Posting frequency: 1x/day on Instagram, 4–5x/week on Facebook, 3x/week on TikTok. Repurpose video content across platforms. Batch-create on Mondays for the full week.</p>
+  </div>
+</div>
+
+<!-- POST TEMPLATES -->
+<div class="section">
+  <div class="sec-in">
+    <h2>Ready-to-Post Templates</h2>
+    <p>Copy any template, fill in the bracketed fields, and post. Each template is platform-optimized.</p>
+    <div class="template-tabs" style="margin-top:1.25rem">
+      <button class="tab-btn active" onclick="switchTab(this,'product')">Product</button>
+      <button class="tab-btn" onclick="switchTab(this,'recipe')">Recipe</button>
+      <button class="tab-btn" onclick="switchTab(this,'venue')">Venue</button>
+      <button class="tab-btn" onclick="switchTab(this,'culture')">Culture</button>
+      <button class="tab-btn" onclick="switchTab(this,'promo')">Promo</button>
+    </div>
+
+    <div class="template-panel active" id="tpl-product">
+      <div class="template-item">
+        <div class="template-platform">Instagram · Product Highlight</div>
+        <div class="template-body">Born in Montana. Made with grit.
+
+[PRODUCT NAME] is exactly what it sounds like — [ONE-LINE DESCRIPTION].
+
+Crafted in Helena, MT. Because out here, we don't settle for average.
+
+Shop the link in bio 🌙
+.
+.
+.
+#MontuckyMoonshine #MontanaMade #CraftSpirits #HelenaMT #HandmadeGoods</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-product',0)">Copy</button></div>
+      </div>
+      <div class="template-item">
+        <div class="template-platform">Facebook · Product Launch</div>
+        <div class="template-body">We just dropped something good.
+
+[PRODUCT NAME] is now live in the shop. [BRIEF DESCRIPTION — 1-2 sentences about what makes it special and who it's for.]
+
+✅ Ships nationwide
+✅ Handcrafted in Helena, Montana
+✅ Free shipping over $40 with code MONTANA15
+
+Link in comments 👇</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-product',1)">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="template-panel" id="tpl-recipe">
+      <div class="template-item">
+        <div class="template-platform">Instagram · Recipe Drop</div>
+        <div class="template-body">Recipe drop 🌙
+
+The [RECIPE NAME].
+
+[INGREDIENT 1]
+[INGREDIENT 2]
+[INGREDIENT 3]
+[INGREDIENT 4]
+
+[ONE-SENTENCE ABOUT THE VIBE — e.g. "Perfect for the campfire. Or the couch. Or anywhere Montana takes you."]
+
+Full recipe at the link in bio. Tag us in yours. 🏔️
+#MontuckyMoonshine #MoonshineRecipe #CraftCocktails #MontanaLifestyle</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-recipe',0)">Copy</button></div>
+      </div>
+      <div class="template-item">
+        <div class="template-platform">TikTok · Recipe Video Caption</div>
+        <div class="template-body">made a [RECIPE NAME] and it slaps 🥃
+
+recipe link in bio
+
+#moonshine #cocktailrecipe #craftcocktails #montana #montanamoonshine #drinkrecipes #fyp</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-recipe',1)">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="template-panel" id="tpl-venue">
+      <div class="template-item">
+        <div class="template-platform">Facebook · Event Announcement</div>
+        <div class="template-body">📅 [EVENT NAME] — [DATE]
+
+[BRIEF EVENT DESCRIPTION. What's happening, why it's worth coming, what the vibe is. 2-3 sentences max.]
+
+📍 Montucky Moonshine, 3420 Byron Road, Helena MT
+🕖 [TIME]
+🎟️ [RSVP INFO / LINK OR "Limited seating — message us to reserve"]
+
+See you there. 🌙</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-venue',0)">Copy</button></div>
+      </div>
+      <div class="template-item">
+        <div class="template-platform">Instagram · Venue Feature</div>
+        <div class="template-body">The venue doesn't look like anything else in Helena.
+
+And that's the point. 🏔️
+
+Private bookings for [events / parties / corporate / tastings]. Photo at the bottom doesn't do it justice.
+
+DM us to book or hit the link in bio.
+#MontuckyMoonshine #HelenaVenue #MontanaEvents #PrivateVenue #HelenaBar</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-venue',1)">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="template-panel" id="tpl-culture">
+      <div class="template-item">
+        <div class="template-platform">Instagram · History &amp; Culture</div>
+        <div class="template-body">Most people don't know this about Montana. 🌙
+
+[HISTORICAL FACT OR STORY HOOK — one punchy sentence that stops the scroll.]
+
+[2-3 sentences expanding on the story. Keep it tight. End with a connection to Montucky or the Montana spirit.]
+
+Full story at the link in bio.
+#MontuckyMoonshine #MontanaHistory #MoonshineHistory #MontanaLiving</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-culture',0)">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="template-panel" id="tpl-promo">
+      <div class="template-item">
+        <div class="template-platform">Instagram · Sale / Promo</div>
+        <div class="template-body">Real talk — our [PRODUCT / COLLECTION] is [DISCOUNT]% off right now.
+
+Use code [CODE] at checkout. Ends [DATE].
+
+Link in bio. Don't wait on it. 🥃
+#MontuckyMoonshine #MontanaMade #ShopSmall #MontanaGifts</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-promo',0)">Copy</button></div>
+      </div>
+      <div class="template-item">
+        <div class="template-platform">Facebook · Free Shipping Push</div>
+        <div class="template-body">Quick reminder: free shipping on everything over $40. Code MONTANA15 gets you 15% off your first order on top of that.
+
+If you've been thinking about it — this is a pretty good time. 🌙
+
+Shop: [LINK]</div>
+        <div class="copy-row"><button class="btn-copy" onclick="copyTemplate('tpl-promo',1)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Montucky Moonshine Social Tools &nbsp;·&nbsp; Built by <a href="deliverables.html">1Commerce</a> &nbsp;·&nbsp; &copy; <span id="yr"></span> D &amp; V Enterprises LLC</p>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const captions = {
+  product: {
+    instagram: { text: "Born in Montana. Made with grit.\n\n{context}Handcrafted in Helena — because out here, the details matter.\n\nShop the link in bio 🌙", tags: "#MontuckyMoonshine #MontanaMade #CraftSpirits #HelenaMT #HandmadeGoods #MontanaProud #ShopSmall #BigSkyCountry" },
+    facebook: { text: "Something worth talking about just dropped.\n\n{context}Made by hand in Helena, Montana. Free shipping on orders over $40.\n\nShop now — link in comments. 🌙", tags: "" },
+    tiktok: { text: "montucky moonshine just dropped {context}and it's exactly what it looks like 🥃 #montucky #montanamoonshine #helenamonrana #shoplocal #fyp", tags: "" }
+  },
+  recipe: {
+    instagram: { text: "Recipe drop 🌙\n\n{context}The kind of drink Montana actually makes.\n\nFull recipe at the link in bio. Tag us in yours. 🏔️", tags: "#MontuckyMoonshine #MoonshineRecipe #CraftCocktails #MontanaLifestyle #HomeBartender #MixologyMonday #MoonshinecocktailS #CampfireDrinks" },
+    facebook: { text: "New recipe is live on the site 🥃\n\n{context}Step-by-step instructions and a few tips for getting it right. Link in comments.", tags: "" },
+    tiktok: { text: "made {context}and it absolutely sends 🥃 full recipe in bio #moonshine #cocktailrecipe #montana #montanamoonshine #drinkrecipes #fyp", tags: "" }
+  },
+  venue: {
+    instagram: { text: "The venue is open. 🌙\n\n{context}Private bookings available for events, parties, and tastings in Helena, MT.\n\nDM us or hit the link in bio to book.", tags: "#MontuckyMoonshine #HelenaVenue #MontanaEvents #PrivateVenue #HelenaBar #MontanaBar #HelenaEvents #BigSkyCountry" },
+    facebook: { text: "Looking for a venue in Helena? We have the right one. 🏔️\n\n{context}Contact us for availability and booking info. Spots fill up fast on weekends.", tags: "" },
+    tiktok: { text: "this is what a venue in montana actually looks like {context}#helenamontana #montanaevents #venuerental #fyp", tags: "" }
+  },
+  culture: {
+    instagram: { text: "Montana went dry in 1916 — two years before the rest of the country. 🌙\n\n{context}This is the spirit we're carrying forward.\n\nFull story at the link in bio.", tags: "#MontuckyMoonshine #MontanaHistory #MoonshineHistory #ProhibitionEra #WesternHeritage #MontanaLiving #BigSkyCountry #CraftDistilling" },
+    facebook: { text: "A piece of Montana history most people don't know:\n\n{context}That independent spirit is exactly what Montucky is built on.", tags: "" },
+    tiktok: { text: "most people don't know this about montana {context}#montanahistory #moonshinehistory #prohibition #montana #history #fyp", tags: "" }
+  },
+  lifestyle: {
+    instagram: { text: "Montana doesn't care what season it is. 🏔️\n\n{context}This is how we do it out here.\n\nShop at the link in bio.", tags: "#MontuckyMoonshine #MontanaLife #BigSkyCountry #OutdoorDrinks #CampfireDrinks #MontanaOutdoors #PublicLands #MontanaWild #VisitMontana" },
+    facebook: { text: "Out here, the drinks match the landscape. 🌙\n\n{context}Montucky Moonshine — handcrafted in Helena, Montana.", tags: "" },
+    tiktok: { text: "when the view hits different {context}#montana #outdoorlifestyle #montanalife #bigskycountry #fyp", tags: "" }
+  },
+  promo: {
+    instagram: { text: "Real talk — this is a good deal. 🥃\n\n{context}Use code MONTANA15 for 15% off your first order. Free shipping over $40.\n\nLink in bio. Ends soon.", tags: "#MontuckyMoonshine #MontanaMade #ShopSmall #MontanaGifts #HandcraftedGoods" },
+    facebook: { text: "Quick one — we've got a deal running right now. 🌙\n\n{context}Code MONTANA15 takes 15% off. Free shipping on orders over $40. Link in comments.", tags: "" },
+    tiktok: { text: "deal alert 🥃 {context}code montana15 for 15% off #montucky #shoplocal #deal #montana #fyp", tags: "" }
+  },
+  ugc: {
+    instagram: { text: "This is exactly what we make things for. 🙌\n\nShoutout to {context}for the tag — keep them coming. If you're using Montucky gear, tag us and we'll feature you.\n\n📸 DM or tag @MontuckyMoonshine", tags: "#MontuckyMoonshine #CustomerLove #MontanaMade #Repost #CommunityFirst #MontanaLife" },
+    facebook: { text: "We love seeing Montucky out in the wild. 🌙\n\nShoutout to {context} — thank you for sharing. Tag us in your photos and we'll give you a feature.", tags: "" },
+    tiktok: { text: "when customers make better content than us 😭 {context}#montucky #montanamoonshine #customerfeature #fyp", tags: "" }
+  }
+};
+
+function generateCaption() {
+  const type = document.getElementById('postType').value;
+  const plat = document.getElementById('platform').value;
+  const ctx  = document.getElementById('context').value.trim();
+  const data  = captions[type][plat];
+  let body    = data.text.replace('{context}', ctx ? ctx + '\n\n' : '');
+  document.getElementById('capText').textContent = body;
+  document.getElementById('capTags').textContent = data.tags;
+  document.getElementById('capMeta').textContent = plat.charAt(0).toUpperCase()+plat.slice(1) + ' · ' + type.charAt(0).toUpperCase()+type.slice(1);
+  document.getElementById('capOutput').classList.add('show');
+}
+
+function copyCaption() {
+  const text = document.getElementById('capText').textContent + '\n' + document.getElementById('capTags').textContent;
+  navigator.clipboard.writeText(text.trim()).then(showToast);
+}
+
+const hashtagSets = {
+  core:      '#MontuckyMoonshine #MontanaMoonshine #CraftMoonshine #HelenaM T#MontanaSpirits #MontanaDistillery #HandcraftedSpirits #MontanaProud #BigSkySpirits #MontanaMade',
+  recipe:    '#MoonshineRecipe #MoonshineCocktails #CocktailsOfInstagram #DrinkRecipes #CraftCocktails #MixologyMonday #HuckleberryMoonshine #MontanaMule #WhiskeyDrinks #HomeBartender',
+  lifestyle: '#MontanaLife #BigSkyCountry #MontanaOutdoors #VisitMontana #GlacierNationalPark #MontanaWild #OutdoorDrinks #CampfireDrinks #MontanaLiving #PublicLands',
+  venue:     '#HelenaEvents #MontanaEvents #PrivateVenue #EventVenue #DrinkLocal #LocalBar #BarScene #HelenaBar #MontanaBar #SpiritsTasting',
+  heritage:  '#MoonshineHistory #ProhibitionEra #MontanaHistory #AppalachianCulture #CraftDistilling #WhiskeyRebellion #BootleggerTrail #WesternHeritage #AmericanSpirits #MoonshineRoots',
+  shop:      '#ShopLocal #HandmadeGoods #MontanaMerchandise #WhiskeyCup #EnamelMug #MasonJar #DrinkwareDesign #GiftIdeas #MontanaGift #SmallBusiness'
+};
+
+function copyHashtags(set) {
+  navigator.clipboard.writeText(hashtagSets[set]).then(showToast);
+}
+
+function copyTemplate(panelId, idx) {
+  const items = document.getElementById(panelId).querySelectorAll('.template-body');
+  if (items[idx]) navigator.clipboard.writeText(items[idx].textContent.trim()).then(showToast);
+}
+
+function showToast() {
+  const t = document.getElementById('copiedToast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.template-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tpl-'+id).classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Montucky Moonshine — Daryl's Builder Kit | 1Commerce</title>
+<meta name="description" content="Daryl's builder kit — onboarding docs, how-to guides, video scripts, and operational SOPs for running the Montucky Moonshine digital presence.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a08;--bg2:#121210;--card:#1a1a16;--amber:#c8922a;--amber-l:#e6b04a;--cream:#f5f0e6;--t2:#c4bfb2;--t3:#8a8578;--bdr:rgba(200,146,42,.12);--green:#3B6D11;--green-l:#97C459;--blue:#185FA5;--blue-l:#85B7EB;--ff-d:'Playfair Display',Georgia,serif;--ff-b:'Barlow',system-ui,sans-serif;--ff-c:'Barlow Condensed',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--ff-b);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+a{color:var(--amber);text-decoration:none;transition:color .3s}a:hover{color:var(--amber-l)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--amber)}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,8,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);padding:.75rem 1.5rem}
+.nav-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-logo img{width:38px;height:38px;border-radius:2px}
+.nav-brand{font-family:var(--ff-d);font-size:1rem;font-weight:700;color:var(--cream)}
+.nav-brand small{display:block;font-family:var(--ff-c);font-size:.55rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--t3)}
+.nav-links{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.nav-links a{font-family:var(--ff-c);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t2)}
+.nav-links a.active,.nav-links a:hover{color:var(--amber)}
+
+.page-hero{padding:5rem 1.5rem 2.5rem;border-bottom:1px solid var(--bdr);background:linear-gradient(160deg,rgba(59,109,17,.08) 0%,transparent 60%)}
+.page-hero-in{max-width:900px;margin:0 auto}
+.label{font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green-l);margin-bottom:.5rem}
+h1{font-family:var(--ff-d);font-size:clamp(2rem,5vw,3.25rem);font-weight:900;color:var(--cream);line-height:1.15;margin-bottom:.75rem}
+.hero-sub{font-size:1rem;color:var(--t2);max-width:640px;line-height:1.75}
+
+.sec-in{max-width:1100px;margin:0 auto}
+.section{padding:3rem 1.5rem}
+.section-alt{background:var(--bg2);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
+h2{font-family:var(--ff-d);font-size:1.5rem;font-weight:700;color:var(--cream);margin-bottom:.5rem}
+h3{font-family:var(--ff-d);font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:.5rem}
+p{color:var(--t2);font-size:.9rem;line-height:1.75}
+
+.kit-overview{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;margin-top:2rem}
+.kit-tile{background:var(--card);border:1px solid var(--bdr);border-radius:2px;padding:1.5rem}
+.kit-icon{font-size:1.5rem;margin-bottom:.6rem}
+.kit-tile h3{margin-bottom:.35rem}
+.kit-tile .tag{font-family:var(--ff-c);font-size:.5rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .4rem;border-radius:2px;margin-left:.35rem}
+.tag-green{color:var(--green-l);background:rgba(59,109,17,.15);border:1px solid rgba(59,109,17,.3)}
+.tag-amber{color:var(--amber);background:rgba(200,146,42,.1);border:1px solid var(--bdr)}
+.tag-blue{color:var(--blue-l);background:rgba(24,95,165,.15);border:1px solid rgba(24,95,165,.3)}
+
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+@media(max-width:700px){.doc-grid{grid-template-columns:1fr}}
+.doc-card{background:var(--card);border:1px solid var(--bdr);border-radius:2px;overflow:hidden}
+.doc-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+.doc-title{font-family:var(--ff-d);font-size:1rem;font-weight:700;color:var(--cream)}
+.doc-body{padding:1.5rem}
+.doc-body p{font-size:.85rem;margin-bottom:.85rem}
+.step-list{list-style:none;padding:0;counter-reset:steps}
+.step-list li{counter-increment:steps;display:flex;gap:.75rem;align-items:flex-start;padding:.5rem 0;border-bottom:1px solid rgba(200,146,42,.06)}
+.step-list li:last-child{border-bottom:none}
+.step-list li::before{content:counter(steps);font-family:var(--ff-d);font-size:1.1rem;font-weight:900;color:var(--amber);flex-shrink:0;line-height:1.2;min-width:1.25rem}
+.step-list li p{margin:0;font-size:.82rem;color:var(--t2);line-height:1.6}
+.step-list li strong{color:var(--cream)}
+
+.video-list{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.video-card{background:var(--card);border:1px solid var(--bdr);border-radius:2px;overflow:hidden}
+.vc-header{background:linear-gradient(90deg,rgba(200,146,42,.08),transparent);padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.vc-num{font-family:var(--ff-d);font-size:1.75rem;font-weight:900;color:var(--amber);opacity:.5}
+.vc-meta{flex:1}
+.vc-title{font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream)}
+.vc-desc{font-size:.8rem;color:var(--t3);margin-top:.2rem}
+.vc-stats{display:flex;gap:.75rem;flex-wrap:wrap}
+.vc-stat{font-family:var(--ff-c);font-size:.55rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);background:var(--bg2);padding:.25rem .5rem;border-radius:2px;border:1px solid var(--bdr)}
+.vc-body{padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:640px){.vc-body{grid-template-columns:1fr}}
+.vc-section h4{font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid var(--bdr)}
+.script-block{font-family:var(--ff-b);font-size:.82rem;line-height:1.75;color:var(--t2);white-space:pre-line}
+.script-block .cue{display:inline-block;font-family:var(--ff-c);font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:rgba(200,146,42,.1);border:1px solid var(--bdr);padding:.1rem .35rem;border-radius:2px;margin-right:.35rem;vertical-align:middle}
+.note-list{list-style:none;padding:0}
+.note-list li{font-size:.82rem;color:var(--t2);padding:.3rem 0;border-bottom:1px solid rgba(200,146,42,.05);display:flex;gap:.5rem;align-items:flex-start}
+.note-list li::before{content:'→';color:var(--amber);flex-shrink:0}
+
+.sop-table{width:100%;border-collapse:collapse;margin-top:1.25rem;font-size:.82rem}
+.sop-table th{font-family:var(--ff-c);font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);padding:.6rem .75rem;background:var(--bg2);border:1px solid var(--bdr);text-align:left}
+.sop-table td{padding:.65rem .75rem;border:1px solid var(--bdr);color:var(--t2);vertical-align:top}
+.sop-table td strong{color:var(--cream)}
+.sop-table tr:hover td{background:rgba(200,146,42,.03)}
+.freq{font-family:var(--ff-c);font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .45rem;border-radius:2px}
+.freq-daily{color:#97C459;background:rgba(59,109,17,.15);border:1px solid rgba(59,109,17,.3)}
+.freq-weekly{color:var(--amber);background:rgba(200,146,42,.1);border:1px solid var(--bdr)}
+.freq-monthly{color:var(--blue-l);background:rgba(24,95,165,.12);border:1px solid rgba(24,95,165,.25)}
+
+footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:2rem 1.5rem;text-align:center;margin-top:4rem}
+footer p{font-size:.8rem;color:var(--t3)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="index.html" aria-label="Home">
+      <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine" width="38" height="38">
+      <div class="nav-brand">Montucky Moonshine<small>Builder Kit</small></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="deliverables.html">Deliverables</a>
+      <a href="email-flows.html">Email Flows</a>
+      <a href="growth-plan.html">Growth Plan</a>
+      <a href="social-tools.html">Social Tools</a>
+      <a href="builder-kit.html" class="active">Builder Kit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-in">
+    <p class="label">Stream 6 — Client Enablement</p>
+    <h1>Daryl's <em style="font-style:italic;color:var(--green-l)">Builder Kit</em></h1>
+    <p class="hero-sub">Everything needed to operate the Montucky digital presence independently — 4 operational docs, 4 video scripts, and a weekly SOP calendar. Designed so the site, shop, and social run without an agency on call.</p>
+  </div>
+</div>
+
+<!-- KIT OVERVIEW -->
+<div class="section">
+  <div class="sec-in">
+    <h2>What's in the Kit</h2>
+    <div class="kit-overview">
+      <div class="kit-tile">
+        <div class="kit-icon">📘</div>
+        <h3>Site Operations Guide <span class="tag tag-green">Doc 1</span></h3>
+        <p>How to update any page on the site without a developer. Step-by-step for text, images, and product links.</p>
+      </div>
+      <div class="kit-tile">
+        <div class="kit-icon">🛒</div>
+        <h3>Shopify Store SOP <span class="tag tag-green">Doc 2</span></h3>
+        <p>Adding products, managing inventory, processing orders, running discount codes. The essential Shopify workflow.</p>
+      </div>
+      <div class="kit-tile">
+        <div class="kit-icon">📱</div>
+        <h3>Social Media Playbook <span class="tag tag-green">Doc 3</span></h3>
+        <p>Weekly posting schedule, caption approach, hashtag usage, and how to handle DMs and comments.</p>
+      </div>
+      <div class="kit-tile">
+        <div class="kit-icon">📅</div>
+        <h3>Weekly Operations SOP <span class="tag tag-green">Doc 4</span></h3>
+        <p>A recurring checklist covering everything that needs attention each week to keep the brand running cleanly.</p>
+      </div>
+      <div class="kit-tile">
+        <div class="kit-icon">🎬</div>
+        <h3>Video Scripts &times;4 <span class="tag tag-amber">Scripts</span></h3>
+        <p>Four production-ready video scripts — brand intro, product walkthrough, venue showcase, and recipe reel.</p>
+      </div>
+      <div class="kit-tile">
+        <div class="kit-icon">🗓️</div>
+        <h3>Maintenance Calendar <span class="tag tag-blue">Reference</span></h3>
+        <p>Daily, weekly, and monthly task schedule for the entire digital operation. Print and stick to the wall.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OPERATIONAL DOCS -->
+<div class="section section-alt">
+  <div class="sec-in">
+    <h2>Operational Docs</h2>
+    <p style="margin-bottom:0">Step-by-step references for the four core operational areas.</p>
+    <div class="doc-grid">
+
+      <!-- DOC 1: Site Operations -->
+      <div class="doc-card">
+        <div class="doc-header">
+          <div class="doc-title">📘 Doc 1: Site Operations</div>
+          <span class="tag tag-green">Beginner</span>
+        </div>
+        <div class="doc-body">
+          <p>How to make common updates to the site without touching code. For most changes, the answer is "edit the file in GitHub and Netlify deploys it automatically."</p>
+          <ul class="step-list">
+            <li><p><strong>Update a product link.</strong> In GitHub, open <code>js/main.js</code> and find the product array. Change the <code>link</code> field to the new Shopify URL. Commit — live in 2 minutes.</p></li>
+            <li><p><strong>Edit the homepage hero text.</strong> Open <code>index.html</code> in GitHub. Find the hero section (search for "Born in Montana"). Change the text. Commit.</p></li>
+            <li><p><strong>Add a new recipe page.</strong> Copy an existing recipe file (e.g., <code>lifestyle/recipes/montana-mule.html</code>), rename it, update all the content fields, and add a redirect entry to <code>netlify.toml</code>. Commit both files.</p></li>
+            <li><p><strong>Update business hours or contact info.</strong> Open <code>contact.html</code> and update the relevant field. Also update the JSON-LD block in the same file's <code>&lt;head&gt;</code> to match.</p></li>
+            <li><p><strong>Replace a venue photo.</strong> Name your new WebP image with the same filename as the one you're replacing (e.g., <code>bar.webp</code>), upload it to the <code>venue/</code> folder in GitHub, and commit. The old file is automatically replaced.</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DOC 2: Shopify SOP -->
+      <div class="doc-card">
+        <div class="doc-header">
+          <div class="doc-title">🛒 Doc 2: Shopify Operations</div>
+          <span class="tag tag-green">Core</span>
+        </div>
+        <div class="doc-body">
+          <p>Day-to-day Shopify tasks for running the store. Log in at <a href="https://montuckymoonshine.myshopify.com/admin" target="_blank" rel="noopener noreferrer">montuckymoonshine.myshopify.com/admin</a>.</p>
+          <ul class="step-list">
+            <li><p><strong>Add a new product.</strong> Products → Add product. Fill Title, Description, Price, and Images. Set Inventory tracking on. Add to the relevant collection. Save. Then update the proposal site's <code>js/main.js</code> product array to reflect the new item.</p></li>
+            <li><p><strong>Run a discount code.</strong> Discounts → Create discount. Choose "Percentage" or "Fixed amount." Set the code (e.g., SUMMER20), minimum order if needed, and usage limit. Save. Share the code in the email flow or social post.</p></li>
+            <li><p><strong>Process a manual order.</strong> Orders → Create order. Add customer, products, and shipping. Send invoice to customer or mark as paid. Fulfill when ready.</p></li>
+            <li><p><strong>Check inventory levels.</strong> Products → any product → scroll to Inventory. Adjust quantity as needed. Set a low-stock alert under Settings → Notifications.</p></li>
+            <li><p><strong>Respond to an abandoned cart.</strong> Go to Orders → Abandoned checkouts. Shopify auto-sends recovery emails if configured. You can also manually send a recovery email from this view.</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DOC 3: Social Media Playbook -->
+      <div class="doc-card">
+        <div class="doc-header">
+          <div class="doc-title">📱 Doc 3: Social Media Playbook</div>
+          <span class="tag tag-amber">Weekly</span>
+        </div>
+        <div class="doc-body">
+          <p>The minimum viable social presence for Montucky — consistent posting that builds the brand without requiring a full-time social media manager.</p>
+          <ul class="step-list">
+            <li><p><strong>Post schedule: 5 posts/week.</strong> Monday (product), Wednesday (recipe), Friday (venue/event), Saturday (lifestyle/UGC), one flexible post mid-week. Use the <a href="social-tools.html">Social Tools page</a> to generate captions and grab hashtag sets.</p></li>
+            <li><p><strong>Content ratio: 60/30/10.</strong> 60% value content (recipes, stories, guides), 30% product/venue, 10% direct promotional. If the feed feels too "salesy," increase the value content ratio.</p></li>
+            <li><p><strong>Responding to DMs and comments.</strong> Check twice daily — morning and evening. Reply within 24 hours. For venue booking requests, respond with availability and a direct contact number. For product questions, link to the Shopify product page.</p></li>
+            <li><p><strong>Reposting user content.</strong> When someone tags @MontuckyMoonshine or uses #MontuckyMoonshine, save the post and request permission to share. DM: "Hey, love this — mind if we repost?" Most will say yes. Credit the original poster in the caption.</p></li>
+            <li><p><strong>Monthly analytics check.</strong> Facebook Insights and Instagram Insights (built-in). Look at: reach, engagement rate, top posts. Double down on what works. Stop what doesn't within 30 days.</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DOC 4: Weekly SOP -->
+      <div class="doc-card">
+        <div class="doc-header">
+          <div class="doc-title">📅 Doc 4: Weekly Operations SOP</div>
+          <span class="tag tag-amber">Recurring</span>
+        </div>
+        <div class="doc-body">
+          <p>Run through this every week to keep the brand operating cleanly. Total time: ~45 minutes if done consistently.</p>
+          <ul class="step-list">
+            <li><p><strong>Monday: Content batch.</strong> Create or queue 5 posts for the week using the <a href="social-tools.html">Social Tools page</a>. Schedule them using Meta Business Suite or post manually.</p></li>
+            <li><p><strong>Tuesday: Orders + inventory.</strong> Check Shopify for any pending orders. Fulfill outstanding items. Check inventory levels on top-selling products and reorder if needed.</p></li>
+            <li><p><strong>Wednesday: Email check.</strong> Review montuckymoonshine@gmail.com for event inquiries, wholesale requests, or customer issues. Respond same day where possible.</p></li>
+            <li><p><strong>Thursday: Engagement sweep.</strong> Go through Instagram and Facebook comments and DMs. Reply to any that didn't get a response. Save standout UGC for the weekend post.</p></li>
+            <li><p><strong>Friday: Weekly review.</strong> Look at Shopify sales for the week. Note which products sold. Review top-performing social posts. Take 10 minutes to plan the following week's focus.</p></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO SCRIPTS -->
+<div class="section">
+  <div class="sec-in">
+    <h2>Video Scripts</h2>
+    <p>Four scripts ready for filming. Each includes on-screen cues, b-roll suggestions, and caption copy for the upload.</p>
+    <div class="video-list">
+
+      <!-- Script 1: Brand Intro -->
+      <div class="video-card">
+        <div class="vc-header">
+          <div class="vc-num">01</div>
+          <div class="vc-meta">
+            <div class="vc-title">Brand Intro — Who Is Montucky Moonshine?</div>
+            <div class="vc-desc">Evergreen brand awareness video. Use as profile video, pinned post, and website embed.</div>
+          </div>
+          <div class="vc-stats">
+            <span class="vc-stat">45–60 sec</span>
+            <span class="vc-stat">Instagram Reels / TikTok / Facebook</span>
+            <span class="vc-stat">Voiceover + B-roll</span>
+          </div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-section">
+            <h4>Script</h4>
+            <div class="script-block"><span class="cue">Open</span>Wide shot of Helena landscape. Slow pan. No music yet.
+
+<span class="cue">VO</span>"Most spirits come with a story about a distillery. About barrels and craft and legacy."
+
+<span class="cue">Cut</span>Interior bar shot. Warm amber light. Jars on the shelf.
+
+<span class="cue">VO</span>"Ours comes with Montana."
+
+<span class="cue">Cut</span>Product close-up. Logo visible.
+
+<span class="cue">VO</span>"Montucky Moonshine. Handcrafted goods and a private venue in Helena. Built for people who know what they like — and don't settle."
+
+<span class="cue">Cut</span>Someone raising a glass. Outdoor Montana setting.
+
+<span class="cue">VO</span>"Shop online. Book the venue. Find us at 3420 Byron Road."
+
+<span class="cue">End card</span>Logo. URL. "Est. Montana."</div>
+          </div>
+          <div class="vc-section">
+            <h4>Production Notes</h4>
+            <ul class="note-list">
+              <li>Film at golden hour for warmest light</li>
+              <li>Mix interior bar shots with outdoor Montana landscape</li>
+              <li>No talking head needed — voiceover only</li>
+              <li>Background music: slow, atmospheric Americana. Fade in by second sentence.</li>
+              <li>Caption: "Born in Montana. Made with grit. @MontuckyMoonshine #MontanaMoonshine #HelenaMT #CraftSpirits"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Script 2: Product Walkthrough -->
+      <div class="video-card">
+        <div class="vc-header">
+          <div class="vc-num">02</div>
+          <div class="vc-meta">
+            <div class="vc-title">Product Walkthrough — The Collection</div>
+            <div class="vc-desc">Showcase the product lineup. Film monthly or seasonally as new products are added.</div>
+          </div>
+          <div class="vc-stats">
+            <span class="vc-stat">30–45 sec</span>
+            <span class="vc-stat">Instagram / TikTok</span>
+            <span class="vc-stat">On-camera or VO</span>
+          </div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-section">
+            <h4>Script</h4>
+            <div class="script-block"><span class="cue">Open</span>Flat lay or overhead: products arranged on wood surface.
+
+<span class="cue">VO or on-cam</span>"This is the current Montucky lineup."
+
+<span class="cue">Cut</span>Close-up of enamel mug. Pick it up. Show logo.
+
+<span class="cue">VO</span>"The enamel camping mug. Built for the campfire, the trail, or the kitchen counter."
+
+<span class="cue">Cut</span>Show next product — e.g., tee or mason jar set.
+
+<span class="cue">VO</span>"The [product name]. [One-sentence description]."
+
+<span class="cue">Repeat</span>For each featured product. Keep it tight — 5 seconds per item max.
+
+<span class="cue">End</span>All products back in frame. URL on screen.
+
+<span class="cue">VO</span>"Everything ships nationwide. Link in bio."</div>
+          </div>
+          <div class="vc-section">
+            <h4>Production Notes</h4>
+            <ul class="note-list">
+              <li>Natural light works best — near a window on an overcast day</li>
+              <li>Show the products being held and used, not just sitting there</li>
+              <li>Film vertical (9:16) for Reels/TikTok primary</li>
+              <li>Add product name as text overlay for silent viewers</li>
+              <li>Caption: "The current Montucky collection — handcrafted in Helena, MT. Shop the link in bio. #MontuckyMoonshine #MontanaMade #HandmadeGoods #ShopSmall"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Script 3: Venue Showcase -->
+      <div class="video-card">
+        <div class="vc-header">
+          <div class="vc-num">03</div>
+          <div class="vc-meta">
+            <div class="vc-title">Venue Showcase — Book the Space</div>
+            <div class="vc-desc">Drive venue bookings. Use for event season pushes, wedding season, and any time the venue is underbooked.</div>
+          </div>
+          <div class="vc-stats">
+            <span class="vc-stat">45–60 sec</span>
+            <span class="vc-stat">Facebook / Instagram</span>
+            <span class="vc-stat">Walkthrough style</span>
+          </div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-section">
+            <h4>Script</h4>
+            <div class="script-block"><span class="cue">Open</span>Walk through the front door. Show the entrance.
+
+<span class="cue">On-cam or VO</span>"This is the Montucky Moonshine venue in Helena."
+
+<span class="cue">Pan</span>Bar area. Show bottles, lighting, bar seating.
+
+<span class="cue">VO</span>"Full bar setup. Private space. The kind of venue that actually has character."
+
+<span class="cue">Pan</span>Main floor / lounge area. Show capacity and layout.
+
+<span class="cue">VO</span>"Capacity for [X] guests. Available for private events — birthdays, corporate events, tastings, whatever you're working with."
+
+<span class="cue">Close-up</span>Pool table, lighting details, any unique features.
+
+<span class="cue">VO</span>"This isn't a hotel ballroom. It's better."
+
+<span class="cue">End card</span>Address: 3420 Byron Road, Helena MT. "DM to book or hit the link in bio."</div>
+          </div>
+          <div class="vc-section">
+            <h4>Production Notes</h4>
+            <ul class="note-list">
+              <li>Film in the evening when the venue lighting is on — it photographs much better than daytime</li>
+              <li>Stabilizer or gimbal for the walkthrough sections; handheld is fine for close-ups</li>
+              <li>Include the pool table — it's a differentiator</li>
+              <li>Add soft music under the voiceover. Match the bar's energy.</li>
+              <li>Caption: "The venue is open for private bookings. Helena, MT. DM us for availability. #MontuckyMoonshine #HelenaVenue #MontanaEvents #PrivateVenue"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Script 4: Recipe Reel -->
+      <div class="video-card">
+        <div class="vc-header">
+          <div class="vc-num">04</div>
+          <div class="vc-meta">
+            <div class="vc-title">Recipe Reel — The Montana Mule</div>
+            <div class="vc-desc">Hook-first recipe video optimized for TikTok and Reels. Repeat this format for each new recipe drop.</div>
+          </div>
+          <div class="vc-stats">
+            <span class="vc-stat">20–30 sec</span>
+            <span class="vc-stat">TikTok / Instagram Reels</span>
+            <span class="vc-stat">Fast-cut style</span>
+          </div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-section">
+            <h4>Script</h4>
+            <div class="script-block"><span class="cue">Hook (0–3s)</span>Close-up: ice hitting the mug. Satisfying sound. Text overlay: "The Montana Mule."
+
+<span class="cue">Ingredients (3–12s)</span>Fast cuts. Each ingredient shown as it goes in. VO or text only:
+
+"2 oz Montucky Moonshine"
+"4 oz ginger beer"
+"3/4 oz fresh lime juice"
+"Ice. Copper mug."
+
+<span class="cue">Build (12–18s)</span>Combine. Stir. Garnish with lime wheel.
+
+<span class="cue">Reveal (18–24s)</span>Full cup in frame. Good lighting. Slow pour of ginger beer for the fizz shot.
+
+<span class="cue">CTA (24–30s)</span>Text overlay: "Full recipe at the link in bio" + Montucky logo bug in corner.</div>
+          </div>
+          <div class="vc-section">
+            <h4>Production Notes</h4>
+            <ul class="note-list">
+              <li>The hook is everything on TikTok — lead with the most visually interesting moment</li>
+              <li>Natural light or ring light. Keep the background clean — bar surface or wood table</li>
+              <li>Film each ingredient pour separately so you can speed-cut in edit</li>
+              <li>No face required — hands and product only works great for recipe content</li>
+              <li>Trending sound or Americana music underneath. Check TikTok trending audio before uploading.</li>
+              <li>Caption: "made a montana mule and it absolutely sends 🥃 full recipe in bio #moonshine #cocktailrecipe #montana #montanamoonshine #drinkrecipes #fyp"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MAINTENANCE CALENDAR -->
+<div class="section section-alt">
+  <div class="sec-in">
+    <h2>Maintenance Calendar</h2>
+    <p>The full recurring task schedule for maintaining the Montucky digital operation.</p>
+    <table class="sop-table">
+      <thead>
+        <tr>
+          <th>Frequency</th>
+          <th>Task</th>
+          <th>Where</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="freq freq-daily">Daily</span></td><td><strong>Check social DMs &amp; comments</strong> — respond to all open messages</td><td>Facebook / Instagram</td><td>10 min</td></tr>
+        <tr><td><span class="freq freq-daily">Daily</span></td><td><strong>Check Shopify orders</strong> — fulfill any pending items</td><td>Shopify admin</td><td>5 min</td></tr>
+        <tr><td><span class="freq freq-daily">Daily</span></td><td><strong>Check email</strong> — respond to venue inquiries same day</td><td>Gmail</td><td>5–10 min</td></tr>
+        <tr><td><span class="freq freq-weekly">Weekly</span></td><td><strong>Batch-create 5 social posts</strong> — use Social Tools for captions and hashtags</td><td><a href="social-tools.html">social-tools.html</a></td><td>30–45 min</td></tr>
+        <tr><td><span class="freq freq-weekly">Weekly</span></td><td><strong>Inventory check</strong> — note low-stock items, reorder if needed</td><td>Shopify → Products</td><td>10 min</td></tr>
+        <tr><td><span class="freq freq-weekly">Weekly</span></td><td><strong>Performance review</strong> — Shopify sales + top social posts from the week</td><td>Shopify / Meta Insights</td><td>15 min</td></tr>
+        <tr><td><span class="freq freq-weekly">Weekly</span></td><td><strong>Email marketing</strong> — send one email per week via the email flows schedule</td><td><a href="email-flows.html">email-flows.html</a></td><td>20 min</td></tr>
+        <tr><td><span class="freq freq-monthly">Monthly</span></td><td><strong>Full analytics review</strong> — traffic, conversions, top content, social reach</td><td>Shopify / Meta Insights / Google</td><td>30 min</td></tr>
+        <tr><td><span class="freq freq-monthly">Monthly</span></td><td><strong>Site audit</strong> — check all links work, images load, forms submit correctly</td><td>montucky-moonshine-proposal.netlify.app</td><td>20 min</td></tr>
+        <tr><td><span class="freq freq-monthly">Monthly</span></td><td><strong>Content calendar planning</strong> — map out next month's themes, any events or promotions</td><td>Notepad / Notion / Calendar</td><td>30 min</td></tr>
+        <tr><td><span class="freq freq-monthly">Monthly</span></td><td><strong>Email list maintenance</strong> — remove unsubscribes, check deliverability metrics</td><td>Email platform</td><td>15 min</td></tr>
+        <tr><td><span class="freq freq-monthly">Monthly</span></td><td><strong>Video content drop</strong> — film and post at least one video per month using the scripts above</td><td>TikTok / Instagram Reels / Facebook</td><td>2–3 hrs</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-in" style="text-align:center">
+    <h2 style="margin-bottom:.5rem">Questions or updates?</h2>
+    <p style="max-width:500px;margin:0 auto 1.5rem">Reach out to the 1Commerce team for anything outside the scope of this kit — site changes, new feature builds, or strategic questions.</p>
+    <a href="deliverables.html" style="display:inline-block;background:var(--amber);color:var(--bg);font-family:var(--ff-c);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:2px">View Full Deliverables →</a>
+  </div>
+</div>
+
+<footer>
+  <p>Montucky Moonshine Builder Kit &nbsp;·&nbsp; Built by <a href="deliverables.html">1Commerce</a> &nbsp;·&nbsp; &copy; <span id="yr"></span> D &amp; V Enterprises LLC</p>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

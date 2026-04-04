@@ -48,6 +48,11 @@
   to = "/lifestyle/culture/index.html"
   status = 200
 
+[[redirects]]
+  from = "/lifestyle/guides"
+  to = "/lifestyle/guides/index.html"
+  status = 200
+
 # Recipe pages
 [[redirects]]
   from = "/lifestyle/recipes/moonshine-lemonade"
@@ -237,6 +242,16 @@
 [[redirects]]
   from = "/deliverables"
   to = "/deliverables.html"
+  status = 200
+
+[[redirects]]
+  from = "/social-tools"
+  to = "/social-tools.html"
+  status = 200
+
+[[redirects]]
+  from = "/builder-kit"
+  to = "/builder-kit.html"
   status = 200
 
 [[headers]]

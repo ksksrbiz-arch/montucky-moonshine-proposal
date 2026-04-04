@@ -1,0 +1,34 @@
+{
+  "name": "Montucky Moonshine",
+  "short_name": "Montucky",
+  "description": "Handcrafted goods and private venue experience in Helena, Montana.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a08",
+  "theme_color": "#c8922a",
+  "icons": [
+    {
+      "src": "https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Shop",
+      "url": "/shop",
+      "description": "Browse Montucky Moonshine merchandise"
+    },
+    {
+      "name": "Venue",
+      "url": "/venue",
+      "description": "Book the Montucky venue"
+    },
+    {
+      "name": "Recipes",
+      "url": "/lifestyle/recipes",
+      "description": "Cocktail recipes and drink guides"
+    }
+  ]
+}
