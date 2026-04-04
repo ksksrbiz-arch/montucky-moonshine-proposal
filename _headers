@@ -1,0 +1,52 @@
+## ─── Security + Performance headers for Netlify ────────────────────────────
+## Applied on every deploy. No server config needed.
+
+# ── All pages ────────────────────────────────────────────────────────────────
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.shopify.com https://connect.facebook.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://montuckymoonshine.com https://cdn.shopify.com; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
+
+# ── Immutable static assets (WebP, PNG, CSS, JS) ─────────────────────────────
+## These files are content-hashed by Netlify's CDN — safe to cache forever.
+## Lighthouse gives a green "Efficient cache policy" when max-age ≥ 31536000.
+/assets/montucky-visuals/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/venue/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/recipe-photos/*
+  Cache-Control: public, max-age=31536000, immutable
+/css/style.css
+  Cache-Control: public, max-age=31536000, immutable
+/js/main.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── PWA manifest ─────────────────────────────────────────────────────────────
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json
+
+# ── HTML pages — revalidate on every request ─────────────────────────────────
+## Never cache HTML so SEO updates and content changes propagate immediately.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/lifestyle/*/*
+  Cache-Control: public, max-age=0, must-revalidate
+/lifestyle/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# ── XML sitemaps ──────────────────────────────────────────────────────────────
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml
+/sitemap-images.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml
+
+# ── robots.txt ────────────────────────────────────────────────────────────────
+/robots.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain
