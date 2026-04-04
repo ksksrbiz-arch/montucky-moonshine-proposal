@@ -711,4 +711,116 @@
     });
   })();
 
+  /* ----------------------------------------------------------
+     25. Hero Carousel — auto-rotation, dot nav, pause-on-hover
+  ---------------------------------------------------------- */
+  (function heroCarousel() {
+    var carousel = document.getElementById('heroCarousel');
+    var dotsWrap = document.getElementById('heroDots');
+    if (!carousel) return;
+
+    var slides   = carousel.querySelectorAll('.hero-slide');
+    var dots     = dotsWrap ? dotsWrap.querySelectorAll('.hero-dot') : [];
+    var current  = 0;
+    var total    = slides.length;
+    var INTERVAL = 6000;
+    var timer;
+    var paused   = false;
+
+    function goTo(idx) {
+      // Remove active from current
+      slides[current].classList.remove('active');
+      if (dots[current]) {
+        dots[current].classList.remove('active');
+        dots[current].setAttribute('aria-selected', 'false');
+      }
+      // Reset img animation so ken-burns restarts on new slide
+      var oldImg = slides[current].querySelector('img');
+      if (oldImg) { oldImg.style.animation = 'none'; void oldImg.offsetWidth; oldImg.style.animation = ''; }
+
+      current = (idx + total) % total;
+
+      slides[current].classList.add('active');
+      if (dots[current]) {
+        dots[current].classList.add('active');
+        dots[current].setAttribute('aria-selected', 'true');
+      }
+    }
+
+    function next() { goTo(current + 1); }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () { if (!paused) next(); }, INTERVAL);
+    }
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { goTo(i); startTimer(); });
+    });
+
+    // Pause on hover/touch
+    var hero = document.querySelector('.hero');
+    if (hero) {
+      hero.addEventListener('mouseenter', function () { paused = true; });
+      hero.addEventListener('mouseleave', function () { paused = false; });
+      hero.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+      hero.addEventListener('touchend',   function () { setTimeout(function () { paused = false; }, 3000); }, { passive: true });
+    }
+
+    document.addEventListener('visibilitychange', function () { paused = document.hidden; });
+
+    startTimer();
+  })();
+
+  /* ----------------------------------------------------------
+     26. Age Gate — sessionStorage, ARIA focus trap
+  ---------------------------------------------------------- */
+  (function ageGate() {
+    var gate = document.getElementById('ageGate');
+    if (!gate) return;
+
+    if (sessionStorage.getItem('ag_verified') === '1') {
+      gate.classList.add('dismissed');
+      return;
+    }
+
+    var yesBtn  = document.getElementById('ageYes');
+    var noBtn   = document.getElementById('ageNo');
+    var btnWrap = document.getElementById('ageGateBtns');
+    var denied  = document.getElementById('ageGateDenied');
+
+    // Focus trap
+    var focusEls = gate.querySelectorAll('button, a[href], input, [tabindex]:not([tabindex="-1"])');
+    var firstEl  = focusEls[0];
+    var lastEl   = focusEls[focusEls.length - 1];
+    gate.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey) {
+        if (document.activeElement === firstEl) { e.preventDefault(); lastEl.focus(); }
+      } else {
+        if (document.activeElement === lastEl)  { e.preventDefault(); firstEl.focus(); }
+      }
+    });
+
+    document.body.style.overflow = 'hidden';
+
+    function admit() {
+      sessionStorage.setItem('ag_verified', '1');
+      document.body.style.overflow = '';
+      gate.classList.add('dismissed');
+    }
+
+    function deny() {
+      btnWrap.style.display  = 'none';
+      denied.style.display   = 'flex';
+      var deniedLink = denied.querySelector('a');
+      if (deniedLink) deniedLink.focus();
+    }
+
+    if (yesBtn) yesBtn.addEventListener('click', admit);
+    if (noBtn)  noBtn.addEventListener('click', deny);
+
+    setTimeout(function () { if (yesBtn) yesBtn.focus(); }, 200);
+  })();
+
 })();

@@ -53,6 +53,24 @@
     <button class="ann-bar-close" onclick="document.getElementById('annBar').style.display='none'" aria-label="Close announcement">✕</button>
   </div>
 
+  <!-- Age Gate -->
+  <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+    <img class="age-gate-logo" src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine" width="72" height="72">
+    <p class="age-gate-kicker">Montana Craft Spirits</p>
+    <h2 id="ageGateTitle">Are you <em>21</em><br>or older?</h2>
+    <p class="age-gate-sub">Montucky Moonshine contains alcohol. You must be of legal drinking age in your country to enter this site.</p>
+    <div class="age-gate-btns" id="ageGateBtns">
+      <button class="btn btn-p" id="ageYes" autofocus>Yes, I'm 21+</button>
+      <button class="btn btn-o" id="ageNo">No, take me back</button>
+    </div>
+    <p class="age-gate-legal">By entering you accept our <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>. Do not share with minors.</p>
+    <div class="age-gate-denied" id="ageGateDenied" aria-live="polite">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      <p>We're sorry — you must be 21 or older to visit this site. Please come back when you're of legal drinking age.</p>
+      <a href="https://www.responsibility.org/" target="_blank" rel="noopener noreferrer" class="btn btn-o" style="font-size:.7rem">Learn More About Responsible Drinking</a>
+    </div>
+  </div>
+
   <!-- Preloader -->
   <div class="preloader" id="preloader">
     <img class="preloader-logo" src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="">
@@ -113,10 +131,24 @@
     <div class="hero-slide"><img src="assets/montucky-visuals/09_hero_bar_hero.png" alt="" loading="lazy" class="parallax-bg" data-parallax="0.3"></div>
     <div class="hero-slide"><img src="assets/montucky-visuals/10_metal_80s_hero.png" alt="" loading="lazy" class="parallax-bg" data-parallax="0.3"></div>
     <div class="hero-slide"><img src="assets/montucky-visuals/01_vintage_poster_hero.png" alt="" loading="lazy" class="parallax-bg" data-parallax="0.3"></div>
+    <div class="hero-slide"><img src="assets/montucky-visuals/07_wolf_mystical_large.png" alt="" loading="lazy" class="parallax-bg" data-parallax="0.3"></div>
   </div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="particles" id="heroParticles" aria-hidden="true"></div>
+      <!-- Hero Dot Nav -->
+      <div class="hero-dots" id="heroDots" aria-label="Slide navigation" role="tablist">
+        <button class="hero-dot active" aria-label="Slide 1" aria-selected="true" role="tab"></button>
+        <button class="hero-dot" aria-label="Slide 2" aria-selected="false" role="tab"></button>
+        <button class="hero-dot" aria-label="Slide 3" aria-selected="false" role="tab"></button>
+        <button class="hero-dot" aria-label="Slide 4" aria-selected="false" role="tab"></button>
+        <button class="hero-dot" aria-label="Slide 5" aria-selected="false" role="tab"></button>
+      </div>
+      <!-- Scroll cue -->
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span>Scroll</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
       <div class="hero-content">
         <div class="hero-badge fade-in">Private Venue — Helena, Montana</div>
         <h1 class="fade-in fade-in-d1">Montucky<br><em>Moonshine</em></h1>
@@ -129,24 +161,41 @@
       </div>
     </section>
 
-    <!--=== PHOTO STRIP ===-->
-    <div class="strip">
-      <div class="scroll-x" style="display:flex;gap:.5rem;padding:0 .5rem">
-        <a href="venue.html" class="img-wrap" style="flex-shrink:0"><img src="venue/bar.webp" alt="Private bar counter" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></a>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_right.webp" alt="Bar seating area" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/barback.webp" alt="Spirits collection" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/lounge.webp" alt="Lounge area" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/pool_table.webp" alt="Pool table room" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_long.webp" alt="Full bar view" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/01_vintage_poster_medium.png" alt="Vintage Heritage" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/02_neon_sign_medium.png" alt="Neon Sign" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/05_steampunk_medium.png" alt="Steampunk" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/07_wolf_mystical_medium.png" alt="Wild Montana" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/06_grunge_90s_medium.png" alt="Grunge Era" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/08_vintage_label_medium.png" alt="Vintage Label" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/04_tattoo_skull_medium.png" alt="Tattoo Skull" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/03_psychedelic_medium.png" alt="Psychedelic" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/10_metal_80s_medium.png" alt="Metal 80s" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+    <!--=== PHOTO STRIP — infinite marquee =====-->
+    <div class="strip marquee-track" aria-hidden="true">
+      <div class="marquee-inner" id="marqueeInner">
+        <!-- Set A -->
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/bar.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/07_wolf_mystical_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/bar_right.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/01_vintage_poster_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/barback.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/08_vintage_label_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/lounge.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/03_psychedelic_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/pool_table.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/10_metal_80s_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/bar_long.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/04_tattoo_skull_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/06_grunge_90s_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/02_neon_sign_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/05_steampunk_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <!-- Set B (duplicate for seamless loop) -->
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/bar.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/07_wolf_mystical_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/bar_right.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/01_vintage_poster_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/barback.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/08_vintage_label_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/lounge.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/03_psychedelic_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/pool_table.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/10_metal_80s_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="venue/bar_long.webp" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/04_tattoo_skull_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/06_grunge_90s_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/02_neon_sign_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0;height:8rem"><img src="assets/montucky-visuals/05_steampunk_medium.png" alt="" loading="lazy" style="height:8rem;width:auto" onload="this.parentElement.classList.add('loaded')"></div>
       </div>
     </div>
 
@@ -174,6 +223,59 @@
         Ships in 2–5 Days
       </div>
     </div>
+
+    <!--=== FEATURED RECIPES ===-->
+    <section style="padding:5rem 1.5rem;background:var(--bg2);border-top:1px solid var(--bdr)">
+      <div class="sec-in">
+        <div class="sec-hdr reveal from-blur">
+          <p class="sec-label">Campfire to Cabin Porch</p>
+          <h2 class="sec-title">Montana <em>Cocktails</em></h2>
+          <div class="sec-line"></div>
+          <p class="sec-desc">Eighteen recipes built for Big Sky Country. From campfire toddies to huckleberry smashes — every pour tells a Montana story.</p>
+        </div>
+        <div class="recipe-showcase stagger-children" style="margin-top:2.5rem">
+          <a href="lifestyle/recipes/montana-mule.html" class="rs-card reveal from-scale">
+            <img src="assets/recipe-photos/recipe-montana-mule.jpg" alt="Montana Mule cocktail in copper mug" loading="lazy" width="400" height="533" onload="this.parentElement.parentElement.querySelector('.rs-card-overlay') && null">
+            <div class="rs-card-overlay"></div>
+            <div class="rs-card-body">
+              <span class="rs-tag">River &amp; Trail</span>
+              <h3>The Montana Mule</h3>
+              <p class="rs-meta">5 min &nbsp;·&nbsp; Easy</p>
+            </div>
+          </a>
+          <a href="lifestyle/recipes/huckleberry-moonshine-smash.html" class="rs-card reveal from-scale">
+            <img src="assets/recipe-photos/recipe-huckleberry-shine.jpg" alt="Huckleberry Moonshine Smash" loading="lazy" width="400" height="533">
+            <div class="rs-card-overlay"></div>
+            <div class="rs-card-body">
+              <span class="rs-tag">Montana Exclusive</span>
+              <h3>Huckleberry Smash</h3>
+              <p class="rs-meta">8 min &nbsp;·&nbsp; Easy</p>
+            </div>
+          </a>
+          <a href="lifestyle/recipes/campfire-hot-toddy.html" class="rs-card reveal from-scale">
+            <img src="assets/recipe-photos/recipe-campfire-sour.jpg" alt="Campfire Hot Toddy" loading="lazy" width="400" height="533">
+            <div class="rs-card-overlay"></div>
+            <div class="rs-card-body">
+              <span class="rs-tag">Campfire</span>
+              <h3>Campfire Hot Toddy</h3>
+              <p class="rs-meta">5 min &nbsp;·&nbsp; Easy</p>
+            </div>
+          </a>
+          <a href="lifestyle/recipes/moonshine-old-fashioned.html" class="rs-card reveal from-scale">
+            <img src="assets/recipe-photos/recipe-straight-pour.jpg" alt="Moonshine Old Fashioned" loading="lazy" width="400" height="533">
+            <div class="rs-card-overlay"></div>
+            <div class="rs-card-body">
+              <span class="rs-tag">Porch Pour</span>
+              <h3>Moonshine Old Fashioned</h3>
+              <p class="rs-meta">5 min &nbsp;·&nbsp; Easy</p>
+            </div>
+          </a>
+        </div>
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href="lifestyle/recipes/index.html" class="btn btn-o">All 18 Recipes &rarr;</a>
+        </div>
+      </div>
+    </section>
 
     <!--=== FEATURED PRODUCTS ===-->
     <section id="shop">
