@@ -30,7 +30,155 @@
 
 [[redirects]]
   from = "/recipes"
-  to = "/recipes.html"
+  to = "/lifestyle/recipes/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/lifestyle"
+  to = "/lifestyle/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes"
+  to = "/lifestyle/recipes/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/culture"
+  to = "/lifestyle/culture/index.html"
+  status = 200
+
+# Recipe pages
+[[redirects]]
+  from = "/lifestyle/recipes/moonshine-lemonade"
+  to = "/lifestyle/recipes/moonshine-lemonade.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/huckleberry-moonshine-smash"
+  to = "/lifestyle/recipes/huckleberry-moonshine-smash.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/montana-mule"
+  to = "/lifestyle/recipes/montana-mule.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/sweet-tea-moonshine"
+  to = "/lifestyle/recipes/sweet-tea-moonshine.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/hot-apple-cider-moonshine"
+  to = "/lifestyle/recipes/hot-apple-cider-moonshine.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/campfire-hot-toddy"
+  to = "/lifestyle/recipes/campfire-hot-toddy.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/spiked-hot-chocolate"
+  to = "/lifestyle/recipes/spiked-hot-chocolate.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/smores-moonshine"
+  to = "/lifestyle/recipes/smores-moonshine.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/apple-pie-moonshine-punch"
+  to = "/lifestyle/recipes/apple-pie-moonshine-punch.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/watermelon-moonshine-punch"
+  to = "/lifestyle/recipes/watermelon-moonshine-punch.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/chokecherry-sangria"
+  to = "/lifestyle/recipes/chokecherry-sangria.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/flathead-cherry-bounce"
+  to = "/lifestyle/recipes/flathead-cherry-bounce.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/moonshine-old-fashioned"
+  to = "/lifestyle/recipes/moonshine-old-fashioned.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/moonshine-sour"
+  to = "/lifestyle/recipes/moonshine-sour.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/huckleberry-lemon-drop"
+  to = "/lifestyle/recipes/huckleberry-lemon-drop.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/moonshine-and-cola"
+  to = "/lifestyle/recipes/moonshine-and-cola.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/mountain-dew-moonshine"
+  to = "/lifestyle/recipes/mountain-dew-moonshine.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/batch-moonshine-margarita"
+  to = "/lifestyle/recipes/batch-moonshine-margarita.html"
+  status = 200
+
+# Culture articles
+[[redirects]]
+  from = "/lifestyle/culture/rebellion-in-a-jar"
+  to = "/lifestyle/culture/rebellion-in-a-jar.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/culture/montana-lady-bootleggers"
+  to = "/lifestyle/culture/montana-lady-bootleggers.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/culture/moonshine-runs-to-checkered-flag"
+  to = "/lifestyle/culture/moonshine-runs-to-checkered-flag.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/culture/white-lightning-goes-legit"
+  to = "/lifestyle/culture/white-lightning-goes-legit.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/culture/bootlegger-trail"
+  to = "/lifestyle/culture/bootlegger-trail.html"
+  status = 200
+
+# Guides
+[[redirects]]
+  from = "/lifestyle/guides/what-to-mix-with-moonshine"
+  to = "/lifestyle/guides/what-to-mix-with-moonshine.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/guides/moonshine-vs-whiskey"
+  to = "/lifestyle/guides/moonshine-vs-whiskey.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/guides/what-does-moonshine-taste-like"
+  to = "/lifestyle/guides/what-does-moonshine-taste-like.html"
   status = 200
 
 [build]

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme:dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a08">
+  <meta name="description" content="Montucky Moonshine Lifestyle — moonshine cocktail recipes, Montana culture & history, mixing guides. Campfire drinks, porch pours, and tailgate classics.">
+  <meta property="og:title" content="Lifestyle — Montucky Moonshine">
+  <meta property="og:description" content="Moonshine recipes, Montana culture, and mixing guides. The Montucky lifestyle, from campfire to porch.">
+  <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <meta property="og:url" content="https://montucky-moonshine-proposal.netlify.app/lifestyle/">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Lifestyle — Montucky Moonshine | Recipes, Culture & Guides</title>
+  <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/lifestyle/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .ls-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:2.5rem}
+    .ls-card{background:var(--card);border:1px solid var(--bdr);border-radius:2px;overflow:hidden;transition:all .5s;text-decoration:none;display:block}
+    .ls-card:hover{border-color:var(--amber);transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,.4),0 0 30px rgba(200,146,42,.15)}
+    .ls-card-img{height:200px;overflow:hidden;position:relative}
+    .ls-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s;filter:brightness(.55) saturate(.7)}
+    .ls-card:hover .ls-card-img img{transform:scale(1.06)}
+    .ls-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,8,.9) 0%,transparent 50%)}
+    .ls-card-body{padding:1.5rem}
+    .ls-tag{display:inline-block;font-family:var(--ff-c);font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .5rem;border-radius:2px;margin-right:.35rem;margin-bottom:.35rem}
+    .ls-tag.campfire{color:#D4740B;background:rgba(212,116,11,.1);border:1px solid rgba(212,116,11,.25)}
+    .ls-tag.river{color:#2E86AB;background:rgba(46,134,171,.1);border:1px solid rgba(46,134,171,.25)}
+    .ls-tag.cabin{color:#8B4513;background:rgba(139,69,19,.1);border:1px solid rgba(139,69,19,.25)}
+    .ls-tag.porch{color:#DAA520;background:rgba(218,165,32,.1);border:1px solid rgba(218,165,32,.25)}
+    .ls-tag.tailgate{color:#CC0000;background:rgba(204,0,0,.1);border:1px solid rgba(204,0,0,.25)}
+    .ls-tag.history{color:var(--amber);background:rgba(200,146,42,.1);border:1px solid rgba(200,146,42,.25)}
+    .ls-tag.guide{color:var(--cream);background:rgba(245,240,230,.08);border:1px solid rgba(245,240,230,.15)}
+    .ls-filter-bar{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem}
+    .ls-filter-btn{font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);background:var(--bg2);border:1px solid var(--bdr);padding:.5rem 1rem;border-radius:2px;cursor:pointer;transition:all .3s;min-height:44px}
+    .ls-filter-btn:hover{color:var(--amber);border-color:var(--amber)}
+    .ls-filter-btn.active{background:var(--amber);color:var(--bg);border-color:var(--amber)}
+    .ls-section-link{display:block;background:var(--card);border:1px solid var(--bdr);border-radius:2px;padding:2.5rem;text-align:center;transition:all .5s;text-decoration:none}
+    .ls-section-link:hover{border-color:var(--amber);transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,.4),0 0 30px rgba(200,146,42,.15)}
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <a href="#main" class="skip">Skip to content</a>
+
+  <nav id="navbar" role="banner">
+    <div class="nav-in">
+      <a class="nav-logo" href="../index.html" aria-label="Home">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
+        <div class="nav-brand">Montucky Moonshine<small>Est. Montana</small></div>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../shop.html">Shop</a>
+        <a href="../venue.html">Venue</a>
+        <a href="../about.html">About</a>
+        <a href="index.html" class="active">Lifestyle</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="../index.html">Home</a>
+    <a href="../shop.html">Shop</a>
+    <a href="../venue.html">Venue</a>
+    <a href="../about.html">About</a>
+    <a href="index.html" class="active">Lifestyle</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="mobile-cta">Shop Now &rarr;</a>
+  </nav>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" style="min-height:50vh;padding-top:8rem;padding-bottom:3rem">
+      <div class="hero-bg"><img src="../assets/montucky-visuals/09_hero_bar_large.png" alt="" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.2"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-content" style="position:relative;z-index:2">
+        <p class="sec-label">The Montucky Lifestyle</p>
+        <h1 class="sec-title" style="font-size:clamp(2rem,6vw,4rem)"><em>Recipes,</em> Culture<br>&amp; Montana Spirit</h1>
+        <div class="sec-line" style="margin:1rem auto"></div>
+        <p class="hero-desc">Campfire cocktails, porch pours, moonshine history, and the stories that make Montana legendary. This is where the brand comes alive.</p>
+      </div>
+    </section>
+
+    <!-- Section Links -->
+    <section style="padding:4rem 1.5rem">
+      <div class="sec-in">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">
+
+          <a href="recipes/index.html" class="ls-section-link reveal from-scale">
+            <p style="font-size:2.5rem;margin-bottom:1rem">&#127864;</p>
+            <p class="sec-label">Cocktail Collection</p>
+            <h2 style="font-family:var(--ff-d);font-size:1.3rem;font-weight:700;color:var(--cream);margin:.5rem 0">Moonshine <em style="color:var(--amber)">Recipes</em></h2>
+            <p style="color:var(--t3);font-size:.85rem;line-height:1.7;margin-top:.75rem">18 cocktail recipes organized by moment — campfire, river trail, cabin weekend, porch pour, and tailgate.</p>
+            <span class="btn btn-ghost" style="margin-top:1rem">Browse Recipes &rarr;</span>
+          </a>
+
+          <a href="culture/index.html" class="ls-section-link reveal from-scale">
+            <p style="font-size:2.5rem;margin-bottom:1rem">&#128220;</p>
+            <p class="sec-label">Stories &amp; History</p>
+            <h2 style="font-family:var(--ff-d);font-size:1.3rem;font-weight:700;color:var(--cream);margin:.5rem 0">Culture &amp; <em style="color:var(--amber)">Heritage</em></h2>
+            <p style="color:var(--t3);font-size:.85rem;line-height:1.7;margin-top:.75rem">Montana's moonshine history, lady bootleggers, NASCAR origins, and the craft spirits revolution.</p>
+            <span class="btn btn-ghost" style="margin-top:1rem">Read Stories &rarr;</span>
+          </a>
+
+          <a href="guides/what-to-mix-with-moonshine.html" class="ls-section-link reveal from-scale">
+            <p style="font-size:2.5rem;margin-bottom:1rem">&#128214;</p>
+            <p class="sec-label">Learn</p>
+            <h2 style="font-family:var(--ff-d);font-size:1.3rem;font-weight:700;color:var(--cream);margin:.5rem 0">Mixing <em style="color:var(--amber)">Guides</em></h2>
+            <p style="color:var(--t3);font-size:.85rem;line-height:1.7;margin-top:.75rem">What to mix with moonshine, moonshine vs whiskey, flavor profiles, and everything a beginner needs to know.</p>
+            <span class="btn btn-ghost" style="margin-top:1rem">Read Guides &rarr;</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Recipes -->
+    <section style="background:var(--bg2);border-top:1px solid var(--bdr);padding:4rem 1.5rem">
+      <div class="sec-in">
+        <div class="sec-hdr reveal from-blur">
+          <p class="sec-label">Staff Picks</p>
+          <h2 class="sec-title">Start <em>Here</em></h2>
+          <div class="sec-line"></div>
+        </div>
+        <div class="ls-grid">
+
+          <a href="recipes/montana-mule.html" class="ls-card reveal from-scale">
+            <div class="ls-card-img">
+              <img src="../assets/montucky-visuals/09_hero_bar_medium.png" alt="Montana Mule cocktail" loading="lazy">
+              <div class="ls-card-overlay"></div>
+            </div>
+            <div class="ls-card-body">
+              <div><span class="ls-tag river">River &amp; Trail</span><span class="ls-tag river">Year-Round</span></div>
+              <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream);margin:.5rem 0">Montana Mule</h3>
+              <p style="color:var(--t3);font-size:.8rem;line-height:1.6">The Moscow Mule's wilder cousin. Moonshine, ginger beer, fresh lime.</p>
+            </div>
+          </a>
+
+          <a href="recipes/hot-apple-cider-moonshine.html" class="ls-card reveal from-scale">
+            <div class="ls-card-img">
+              <img src="../assets/montucky-visuals/01_vintage_poster_medium.png" alt="Hot Apple Cider Moonshine" loading="lazy">
+              <div class="ls-card-overlay"></div>
+            </div>
+            <div class="ls-card-body">
+              <div><span class="ls-tag campfire">Campfire</span><span class="ls-tag campfire">Fall / Winter</span></div>
+              <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream);margin:.5rem 0">Hot Apple Cider Moonshine</h3>
+              <p style="color:var(--t3);font-size:.8rem;line-height:1.6">Warm apple cider spiked with moonshine, cinnamon, and star anise.</p>
+            </div>
+          </a>
+
+          <a href="recipes/moonshine-old-fashioned.html" class="ls-card reveal from-scale">
+            <div class="ls-card-img">
+              <img src="../assets/montucky-visuals/08_vintage_label_medium.png" alt="Moonshine Old Fashioned" loading="lazy">
+              <div class="ls-card-overlay"></div>
+            </div>
+            <div class="ls-card-body">
+              <div><span class="ls-tag porch">Porch Pour</span><span class="ls-tag porch">Year-Round</span></div>
+              <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream);margin:.5rem 0">Moonshine Old Fashioned</h3>
+              <p style="color:var(--t3);font-size:.8rem;line-height:1.6">The classic cocktail, Montana-style. Sugar, bitters, moonshine, orange peel.</p>
+            </div>
+          </a>
+
+          <a href="recipes/huckleberry-moonshine-smash.html" class="ls-card reveal from-scale">
+            <div class="ls-card-img">
+              <img src="../assets/montucky-visuals/07_wolf_mystical_medium.png" alt="Huckleberry Moonshine Smash" loading="lazy">
+              <div class="ls-card-overlay"></div>
+            </div>
+            <div class="ls-card-body">
+              <div><span class="ls-tag river">River &amp; Trail</span><span class="ls-tag river">Summer</span></div>
+              <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream);margin:.5rem 0">Huckleberry Moonshine Smash</h3>
+              <p style="color:var(--t3);font-size:.8rem;line-height:1.6">Montana's iconic berry meets moonshine. Mint, lime, huckleberry bliss.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Culture -->
+    <section style="padding:4rem 1.5rem">
+      <div class="sec-in">
+        <div class="sec-hdr reveal from-blur">
+          <p class="sec-label">From the Archives</p>
+          <h2 class="sec-title">Culture &amp; <em>History</em></h2>
+          <div class="sec-line"></div>
+        </div>
+        <div class="ls-grid">
+
+          <a href="culture/rebellion-in-a-jar.html" class="ls-card reveal from-scale">
+            <div class="ls-card-img">
+              <img src="../assets/montucky-visuals/01_vintage_poster_medium.png" alt="Moonshine history" loading="lazy">
+              <div class="ls-card-overlay"></div>
+            </div>
+            <div class="ls-card-body">
+              <div><span class="ls-tag history">History</span></div>
+              <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream);margin:.5rem 0">Rebellion in a Jar</h3>
+              <p style="color:var(--t3);font-size:.8rem;line-height:1.6">The full history of American moonshine — from Scots-Irish settlers to the modern craft revival.</p>
+            </div>
+          </a>
+
+          <a href="culture/montana-lady-bootleggers.html" class="ls-card reveal from-scale">
+            <div class="ls-card-img">
+              <img src="../assets/montucky-visuals/06_grunge_90s_medium.png" alt="Montana lady bootleggers" loading="lazy">
+              <div class="ls-card-overlay"></div>
+            </div>
+            <div class="ls-card-body">
+              <div><span class="ls-tag history">Montana Stories</span></div>
+              <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream);margin:.5rem 0">Montana's Lady Bootleggers</h3>
+              <p style="color:var(--t3);font-size:.8rem;line-height:1.6">Bertie Brown and Josephine Doody — the women who ran stills when Montana went dry.</p>
+            </div>
+          </a>
+
+          <a href="guides/what-to-mix-with-moonshine.html" class="ls-card reveal from-scale">
+            <div class="ls-card-img">
+              <img src="../assets/montucky-visuals/05_steampunk_medium.png" alt="Moonshine mixing guide" loading="lazy">
+              <div class="ls-card-overlay"></div>
+            </div>
+            <div class="ls-card-body">
+              <div><span class="ls-tag guide">Guide</span></div>
+              <h3 style="font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--cream);margin:.5rem 0">What to Mix with Moonshine</h3>
+              <p style="color:var(--t3);font-size:.8rem;line-height:1.6">7 perfect pairings with ratios, from lemonade to hot chocolate.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background:var(--bg2);border-top:1px solid var(--bdr);padding:4rem 1.5rem;text-align:center">
+      <div class="sec-in reveal from-blur">
+        <p class="sec-label">The Collection</p>
+        <h2 class="sec-title">Serve It in <em>Style</em></h2>
+        <div class="sec-line" style="margin:1rem auto"></div>
+        <p style="color:var(--t3);font-size:.85rem;line-height:1.8;max-width:480px;margin:1rem auto 2rem">Every recipe deserves the right glass. Shop Montucky steins, mugs, and flasks — handcrafted for the Montana lifestyle.</p>
+        <a href="../shop.html" class="btn btn-p">Shop the Collection &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="safe-b" role="contentinfo">
+    <div class="foot-in">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <div class="nav-brand" style="font-size:1.25rem">Montucky Moonshine<small>Est. Montana</small></div>
+          <p>Great ideas and fantastic products, handcrafted with Montana spirit.</p>
+          <p style="margin-top:.75rem;font-size:.75rem;color:var(--t3)">&#128205; 3420 Byron Road, Helena MT 59602<br>&#9993; <a href="mailto:montuckymoonshine@gmail.com" style="color:var(--amber)">montuckymoonshine@gmail.com</a></p>
+        </div>
+        <div class="foot-col">
+          <h4>Shop</h4>
+          <a href="https://montuckymoonshine.com/collections/mugs" target="_blank" rel="noopener noreferrer">Mugs</a>
+          <a href="https://montuckymoonshine.com/collections/tee-shirts" target="_blank" rel="noopener noreferrer">Tees</a>
+          <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer">All Products</a>
+        </div>
+        <div class="foot-col">
+          <h4>Explore</h4>
+          <a href="../venue.html">The Venue</a>
+          <a href="recipes/index.html">Recipes</a>
+          <a href="culture/index.html">Culture &amp; History</a>
+          <a href="../about.html">Our Story</a>
+        </div>
+        <div class="foot-col">
+          <h4>Policies</h4>
+          <a href="../refund.html">Refund Policy</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p>&copy; <span id="copyrightYear"></span> D &amp; V Enterprises LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

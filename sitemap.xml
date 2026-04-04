@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/shop</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/venue</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/about</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/contact</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/faq</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/history</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <!-- Lifestyle Hub -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/culture</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <!-- Recipes: Campfire -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/hot-apple-cider-moonshine</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/campfire-hot-toddy</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/spiked-hot-chocolate</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/smores-moonshine</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Recipes: River & Trail -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/moonshine-lemonade</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/huckleberry-moonshine-smash</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/montana-mule</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/sweet-tea-moonshine</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Recipes: Cabin Weekend -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/apple-pie-moonshine-punch</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/watermelon-moonshine-punch</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/chokecherry-sangria</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/flathead-cherry-bounce</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Recipes: Porch Pour -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/moonshine-old-fashioned</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/moonshine-sour</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/huckleberry-lemon-drop</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Recipes: Tailgate -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/moonshine-and-cola</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/mountain-dew-moonshine</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/batch-moonshine-margarita</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Culture Articles -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/culture/rebellion-in-a-jar</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/culture/montana-lady-bootleggers</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/culture/moonshine-runs-to-checkered-flag</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/culture/white-lightning-goes-legit</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/culture/bootlegger-trail</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Guides -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/what-to-mix-with-moonshine</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/moonshine-vs-whiskey</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/what-does-moonshine-taste-like</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Legal -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/refund</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/privacy</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/terms</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+</urlset>
