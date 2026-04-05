@@ -241,6 +241,15 @@
   status = 200
 
 # =============================================================================
+# Content Hub routes
+# =============================================================================
+
+[[redirects]]
+  from = "/content-hub"
+  to = "/lifestyle/recipes/index.html"
+  status = 200
+
+# =============================================================================
 # Legacy 301 redirects
 # =============================================================================
 
@@ -274,7 +283,7 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://montuckymoonshine.com data:; connect-src 'self'; frame-ancestors 'none'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://montuckymoonshine.com data: blob:; media-src 'self' https://montuckymoonshine.com blob:; connect-src 'self' https://api.elevenlabs.io https://montuckymoonshine.com; frame-ancestors 'none'"
     Cache-Control = "public, max-age=3600"
 
 [[headers]]
