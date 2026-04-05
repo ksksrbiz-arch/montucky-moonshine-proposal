@@ -240,6 +240,21 @@
   to = "/lifestyle/guides/what-to-mix-with-moonshine.html"
   status = 200
 
+[[redirects]]
+  from = "/lifestyle/guides/is-moonshine-legal"
+  to = "/lifestyle/guides/is-moonshine-legal.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/huckleberry-hub"
+  to = "/lifestyle/huckleberry-hub.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/cocktail-builder"
+  to = "/lifestyle/cocktail-builder.html"
+  status = 200
+
 # =============================================================================
 # Legacy 301 redirects
 # =============================================================================

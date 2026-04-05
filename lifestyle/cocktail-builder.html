@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme:dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a08">
+  <meta name="description" content="Discover your perfect Montucky Moonshine cocktail. Answer 3 questions about your vibe and moment — we'll match you to the ideal recipe from our collection.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Cocktail Builder — Find Your Perfect Montucky Moonshine Drink">
+  <meta property="og:description" content="Tell us your mood, your moment, and your flavor preference. We'll pick the perfect moonshine cocktail for you.">
+  <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <meta property="og:url" content="https://montucky-moonshine-proposal.netlify.app/lifestyle/cocktail-builder">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Cocktail Builder — Find Your Perfect Drink | Montucky Moonshine</title>
+  <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/lifestyle/cocktail-builder">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .cb-hero{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--bg)}
+    .cb-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.14) saturate(.5)}
+    .cb-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.1),rgba(10,10,8,.98))}
+    .cb-hero-content{position:relative;z-index:2;padding:7rem 1.5rem 4rem;max-width:680px;margin:0 auto}
+    .cb-eyebrow{font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+    .cb-hero-title{font-family:var(--ff-d);font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:1rem}
+    .cb-hero-sub{font-size:1rem;color:var(--t2);line-height:1.75;max-width:480px;margin:0 auto}
+    .cb-wrap{max-width:820px;margin:0 auto;padding:4rem 1.5rem 6rem}
+    .cb-steps{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:3.5rem}
+    .cb-step-dot{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+    .cb-step-circle{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-d);font-size:1rem;font-weight:700;border:2px solid var(--bdr);color:var(--t3);background:var(--card);transition:all .4s}
+    .cb-step-dot.active .cb-step-circle{border-color:var(--amber);color:var(--amber);background:rgba(200,146,42,.1);box-shadow:0 0 20px rgba(200,146,42,.3)}
+    .cb-step-dot.done .cb-step-circle{border-color:var(--amber);background:var(--amber);color:var(--bg)}
+    .cb-step-label{font-family:var(--ff-c);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);white-space:nowrap}
+    .cb-step-dot.active .cb-step-label{color:var(--amber)}
+    .cb-step-dot.done .cb-step-label{color:var(--t2)}
+    .cb-step-line{flex:1;height:1px;background:var(--bdr);margin:0 .75rem;margin-bottom:1.4rem;max-width:100px;transition:background .4s}
+    .cb-step-line.done{background:var(--amber)}
+    .cb-panel{display:none;animation:cbFade .45s ease}
+    .cb-panel.active{display:block}
+    @keyframes cbFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .cb-panel-label{font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--amber);text-align:center;margin-bottom:.6rem}
+    .cb-panel-title{font-family:var(--ff-d);font-size:clamp(1.5rem,3.5vw,2.2rem);color:var(--cream);text-align:center;margin-bottom:2.5rem}
+    .cb-choices{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2.5rem}
+    @media(max-width:480px){.cb-choices{grid-template-columns:1fr}}
+    .cb-choice{background:var(--card);border:2px solid var(--bdr);border-radius:4px;padding:1.75rem 1.5rem;cursor:pointer;transition:border-color .25s,background .25s,transform .2s,box-shadow .25s;text-align:left}
+    .cb-choice:hover{border-color:rgba(200,146,42,.5);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+    .cb-choice.selected{border-color:var(--amber);background:rgba(200,146,42,.08);box-shadow:0 0 25px rgba(200,146,42,.2)}
+    .cb-choice-icon{font-size:2rem;margin-bottom:.75rem;display:block}
+    .cb-choice-name{font-family:var(--ff-d);font-size:1.15rem;color:var(--cream);margin-bottom:.4rem}
+    .cb-choice-desc{font-size:.82rem;color:var(--t2);line-height:1.55}
+    .cb-nav{display:flex;gap:1rem;justify-content:center;align-items:center}
+    .cb-btn-back{background:transparent;border:1px solid var(--bdr);color:var(--t2);font-family:var(--ff-c);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;padding:.85rem 1.75rem;border-radius:2px;cursor:pointer;transition:border-color .2s,color .2s}
+    .cb-btn-back:hover{border-color:var(--amber);color:var(--amber)}
+    .cb-btn-next{background:var(--amber);border:none;color:var(--bg);font-family:var(--ff-c);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.85rem 2.25rem;border-radius:2px;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;opacity:.4;pointer-events:none}
+    .cb-btn-next.enabled{opacity:1;pointer-events:all}
+    .cb-btn-next.enabled:hover{background:var(--amber-l);transform:translateY(-1px);box-shadow:0 6px 20px rgba(200,146,42,.4)}
+    #cbResults{display:none;animation:cbFade .5s ease}
+    .cb-results-header{text-align:center;padding:0 0 3rem}
+    .cb-results-label{font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
+    .cb-results-title{font-family:var(--ff-d);font-size:clamp(1.6rem,4vw,2.5rem);color:var(--cream);margin-bottom:.75rem}
+    .cb-results-sub{font-size:.9rem;color:var(--t2);max-width:400px;margin:0 auto;line-height:1.65}
+    .cb-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.25rem;margin-bottom:3rem}
+    .cb-result-card{background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:1.75rem 1.5rem;text-decoration:none;display:block;transition:transform .3s,border-color .3s,box-shadow .3s}
+    .cb-result-card:hover{transform:translateY(-3px);border-color:rgba(200,146,42,.45);box-shadow:0 10px 35px rgba(0,0,0,.3)}
+    .cb-result-rank{font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem}
+    .cb-result-name{font-family:var(--ff-d);font-size:1.1rem;color:var(--cream);margin-bottom:.4rem;line-height:1.3}
+    .cb-result-tag{font-family:var(--ff-c);font-size:.6rem;color:var(--t3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem}
+    .cb-result-desc{font-size:.82rem;color:var(--t2);line-height:1.6}
+    .cb-result-cta{display:flex;align-items:center;gap:.4rem;margin-top:1rem;font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber)}
+    .cb-reset-wrap{text-align:center}
+    .cb-reset{background:transparent;border:1px solid var(--bdr);color:var(--t2);font-family:var(--ff-c);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;padding:.75rem 1.5rem;border-radius:2px;cursor:pointer;transition:border-color .2s,color .2s}
+    .cb-reset:hover{border-color:var(--amber);color:var(--amber)}
+  </style>
+</head>
+<body>
+  <div id="preloader"><div class="preloader-bar"></div></div>
+  <div id="scroll-progress"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <nav id="navbar" role="banner">
+    <div class="nav-in">
+      <a class="nav-logo" href="../index.html" aria-label="Home">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
+        <div class="nav-brand">Montucky Moonshine<small>Est. Montana</small></div>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../shop.html">Shop</a>
+        <a href="../venue.html">Venue</a>
+        <a href="../about.html">About</a>
+        <a href="index.html" class="active">Lifestyle</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="../index.html">Home</a>
+    <a href="../shop.html">Shop</a>
+    <a href="../venue.html">Venue</a>
+    <a href="../about.html">About</a>
+    <a href="index.html" class="active">Lifestyle</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="mobile-cta">Shop Now &rarr;</a>
+  </nav>
+
+  <main id="main-content">
+    <section class="cb-hero">
+      <img class="cb-hero-bg" src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=1600&q=60&auto=format" alt="Cocktail ingredients" loading="eager">
+      <div class="cb-hero-overlay"></div>
+      <div class="cb-hero-content">
+        <div class="cb-eyebrow">3 Questions &nbsp;·&nbsp; Your Perfect Pour</div>
+        <h1 class="cb-hero-title">Find Your Cocktail</h1>
+        <p class="cb-hero-sub">Tell us your vibe, your moment, and what flavors you're feeling. We'll match you to the right recipe — no overwhelm, just your drink.</p>
+      </div>
+    </section>
+
+    <div class="cb-wrap">
+      <div class="cb-steps" role="navigation" aria-label="Builder progress">
+        <div class="cb-step-dot active" id="dot1">
+          <div class="cb-step-circle">1</div>
+          <span class="cb-step-label">Vibe</span>
+        </div>
+        <div class="cb-step-line" id="line1"></div>
+        <div class="cb-step-dot" id="dot2">
+          <div class="cb-step-circle">2</div>
+          <span class="cb-step-label">Moment</span>
+        </div>
+        <div class="cb-step-line" id="line2"></div>
+        <div class="cb-step-dot" id="dot3">
+          <div class="cb-step-circle">3</div>
+          <span class="cb-step-label">Flavor</span>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="cb-panel active" id="step1">
+        <p class="cb-panel-label">Step 1 of 3</p>
+        <h2 class="cb-panel-title">What's your vibe right now?</h2>
+        <div class="cb-choices" role="group">
+          <button class="cb-choice" data-value="warm" onclick="cbSelect(this,1)">
+            <span class="cb-choice-icon">🔥</span>
+            <div class="cb-choice-name">Warm &amp; Cozy</div>
+            <div class="cb-choice-desc">Hot drinks, spiced flavors, comfort in a cup. Perfect for cold nights and fireside sessions.</div>
+          </button>
+          <button class="cb-choice" data-value="crisp" onclick="cbSelect(this,1)">
+            <span class="cb-choice-icon">🌊</span>
+            <div class="cb-choice-name">Crisp &amp; Fresh</div>
+            <div class="cb-choice-desc">Cold, bright, citrusy. The kind of drink that tastes like summer and outdoor adventure.</div>
+          </button>
+          <button class="cb-choice" data-value="rich" onclick="cbSelect(this,1)">
+            <span class="cb-choice-icon">🎩</span>
+            <div class="cb-choice-name">Rich &amp; Bold</div>
+            <div class="cb-choice-desc">Complex flavors, something to sip and think about. You appreciate the craft in a cocktail.</div>
+          </button>
+          <button class="cb-choice" data-value="easy" onclick="cbSelect(this,1)">
+            <span class="cb-choice-icon">😎</span>
+            <div class="cb-choice-name">Easy &amp; Classic</div>
+            <div class="cb-choice-desc">Simple is good. Two or three ingredients, fast to make, always hits the spot.</div>
+          </button>
+        </div>
+        <div class="cb-nav">
+          <button class="cb-btn-next" id="next1" onclick="cbNext(2)">Next: Choose Your Moment →</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="cb-panel" id="step2">
+        <p class="cb-panel-label">Step 2 of 3</p>
+        <h2 class="cb-panel-title">What's the moment?</h2>
+        <div class="cb-choices" role="group">
+          <button class="cb-choice" data-value="campfire" onclick="cbSelect(this,2)">
+            <span class="cb-choice-icon">🏕️</span>
+            <div class="cb-choice-name">Campfire</div>
+            <div class="cb-choice-desc">Outside, fire going, stars overhead. Maybe an enamel mug involved.</div>
+          </button>
+          <button class="cb-choice" data-value="river" onclick="cbSelect(this,2)">
+            <span class="cb-choice-icon">🏞️</span>
+            <div class="cb-choice-name">River &amp; Trail</div>
+            <div class="cb-choice-desc">Post-hike, on the water, flask in the pack. Something earned and refreshing.</div>
+          </button>
+          <button class="cb-choice" data-value="cabin" onclick="cbSelect(this,2)">
+            <span class="cb-choice-icon">🏡</span>
+            <div class="cb-choice-name">Cabin Weekend</div>
+            <div class="cb-choice-desc">Big batch, good company, no rush. Mason jar optional, big atmosphere required.</div>
+          </button>
+          <button class="cb-choice" data-value="porch" onclick="cbSelect(this,2)">
+            <span class="cb-choice-icon">🌅</span>
+            <div class="cb-choice-name">Porch Pour</div>
+            <div class="cb-choice-desc">Solo or paired, sunset timing, something to actually sip and appreciate.</div>
+          </button>
+        </div>
+        <div class="cb-nav">
+          <button class="cb-btn-back" onclick="cbBack(1)">← Back</button>
+          <button class="cb-btn-next" id="next2" onclick="cbNext(3)">Next: Choose Flavor →</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="cb-panel" id="step3">
+        <p class="cb-panel-label">Step 3 of 3</p>
+        <h2 class="cb-panel-title">What flavor direction?</h2>
+        <div class="cb-choices" role="group">
+          <button class="cb-choice" data-value="fruit" onclick="cbSelect(this,3)">
+            <span class="cb-choice-icon">🫐</span>
+            <div class="cb-choice-name">Fruit &amp; Berry</div>
+            <div class="cb-choice-desc">Huckleberry, peach, cherry, apple. Montana's wild harvest in a glass.</div>
+          </button>
+          <button class="cb-choice" data-value="citrus" onclick="cbSelect(this,3)">
+            <span class="cb-choice-icon">🍋</span>
+            <div class="cb-choice-name">Citrus &amp; Bright</div>
+            <div class="cb-choice-desc">Lemon, lime, grapefruit. Tart and refreshing — the cocktail bartender's first tool.</div>
+          </button>
+          <button class="cb-choice" data-value="spice" onclick="cbSelect(this,3)">
+            <span class="cb-choice-icon">🫚</span>
+            <div class="cb-choice-name">Spice &amp; Warmth</div>
+            <div class="cb-choice-desc">Ginger, cinnamon, clove. Flavors that match the spirit's natural heat.</div>
+          </button>
+          <button class="cb-choice" data-value="sweet" onclick="cbSelect(this,3)">
+            <span class="cb-choice-icon">🍯</span>
+            <div class="cb-choice-name">Sweet &amp; Smooth</div>
+            <div class="cb-choice-desc">Honey, maple, caramel, cola. Works with the corn's natural sweetness.</div>
+          </button>
+        </div>
+        <div class="cb-nav">
+          <button class="cb-btn-back" onclick="cbBack(2)">← Back</button>
+          <button class="cb-btn-next" id="next3" onclick="cbShowResults()">See My Cocktails 🍸</button>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="cbResults">
+        <div class="cb-results-header">
+          <p class="cb-results-label">Your Matches</p>
+          <h2 class="cb-results-title">Here's what we'd pour you</h2>
+          <p class="cb-results-sub">Ranked by how well they match your vibe, moment, and flavor — the first one is your best fit.</p>
+        </div>
+        <div class="cb-results-grid" id="resultsGrid"></div>
+        <div class="cb-reset-wrap">
+          <button class="cb-reset" onclick="cbReset()">← Start Over</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="safe-b" role="contentinfo">
+    <div class="foot-in">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <div class="nav-brand" style="font-size:1.25rem">Montucky Moonshine<small>Est. Montana</small></div>
+          <p>Great ideas and fantastic products, handcrafted with Montana spirit. The venue is a personal brand experience — by inquiry only.</p>
+          <p style="margin-top:.75rem;font-size:.75rem;color:var(--t3)">&#128205; 3420 Byron Road, Helena MT 59602<br>&#9993; <a href="mailto:montuckymoonshine@gmail.com" style="color:var(--amber)">montuckymoonshine@gmail.com</a></p>
+        </div>
+        <div class="foot-col"><h4>Shop</h4>
+          <a href="https://montuckymoonshine.com/collections/mugs" target="_blank" rel="noopener noreferrer">Mugs</a>
+          <a href="https://montuckymoonshine.com/collections/tee-shirts" target="_blank" rel="noopener noreferrer">Tees</a>
+          <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer">All Products</a>
+        </div>
+        <div class="foot-col"><h4>Explore</h4>
+          <a href="../venue.html">The Venue</a>
+          <a href="index.html">Lifestyle</a>
+          <a href="../about.html">Our Story</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+        <div class="foot-col"><h4>Policies</h4>
+          <a href="../refund.html">Refund Policy</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p>&copy; <span id="copyrightYear"></span> D &amp; V Enterprises LLC. All rights reserved.</p>
+        <div class="pay"><span>VISA</span><span>MC</span><span>AMEX</span><span>PAYPAL</span><span>APPLE PAY</span><span>GOOGLE PAY</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  (function(){
+    'use strict';
+    var state={vibe:null,moment:null,flavor:null};
+    var RECIPES=[
+      {slug:'hot-apple-cider-moonshine',name:'Hot Apple Cider Moonshine',tag:'🏕️ Campfire',desc:'Warm apple cider spiked with moonshine, cinnamon, and star anise. The campfire essential.',vibes:['warm'],moments:['campfire'],flavors:['spice','sweet'],url:'recipes/hot-apple-cider-moonshine.html'},
+      {slug:'campfire-hot-toddy',name:'Campfire Hot Toddy',tag:'🏕️ Campfire',desc:'Moonshine, honey, lemon juice, and hot water. Time-tested remedy and ritual.',vibes:['warm'],moments:['campfire'],flavors:['citrus','sweet'],url:'recipes/campfire-hot-toddy.html'},
+      {slug:'spiked-hot-chocolate',name:'Spiked Hot Chocolate',tag:'🏕️ Campfire',desc:'Rich hot cocoa and moonshine in an enamel mug. Peak cabin comfort.',vibes:['warm','easy'],moments:['campfire','cabin'],flavors:['sweet'],url:'recipes/spiked-hot-chocolate-moonshine.html'},
+      {slug:'huckleberry-smash',name:'Huckleberry Moonshine Smash',tag:'🏞️ River & Trail',desc:'Muddled huckleberries, mint, lemon, and moonshine over crushed ice. Montana in a glass.',vibes:['crisp','rich'],moments:['river','porch'],flavors:['fruit','citrus'],url:'recipes/huckleberry-moonshine-smash.html'},
+      {slug:'montana-mule',name:'Montana Mule',tag:'🏞️ River & Trail',desc:'Moonshine, fresh lime, premium ginger beer, copper mug. Crushable and crowd-pleasing.',vibes:['crisp','easy'],moments:['river','cabin'],flavors:['citrus','spice'],url:'recipes/moonshine-ginger-beer-mule.html'},
+      {slug:'moonshine-lemonade',name:'Moonshine Lemonade',tag:'🏞️ River & Trail',desc:'Fresh lemonade and moonshine over ice. The simplest summer drink that exists.',vibes:['crisp','easy'],moments:['river','porch'],flavors:['citrus'],url:'recipes/moonshine-lemonade.html'},
+      {slug:'sweet-tea',name:'Sweet Tea Moonshine',tag:'🪵 Porch Pour',desc:'Classic sweet tea meets moonshine. Porch-ready at all times.',vibes:['easy','warm'],moments:['porch','cabin'],flavors:['sweet'],url:'recipes/moonshine-sweet-tea.html'},
+      {slug:'apple-pie-punch',name:'Apple Pie Moonshine Punch',tag:'🏡 Cabin Weekend',desc:'Big-batch punch that serves a crowd. Apple pie moonshine, cider, ginger ale.',vibes:['warm','easy'],moments:['cabin'],flavors:['spice','sweet'],url:'recipes/apple-pie-moonshine-punch.html'},
+      {slug:'old-fashioned',name:'Moonshine Old Fashioned',tag:'🪵 Porch Pour',desc:'Moonshine stirred with bitters and demerara. Classic structure, corn whiskey soul.',vibes:['rich'],moments:['porch'],flavors:['sweet','spice'],url:'recipes/moonshine-old-fashioned.html'},
+      {slug:'huckleberry-lemon-drop',name:'Huckleberry Lemon Drop',tag:'🪵 Porch Pour',desc:'Sophisticated martini-style sipper. Fresh lemon, huckleberry, moonshine, sugar rim.',vibes:['rich','crisp'],moments:['porch'],flavors:['fruit','citrus'],url:'recipes/huckleberry-lemon-drop.html'},
+      {slug:'moonshine-cola',name:'Moonshine & Cola',tag:'🏟️ Tailgate',desc:'Moonshine and cola in an insulated tumbler. No-overthink, always works.',vibes:['easy'],moments:['cabin','river'],flavors:['sweet'],url:'recipes/moonshine-and-cola.html'},
+      {slug:'watermelon-punch',name:'Watermelon Moonshine Punch',tag:'🏡 Cabin Weekend',desc:'Fresh watermelon juice, lime, moonshine, sparkling water. Summer at its best.',vibes:['crisp'],moments:['cabin','river'],flavors:['fruit','citrus'],url:'recipes/watermelon-moonshine-punch.html'},
+      {slug:'chokecherry-sangria',name:'Chokecherry Moonshine Sangria',tag:'🏡 Cabin Weekend',desc:'Montana chokecherries, moonshine, red wine, sparkling water. The big-batch showstopper.',vibes:['rich'],moments:['cabin','porch'],flavors:['fruit'],url:'recipes/chokecherry-moonshine-sangria.html'},
+      {slug:'smores',name:"S'mores Moonshine Sipper",tag:'🏕️ Campfire',desc:'Graham cracker rim, chocolate syrup, marshmallow cream, and moonshine. Pure campfire dessert.',vibes:['warm','rich'],moments:['campfire'],flavors:['sweet'],url:'recipes/smores-moonshine-sipper.html'},
+      {slug:'margarita',name:'Moonshine Margarita',tag:'🏟️ Tailgate',desc:'Fresh lime, triple sec, and moonshine on ice with salted rim. Crowd-proof classic.',vibes:['crisp','easy'],moments:['cabin','river'],flavors:['citrus'],url:'recipes/batch-moonshine-margarita.html'}
+    ];
+
+    window.cbSelect=function(btn,step){
+      var panel=document.getElementById('step'+step);
+      panel.querySelectorAll('.cb-choice').forEach(function(b){b.classList.remove('selected')});
+      btn.classList.add('selected');
+      var keys=['vibe','moment','flavor'];
+      state[keys[step-1]]=btn.dataset.value;
+      var nb=document.getElementById('next'+step);
+      if(nb) nb.classList.add('enabled');
+    };
+
+    window.cbNext=function(toStep){
+      var from=toStep-1;
+      document.getElementById('step'+from).classList.remove('active');
+      document.getElementById('step'+toStep).classList.add('active');
+      document.getElementById('dot'+from).classList.remove('active');
+      document.getElementById('dot'+from).classList.add('done');
+      document.getElementById('dot'+toStep).classList.add('active');
+      var line=document.getElementById('line'+from);
+      if(line) line.classList.add('done');
+      window.scrollTo({top:document.querySelector('.cb-wrap').offsetTop-80,behavior:'smooth'});
+    };
+
+    window.cbBack=function(toStep){
+      var from=toStep+1;
+      document.getElementById('step'+from).classList.remove('active');
+      document.getElementById('step'+toStep).classList.add('active');
+      document.getElementById('dot'+from).classList.remove('active');
+      document.getElementById('dot'+toStep).classList.remove('done');
+      document.getElementById('dot'+toStep).classList.add('active');
+      var line=document.getElementById('line'+toStep);
+      if(line) line.classList.remove('done');
+      window.scrollTo({top:document.querySelector('.cb-wrap').offsetTop-80,behavior:'smooth'});
+    };
+
+    window.cbShowResults=function(){
+      if(!state.flavor) return;
+      var scored=RECIPES.map(function(r){
+        var s=0;
+        if(r.vibes.indexOf(state.vibe)>-1) s+=3;
+        if(r.moments.indexOf(state.moment)>-1) s+=3;
+        if(r.flavors.indexOf(state.flavor)>-1) s+=3;
+        if(s===0){if(r.flavors.indexOf(state.flavor)>-1) s+=1; if(r.moments.indexOf(state.moment)>-1) s+=1;}
+        return Object.assign({},r,{score:s});
+      }).sort(function(a,b){return b.score-a.score}).slice(0,6);
+
+      document.querySelectorAll('.cb-panel').forEach(function(p){p.style.display='none'});
+      document.querySelectorAll('.cb-step-dot').forEach(function(d){d.classList.add('done');d.classList.remove('active')});
+      ['line1','line2'].forEach(function(id){document.getElementById(id).classList.add('done')});
+
+      var ranks=['🥇 Best Match','🥈 Runner-Up','🥉 Third Pick','4th Pick','5th Pick','6th Pick'];
+      document.getElementById('resultsGrid').innerHTML=scored.map(function(r,i){
+        return '<a href="'+r.url+'" class="cb-result-card"><p class="cb-result-rank">'+ranks[i]+'</p><h3 class="cb-result-name">'+r.name+'</h3><p class="cb-result-tag">'+r.tag+'</p><p class="cb-result-desc">'+r.desc+'</p><div class="cb-result-cta">View Recipe <span>&rarr;</span></div></a>';
+      }).join('');
+
+      document.getElementById('cbResults').style.display='block';
+      window.scrollTo({top:document.querySelector('.cb-wrap').offsetTop-80,behavior:'smooth'});
+    };
+
+    window.cbReset=function(){
+      state={vibe:null,moment:null,flavor:null};
+      document.getElementById('cbResults').style.display='none';
+      document.querySelectorAll('.cb-panel').forEach(function(p){p.style.display='';p.classList.remove('active')});
+      document.getElementById('step1').classList.add('active');
+      document.querySelectorAll('.cb-step-dot').forEach(function(d,i){d.classList.remove('done','active');if(i===0) d.classList.add('active')});
+      document.querySelectorAll('.cb-step-line').forEach(function(l){l.classList.remove('done')});
+      document.querySelectorAll('.cb-choice').forEach(function(c){c.classList.remove('selected')});
+      document.querySelectorAll('.cb-btn-next').forEach(function(b){b.classList.remove('enabled')});
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+  })();
+  </script>
+</body>
+</html>

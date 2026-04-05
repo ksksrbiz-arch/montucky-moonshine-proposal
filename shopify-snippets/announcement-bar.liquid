@@ -1,0 +1,103 @@
+{% comment %}
+  Montucky Moonshine — Announcement Bar Snippet
+  Usage: {% render 'announcement-bar' %}
+  Add to theme.liquid just after <body> tag, before header section.
+  Settings managed via Shopify customizer or metafields.
+{% endcomment %}
+
+{% assign bar_messages = "Free shipping on orders $75+ | New huckleberry collection now live | Use code MONTANA10 for 10% off your first order" | split: " | " %}
+{% assign bar_bg = "#1a1408" %}
+{% assign bar_text = "#c8922a" %}
+{% assign bar_accent = "#e6b04a" %}
+
+<style>
+  .mm-announcement-bar {
+    background: {{ bar_bg }};
+    border-bottom: 1px solid rgba(200,146,42,0.25);
+    padding: 0;
+    position: relative;
+    z-index: 100;
+    overflow: hidden;
+  }
+  .mm-announcement-track {
+    display: flex;
+    align-items: center;
+    animation: mmScroll 28s linear infinite;
+    white-space: nowrap;
+    padding: 0.6rem 0;
+  }
+  .mm-announcement-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes mmScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .mm-announcement-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 2.5rem;
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: {{ bar_text }};
+  }
+  .mm-announcement-sep {
+    color: {{ bar_accent }};
+    font-size: 1rem;
+    opacity: 0.5;
+    margin: 0 1rem;
+  }
+  .mm-announcement-bar a {
+    color: {{ bar_accent }};
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s;
+  }
+  .mm-announcement-bar a:hover { opacity: 0.75; }
+  .mm-announcement-close {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: {{ bar_text }};
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    z-index: 2;
+    line-height: 1;
+  }
+  .mm-announcement-close:hover { opacity: 1; }
+  .mm-announcement-bar[data-closed="true"] { display: none; }
+</style>
+
+<div class="mm-announcement-bar" id="mmAnnouncementBar" role="region" aria-label="Announcements">
+  <div class="mm-announcement-track">
+    {% for message in bar_messages %}
+      <span class="mm-announcement-item">{{ message }}</span>
+      <span class="mm-announcement-sep" aria-hidden="true">✦</span>
+    {% endfor %}
+    {% comment %}Duplicate for seamless loop{% endcomment %}
+    {% for message in bar_messages %}
+      <span class="mm-announcement-item" aria-hidden="true">{{ message }}</span>
+      <span class="mm-announcement-sep" aria-hidden="true">✦</span>
+    {% endfor %}
+  </div>
+  <button class="mm-announcement-close" onclick="document.getElementById('mmAnnouncementBar').dataset.closed='true';sessionStorage.setItem('mm_bar','1')" aria-label="Close announcement bar">&times;</button>
+</div>
+
+<script>
+  (function(){
+    if (sessionStorage.getItem('mm_bar')) {
+      var bar = document.getElementById('mmAnnouncementBar');
+      if (bar) bar.dataset.closed = 'true';
+    }
+  })();
+</script>

@@ -1,0 +1,69 @@
+{% comment %}
+  Montucky Moonshine — Free Shipping Progress Bar Snippet
+  Usage: {% render 'free-shipping-bar', cart_total: cart.total_price %}
+  Placement: Cart drawer header, Cart page, Cart sidebar.
+
+  Variables:
+    cart_total — Shopify cart.total_price (in cents)
+    threshold  — Free shipping threshold in cents (default: 7500 = $75.00)
+{% endcomment %}
+
+{% assign threshold_cents = 7500 %}
+{% assign threshold_display = threshold_cents | divided_by: 100 %}
+{% assign cart_total_dollars = cart_total | divided_by: 100.0 %}
+{% assign remaining_cents = threshold_cents | minus: cart_total %}
+{% assign remaining_dollars = remaining_cents | divided_by: 100.0 %}
+{% assign progress = cart_total | times: 100 | divided_by: threshold_cents %}
+{% if progress > 100 %}{% assign progress = 100 %}{% endif %}
+
+<style>
+  .mm-shipping-bar {
+    padding: 0.85rem 1.25rem;
+    background: #121210;
+    border-bottom: 1px solid rgba(200,146,42,0.15);
+  }
+  .mm-shipping-bar-text {
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9e9a8f;
+    text-align: center;
+    margin-bottom: 0.6rem;
+  }
+  .mm-shipping-bar-text span {
+    color: #c8922a;
+  }
+  .mm-shipping-bar-text.qualified {
+    color: #4ade80;
+  }
+  .mm-shipping-track {
+    height: 3px;
+    background: rgba(200,146,42,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .mm-shipping-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #c8922a, #e6b04a);
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+    width: {{ progress }}%;
+  }
+</style>
+
+<div class="mm-shipping-bar">
+  {% if remaining_cents > 0 %}
+    <p class="mm-shipping-bar-text">
+      Add <span>{{ remaining_dollars | money }}</span> more for <span>free shipping</span>
+    </p>
+  {% else %}
+    <p class="mm-shipping-bar-text qualified">
+      🎉 You've unlocked free shipping!
+    </p>
+  {% endif %}
+  <div class="mm-shipping-track">
+    <div class="mm-shipping-fill" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" aria-label="Free shipping progress: {{ progress }}%"></div>
+  </div>
+</div>

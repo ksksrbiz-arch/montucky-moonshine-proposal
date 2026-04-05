@@ -1,0 +1,115 @@
+{% comment %}
+  Montucky Moonshine — Product Page Trust Signals Snippet
+  Usage: {% render 'product-trust-signals' %}
+  Placement: product.liquid, just below the Add to Cart button.
+  Works best when combined with free-shipping-bar and trust-bar snippets.
+{% endcomment %}
+
+<style>
+  .mm-product-trust {
+    border-top: 1px solid rgba(200,146,42,0.12);
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+  }
+  .mm-product-trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .mm-pt-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .mm-pt-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+  .mm-pt-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    color: #9e9a8f;
+    line-height: 1.5;
+  }
+  .mm-pt-text strong {
+    display: block;
+    color: #eae5d8;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+  }
+  .mm-product-trust-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(200,146,42,0.08);
+    flex-wrap: wrap;
+  }
+  .mm-badge {
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b6762;
+    background: rgba(200,146,42,0.06);
+    border: 1px solid rgba(200,146,42,0.15);
+    border-radius: 2px;
+    padding: 0.25rem 0.6rem;
+  }
+  .mm-badge-label {
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6b6762;
+    margin-right: 0.25rem;
+    flex-shrink: 0;
+  }
+</style>
+
+<div class="mm-product-trust">
+  <div class="mm-product-trust-grid">
+    <div class="mm-pt-item">
+      <span class="mm-pt-icon">🚚</span>
+      <div class="mm-pt-text">
+        <strong>Free Shipping</strong>
+        On all orders over $75
+      </div>
+    </div>
+    <div class="mm-pt-item">
+      <span class="mm-pt-icon">↩️</span>
+      <div class="mm-pt-text">
+        <strong>Easy Returns</strong>
+        30-day return window
+      </div>
+    </div>
+    <div class="mm-pt-item">
+      <span class="mm-pt-icon">🔒</span>
+      <div class="mm-pt-text">
+        <strong>Secure Checkout</strong>
+        SSL encrypted, always
+      </div>
+    </div>
+    <div class="mm-pt-item">
+      <span class="mm-pt-icon">🏔️</span>
+      <div class="mm-pt-text">
+        <strong>Made in Montana</strong>
+        Handcrafted with care
+      </div>
+    </div>
+  </div>
+
+  <div class="mm-product-trust-badges">
+    <span class="mm-badge-label">Pay with:</span>
+    <span class="mm-badge">Visa</span>
+    <span class="mm-badge">MC</span>
+    <span class="mm-badge">Amex</span>
+    <span class="mm-badge">PayPal</span>
+    <span class="mm-badge">Apple Pay</span>
+    <span class="mm-badge">Shop Pay</span>
+  </div>
+</div>

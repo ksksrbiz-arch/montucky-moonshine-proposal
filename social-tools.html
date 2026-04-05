@@ -422,6 +422,24 @@ Shop: [LINK]</div>
   </div>
 </div>
 
+<!-- Recipe Captions Library -->
+<div class="section" id="recipe-captions">
+  <div class="sec-in">
+    <div class="label">18-Recipe Caption Library</div>
+    <h2>Ready-to-Post Recipe Captions</h2>
+    <p style="margin-bottom:1.5rem">Platform-optimized captions for every recipe in the collection. Select a recipe, choose platform, copy and post.</p>
+
+    <!-- Platform tabs -->
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem" id="recipePlatformTabs">
+      <button class="tab-btn active" onclick="switchRecipePlatform(this,'instagram')">📸 Instagram</button>
+      <button class="tab-btn" onclick="switchRecipePlatform(this,'facebook')">📘 Facebook</button>
+      <button class="tab-btn" onclick="switchRecipePlatform(this,'twitter')">🐦 Twitter / X</button>
+    </div>
+
+    <div class="tool-grid" id="recipeCaptionGrid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"></div>
+  </div>
+</div>
+
 <footer>
   <p>Montucky Moonshine Social Tools &nbsp;·&nbsp; Built by <a href="deliverables.html">1Commerce</a> &nbsp;·&nbsp; &copy; <span id="yr"></span> D &amp; V Enterprises LLC</p>
 </footer>
@@ -514,6 +532,130 @@ function switchTab(btn, id) {
   btn.classList.add('active');
   document.getElementById('tpl-'+id).classList.add('active');
 }
+
+// ── Recipe Caption Library ──
+const RECIPE_CAPTIONS = [
+  { name:'Hot Apple Cider Moonshine', emoji:'🍎', collection:'Campfire',
+    instagram:'The campfire essential ☕🔥\n\nHot apple cider + Montucky Moonshine + cinnamon + star anise. Served in an enamel mug when the temperature drops and the stars come out.\n\nThis is what Montana autumn tastes like.\n\n📖 Recipe link in bio.\n\n#MontuckyMoonshine #MoonshineRecipe #CampfireDrinks #HotCiderMoonshine #MontanaFall #CraftCocktails #EnamelMug #CampfireCocktail',
+    facebook:"Hot apple cider spiked with Montucky Moonshine — this is the drink that turns a cold Montana evening into an occasion. Cinnamon, star anise, a full shot of our moonshine, and you're done. Simple. Perfect.\n\nFull recipe on the site: [LINK]",
+    twitter:'Hot Apple Cider Moonshine 🍎🔥 — Montana autumn in a mug. Cider + moonshine + cinnamon. That\'s it. That\'s the recipe. Link in bio.' },
+
+  { name:'Montana Mule', emoji:'🫙', collection:'River & Trail',
+    instagram:'The Montana Mule hits different out here. 🏔️\n\nMoonshine + fresh lime + ginger beer + copper mug + Montana air.\n\nThis is what post-hike refueling looks like when you do it right.\n\n📖 Recipe link in bio.\n\n#MontanaMule #MoonshineRecipe #CraftCocktails #GingerBeer #MontanaLife #PostHikeDrinks #MontuckyMoonshine #DrinkRecipes',
+    facebook:"The Montana Mule: moonshine's answer to the Moscow Mule, and honestly? It wins. The ginger bite + fresh lime + corn moonshine is a combination that makes sense in a way that's hard to explain. You just have to try it.\n\nFull recipe: [LINK]",
+    twitter:'Montana Mule 🫙🏔️ — moonshine, lime, ginger beer, copper mug. Hits harder and better than the original. Recipe at the link.' },
+
+  { name:'Huckleberry Moonshine Smash', emoji:'🫐', collection:'River & Trail',
+    instagram:'Wild huckleberries. Fresh mint. Lemon juice. Montucky Moonshine. 🫐✨\n\nThis is the Huckleberry Smash — and it tastes exactly like Montana in August.\n\nHuckleberries can\'t be farmed. Every berry is wild-picked. That\'s not a marketing line, it\'s just true.\n\n📖 Full recipe link in bio.\n\n#HuckleberryMoonshine #MontanaHuckleberry #MoonshineSmash #MontuckyMoonshine #WildHarvest #CraftCocktails #MontanaDrinks',
+    facebook:"Here's the thing about huckleberries: they cannot be commercially grown. Every single one is hand-picked wild in Montana's mountains during a 6-week season. When we put them in a cocktail, we're not using a flavoring — we're using the actual berry.\n\nThe Huckleberry Smash: muddled wild huckleberries, fresh mint, lemon juice, Montucky Moonshine over crushed ice.\n\nRecipe: [LINK]",
+    twitter:'Huckleberry Moonshine Smash 🫐 — wild-picked Montana huckleberries, fresh mint, lemon, moonshine. Can\'t be made with farmed berries because farmed huckleberries don\'t exist. Only in Montana.' },
+
+  { name:'Campfire Hot Toddy', emoji:'🔥', collection:'Campfire',
+    instagram:'The original cure-all. 🔥\n\nMoonshine + honey + lemon + hot water = the Campfire Hot Toddy.\n\nIt\'s been fixing problems since before cocktail culture existed. We just added Montana to it.\n\n📖 Recipe link in bio.\n\n#HotToddy #MoonshineToddy #CampfireDrinks #MontuckyMoonshine #ColdWeatherDrinks #MoonshineRecipe #WarmDrinks #WinterCocktails',
+    facebook:"There's a reason the Hot Toddy has been around for centuries — it actually works. Moonshine, local honey, fresh lemon, hot water. Drink it by the fire and tell us it doesn't fix things.\n\nRecipe: [LINK]",
+    twitter:'Campfire Hot Toddy 🔥 — moonshine, honey, lemon, hot water. Ancient recipe. Still the best. Still works.' },
+
+  { name:'Spiked Hot Chocolate', emoji:'🍫', collection:'Campfire',
+    instagram:'Spiked hot chocolate season has officially started. ☕🏕️\n\nMontucky Moonshine + rich hot cocoa + enamel mug + campfire.\n\nSome drinks are for showing off. This one is for actually enjoying yourself.\n\n📖 Recipe link in bio.\n\n#SpikedHotChocolate #HotChocolateMoonshine #CampfireDrinks #EnamelMug #MontuckyMoonshine #WinterDrinks #CabinLife',
+    facebook:"Spiked Hot Chocolate: moonshine + rich hot cocoa + a fire going somewhere nearby. This is the cabin drink. The after-ski drink. The 'it's 30 degrees and I earned this' drink.\n\nRecipe: [LINK]",
+    twitter:'Spiked Hot Chocolate ☕🏕️ — moonshine + cocoa + enamel mug. Peak cabin season. Recipe at link.' },
+
+  { name:'Sweet Tea Moonshine', emoji:'🍵', collection:'Porch Pour',
+    instagram:'Porch culture at its finest. 🌅🍵\n\nSweet tea + Montucky Moonshine + lemon wedge.\n\nThis is the drink that makes a Tuesday feel like a Friday. Simple. Ice cold. Perfect for the porch.\n\n📖 Recipe link in bio.\n\n#SweetTeaMoonshine #MoonshineSweetTea #PorchDrinks #MontuckyMoonshine #MoonshineRecipe #SummerDrinks #CraftCocktails',
+    facebook:"Sweet tea was already perfect. Then someone added moonshine and it got better. Serve over ice with a lemon wedge and take the rest of the evening off.\n\nRecipe: [LINK]",
+    twitter:'Sweet Tea Moonshine 🍵 — sweet tea + moonshine + lemon. That\'s all. Porch optional but highly recommended.' },
+
+  { name:'Apple Pie Moonshine Punch', emoji:'🥧', collection:'Cabin Weekend',
+    instagram:'Made for a crowd. Built for a cabin. 🏡🥧\n\nApple pie moonshine punch — big batch, mason jar friendly, twelve servings minimum.\n\nApple cider + apple pie moonshine + ginger ale + cinnamon sticks.\n\nTag someone who needs this in their next cabin weekend.\n\n📖 Recipe link in bio.\n\n#ApplePieMoonshine #MoonshinePunch #CabinLife #BigBatchCocktails #MontuckyMoonshine #CraftCocktails #FallCocktails',
+    facebook:"The Apple Pie Moonshine Punch is the reason cabin weekends exist. Apple pie moonshine, fresh cider, ginger ale, cinnamon sticks — makes 12 servings and takes 10 minutes. Do the math.\n\nFull recipe: [LINK]",
+    twitter:'Apple Pie Moonshine Punch 🥧 — big batch, cabin-ready, 12 servings. Apple pie moonshine + cider + ginger ale. Tag your cabin crew.' },
+
+  { name:'Huckleberry Lemon Drop', emoji:'🍋', collection:'Porch Pour',
+    instagram:'Sophisticated porch drinking starts here. 🍋🫐\n\nThe Huckleberry Lemon Drop: wild Montana huckleberries, fresh lemon juice, moonshine, sugar rim.\n\nIt\'s a martini-style sipper that actually has a story behind it.\n\n📖 Recipe link in bio.\n\n#HuckleberryLemonDrop #HuckleberryMoonshine #MontuckyMoonshine #CraftCocktails #MartiniStyle #PorchPour #MontanaDrinks',
+    facebook:"The Huckleberry Lemon Drop is what happens when wild Montana berries meet classic cocktail structure. Sugar-rimmed glass, fresh lemon, huckleberry, moonshine. Sip and think about it.\n\nRecipe: [LINK]",
+    twitter:'Huckleberry Lemon Drop 🍋🫐 — wild Montana huckleberries, lemon, moonshine, sugar rim. Sophisticated porch drinking.' },
+
+  { name:'Moonshine Old Fashioned', emoji:'🥃', collection:'Porch Pour',
+    instagram:'The classic, but make it Montana. 🥃\n\nMoonshine Old Fashioned: corn moonshine stirred with bitters and demerara syrup, wide lemon peel.\n\nSame structure as the original. Different soul.\n\n📖 Recipe link in bio.\n\n#MoonshineOldFashioned #OldFashioned #CraftCocktail #PorchPour #MontuckyMoonshine #CornWhiskey #SlowDrinks',
+    facebook:"The Old Fashioned is already a perfect cocktail. Using corn moonshine instead of bourbon gives it a cleaner, lighter character — you taste the bitters and sweetener more clearly. Try it once and tell us we're wrong.\n\nRecipe: [LINK]",
+    twitter:'Moonshine Old Fashioned 🥃 — corn whiskey, bitters, demerara, lemon peel. Classic structure, Montana soul. Recipe at link.' },
+
+  { name:'Watermelon Moonshine Punch', emoji:'🍉', collection:'Cabin Weekend',
+    instagram:'Summer peaked. This is evidence. 🍉☀️\n\nFresh watermelon juice + moonshine + lime + sparkling water.\n\nNo food coloring. No fake flavoring. Just actual watermelon.\n\n📖 Recipe link in bio.\n\n#WatermelonMoonshine #MoonshineRecipe #SummerDrinks #CraftCocktails #MontuckyMoonshine #FreshIngredients #WatermelonPunch',
+    facebook:"Watermelon Moonshine Punch: fresh watermelon juice, moonshine, lime, sparkling water. Made with real watermelon because why would you do it any other way?\n\nRecipe: [LINK]",
+    twitter:'Watermelon Moonshine Punch 🍉 — fresh watermelon, moonshine, lime, sparkling water. Real fruit only. Peak summer.' },
+
+  { name:"S'mores Moonshine Sipper", emoji:'🔥', collection:'Campfire',
+    instagram:"Dessert and a drink in one cup. 🔥🍫\n\nS'mores Moonshine Sipper: graham cracker rim, chocolate syrup, marshmallow cream, Montucky Moonshine.\n\nYes, it tastes exactly like you think it does.\n\n📖 Recipe link in bio.\n\n#SmoresMoonshine #CampfireDrinks #DessertCocktail #MontuckyMoonshine #CampfireVibes #MoonshineRecipe #CraftCocktails",
+    facebook:"The S'mores Moonshine Sipper is the campfire dessert drink nobody knew they needed. Graham cracker rim, chocolate syrup, marshmallow cream, moonshine. It tastes exactly like s'mores and hits exactly like moonshine.\n\nRecipe: [LINK]",
+    twitter:"S'mores Moonshine Sipper 🔥 — graham cracker rim, chocolate, marshmallow, moonshine. Campfire dessert in a cup." },
+
+  { name:'Montana Mule (Copper Mug)', emoji:'🫙', collection:'River & Trail',
+    instagram:'Copper mug mandatory. 🫙🏔️\n\nThe Montana Mule is not the Moscow Mule. The corn moonshine changes everything — sweeter, warmer, more depth.\n\nYou need to try this in an actual copper mug. Yes, it matters.\n\n📖 Recipe link in bio.\n\n#MontanaMule #CopperMug #MoonshineMule #MontuckyMoonshine #CraftCocktails #GingerBeer #DrinkRecipes',
+    facebook:"The Montana Mule works in a copper mug because the metal keeps the drink colder longer and imparts a subtle metallic note that pairs well with the ginger. No, you can't use a regular glass and get the same result. Some traditions exist for a reason.\n\nRecipe: [LINK]",
+    twitter:'Montana Mule 🫙 — moonshine, lime, ginger beer. Copper mug required. Trust the process. Recipe at link.' },
+
+  { name:'Chokecherry Moonshine Sangria', emoji:'🍇', collection:'Cabin Weekend',
+    instagram:'Montana\'s most underrated berry, now in a sangria. 🍇\n\nChokecherry Moonshine Sangria: Montana chokecherries, moonshine, red wine, sparkling water.\n\nBig batch. Cabin-ready. Showstopper guaranteed.\n\n📖 Recipe link in bio.\n\n#ChokecherrySangria #MontanaSangria #MoonshineRecipe #MontuckyMoonshine #BigBatchCocktails #CabinLife #MontanaFruit',
+    facebook:"Chokecherries are everywhere in Montana and most people drive right past them. Fermented, they make incredible jam. In a sangria? Even better. This big-batch Chokecherry Moonshine Sangria is the cabin party drink nobody's seen before.\n\nRecipe: [LINK]",
+    twitter:'Chokecherry Moonshine Sangria 🍇 — Montana\'s most underrated berry + moonshine + wine. Big batch, cabin-ready, spectacular.' },
+
+  { name:'Moonshine Lemonade', emoji:'🍋', collection:'River & Trail',
+    instagram:'Summer simplified. 🍋☀️\n\nMoonshine lemonade: fresh lemon juice, simple syrup, Montucky Moonshine, ice.\n\nThree ingredients. Zero complications. 100% effective.\n\n📖 Recipe link in bio.\n\n#MoonshineLemonade #MoonshineRecipe #SummerDrinks #CraftCocktails #MontuckyMoonshine #LemonadeMoonshine #SimpleDrinks',
+    facebook:"Some cocktail recipes are complicated. This one is: moonshine + lemonade + ice. The ratio is 1:3 (moonshine to lemonade). That's it. Make the best version with fresh lemon juice.\n\nRecipe: [LINK]",
+    twitter:'Moonshine Lemonade 🍋 — moonshine + lemonade + ice. 1:3 ratio. Use fresh lemon juice. That\'s literally all there is to it.' },
+
+  { name:'Moonshine & Cola', emoji:'🥤', collection:'Tailgate',
+    instagram:'No overthinking required. 🥤\n\nMoonshine + cola in an insulated tumbler.\n\nThis is the tailgate drink. The "we\'re not overthinking this" drink. The always-works drink.\n\n📖 Recipe link in bio.\n\n#MoonshineAndCola #MoonshineRecipe #TailgateDrinks #MontuckyMoonshine #SimpleCocktails #GamedayDrinks',
+    facebook:"Moonshine and cola: moonshine adds corn sweetness that pairs naturally with cola's caramel notes. 1:2 ratio in an insulated tumbler. Done. Perfect for tailgates, game days, and any situation where you need a drink that just works.\n\nRecipe: [LINK]",
+    twitter:'Moonshine & Cola 🥤 — moonshine + cola, 1:2 ratio, insulated tumbler. Tailgate official. Recipe at link.' },
+
+  { name:'Moonshine Margarita', emoji:'🍹', collection:'Tailgate',
+    instagram:'The margarita got a Montana upgrade. 🍹🌵\n\nMoonshine margarita: fresh lime, triple sec, Montucky Moonshine, salted rim.\n\nWorks as a single or a big batch. Crowd-proof.\n\n📖 Recipe link in bio.\n\n#MoonshineMargarita #MoonshineRecipe #MargaritaMonday #CraftCocktails #MontuckyMoonshine #BigBatchCocktails #TailgateDrinks',
+    facebook:"The Moonshine Margarita uses moonshine in place of tequila — the corn sweetness actually plays really well with fresh lime and triple sec. Make it a big batch for the game.\n\nRecipe: [LINK]",
+    twitter:'Moonshine Margarita 🍹 — moonshine + lime + triple sec + salt rim. Crowd-proof, batch-friendly. Recipe at link.' },
+
+  { name:'Moonshine Sweet Tea', emoji:'🍵', collection:'Porch Pour',
+    instagram:'Porch mandatory. 🌅🍵\n\nMoonshine + sweet tea + lemon. Cold glass. Nowhere to be.\n\nThis is the drink that turns any afternoon into something worth remembering.\n\n📖 Recipe link in bio.\n\n#SweetTeaMoonshine #PorchSeason #MontuckyMoonshine #MoonshineRecipe #SummerDrinks #AfternoonDrinks',
+    facebook:"Sweet tea moonshine: the South's best export + Montana's best spirit. Use 1 oz moonshine to 3 oz sweet tea. Add lemon. Sit on the porch. Done.\n\nRecipe: [LINK]",
+    twitter:'Sweet Tea Moonshine 🍵 — 1:3 moonshine to sweet tea. Add lemon. Porch. Done.' },
+
+  { name:'Huckleberry Moonshine Mule', emoji:'🫐', collection:'River & Trail',
+    instagram:'The Montana Mule got a huckleberry upgrade. 🫐🏔️\n\nHuckleberry syrup + moonshine + fresh lime + ginger beer + copper mug.\n\nWild-harvested Montana huckleberries. Cannot be farmed. Cannot be faked.\n\n📖 Recipe link in bio.\n\n#HuckleberryMule #HuckleberryMoonshine #MontanaMule #MontuckyMoonshine #CopperMug #CraftCocktails #MontanaDrinks',
+    facebook:"The Huckleberry Moonshine Mule is the Montana Mule with huckleberry syrup — it adds a dark fruit depth that makes the ginger and lime even better. Wild-harvested huckleberries, copper mug required.\n\nRecipe: [LINK]",
+    twitter:'Huckleberry Moonshine Mule 🫐 — huckleberry syrup, moonshine, lime, ginger beer, copper mug. Montana in its most drinkable form.' }
+];
+
+let currentRecipePlatform = 'instagram';
+
+function switchRecipePlatform(btn, platform) {
+  document.querySelectorAll('#recipePlatformTabs .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentRecipePlatform = platform;
+  renderRecipeCaptions();
+}
+
+function renderRecipeCaptions() {
+  const grid = document.getElementById('recipeCaptionGrid');
+  if (!grid) return;
+  grid.innerHTML = RECIPE_CAPTIONS.map((r, i) => `
+    <div class="tool-card">
+      <div style="font-size:1.5rem;margin-bottom:.5rem">${r.emoji}</div>
+      <h3 style="font-size:.9rem;margin-bottom:.25rem">${r.name}</h3>
+      <div style="font-family:var(--ff-c);font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem">${r.collection}</div>
+      <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:2px;padding:.85rem;margin-bottom:.75rem;font-size:.78rem;color:var(--t2);line-height:1.65;white-space:pre-wrap;max-height:140px;overflow:auto;font-family:var(--ff-b)">${r[currentRecipePlatform]}</div>
+      <div class="copy-row"><button class="btn-copy" onclick="copyRecipeCaption(${i})">Copy Caption</button></div>
+    </div>
+  `).join('');
+}
+
+function copyRecipeCaption(idx) {
+  const r = RECIPE_CAPTIONS[idx];
+  navigator.clipboard.writeText(r[currentRecipePlatform]).then(showToast);
+}
+
+// Initialize recipe captions on load
+document.addEventListener('DOMContentLoaded', renderRecipeCaptions);
 </script>
 </body>
 </html>

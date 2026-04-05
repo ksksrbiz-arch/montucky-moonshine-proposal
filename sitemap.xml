@@ -48,6 +48,10 @@
   <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/what-to-mix-with-moonshine</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/moonshine-vs-whiskey</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/what-does-moonshine-taste-like</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/is-moonshine-legal</loc><lastmod>2026-04-04</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <!-- Lifestyle Hub Pages -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/huckleberry-hub</loc><lastmod>2026-04-04</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/cocktail-builder</loc><lastmod>2026-04-04</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <!-- Product Detail -->
   <url><loc>https://montucky-moonshine-proposal.netlify.app/product</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
   <!-- Proposal Pages -->

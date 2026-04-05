@@ -111,24 +111,38 @@
           <p class="sec-desc">Every recipe here is built around the same principle as Montucky itself — keep it real, keep it Montana, and don't overthink it.</p>
         </div>
 
-        <!-- Filter Bar -->
-        <div class="recipe-filters stagger-children" style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2.5rem">
-          <div style="display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;width:100%;margin-bottom:.5rem">
-            <button class="filter-btn active" data-filter="all" onclick="filterRecipes(this)">All Recipes</button>
-            <button class="filter-btn" data-filter="moment:campfire" onclick="filterRecipes(this)">🔥 Campfire</button>
-            <button class="filter-btn" data-filter="moment:trail" onclick="filterRecipes(this)">🏔 Trail</button>
-            <button class="filter-btn" data-filter="moment:cabin" onclick="filterRecipes(this)">🏚 Cabin</button>
-            <button class="filter-btn" data-filter="moment:porch" onclick="filterRecipes(this)">🌅 Porch Pour</button>
+        <!-- Cocktail Builder CTA -->
+        <div style="background:linear-gradient(135deg,rgba(200,146,42,.1),rgba(200,146,42,.05));border:1px solid rgba(200,146,42,.25);border-radius:4px;padding:1.5rem 2rem;margin-bottom:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+          <div>
+            <p style="font-family:var(--ff-c);font-size:.62rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:.3rem">Not sure what to make?</p>
+            <p style="font-size:.9rem;color:var(--t1);line-height:1.5">Answer 3 quick questions — vibe, moment, flavor — and we'll find your perfect recipe.</p>
           </div>
-          <div style="display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;width:100%">
-            <button class="filter-btn" data-filter="difficulty:easy" onclick="filterRecipes(this)">Easy</button>
-            <button class="filter-btn" data-filter="difficulty:intermediate" onclick="filterRecipes(this)">Intermediate</button>
-            <button class="filter-btn" data-filter="difficulty:advanced" onclick="filterRecipes(this)">Advanced</button>
-            <button class="filter-btn" data-filter="season:summer" onclick="filterRecipes(this)">Summer</button>
-            <button class="filter-btn" data-filter="season:winter" onclick="filterRecipes(this)">Winter</button>
+          <a href="lifestyle/cocktail-builder.html" class="btn btn-o" style="white-space:nowrap;flex-shrink:0">🍸 Cocktail Builder →</a>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="recipe-filters" style="display:flex;flex-direction:column;gap:.75rem;align-items:center;margin-bottom:2rem">
+          <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:center">
+            <span style="font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);flex-shrink:0">By Moment</span>
+            <button class="filter-btn active" data-filter="all" onclick="filterRecipes(this)">All <span class="filter-count" data-for="all"></span></button>
+            <button class="filter-btn" data-filter="moment:campfire" onclick="filterRecipes(this)">🔥 Campfire <span class="filter-count" data-for="moment:campfire"></span></button>
+            <button class="filter-btn" data-filter="moment:trail" onclick="filterRecipes(this)">🏔 Trail <span class="filter-count" data-for="moment:trail"></span></button>
+            <button class="filter-btn" data-filter="moment:cabin" onclick="filterRecipes(this)">🏡 Cabin <span class="filter-count" data-for="moment:cabin"></span></button>
+            <button class="filter-btn" data-filter="moment:porch" onclick="filterRecipes(this)">🌅 Porch <span class="filter-count" data-for="moment:porch"></span></button>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:center">
+            <span style="font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);flex-shrink:0">By Difficulty</span>
+            <button class="filter-btn" data-filter="difficulty:easy" onclick="filterRecipes(this)">Easy <span class="filter-count" data-for="difficulty:easy"></span></button>
+            <button class="filter-btn" data-filter="difficulty:intermediate" onclick="filterRecipes(this)">Intermediate <span class="filter-count" data-for="difficulty:intermediate"></span></button>
+            <button class="filter-btn" data-filter="difficulty:advanced" onclick="filterRecipes(this)">Advanced <span class="filter-count" data-for="difficulty:advanced"></span></button>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:center">
+            <span style="font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);flex-shrink:0">By Season</span>
+            <button class="filter-btn" data-filter="season:summer" onclick="filterRecipes(this)">☀️ Summer <span class="filter-count" data-for="season:summer"></span></button>
+            <button class="filter-btn" data-filter="season:winter" onclick="filterRecipes(this)">❄️ Winter <span class="filter-count" data-for="season:winter"></span></button>
           </div>
         </div>
-        <p id="recipeCount" style="text-align:center;font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:1.5rem">Showing all 3 recipes</p>
+        <p id="recipeCount" style="text-align:center;font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:1.5rem">Showing all recipes</p>
 
         <div class="recipe-grid stagger-children" id="recipeGrid">
 
@@ -244,6 +258,32 @@
       </div>
     </section>
 
+    <!-- Editorial CTA -->
+    <section style="background:var(--bg2);border-top:1px solid var(--bdr);padding:4rem 1.5rem">
+      <div class="sec-in" style="max-width:960px;margin:0 auto">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem">
+          <a href="lifestyle/huckleberry-hub.html" style="background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:2rem;text-decoration:none;display:block;transition:border-color .3s,transform .3s" onmouseover="this.style.borderColor='rgba(200,146,42,.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+            <p style="font-size:1.75rem;margin-bottom:.75rem">🫐</p>
+            <h3 style="font-family:var(--ff-d);font-size:1.1rem;color:var(--cream);margin-bottom:.4rem">The Huckleberry Guide</h3>
+            <p style="font-size:.82rem;color:var(--t2);line-height:1.6">Why Montana's wild berry can't be farmed — and why that makes it the most defensible flavor in American spirits.</p>
+            <span style="font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);display:block;margin-top:.75rem">Read the Guide →</span>
+          </a>
+          <a href="lifestyle/cocktail-builder.html" style="background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:2rem;text-decoration:none;display:block;transition:border-color .3s,transform .3s" onmouseover="this.style.borderColor='rgba(200,146,42,.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+            <p style="font-size:1.75rem;margin-bottom:.75rem">🍸</p>
+            <h3 style="font-family:var(--ff-d);font-size:1.1rem;color:var(--cream);margin-bottom:.4rem">Cocktail Builder</h3>
+            <p style="font-size:.82rem;color:var(--t2);line-height:1.6">Three questions. Vibe, moment, flavor. We'll match you to your perfect Montucky cocktail from the full recipe collection.</p>
+            <span style="font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);display:block;margin-top:.75rem">Find My Drink →</span>
+          </a>
+          <a href="lifestyle/guides/is-moonshine-legal.html" style="background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:2rem;text-decoration:none;display:block;transition:border-color .3s,transform .3s" onmouseover="this.style.borderColor='rgba(200,146,42,.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+            <p style="font-size:1.75rem;margin-bottom:.75rem">⚖️</p>
+            <h3 style="font-family:var(--ff-d);font-size:1.1rem;color:var(--cream);margin-bottom:.4rem">Is Moonshine Legal?</h3>
+            <p style="font-size:.82rem;color:var(--t2);line-height:1.6">Federal law, TTB regulations, Montana's craft distillery scene — the complete guide to legal moonshine in America.</p>
+            <span style="font-family:var(--ff-c);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);display:block;margin-top:.75rem">Read the Guide →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section style="background:var(--card);border-top:1px solid var(--bdr);text-align:center;padding:4rem 1.5rem;position:relative;overflow:hidden">
       <div style="position:absolute;inset:0;pointer-events:none"><img src="assets/recipe-photos/recipe-hub-hero.jpg" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;filter:brightness(.08) saturate(.4)"></div>
@@ -296,7 +336,30 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/email-popup.js" defer></script>
   <script>
+    // Populate filter count badges on load
+    (function(){
+      var cards = document.querySelectorAll('#recipeGrid .recipe-card');
+      var totalCount = cards.length;
+      // Update "all" badge
+      var allBadge = document.querySelector('.filter-count[data-for="all"]');
+      if (allBadge) allBadge.textContent = '(' + totalCount + ')';
+      // Count per filter
+      document.querySelectorAll('.filter-count[data-for]').forEach(function(badge){
+        var key = badge.getAttribute('data-for');
+        if (key === 'all') return;
+        var parts = key.split(':');
+        var attr = parts[0], val = parts[1];
+        var n = 0;
+        cards.forEach(function(c){ if(c.getAttribute('data-'+attr)===val) n++; });
+        badge.textContent = '(' + n + ')';
+      });
+      // Set initial count text
+      var countEl = document.getElementById('recipeCount');
+      if (countEl) countEl.textContent = 'Showing all ' + totalCount + ' recipes';
+    })();
+
     function filterRecipes(btn) {
       var all = document.querySelectorAll('.filter-btn');
       all.forEach(function(b){ b.classList.remove('active'); });
@@ -304,19 +367,27 @@
       var filter = btn.getAttribute('data-filter');
       var cards = document.querySelectorAll('#recipeGrid .recipe-card');
       var shown = 0;
+      var staggerIdx = 0;
       cards.forEach(function(card) {
+        var visible = false;
         if (filter === 'all') {
-          card.style.display = '';
-          shown++;
+          visible = true;
         } else {
           var parts = filter.split(':');
           var attr = parts[0], val = parts[1];
-          if (card.getAttribute('data-'+attr) === val) {
-            card.style.display = '';
-            shown++;
-          } else {
-            card.style.display = 'none';
-          }
+          visible = card.getAttribute('data-'+attr) === val;
+        }
+        if (visible) {
+          card.style.display = '';
+          card.style.animationDelay = (staggerIdx * 55) + 'ms';
+          card.style.setProperty('--i', staggerIdx);
+          card.style.animation = 'none';
+          void card.offsetWidth; // reflow
+          card.style.animation = '';
+          staggerIdx++;
+          shown++;
+        } else {
+          card.style.display = 'none';
         }
       });
       var countEl = document.getElementById('recipeCount');
