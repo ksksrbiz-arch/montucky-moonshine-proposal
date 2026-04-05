@@ -44,9 +44,18 @@
   <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/culture/white-lightning-goes-legit</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/culture/bootlegger-trail</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <!-- Guides -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/what-to-mix-with-moonshine</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/moonshine-vs-whiskey</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/lifestyle/guides/what-does-moonshine-taste-like</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Product Detail -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/product</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <!-- Proposal Pages -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/deliverables</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/email-flows</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/growth-plan</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <!-- Error -->
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/404</loc><priority>0.1</priority><changefreq>yearly</changefreq></url>
   <!-- Legal -->
   <url><loc>https://montucky-moonshine-proposal.netlify.app/refund</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/privacy</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>

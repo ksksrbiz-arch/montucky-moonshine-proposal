@@ -722,3 +722,21 @@ body.page-loaded{opacity:1}
 .pd-lb-close{position:absolute;top:1.25rem;right:1.25rem;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:var(--cream);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1}
 .pd-lb-close:hover{background:rgba(200,146,42,.2);border-color:var(--amber)}
 #mainImg{cursor:zoom-in}
+
+/*===== PRINT STYLES =====*/
+@media print{
+  body{background:#fff;color:#111}
+  body::after,.preloader,.scroll-progress,.cursor-glow,.particles,nav,.nav-toggle,.mobile-menu,.ann-bar,.popup-overlay,.sticky-cart,footer,.hero-overlay,.hero-glow{display:none!important}
+  .hero{min-height:auto!important;padding:2rem 0!important}
+  .hero-bg,.hero-bg img{position:relative!important;height:auto!important;filter:none!important}
+  .hero-content{position:relative!important}
+  a{color:#333!important;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.7em;color:#666}
+  .btn{border:1px solid #999!important;background:none!important;color:#333!important}
+  .recipe-full-card{border:2px solid #ccc;page-break-inside:avoid}
+  .ingredients-list li::before{background:#333}
+  .sec-label,.sec-title,.sec-title em{color:#111!important}
+  .sec-line{background:#333}
+  img{max-width:100%!important;filter:none!important}
+  .reveal{opacity:1!important;transform:none!important;filter:none!important}
+}

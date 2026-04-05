@@ -9,7 +9,7 @@ Disallow: /deliverables
 Disallow: /email-flows
 Disallow: /growth-plan
 Disallow: /admin.jsx
+Disallow: /admin/
 Disallow: /push_assets.sh
 
 Sitemap: https://montucky-moonshine-proposal.netlify.app/sitemap.xml
-Sitemap: https://montucky-moonshine-proposal.netlify.app/sitemap-images.xml
