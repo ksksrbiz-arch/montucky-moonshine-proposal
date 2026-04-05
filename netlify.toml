@@ -1,26 +1,17 @@
-[[redirects]]
-  from = "/faq"
-  to = "/faq.html"
-  status = 200
+# =============================================================================
+# Netlify Configuration — Montucky Moonshine Proposal Site
+# =============================================================================
+
+[build]
+  publish = "."
+
+# =============================================================================
+# Redirects — Root pages (alphabetical)
+# =============================================================================
 
 [[redirects]]
-  from = "/history"
-  to = "/history.html"
-  status = 200
-
-[[redirects]]
-  from = "/recipe-montana-mule"
-  to = "/recipe-montana-mule.html"
-  status = 200
-
-[[redirects]]
-  from = "/recipe-huckleberry-shine"
-  to = "/recipe-huckleberry-shine.html"
-  status = 200
-
-[[redirects]]
-  from = "/recipe-midnight-smoke"
-  to = "/recipe-midnight-smoke.html"
+  from = "/about"
+  to = "/about.html"
   status = 200
 
 [[redirects]]
@@ -29,9 +20,68 @@
   status = 200
 
 [[redirects]]
-  from = "/recipes"
-  to = "/lifestyle/recipes/index.html"
-  status = 301
+  from = "/deliverables"
+  to = "/deliverables.html"
+  status = 200
+
+[[redirects]]
+  from = "/email-flows"
+  to = "/email-flows.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/growth-plan"
+  to = "/growth-plan.html"
+  status = 200
+
+[[redirects]]
+  from = "/history"
+  to = "/history.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/product"
+  to = "/product.html"
+  status = 200
+
+[[redirects]]
+  from = "/refund"
+  to = "/refund.html"
+  status = 200
+
+[[redirects]]
+  from = "/shop"
+  to = "/shop.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/thank-you"
+  to = "/thank-you.html"
+  status = 200
+
+[[redirects]]
+  from = "/venue"
+  to = "/venue.html"
+  status = 200
+
+# =============================================================================
+# Redirects — Lifestyle section indexes
+# =============================================================================
 
 [[redirects]]
   from = "/lifestyle"
@@ -39,55 +89,18 @@
   status = 200
 
 [[redirects]]
-  from = "/lifestyle/recipes"
-  to = "/lifestyle/recipes/index.html"
-  status = 200
-
-[[redirects]]
   from = "/lifestyle/culture"
   to = "/lifestyle/culture/index.html"
   status = 200
 
-# Recipe pages
 [[redirects]]
-  from = "/lifestyle/recipes/moonshine-lemonade"
-  to = "/lifestyle/recipes/moonshine-lemonade.html"
+  from = "/lifestyle/recipes"
+  to = "/lifestyle/recipes/index.html"
   status = 200
 
-[[redirects]]
-  from = "/lifestyle/recipes/huckleberry-moonshine-smash"
-  to = "/lifestyle/recipes/huckleberry-moonshine-smash.html"
-  status = 200
-
-[[redirects]]
-  from = "/lifestyle/recipes/montana-mule"
-  to = "/lifestyle/recipes/montana-mule.html"
-  status = 200
-
-[[redirects]]
-  from = "/lifestyle/recipes/sweet-tea-moonshine"
-  to = "/lifestyle/recipes/sweet-tea-moonshine.html"
-  status = 200
-
-[[redirects]]
-  from = "/lifestyle/recipes/hot-apple-cider-moonshine"
-  to = "/lifestyle/recipes/hot-apple-cider-moonshine.html"
-  status = 200
-
-[[redirects]]
-  from = "/lifestyle/recipes/campfire-hot-toddy"
-  to = "/lifestyle/recipes/campfire-hot-toddy.html"
-  status = 200
-
-[[redirects]]
-  from = "/lifestyle/recipes/spiked-hot-chocolate"
-  to = "/lifestyle/recipes/spiked-hot-chocolate.html"
-  status = 200
-
-[[redirects]]
-  from = "/lifestyle/recipes/smores-moonshine"
-  to = "/lifestyle/recipes/smores-moonshine.html"
-  status = 200
+# =============================================================================
+# Redirects — Lifestyle recipe pages
+# =============================================================================
 
 [[redirects]]
   from = "/lifestyle/recipes/apple-pie-moonshine-punch"
@@ -95,8 +108,13 @@
   status = 200
 
 [[redirects]]
-  from = "/lifestyle/recipes/watermelon-moonshine-punch"
-  to = "/lifestyle/recipes/watermelon-moonshine-punch.html"
+  from = "/lifestyle/recipes/batch-moonshine-margarita"
+  to = "/lifestyle/recipes/batch-moonshine-margarita.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/campfire-hot-toddy"
+  to = "/lifestyle/recipes/campfire-hot-toddy.html"
   status = 200
 
 [[redirects]]
@@ -110,6 +128,36 @@
   status = 200
 
 [[redirects]]
+  from = "/lifestyle/recipes/hot-apple-cider-moonshine"
+  to = "/lifestyle/recipes/hot-apple-cider-moonshine.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/huckleberry-lemon-drop"
+  to = "/lifestyle/recipes/huckleberry-lemon-drop.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/huckleberry-moonshine-smash"
+  to = "/lifestyle/recipes/huckleberry-moonshine-smash.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/montana-mule"
+  to = "/lifestyle/recipes/montana-mule.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/moonshine-and-cola"
+  to = "/lifestyle/recipes/moonshine-and-cola.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/moonshine-lemonade"
+  to = "/lifestyle/recipes/moonshine-lemonade.html"
+  status = 200
+
+[[redirects]]
   from = "/lifestyle/recipes/moonshine-old-fashioned"
   to = "/lifestyle/recipes/moonshine-old-fashioned.html"
   status = 200
@@ -120,29 +168,37 @@
   status = 200
 
 [[redirects]]
-  from = "/lifestyle/recipes/huckleberry-lemon-drop"
-  to = "/lifestyle/recipes/huckleberry-lemon-drop.html"
-  status = 200
-
-[[redirects]]
-  from = "/lifestyle/recipes/moonshine-and-cola"
-  to = "/lifestyle/recipes/moonshine-and-cola.html"
-  status = 200
-
-[[redirects]]
   from = "/lifestyle/recipes/mountain-dew-moonshine"
   to = "/lifestyle/recipes/mountain-dew-moonshine.html"
   status = 200
 
 [[redirects]]
-  from = "/lifestyle/recipes/batch-moonshine-margarita"
-  to = "/lifestyle/recipes/batch-moonshine-margarita.html"
+  from = "/lifestyle/recipes/smores-moonshine"
+  to = "/lifestyle/recipes/smores-moonshine.html"
   status = 200
 
-# Culture articles
 [[redirects]]
-  from = "/lifestyle/culture/rebellion-in-a-jar"
-  to = "/lifestyle/culture/rebellion-in-a-jar.html"
+  from = "/lifestyle/recipes/spiked-hot-chocolate"
+  to = "/lifestyle/recipes/spiked-hot-chocolate.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/sweet-tea-moonshine"
+  to = "/lifestyle/recipes/sweet-tea-moonshine.html"
+  status = 200
+
+[[redirects]]
+  from = "/lifestyle/recipes/watermelon-moonshine-punch"
+  to = "/lifestyle/recipes/watermelon-moonshine-punch.html"
+  status = 200
+
+# =============================================================================
+# Redirects — Lifestyle culture articles
+# =============================================================================
+
+[[redirects]]
+  from = "/lifestyle/culture/bootlegger-trail"
+  to = "/lifestyle/culture/bootlegger-trail.html"
   status = 200
 
 [[redirects]]
@@ -156,20 +212,18 @@
   status = 200
 
 [[redirects]]
+  from = "/lifestyle/culture/rebellion-in-a-jar"
+  to = "/lifestyle/culture/rebellion-in-a-jar.html"
+  status = 200
+
+[[redirects]]
   from = "/lifestyle/culture/white-lightning-goes-legit"
   to = "/lifestyle/culture/white-lightning-goes-legit.html"
   status = 200
 
-[[redirects]]
-  from = "/lifestyle/culture/bootlegger-trail"
-  to = "/lifestyle/culture/bootlegger-trail.html"
-  status = 200
-
-# Guides
-[[redirects]]
-  from = "/lifestyle/guides/what-to-mix-with-moonshine"
-  to = "/lifestyle/guides/what-to-mix-with-moonshine.html"
-  status = 200
+# =============================================================================
+# Redirects — Lifestyle guides
+# =============================================================================
 
 [[redirects]]
   from = "/lifestyle/guides/moonshine-vs-whiskey"
@@ -181,63 +235,38 @@
   to = "/lifestyle/guides/what-does-moonshine-taste-like.html"
   status = 200
 
-[build]
-  publish = "."
-
 [[redirects]]
-  from = "/shop"
-  to = "/shop.html"
+  from = "/lifestyle/guides/what-to-mix-with-moonshine"
+  to = "/lifestyle/guides/what-to-mix-with-moonshine.html"
   status = 200
 
-[[redirects]]
-  from = "/venue"
-  to = "/venue.html"
-  status = 200
+# =============================================================================
+# Legacy 301 redirects
+# =============================================================================
 
 [[redirects]]
-  from = "/about"
-  to = "/about.html"
-  status = 200
+  from = "/recipes"
+  to = "/lifestyle/recipes"
+  status = 301
 
 [[redirects]]
-  from = "/refund"
-  to = "/refund.html"
-  status = 200
+  from = "/recipe-montana-mule"
+  to = "/lifestyle/recipes/montana-mule"
+  status = 301
 
 [[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
+  from = "/recipe-huckleberry-shine"
+  to = "/lifestyle/recipes/huckleberry-moonshine-smash"
+  status = 301
 
 [[redirects]]
-  from = "/terms"
-  to = "/terms.html"
-  status = 200
+  from = "/recipe-midnight-smoke"
+  to = "/lifestyle/recipes/moonshine-old-fashioned"
+  status = 301
 
-[[redirects]]
-  from = "/product"
-  to = "/product.html"
-  status = 200
-
-[[redirects]]
-  from = "/email-flows"
-  to = "/email-flows.html"
-  status = 200
-
-[[redirects]]
-  from = "/growth-plan"
-  to = "/growth-plan.html"
-  status = 200
-
-[[redirects]]
-  from = "/thank-you"
-  to = "/thank-you.html"
-  status = 200
-
-[[redirects]]
-  from = "/deliverables"
-  to = "/deliverables.html"
-  status = 200
+# =============================================================================
+# Headers — Security & Caching
+# =============================================================================
 
 [[headers]]
   for = "/*"
