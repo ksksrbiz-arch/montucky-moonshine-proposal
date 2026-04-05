@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://montucky-moonshine-proposal.netlify.app/sitemap.xml
+
+# Admin/utility pages
+Disallow: /admin/
+Disallow: /push_assets.sh
