@@ -17,18 +17,56 @@
     if (!el || !fill) return;
 
     var progress = 0;
-    var ticker = setInterval(function () {
-      progress += Math.random() * 12;
-      if (progress > 90) progress = 90;
-      fill.style.width = progress + '%';
-    }, 180);
+    var done = false;
 
-    window.addEventListener('load', function () {
-      clearInterval(ticker);
+    function complete() {
+      if (done) return;
+      done = true;
       fill.style.width = '100%';
       setTimeout(function () {
         el.classList.add('done');
-      }, 400);
+        // Remove from DOM after transition to free memory
+        setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 900);
+      }, 350);
+    }
+
+    // Progress ticker — fast ramp to 85%, then waits for image
+    var ticker = setInterval(function () {
+      if (progress < 45) progress += Math.random() * 18 + 8;
+      else if (progress < 75) progress += Math.random() * 6 + 2;
+      else if (progress < 85) progress += Math.random() * 2 + .5;
+      else clearInterval(ticker);
+      fill.style.width = Math.min(progress, 85) + '%';
+    }, 100);
+
+    // Strategy: complete as soon as first hero image decodes OR 1.8s max
+    var heroImg = document.querySelector('.hero-slide.active img');
+    var maxTimer = setTimeout(complete, 1800);
+
+    if (heroImg) {
+      if (heroImg.complete && heroImg.naturalWidth > 0) {
+        clearTimeout(maxTimer);
+        clearInterval(ticker);
+        progress = 100;
+        complete();
+      } else {
+        heroImg.addEventListener('load', function() {
+          clearTimeout(maxTimer);
+          clearInterval(ticker);
+          progress = 100;
+          complete();
+        });
+        heroImg.addEventListener('error', function() {
+          clearTimeout(maxTimer);
+          complete();
+        });
+      }
+    }
+
+    // Also fire on window load as final fallback
+    window.addEventListener('load', function () {
+      clearTimeout(maxTimer);
+      complete();
     });
   })();
 
@@ -140,14 +178,24 @@
     for (var i = 0; i < 25; i++) {
       var p = document.createElement('div');
       p.className = 'particle';
-      var size = (Math.random() * 2 + 1).toFixed(1);
+      var size = (Math.random() * 2.5 + 0.8).toFixed(1);
+      var dur = (Math.random() * 8 + 6).toFixed(1);
+      var del = (Math.random() * 10).toFixed(1);
+      var left = (Math.random() * 100).toFixed(1);
+      // Varied amber shades for depth
+      var colors = ['rgba(200,146,42,0.9)','rgba(230,176,74,0.7)','rgba(255,200,80,0.5)','rgba(180,100,20,0.6)'];
+      var col = colors[Math.floor(Math.random() * colors.length)];
       p.style.cssText =
         'position:absolute;' +
-        'left:' + (Math.random() * 100).toFixed(1) + '%;' +
-        'animation-delay:' + (Math.random() * 8).toFixed(1) + 's;' +
-        'animation-duration:' + (Math.random() * 6 + 6).toFixed(1) + 's;' +
+        'left:' + left + '%;' +
+        '--dur:' + dur + 's;' +
+        '--del:' + del + 's;' +
+        'animation-delay:' + del + 's;' +
+        'animation-duration:' + dur + 's;' +
         'width:' + size + 'px;' +
-        'height:' + size + 'px;';
+        'height:' + size + 'px;' +
+        'background:' + col + ';' +
+        'box-shadow:0 0 ' + (parseFloat(size)*3).toFixed(0) + 'px ' + col + ';';
       container.appendChild(p);
     }
   });
@@ -726,9 +774,43 @@
     var dots     = dotsWrap ? dotsWrap.querySelectorAll('.hero-dot') : [];
     var current  = 0;
     var total    = slides.length;
-    var INTERVAL = 6000;
+    var INTERVAL = 6500;
     var timer;
     var paused   = false;
+
+    // Mark hero-bg as loading until first image paints
+    var heroBg = document.getElementById('heroCarousel');
+    if (heroBg && heroBg.parentNode) heroBg.parentNode.classList.add('loading');
+
+    // Remove loading class when first slide image loads or decodes
+    var firstImg = slides[0] ? slides[0].querySelector('img') : null;
+    if (firstImg) {
+      function onFirstLoad() {
+        if (heroBg && heroBg.parentNode) heroBg.parentNode.classList.remove('loading');
+      }
+      if (firstImg.complete && firstImg.naturalWidth > 0) {
+        onFirstLoad();
+      } else {
+        firstImg.addEventListener('load', onFirstLoad, {once: true});
+      }
+    }
+
+    // Preload next 2 slides in background after first renders
+    setTimeout(function() {
+      for (var pi = 1; pi < Math.min(3, slides.length); pi++) {
+        var pImg = slides[pi].querySelector('img');
+        if (pImg && pImg.dataset.src) {
+          pImg.src = pImg.dataset.src;
+        } else if (pImg && !pImg.complete) {
+          // Force browser to fetch it
+          var link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.as = 'image';
+          link.href = pImg.src;
+          document.head.appendChild(link);
+        }
+      }
+    }, 2500);
 
     function goTo(idx) {
       // Remove active from current
