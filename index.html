@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="color-scheme:dark">
+<html lang="en" style="color-scheme:dark;background:#0a0a08">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,11 +21,18 @@
   <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="venue/bar_long.webp" type="image/webp">
+  <!-- Critical image preloads — Cloudflare edge cache via immutable headers -->
+  <link rel="preload" as="image" href="venue/bar_long.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="venue/bar.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/montucky-visuals/09_hero_bar_hero.png" as="image" fetchpriority="low">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2.5s cubic-bezier(.4,0,.2,1)}
+    /* INSTANT PAINT — renders before external CSS loads */
+    #preloader{position:fixed;inset:0;z-index:10000;background:#0a0a08;display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .hero,.hero-bg{background:#0a0a08}
+    .hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(200,146,42,0.18) 0%,rgba(10,10,8,0.95) 55%);z-index:0}
+    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.8s cubic-bezier(.4,0,.2,1)}
     .hero-slide.active{opacity:1}
     .hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.22) saturate(.7)}
     .brand-divider-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.18) saturate(.55)}
@@ -73,8 +80,16 @@
 
   <!-- Preloader -->
   <div class="preloader" id="preloader">
-    <img class="preloader-logo" src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="">
-    <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+    <div class="preloader-inner">
+      <img class="preloader-logo" src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="" width="64" height="64">
+      <div class="preloader-wordmark">Montucky Moonshine</div>
+      <div class="preloader-sub">Helena, Montana</div>
+      <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+    </div>
+    <div class="preloader-sparks" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
   </div>
 
   <!-- Scroll Progress -->
@@ -167,6 +182,9 @@
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="particles" id="heroParticles" aria-hidden="true"></div>
+      <div class="hero-scanline" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
       <!-- Hero Dot Nav -->
       <div class="hero-dots" id="heroDots" aria-label="Slide navigation" role="tablist">
         <button class="hero-dot active" aria-label="Slide 1" aria-selected="true" role="tab"></button>
@@ -181,7 +199,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </div>
       <div class="hero-content">
-        <div class="hero-badge fade-in">Private Venue — Helena, Montana</div>
+        <div class="hero-badge fade-in"><span class="badge-pulse"></span>Private Venue — Helena, Montana</div>
         <h1 class="fade-in fade-in-d1">Montucky<br><em>Moonshine</em></h1>
         <p class="hero-sub fade-in fade-in-d2">Handcrafted Goods &amp; Brand Experience</p>
         <p class="hero-desc fade-in fade-in-d3">A rustic private venue in the heart of Montana, born from great ideas and a passion for authentic craftsmanship.</p>
