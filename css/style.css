@@ -63,6 +63,25 @@ nav.scrolled{background:rgba(10,10,8,0.96);box-shadow:0 4px 30px rgba(0,0,0,.5)}
 .nav-cta:hover{background:var(--amber-l)!important}
 @media(max-width:640px){.nav-links .hide-m{display:none}}
 
+
+/*===== NAV DROPDOWN =====*/
+.nav-drop{position:relative}
+.nav-drop > a{display:inline-flex;align-items:center;gap:4px}
+.nav-drop > a::after{content:'';width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid currentColor;opacity:.6;transition:transform .2s}
+.nav-drop:hover > a::after,.nav-drop:focus-within > a::after{transform:rotate(180deg);opacity:1}
+.nav-mega{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:999;min-width:480px}
+.nav-drop:hover .nav-mega,.nav-drop:focus-within .nav-mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-mega-in{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:1.25rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;box-shadow:0 16px 48px rgba(0,0,0,.7)}
+.nav-mega-col h4{font-family:var(--ff-c);font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bdr)}
+.nav-mega-col a{display:block;font-family:var(--ff-c);font-size:.7rem;letter-spacing:.08em;color:var(--t2);padding:.3rem 0;transition:color .15s;white-space:nowrap}
+.nav-mega-col a:hover{color:var(--amber)}
+.nav-mega-col a .nav-link-sub{display:block;font-size:.62rem;color:var(--t3);margin-top:1px;letter-spacing:.04em;text-transform:none;font-family:var(--ff-b,'Barlow'),sans-serif}
+.nav-mega-hub{grid-column:1/-1;border-top:1px solid var(--bdr);padding-top:.9rem;display:flex;align-items:center;gap:.75rem}
+.nav-mega-hub a{font-family:var(--ff-c);font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--amber);text-transform:uppercase}
+.nav-mega-hub span{font-size:.65rem;color:var(--t3)}
+@media(max-width:840px){.nav-mega{min-width:320px}.nav-mega-in{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.nav-mega{display:none}}
+
 /*===== HERO =====*/
 .hero{min-height:100dvh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0}
