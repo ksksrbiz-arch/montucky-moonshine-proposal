@@ -51,12 +51,15 @@
     @keyframes _up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
     @keyframes _fd{from{opacity:0}to{opacity:1}}
     @keyframes _em{0%{transform:translateY(0);opacity:0}8%{opacity:.95}85%{opacity:.3}100%{transform:translateY(-95vh);opacity:0}}
-    .hero,.hero-bg{background:#0a0a08!important}
-    .hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 35%,rgba(200,146,42,.16) 0%,rgba(10,10,8,.97) 65%);z-index:0;pointer-events:none}
+    .hero{background:linear-gradient(160deg,#1a1208 0%,#0f0b06 40%,#0a0a08 100%)!important}
+    .hero-bg{background:linear-gradient(160deg,#1a1208 0%,#0f0b06 40%,#0a0a08 100%)!important}
+    .hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 30%,rgba(200,146,42,.45) 0%,rgba(180,100,20,.2) 35%,rgba(10,10,8,.85) 70%);z-index:0;pointer-events:none}
     .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s cubic-bezier(.25,.46,.45,.94)}
     .hero-slide.active{opacity:1}
-    .hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.26) saturate(.8)}
+    .hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(.85) contrast(.95)}
     .brand-divider-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.18) saturate(.55)}
+    /* Warm copper streak — visible at 0ms, no image needed */
+    .hero-glow{background:radial-gradient(ellipse 60% 40% at 30% 60%,rgba(180,90,10,.22) 0%,transparent 70%),radial-gradient(ellipse 40% 30% at 70% 30%,rgba(200,146,42,.18) 0%,transparent 60%)!important}
   </style>
 
   <!-- JSON-LD -->
