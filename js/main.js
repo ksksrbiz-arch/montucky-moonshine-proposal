@@ -391,7 +391,7 @@
       for (var i = 0; i < list.length; i++) {
         var item = list[i];
         html +=
-          (PRODUCT_SLUGS[item.n] ? '<a href="product.html?id=' + PRODUCT_SLUGS[item.n] + '"' : '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer"') + ' class="p-card reveal from-scale" data-cat="' + item.cat + '" style="animation-delay:' + (i * 60) + 'ms" role="listitem">' +
+          (PRODUCT_SLUGS[item.n] ? '<a href="product.html?id=' + PRODUCT_SLUGS[item.n] + '"' : '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer"') + ' class="p-card" data-cat="' + item.cat + '" role="listitem">' +
             '<div class="p-img">' +
               '<div class="img-wrap">' +
                 '<img src="' + item.img + '" alt="' + item.n + '" loading="lazy" onload="this.parentElement.classList.add(\'loaded\')">' +
@@ -413,6 +413,19 @@
       if (!grid) return;
 
       renderProducts(products, grid);
+      // Animate in on initial load (observer won't catch dynamically injected cards)
+      setTimeout(function(){
+        var cards = grid.querySelectorAll('.p-card');
+        for(var m=0;m<cards.length;m++){
+          cards[m].style.opacity='0';
+          cards[m].style.transform='translateY(16px)';
+          (function(card,delay){setTimeout(function(){
+            card.style.transition='opacity .35s ease,transform .35s ease';
+            card.style.opacity='1';
+            card.style.transform='translateY(0)';
+          },delay);})(cards[m],m*50);
+        }
+      },50);
 
       // Set product count data-target
       var countEl = document.getElementById('productCount');
