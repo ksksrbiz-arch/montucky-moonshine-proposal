@@ -228,11 +228,13 @@
         "availability": "https://schema.org/InStock",
         "url": p.url
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": p.rating,
-        "reviewCount": p.reviews
-      }
+      ...(p.rating && p.reviews ? {
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": p.rating,
+          "reviewCount": p.reviews
+        }
+      } : {})
     });
   }
 
