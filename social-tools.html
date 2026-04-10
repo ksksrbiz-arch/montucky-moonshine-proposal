@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Montucky Moonshine — Social Media Tools | 1Commerce</title>
-<meta name="description" content="Social media content tools for Montucky Moonshine — caption generator, hashtag sets, content calendar, and post templates.">
-<meta name="robots" content="noindex, nofollow">
+<title>Social Media Tools — Montucky Moonshine</title>
+  <meta name="description" content="Social media tools for Montucky Moonshine — caption generator, hashtag sets, 7-day content calendar, and ready-to-post templates for Facebook, Instagram, and TikTok.">
+  <meta property="og:title" content="Social Media Tools — Montucky Moonshine">
+  <meta property="og:description" content="Caption generator, hashtag sets, content calendar, and post templates for Montana's favorite moonshine brand.">
+  <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/social-tools">
 <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 <style>
 :root{--bg:#0a0a08;--bg2:#121210;--card:#1a1a16;--amber:#c8922a;--amber-l:#e6b04a;--cream:#f5f0e6;--t2:#c4bfb2;--t3:#8a8578;--bdr:rgba(200,146,42,.12);--ff-d:'Playfair Display',Georgia,serif;--ff-b:'Barlow',system-ui,sans-serif;--ff-c:'Barlow Condensed',system-ui,sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -111,22 +114,66 @@ footer p{font-size:.8rem;color:var(--t3)}
 
 <div class="copied-toast" id="copiedToast">Copied to clipboard ✓</div>
 
-<nav>
-  <div class="nav-in">
-    <a class="nav-logo" href="index.html" aria-label="Home">
-      <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine" width="38" height="38">
-      <div class="nav-brand">Montucky Moonshine<small>Social Tools</small></div>
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="deliverables.html">Deliverables</a>
-      <a href="email-flows.html">Email Flows</a>
-      <a href="growth-plan.html">Growth Plan</a>
-      <a href="builder-kit.html">Builder Kit</a>
-      <a href="social-tools.html" class="active">Social Tools</a>
+<nav id="navbar" role="banner">
+    <div class="nav-in">
+      <a class="nav-logo" href="index.html" aria-label="Home">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
+        <div class="nav-brand">Montucky Moonshine<small>Est. Montana</small></div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="venue.html">Venue</a>
+        <a href="about.html">About</a>
+        <div class="nav-drop">
+          <a href="lifestyle/index.html">Lifestyle</a>
+          <div class="nav-mega" role="region" aria-label="Lifestyle menu">
+            <div class="nav-mega-in">
+              <div class="nav-mega-col">
+                <h4>🫐 Recipes</h4>
+                <a href="lifestyle/recipes/huckleberry-moonshine-smash.html">Huckleberry Smash<span class="nav-link-sub">Most popular</span></a>
+                <a href="lifestyle/recipes/montana-mule.html">Montana Mule</a>
+                <a href="lifestyle/recipes/moonshine-old-fashioned.html">Old Fashioned</a>
+                <a href="lifestyle/recipes/index.html">All Recipes →</a>
+              </div>
+              <div class="nav-mega-col">
+                <h4>📖 Culture</h4>
+                <a href="lifestyle/culture/montana-lady-bootleggers.html">Lady Bootleggers</a>
+                <a href="lifestyle/culture/bootlegger-trail.html">Bootlegger Trail</a>
+                <a href="lifestyle/culture/rebellion-in-a-jar.html">Rebellion in a Jar</a>
+                <a href="lifestyle/culture/index.html">All Articles →</a>
+              </div>
+              <div class="nav-mega-col">
+                <h4>🥃 Guides</h4>
+                <a href="lifestyle/guides/what-does-moonshine-taste-like.html">What Does It Taste Like?</a>
+                <a href="lifestyle/guides/what-to-mix-with-moonshine.html">What to Mix With It</a>
+                <a href="lifestyle/guides/moonshine-vs-whiskey.html">Moonshine vs Whiskey</a>
+                <a href="lifestyle/guides/index.html">All Guides →</a>
+              </div>
+              <div class="nav-mega-hub">
+                <a href="lifestyle/index.html">⚡ Open Lifestyle Hub</a>
+                <span>Recipes · Culture · Guides · Montana Stories</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html">Contact</a>
+        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </div>
-</nav>
+  </nav>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="venue.html">Venue</a>
+    <a href="about.html">About</a>
+    <a href="lifestyle/index.html">Lifestyle</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="mobile-cta">Shop Now &rarr;</a>
+  </nav>
 
 <div class="page-hero">
   <div class="page-hero-in">
@@ -515,5 +562,6 @@ function switchTab(btn, id) {
   document.getElementById('tpl-'+id).classList.add('active');
 }
 </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
