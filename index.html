@@ -74,6 +74,21 @@
   </script>
 </head>
 <body style="background:#0a0a08;margin:0">
+<script>
+// Boot script — runs synchronously as first child of body
+// Starts progress ticker before main.js loads, guaranteeing preloader animation from frame 1
+(function(){
+  var fill = document.getElementById('preloaderFill');
+  if (!fill) return;
+  var p = 0;
+  var t = setInterval(function(){
+    p = p < 40 ? p + (Math.random()*16+8) : p < 72 ? p + (Math.random()*5+2) : p < 82 ? p + 1 : (clearInterval(t), p);
+    fill.style.width = Math.min(p,82)+'%';
+  }, 90);
+  window._preloaderTicker = t;
+  window._preloaderProgress = function(v){ p = v; fill.style.width = Math.min(v,100)+'%'; };
+})();
+</script>
 
   <!-- Announcement Bar -->
   <div class="ann-bar" id="annBar">
