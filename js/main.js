@@ -23,6 +23,7 @@
       if (done) return;
       done = true;
       fill.style.width = '100%';
+      if (window._preloaderTicker) { clearInterval(window._preloaderTicker); window._preloaderTicker = null; }
       setTimeout(function () {
         el.classList.add('done');
         // Remove from DOM after transition to free memory
@@ -30,8 +31,8 @@
       }, 350);
     }
 
-    // Progress ticker — fast ramp to 85%, then waits for image
-    var ticker = setInterval(function () {
+    // Use boot ticker already running from inline script, or create fallback
+    var ticker = window._preloaderTicker || setInterval(function () {
       if (progress < 45) progress += Math.random() * 18 + 8;
       else if (progress < 75) progress += Math.random() * 6 + 2;
       else if (progress < 85) progress += Math.random() * 2 + .5;
