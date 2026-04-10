@@ -28,13 +28,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* INSTANT PAINT — renders before external CSS loads */
-    #preloader{position:fixed;inset:0;z-index:10000;background:#0a0a08;display:flex;align-items:center;justify-content:center;flex-direction:column}
-    .hero,.hero-bg{background:#0a0a08}
-    .hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(200,146,42,0.18) 0%,rgba(10,10,8,0.95) 55%);z-index:0}
-    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.8s cubic-bezier(.4,0,.2,1)}
+    /* CRITICAL: parsed before any external file — zero-flash guarantee */
+    html,body{background:#0a0a08!important;margin:0;padding:0}
+    #preloader{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:#0a0a08;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .7s ease,visibility .7s ease}
+    #preloader.done{opacity:0;visibility:hidden;pointer-events:none}
+    .preloader-logo{width:64px;height:64px;animation:_pl 1.4s ease-in-out infinite;filter:drop-shadow(0 0 14px rgba(200,146,42,.55))}
+    .preloader-wordmark{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-weight:700;color:#f5f0e6;letter-spacing:.08em;margin-top:.75rem;opacity:0;animation:_up .6s .35s ease-out both}
+    .preloader-sub{font-family:'Barlow Condensed','Barlow',Arial,sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#c8922a;opacity:0;animation:_up .6s .55s ease-out both}
+    .preloader-bar{width:140px;height:1px;background:rgba(200,146,42,.15);margin-top:.75rem;border-radius:2px;overflow:hidden;opacity:0;animation:_fd .4s .75s both}
+    .preloader-fill{height:100%;background:linear-gradient(90deg,#c8922a,#e6b04a);width:0%;transition:width .2s ease-out;box-shadow:0 0 8px rgba(200,146,42,.8)}
+    .preloader-sparks{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .preloader-sparks span{position:absolute;bottom:-4px;width:2px;border-radius:2px;background:#c8922a;opacity:0;animation:_em var(--d,4s) var(--e,0s) ease-out infinite}
+    .preloader-sparks span:nth-child(1){left:12%;height:14px;--d:3.2s;--e:0s}
+    .preloader-sparks span:nth-child(2){left:25%;height:9px;--d:4.1s;--e:.7s}
+    .preloader-sparks span:nth-child(3){left:42%;height:17px;--d:3.7s;--e:1.2s}
+    .preloader-sparks span:nth-child(4){left:58%;height:11px;--d:4.5s;--e:.3s}
+    .preloader-sparks span:nth-child(5){left:71%;height:15px;--d:3.5s;--e:.9s}
+    .preloader-sparks span:nth-child(6){left:35%;height:8px;--d:4.2s;--e:1.6s}
+    .preloader-sparks span:nth-child(7){left:82%;height:12px;--d:3.9s;--e:.5s}
+    .preloader-sparks span:nth-child(8){left:52%;height:10px;--d:4.4s;--e:1.3s}
+    @keyframes _pl{0%,100%{opacity:.5;transform:scale(.93)}50%{opacity:1;transform:scale(1.05)}}
+    @keyframes _up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes _fd{from{opacity:0}to{opacity:1}}
+    @keyframes _em{0%{transform:translateY(0);opacity:0}8%{opacity:.95}85%{opacity:.3}100%{transform:translateY(-95vh);opacity:0}}
+    .hero,.hero-bg{background:#0a0a08!important}
+    .hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 35%,rgba(200,146,42,.16) 0%,rgba(10,10,8,.97) 65%);z-index:0;pointer-events:none}
+    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s cubic-bezier(.25,.46,.45,.94)}
     .hero-slide.active{opacity:1}
-    .hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.22) saturate(.7)}
+    .hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.26) saturate(.8)}
     .brand-divider-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.18) saturate(.55)}
   </style>
 
@@ -52,7 +73,7 @@
   }
   </script>
 </head>
-<body>
+<body style="background:#0a0a08;margin:0">
 
   <!-- Announcement Bar -->
   <div class="ann-bar" id="annBar">
