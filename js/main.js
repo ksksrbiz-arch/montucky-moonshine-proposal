@@ -27,8 +27,8 @@
       setTimeout(function () {
         el.classList.add('done');
         // Remove from DOM after transition to free memory
-        setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 900);
-      }, 350);
+        setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 700);
+      }, 150);
     }
 
     // Use boot ticker already running from inline script, or create fallback
@@ -42,7 +42,7 @@
 
     // Strategy: complete as soon as first hero image decodes OR 1.8s max
     var heroImg = document.querySelector('.hero-slide.active img');
-    var maxTimer = setTimeout(complete, 1800);
+    var maxTimer = setTimeout(complete, 800);
 
     if (heroImg) {
       if (heroImg.complete && heroImg.naturalWidth > 0) {
