@@ -353,3 +353,13 @@ from = "/social-tools"
   from = "/lifestyle/guides"
   to = "/lifestyle/guides/index.html"
   status = 200
+
+# =============================================================================
+# Domain redirect — proposal → production
+# =============================================================================
+
+[[redirects]]
+  from = "https://montucky-moonshine-proposal.netlify.app/*"
+  to = "https://montuckymoonshine.com/:splat"
+  status = 301
+  force = true
