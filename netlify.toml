@@ -349,3 +349,7 @@ from = "/builder-kit"
 from = "/social-tools"
   to = "/social-tools.html"
   status = 200
+[[redirects]]
+  from = "/lifestyle/guides"
+  to = "/lifestyle/guides/index.html"
+  status = 200
