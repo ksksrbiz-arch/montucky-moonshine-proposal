@@ -368,3 +368,9 @@ from = "/social-tools"
   from = "/lifestyle/guides"
   to = "/lifestyle/guides/index.html"
   status = 200
+
+[[redirects]]
+  from = "/visual-identity"
+  to = "/visual-identity.html"
+  status = 200
+
