@@ -763,8 +763,8 @@ body.page-loaded{opacity:1}
    Recipe page components (migrated from inline styles)
    ============================================================ */
 .recipe-hero{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
-.recipe-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.18) saturate(.6)}
-.recipe-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.3),rgba(10,10,8,.95))}
+.recipe-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(.9)}
+.recipe-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.15) 0%,rgba(10,10,8,.5) 60%,rgba(10,10,8,.9) 100%)}
 .recipe-hero-content{position:relative;z-index:2;text-align:center;padding:6rem 1.5rem 3rem}
 .recipe-category{font-family:var(--ff-c);font-size:.7rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;margin-bottom:.75rem}
 .recipe-hero-title{font-family:var(--ff-d);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:1rem}
