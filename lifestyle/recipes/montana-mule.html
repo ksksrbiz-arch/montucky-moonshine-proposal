@@ -21,53 +21,9 @@
   <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/montana-mule">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="../../css/style.css">
-  <style>
-    .recipe-hero{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
-    .recipe-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.18) saturate(.6)}
-    .recipe-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.3),rgba(10,10,8,.95))}
-    .recipe-hero-content{position:relative;z-index:2;text-align:center;padding:6rem 1.5rem 3rem}
-    .recipe-category{font-family:var(--ff-c);font-size:.7rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;margin-bottom:.75rem}
-    .recipe-hero-title{font-family:var(--ff-d);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:1rem}
-    .recipe-meta{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;font-family:var(--ff-c);font-size:.75rem;color:var(--t2);letter-spacing:.1em;text-transform:uppercase}
-    .recipe-meta span{display:flex;align-items:center;gap:.4rem}
-    .jump-to-recipe{position:fixed;bottom:2rem;right:2rem;z-index:90;background:var(--amber);color:var(--bg);font-family:var(--ff-c);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.75rem 1.25rem;border:none;border-radius:2px;cursor:pointer;box-shadow:0 4px 20px rgba(200,146,42,.4);transition:transform .3s,box-shadow .3s}
-    .jump-to-recipe:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(200,146,42,.6)}
-    .recipe-story{max-width:720px;margin:0 auto;padding:4rem 1.5rem}
-    .recipe-story p{font-size:1.05rem;line-height:1.85;color:var(--t1);margin-bottom:1.5rem}
-    .recipe-story p:first-of-type::first-letter{font-family:var(--ff-d);font-size:3.5rem;float:left;line-height:1;margin-right:.5rem;color:var(--amber);font-weight:700}
-    .recipe-card{max-width:700px;margin:0 auto 4rem;background:var(--card);border:1px solid var(--bdr);border-radius:4px;overflow:hidden}
-    .recipe-card-header{background:linear-gradient(135deg,rgba(46,134,171,.15),rgba(200,146,42,.1));padding:2rem;text-align:center;border-bottom:1px solid var(--bdr)}
-    .recipe-card-header h2{font-family:var(--ff-d);font-size:1.6rem;color:var(--cream);margin-bottom:.5rem}
-    .recipe-card-details{display:flex;gap:2rem;justify-content:center;font-family:var(--ff-c);font-size:.7rem;color:var(--t2);letter-spacing:.15em;text-transform:uppercase}
-    .recipe-card-body{padding:2rem}
-    .recipe-card-body h3{font-family:var(--ff-c);font-size:.75rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
-    .ingredients-list{list-style:none;padding:0;margin-bottom:2rem}
-    .ingredients-list li{padding:.6rem 0;border-bottom:1px solid var(--bdr);color:var(--t1);font-size:.95rem;display:flex;align-items:baseline;gap:.75rem}
-    .ingredients-list li::before{content:'';display:inline-block;width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:.4rem}
-    .instructions-list{list-style:none;padding:0;counter-reset:step}
-    .instructions-list li{counter-increment:step;padding:.75rem 0;border-bottom:1px solid var(--bdr);color:var(--t1);font-size:.95rem;display:flex;gap:1rem;align-items:baseline}
-    .instructions-list li::before{content:counter(step);font-family:var(--ff-d);font-size:1.3rem;font-weight:700;color:var(--amber);flex-shrink:0;width:1.5rem;text-align:center}
-    .recipe-extras{max-width:700px;margin:0 auto;padding:0 1.5rem 4rem}
-    .recipe-extra-card{background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:2rem;margin-bottom:2rem}
-    .recipe-extra-card h3{font-family:var(--ff-c);font-size:.75rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
-    .recipe-extra-card p{color:var(--t1);font-size:.95rem;line-height:1.7}
-    .recipe-extra-card a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
-    .recipe-faq{max-width:700px;margin:0 auto;padding:0 1.5rem 4rem}
-    .recipe-faq h2{font-family:var(--ff-d);font-size:1.4rem;color:var(--cream);margin-bottom:2rem;text-align:center}
-    .faq-item{border-bottom:1px solid var(--bdr);padding:1.25rem 0}
-    .faq-item h4{font-family:var(--ff-b);font-weight:600;color:var(--cream);font-size:.95rem;margin-bottom:.5rem}
-    .faq-item p{color:var(--t2);font-size:.9rem;line-height:1.7}
-    .related-recipes{padding:4rem 1.5rem;background:var(--bg2)}
-    .related-recipes .sec-in{max-width:1000px;margin:0 auto}
-    .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem}
-    .related-card{background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:1.5rem;transition:border-color .3s,transform .3s}
-    .related-card:hover{border-color:var(--amber);transform:translateY(-3px)}
-    .related-card .related-cat{font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.5rem}
-    .related-card h4{font-family:var(--ff-d);font-size:1rem;color:var(--cream);margin-bottom:.4rem}
-    .related-card p{font-size:.8rem;color:var(--t3);line-height:1.5}
-  </style>
 
   <script type="application/ld+json">
   {
@@ -75,7 +31,10 @@
     "@type": "Recipe",
     "name": "Montana Mule",
     "description": "Montucky Moonshine, ginger beer, and fresh lime in a copper mug. The classic mule with a Big Sky twist, perfect year-round.",
-    "author": {"@type": "Organization", "name": "Montucky Moonshine"},
+    "author": {
+        "@type": "Organization",
+        "name": "Montucky Moonshine"
+    },
     "prepTime": "PT3M",
     "totalTime": "PT3M",
     "recipeYield": "1 serving",
@@ -83,21 +42,37 @@
     "recipeCuisine": "American",
     "keywords": "moonshine, mule, ginger beer, cocktail, Montana",
     "recipeIngredient": [
-      "2 oz Montucky Moonshine",
-      "4 oz ginger beer",
-      "0.5 oz lime juice",
-      "Lime wedge for garnish",
-      "Ice"
+        "2 oz Montucky Moonshine",
+        "4 oz ginger beer",
+        "0.5 oz lime juice",
+        "Lime wedge for garnish",
+        "Ice"
     ],
     "recipeInstructions": [
-      {"@type": "HowToStep", "text": "Fill a copper mug or rocks glass with ice."},
-      {"@type": "HowToStep", "text": "Pour 2 oz Montucky Moonshine over the ice."},
-      {"@type": "HowToStep", "text": "Add 0.5 oz fresh lime juice."},
-      {"@type": "HowToStep", "text": "Top with 4 oz ginger beer."},
-      {"@type": "HowToStep", "text": "Stir briefly and garnish with a lime wedge."}
-    ]
-  }
-  </script>
+        {
+            "@type": "HowToStep",
+            "text": "Fill a copper mug or rocks glass with ice."
+        },
+        {
+            "@type": "HowToStep",
+            "text": "Pour 2 oz Montucky Moonshine over the ice."
+        },
+        {
+            "@type": "HowToStep",
+            "text": "Add 0.5 oz fresh lime juice."
+        },
+        {
+            "@type": "HowToStep",
+            "text": "Top with 4 oz ginger beer."
+        },
+        {
+            "@type": "HowToStep",
+            "text": "Stir briefly and garnish with a lime wedge."
+        }
+    ],
+    "image": "https://images.pexels.com/photos/3551535/pexels-photo-3551535.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&dpr=1&fit=crop"
+}
+</script>
 </head>
 <body>
 
@@ -114,8 +89,40 @@
         <a href="../../index.html">Home</a>
         <a href="../../shop.html">Shop</a>
         <a href="../../venue.html">Venue</a>
+        <a href="../../the-still-room.html" style="color:var(--amber)">The Still Room</a>
         <a href="../../about.html">About</a>
-        <a href="../index.html" class="active">Lifestyle</a>
+        <div class="nav-drop">
+          <a href="../../lifestyle/index.html" class="active">Lifestyle</a>
+          <div class="nav-mega" role="region" aria-label="Lifestyle menu">
+            <div class="nav-mega-in">
+              <div class="nav-mega-col">
+                <h4>🫐 Recipes</h4>
+                <a href="../../lifestyle/recipes/huckleberry-moonshine-smash.html">Huckleberry Smash<span class="nav-link-sub">Most popular</span></a>
+                <a href="../../lifestyle/recipes/montana-mule.html">Montana Mule</a>
+                <a href="../../lifestyle/recipes/moonshine-old-fashioned.html">Old Fashioned</a>
+                <a href="../../lifestyle/recipes/index.html">All Recipes →</a>
+              </div>
+              <div class="nav-mega-col">
+                <h4>📖 Culture</h4>
+                <a href="../../lifestyle/culture/montana-lady-bootleggers.html">Lady Bootleggers</a>
+                <a href="../../lifestyle/culture/bootlegger-trail.html">Bootlegger Trail</a>
+                <a href="../../lifestyle/culture/rebellion-in-a-jar.html">Rebellion in a Jar</a>
+                <a href="../../lifestyle/culture/index.html">All Articles →</a>
+              </div>
+              <div class="nav-mega-col">
+                <h4>🥃 Guides</h4>
+                <a href="../../lifestyle/guides/what-does-moonshine-taste-like.html">What Does It Taste Like?</a>
+                <a href="../../lifestyle/guides/what-to-mix-with-moonshine.html">What to Mix With It</a>
+                <a href="../../lifestyle/guides/moonshine-vs-whiskey.html">Moonshine vs Whiskey</a>
+                <a href="../../lifestyle/guides/index.html">All Guides →</a>
+              </div>
+              <div class="nav-mega-hub">
+                <a href="../../lifestyle/index.html">⚡ Open Lifestyle Hub</a>
+                <span>Recipes · Culture · Guides · Montana Stories</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <a href="../../contact.html">Contact</a>
         <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
       </div>
@@ -139,7 +146,7 @@
   <main id="main">
 
     <section class="recipe-hero">
-      <img src="../../assets/montucky-visuals/09_hero_bar_large.png" alt="Montucky Moonshine bar scene" class="recipe-hero-bg">
+      <img src="https://images.pexels.com/photos/3551535/pexels-photo-3551535.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&dpr=1&fit=crop" alt="Cocktail drink in metallic cup" class="recipe-hero-bg" loading="eager" fetchpriority="high">
       <div class="recipe-hero-overlay"></div>
       <div class="recipe-hero-content">
         <div class="recipe-category" style="color:#2E86AB">River &amp; Trail</div>

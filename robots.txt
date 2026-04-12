@@ -6,7 +6,6 @@ Disallow: /high-res/
 
 # Don't index proposal/admin pages
 Disallow: /deliverables
-Disallow: /email-flows
 Disallow: /growth-plan
 Disallow: /admin.jsx
 Disallow: /admin/

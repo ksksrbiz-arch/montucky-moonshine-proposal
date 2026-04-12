@@ -64,4 +64,6 @@
   <url><loc>https://montucky-moonshine-proposal.netlify.app/refund</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/privacy</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
   <url><loc>https://montucky-moonshine-proposal.netlify.app/terms</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/builder-kit</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://montucky-moonshine-proposal.netlify.app/social-tools</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
 </urlset>

@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme:dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a08">
+  <meta name="description" content="The Still Room is a private society of fifty. Entry by character, sponsorship, and unanimous vote — not purchase. Montucky Moonshine, Helena, Montana.">
+  <meta property="og:title" content="The Still Room — Montucky Moonshine">
+  <meta property="og:description" content="Fifty members. No more. Ever. A private society built on craft, character, and the Montana way of life.">
+  <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <meta property="og:url" content="https://montucky-moonshine-proposal.netlify.app/the-still-room">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="noindex, nofollow">
+  <title>The Still Room — Montucky Moonshine | Helena, Montana</title>
+  <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/the-still-room">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Still Room page-specific overrides ── */
+    .sr-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+      padding: 7rem 1.5rem 5rem;
+    }
+    .sr-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(200,146,42,0.07) 0%, transparent 70%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(200,146,42,0.015) 2px,
+          rgba(200,146,42,0.015) 4px
+        );
+      pointer-events: none;
+    }
+    .sr-emblem {
+      font-size: 3.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: srFadeIn 1.8s ease 0.4s forwards;
+      filter: drop-shadow(0 0 24px rgba(200,146,42,0.3));
+    }
+    .sr-hero-eyebrow {
+      font-family: var(--ff-c);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: srFadeIn 1.4s ease 0.8s forwards;
+    }
+    .sr-hero-title {
+      font-family: var(--ff-d);
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 700;
+      color: var(--t1);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: srFadeIn 1.4s ease 1.0s forwards;
+    }
+    .sr-hero-title em {
+      color: var(--amber);
+      font-style: italic;
+    }
+    .sr-hero-sub {
+      font-family: var(--ff-b);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--t2);
+      max-width: 540px;
+      line-height: 1.8;
+      margin: 0 auto 3.5rem;
+      opacity: 0;
+      animation: srFadeIn 1.4s ease 1.3s forwards;
+    }
+    .sr-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--amber);
+      margin: 0 auto 3.5rem;
+      opacity: 0;
+      animation: srFadeIn 1s ease 1.6s forwards;
+    }
+    .sr-hero-tag {
+      font-family: var(--ff-c);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--t3);
+      opacity: 0;
+      animation: srFadeIn 1s ease 1.9s forwards;
+    }
+    .sr-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      animation: srFadeIn 1s ease 2.4s forwards;
+      color: var(--t3);
+      font-family: var(--ff-c);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .sr-scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    @keyframes srFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Section layout ── */
+    .sr-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+    .sr-section-sm {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+    .sr-divider {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      height: 1px;
+      background: var(--bdr);
+    }
+    .sr-label {
+      font-family: var(--ff-c);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+    }
+    .sr-h2 {
+      font-family: var(--ff-d);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--t1);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .sr-h2 em {
+      color: var(--amber);
+      font-style: italic;
+    }
+    .sr-lead {
+      font-family: var(--ff-b);
+      font-size: 1.1rem;
+      color: var(--t2);
+      line-height: 1.9;
+      margin-bottom: 2rem;
+    }
+    .sr-body {
+      font-family: var(--ff-b);
+      font-size: 1rem;
+      color: var(--t2);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Member profiles ── */
+    .sr-profiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .sr-profile-card {
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      border-radius: 4px;
+      padding: 2rem 1.8rem;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .sr-profile-card:hover {
+      border-color: rgba(200,146,42,0.3);
+      transform: translateY(-2px);
+    }
+    .sr-profile-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .sr-profile-title {
+      font-family: var(--ff-d);
+      font-size: 1.05rem;
+      color: var(--t1);
+      margin-bottom: 0.6rem;
+    }
+    .sr-profile-desc {
+      font-family: var(--ff-b);
+      font-size: 0.9rem;
+      color: var(--t3);
+      line-height: 1.7;
+    }
+
+    /* ── Financial table ── */
+    .sr-commitment {
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      border-radius: 4px;
+      padding: 3rem;
+      margin: 3rem 0;
+    }
+    .sr-commitment-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--bdr);
+      font-family: var(--ff-b);
+    }
+    .sr-commitment-row:last-child { border-bottom: none; }
+    .sr-commitment-label {
+      font-size: 1rem;
+      color: var(--t2);
+    }
+    .sr-commitment-sub {
+      font-size: 0.8rem;
+      color: var(--t3);
+      margin-top: 0.2rem;
+    }
+    .sr-commitment-value {
+      font-family: var(--ff-d);
+      font-size: 1.3rem;
+      color: var(--amber);
+      white-space: nowrap;
+    }
+    .sr-commitment-total .sr-commitment-label {
+      font-weight: 600;
+      color: var(--t1);
+      font-size: 1rem;
+    }
+    .sr-commitment-total .sr-commitment-value {
+      font-size: 1.5rem;
+      color: var(--t1);
+    }
+    .sr-note {
+      font-family: var(--ff-b);
+      font-size: 0.85rem;
+      color: var(--t3);
+      font-style: italic;
+      margin-top: 1.5rem;
+      line-height: 1.7;
+    }
+
+    /* ── Benefits grid ── */
+    .sr-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .sr-benefit {
+      padding: 2rem 1.8rem;
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      border-radius: 4px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .sr-benefit:hover {
+      border-color: rgba(200,146,42,0.3);
+      transform: translateY(-3px);
+    }
+    .sr-benefit-num {
+      font-family: var(--ff-c);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .sr-benefit-title {
+      font-family: var(--ff-d);
+      font-size: 1.15rem;
+      color: var(--t1);
+      margin-bottom: 0.8rem;
+    }
+    .sr-benefit-desc {
+      font-family: var(--ff-b);
+      font-size: 0.9rem;
+      color: var(--t3);
+      line-height: 1.75;
+    }
+    .sr-benefit-highlight {
+      font-family: var(--ff-b);
+      font-size: 0.8rem;
+      color: var(--amber);
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    /* ── Exclusion list ── */
+    .sr-exclusion {
+      background: rgba(200,146,42,0.05);
+      border-left: 3px solid var(--amber);
+      padding: 2.5rem 3rem;
+      margin: 3rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .sr-exclusion-title {
+      font-family: var(--ff-d);
+      font-size: 1.15rem;
+      color: var(--t1);
+      margin-bottom: 1.5rem;
+    }
+    .sr-exclusion-list {
+      list-style: none;
+      padding: 0;
+    }
+    .sr-exclusion-list li {
+      font-family: var(--ff-b);
+      font-size: 0.95rem;
+      color: var(--t2);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--bdr);
+      display: flex;
+      gap: 1rem;
+      line-height: 1.6;
+    }
+    .sr-exclusion-list li:last-child { border-bottom: none; }
+    .sr-exclusion-list li::before {
+      content: '—';
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+    .sr-exclusion-list strong { color: var(--t1); }
+
+    /* ── Comparison table ── */
+    .sr-compare-wrap {
+      overflow-x: auto;
+      margin: 3rem 0;
+    }
+    .sr-compare {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--ff-b);
+      font-size: 0.9rem;
+    }
+    .sr-compare th {
+      font-family: var(--ff-c);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-align: left;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid var(--bdr);
+    }
+    .sr-compare td {
+      padding: 1rem 1.2rem;
+      color: var(--t2);
+      border-bottom: 1px solid var(--bdr);
+      vertical-align: top;
+    }
+    .sr-compare tr.sr-compare-hl td {
+      color: var(--t1);
+      background: rgba(200,146,42,0.06);
+      font-weight: 600;
+    }
+    .sr-compare tr.sr-compare-hl td:first-child {
+      color: var(--amber);
+    }
+
+    /* ── Laws ── */
+    .sr-laws {
+      counter-reset: law;
+      list-style: none;
+      padding: 0;
+      margin: 3rem 0;
+    }
+    .sr-law {
+      counter-increment: law;
+      padding: 2rem 2rem 2rem 5rem;
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      border-radius: 4px;
+      margin-bottom: 1.2rem;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .sr-law:hover { border-color: rgba(200,146,42,0.3); }
+    .sr-law::before {
+      content: counter(law, upper-roman);
+      position: absolute;
+      left: 2rem;
+      top: 2rem;
+      font-family: var(--ff-d);
+      font-size: 1.1rem;
+      color: var(--amber);
+      opacity: 0.7;
+    }
+    .sr-law-title {
+      font-family: var(--ff-c);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--t1);
+      margin-bottom: 0.5rem;
+    }
+    .sr-law-body {
+      font-family: var(--ff-b);
+      font-size: 0.9rem;
+      color: var(--t3);
+      line-height: 1.7;
+    }
+
+    /* ── CTA ── */
+    .sr-cta-block {
+      text-align: center;
+      padding: 6rem 1.5rem;
+      background: var(--card);
+      border-top: 1px solid var(--bdr);
+      border-bottom: 1px solid var(--bdr);
+    }
+    .sr-cta-block .sr-label { display: block; margin-bottom: 1.5rem; }
+    .sr-cta-title {
+      font-family: var(--ff-d);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--t1);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+    .sr-cta-title em { color: var(--amber); font-style: italic; }
+    .sr-cta-body {
+      font-family: var(--ff-b);
+      font-size: 1rem;
+      color: var(--t2);
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      line-height: 1.9;
+    }
+    .sr-btn {
+      display: inline-block;
+      font-family: var(--ff-c);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--amber);
+      border: none;
+      padding: 1.1rem 2.8rem;
+      border-radius: 2px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .sr-btn:hover {
+      background: var(--amber-l);
+      transform: translateY(-2px);
+    }
+    .sr-btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(200,146,42,0.4);
+      color: var(--amber);
+      margin-left: 1rem;
+    }
+    .sr-btn-ghost:hover {
+      background: rgba(200,146,42,0.08);
+      transform: translateY(-2px);
+    }
+    .sr-cta-disclaimer {
+      font-family: var(--ff-b);
+      font-size: 0.8rem;
+      color: var(--t3);
+      margin-top: 2rem;
+      font-style: italic;
+    }
+
+    /* ── Founding story ── */
+    .sr-story {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+    .sr-story blockquote {
+      font-family: var(--ff-d);
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      font-style: italic;
+      color: var(--t1);
+      line-height: 1.6;
+      margin: 0 0 1.5rem;
+      border: none;
+      padding: 0;
+    }
+    .sr-story cite {
+      font-family: var(--ff-c);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-style: normal;
+    }
+
+    /* ── Economics ── */
+    .sr-econ-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    @media(max-width:600px){
+      .sr-econ-grid { grid-template-columns: 1fr; }
+    }
+    .sr-econ-block {
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+    }
+    .sr-econ-block h4 {
+      font-family: var(--ff-c);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+    }
+    .sr-econ-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--ff-b);
+      font-size: 0.9rem;
+      color: var(--t2);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--bdr);
+    }
+    .sr-econ-row:last-child { border-bottom: none; font-weight: 600; color: var(--t1); }
+    .sr-econ-row span { color: var(--amber); }
+
+    /* ── Capacity badge ── */
+    .sr-capacity {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(200,146,42,0.08);
+      border: 1px solid rgba(200,146,42,0.25);
+      border-radius: 100px;
+      padding: 0.5rem 1.2rem;
+      font-family: var(--ff-c);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 2rem;
+    }
+    .sr-capacity-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: dotPulse 2s ease infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ── Traits list ── */
+    .sr-traits {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+    }
+    .sr-traits li {
+      font-family: var(--ff-b);
+      font-size: 0.9rem;
+      color: var(--t2);
+      padding: 0.7rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      border-radius: 2px;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+    .sr-traits li::before {
+      content: '◆';
+      color: var(--amber);
+      font-size: 0.5rem;
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Reveal animations (reuse site pattern) ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .from-left { opacity: 0; transform: translateX(-24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .from-left.visible { opacity: 1; transform: none; }
+    .from-right { opacity: 0; transform: translateX(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .from-right.visible { opacity: 1; transform: none; }
+
+    /* ── Footer note ── */
+    .sr-footer-note {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      font-family: var(--ff-c);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--t3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <img class="preloader-logo" src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="">
+    <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- NAV -->
+  <nav id="navbar" role="banner">
+    <div class="nav-in">
+      <a class="nav-logo" href="index.html" aria-label="Home">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
+        <div class="nav-brand">Montucky Moonshine<small>Est. Montana</small></div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="venue.html">Venue</a>
+        <a href="the-still-room.html" class="active" style="color:var(--amber)">The Still Room</a>
+        <a href="about.html">About</a>
+        <div class="nav-drop">
+          <a href="lifestyle/index.html">Lifestyle</a>
+          <div class="nav-mega" role="region" aria-label="Lifestyle menu">
+            <div class="nav-mega-in">
+              <div class="nav-mega-col">
+                <h4>🫐 Recipes</h4>
+                <a href="lifestyle/recipes/huckleberry-moonshine-smash.html">Huckleberry Smash<span class="nav-link-sub">Most popular</span></a>
+                <a href="lifestyle/recipes/montana-mule.html">Montana Mule</a>
+                <a href="lifestyle/recipes/moonshine-old-fashioned.html">Old Fashioned</a>
+                <a href="lifestyle/recipes/index.html">All Recipes →</a>
+              </div>
+              <div class="nav-mega-col">
+                <h4>📖 Culture</h4>
+                <a href="lifestyle/culture/montana-lady-bootleggers.html">Lady Bootleggers</a>
+                <a href="lifestyle/culture/bootlegger-trail.html">Bootlegger Trail</a>
+                <a href="lifestyle/culture/rebellion-in-a-jar.html">Rebellion in a Jar</a>
+                <a href="lifestyle/culture/index.html">All Articles →</a>
+              </div>
+              <div class="nav-mega-col">
+                <h4>🥃 Guides</h4>
+                <a href="lifestyle/guides/what-does-moonshine-taste-like.html">What Does It Taste Like?</a>
+                <a href="lifestyle/guides/what-to-mix-with-moonshine.html">What to Mix With It</a>
+                <a href="lifestyle/guides/moonshine-vs-whiskey.html">Moonshine vs Whiskey</a>
+                <a href="lifestyle/guides/index.html">All Guides →</a>
+              </div>
+              <div class="nav-mega-hub">
+                <a href="lifestyle/index.html">⚡ Open Lifestyle Hub</a>
+                <span>Recipes · Culture · Guides · Montana Stories</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html">Contact</a>
+        <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="sr-hero">
+    <div class="sr-emblem">⚗</div>
+    <p class="sr-hero-eyebrow">Montucky Moonshine · Helena, Montana</p>
+    <h1 class="sr-hero-title">The Still Room</h1>
+    <div class="sr-rule"></div>
+    <p class="sr-hero-sub">A private society of <em style="color:var(--amber);font-style:italic">fifty</em>. Entry by character, sponsorship, and unanimous vote — not by purchase.</p>
+    <p class="sr-hero-tag">Founded MMXXVI &nbsp;·&nbsp; Fifty Members &nbsp;·&nbsp; No More. Ever.</p>
+    <div class="sr-scroll-hint">Scroll</div>
+  </section>
+
+  <!-- ══ POSITIONING ══ -->
+  <section style="background:var(--bg2); padding:1px 0;">
+    <div class="sr-section-sm reveal">
+      <div class="sr-capacity">
+        <span class="sr-capacity-dot"></span>
+        Membership · Open · Founding Seats Available
+      </div>
+      <p class="sr-label">What This Is</p>
+      <h2 class="sr-h2">The most <em>selective</em> craft spirits society in America.</h2>
+      <p class="sr-lead">Not because it's expensive. Because it's hard to get into.</p>
+      <p class="sr-body">You cannot buy your way into The Still Room. You cannot fill out a form or apply through a website. You can only be observed by a current member, vouched for by two, and approved unanimously by the Society.</p>
+      <p class="sr-body">Most people who want in will never get in — not because they lack money, but because The Still Room is built on something that can't be manufactured: character, craft, and an understanding of what this place means.</p>
+      <p class="sr-body">The Fifty is a number chosen deliberately. Small enough that every member knows every other member. Large enough to sustain what makes it worth joining.</p>
+    </div>
+  </section>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ WHO GETS CONSIDERED ══ -->
+  <section style="background:var(--bg);">
+    <div class="sr-section reveal">
+      <p class="sr-label">The Membership</p>
+      <h2 class="sr-h2">The Still Room is not for <em>enthusiasts</em>.</h2>
+      <p class="sr-body" style="max-width:620px">It's for people who already live the life — who don't need a label to tell them who they are. Members of The Fifty share certain traits, regardless of occupation or income level.</p>
+
+      <ul class="sr-traits">
+        <li>They do not explain themselves to people who wouldn't understand anyway</li>
+        <li>They value quality of company over quantity of acquaintance</li>
+        <li>They have done hard things in hard places</li>
+        <li>They understand that the best things in life are shared, not posted</li>
+        <li>They are loyal to the people and places that earned it</li>
+        <li>They know how to hold their tongue and their liquor in equal measure</li>
+      </ul>
+
+      <p class="sr-label" style="margin-top:3rem">Examples From Our List of Candidates</p>
+      <div class="sr-profiles">
+        <div class="sr-profile-card">
+          <span class="sr-profile-icon">🏔</span>
+          <div class="sr-profile-title">The Steward</div>
+          <p class="sr-profile-desc">A family whose land has been in Montana for three generations. They don't advertise it. They don't need to.</p>
+        </div>
+        <div class="sr-profile-card">
+          <span class="sr-profile-icon">🎣</span>
+          <div class="sr-profile-title">The Guide</div>
+          <p class="sr-profile-desc">Two decades on the Blackfoot, the Bitterroot, the Clark Fork. Knows every riffle. Has seen more than he talks about.</p>
+        </div>
+        <div class="sr-profile-card">
+          <span class="sr-profile-icon">🔨</span>
+          <div class="sr-profile-title">The Craftsman</div>
+          <p class="sr-profile-desc">Makes things that last — furniture, saddles, ironwork. Could charge twice as much. Charges what it's worth.</p>
+        </div>
+        <div class="sr-profile-card">
+          <span class="sr-profile-icon">🤠</span>
+          <div class="sr-profile-title">The Quiet Achiever</div>
+          <p class="sr-profile-desc">Built something, sold it quietly, moved to a ranch. Drives a truck older than most people's careers. Gives anonymously.</p>
+        </div>
+        <div class="sr-profile-card">
+          <span class="sr-profile-icon">🌲</span>
+          <div class="sr-profile-title">The Explorer</div>
+          <p class="sr-profile-desc">Has led groups into the Bob Marshall, the Beartooths, and places that don't appear on planning maps. Prefers it that way.</p>
+        </div>
+        <div class="sr-profile-card">
+          <span class="sr-profile-icon">📜</span>
+          <div class="sr-profile-title">The Legacy</div>
+          <p class="sr-profile-desc">Whose grandfather ran whiskey across the Hi-Line during Prohibition. Comes by the rebel spirit honestly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ FINANCIAL COMMITMENT ══ -->
+  <section style="background:var(--bg2);">
+    <div class="sr-section reveal">
+      <p class="sr-label">The Commitment</p>
+      <h2 class="sr-h2">What membership <em>costs</em>.</h2>
+      <p class="sr-body" style="max-width:620px">We're transparent about this. The Still Room is not a discount program or a subscription box. The financial commitment exists to ensure that every seat is held by someone who has decided, seriously, that this is worth their time and money. It also funds the experiences that make membership worth it.</p>
+
+      <div class="sr-commitment">
+        <div class="sr-commitment-row">
+          <div>
+            <div class="sr-commitment-label">Initiation</div>
+            <div class="sr-commitment-sub">One-time · Due upon acceptance · Non-refundable</div>
+          </div>
+          <div class="sr-commitment-value">$10,000</div>
+        </div>
+        <div class="sr-commitment-row">
+          <div>
+            <div class="sr-commitment-label">Annual Dues</div>
+            <div class="sr-commitment-sub">$300/month · Covers operations, communications, admin</div>
+          </div>
+          <div class="sr-commitment-value">$3,600/yr</div>
+        </div>
+        <div class="sr-commitment-row">
+          <div>
+            <div class="sr-commitment-label">The Gathering</div>
+            <div class="sr-commitment-sub">Annual winter solstice dinner · Includes overnight accommodation</div>
+          </div>
+          <div class="sr-commitment-value">$1,000/yr</div>
+        </div>
+        <div class="sr-commitment-row">
+          <div>
+            <div class="sr-commitment-label">Minimum Annual Purchase</div>
+            <div class="sr-commitment-sub">Montucky products · Satisfied by quarterly Archive Edition allocations</div>
+          </div>
+          <div class="sr-commitment-value">$2,400/yr</div>
+        </div>
+        <div class="sr-commitment-row sr-commitment-total">
+          <div>
+            <div class="sr-commitment-label">First-Year Total</div>
+            <div class="sr-commitment-sub">Years 2+ run approximately $7,000</div>
+          </div>
+          <div class="sr-commitment-value">~$17,000</div>
+        </div>
+      </div>
+
+      <p class="sr-note">For context: a Yellowstone Club membership starts at $400,000 plus a multi-million dollar property purchase, with annual costs exceeding $60,000. The Still Room offers the same caliber of fellowship — the quality of people, the access, the experiences — at a fraction of that commitment. This is intentional. The filter here is character, not wealth.</p>
+    </div>
+  </section>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ WHAT YOU RECEIVE ══ -->
+  <section style="background:var(--bg);">
+    <div class="sr-section reveal">
+      <p class="sr-label">The Benefits</p>
+      <h2 class="sr-h2">What you <em>receive</em> — and what you can't get elsewhere.</h2>
+
+      <div class="sr-benefits">
+        <div class="sr-benefit">
+          <div class="sr-benefit-num">I · The Archive Editions</div>
+          <div class="sr-benefit-title">Quarterly Exclusive Allocations</div>
+          <p class="sr-benefit-desc">Single-barrel selections, numbered and logged. Experimental mash bills and higher-proof expressions not available through retail channels. Collaborations with Montana coopers, glassblowers, and leatherworkers. Each shipment is a limited run — your allocation is guaranteed; no refreshes once it ships.</p>
+          <p class="sr-benefit-highlight">Estimated annual retail value: $3,600+</p>
+        </div>
+
+        <div class="sr-benefit">
+          <div class="sr-benefit-num">II · The Still Room</div>
+          <div class="sr-benefit-title">Private Access in Helena</div>
+          <p class="sr-benefit-desc">The chamber — Darryl's private space at the venue — is available to members without reservation. Bring one guest up to four times annually. Host a private dinner for your own people. It's yours to use as you see fit, with the understanding that you'll treat it accordingly.</p>
+        </div>
+
+        <div class="sr-benefit">
+          <div class="sr-benefit-num">III · The Gathering</div>
+          <div class="sr-benefit-title">Annual Winter Solstice Dinner</div>
+          <p class="sr-benefit-desc">The longest night of the year. A multi-course meal by a guest chef. Rare spirits from Darryl's personal collection — bottles that haven't been and won't be offered commercially. Overnight accommodation provided. The agenda includes The Vote: new member approvals, Society business, and whatever comes up around the table.</p>
+        </div>
+
+        <div class="sr-benefit">
+          <div class="sr-benefit-num">IV · The Expeditions</div>
+          <div class="sr-benefit-title">Annual Member-Only Adventure</div>
+          <p class="sr-benefit-desc">Each year, one trip. These are not tour packages — they are experiences arranged through the connections of the Society. Private access to waters, lands, and logistics that require relationships to unlock.</p>
+          <p class="sr-benefit-desc" style="margin-top:0.8rem"><strong style="color:var(--t1)">Year One:</strong> Private fly-fishing on the Missouri. Overnight at a member ranch.<br><strong style="color:var(--t1)">Year Two:</strong> Horseback pack trip into the Bob Marshall Wilderness.<br><strong style="color:var(--t1)">Year Three:</strong> Private distillery tour of Scotland. Single-cask tastings not open to the public.<br><strong style="color:var(--t1)">Year Four:</strong> Montana elk hunt. Professional guide. Camp on a private allotment.</p>
+          <p class="sr-benefit-highlight">Commercial equivalent: $5,000–$15,000 per trip. Member cost: included.</p>
+        </div>
+
+        <div class="sr-benefit">
+          <div class="sr-benefit-num">V · The Network</div>
+          <div class="sr-benefit-title">The Printed Directory of The Fifty</div>
+          <p class="sr-benefit-desc">Each year, a printed and bound directory. Names, occupations, locations, and contact information (with permission). Darryl personally facilitates introductions when he thinks two members should know each other. The value here is not easily quantified: access to fifty people who do not typically grant access.</p>
+        </div>
+
+        <div class="sr-benefit">
+          <div class="sr-benefit-num">VI · The Custom Batch</div>
+          <div class="sr-benefit-title">Your Own Label. Your Own Spec.</div>
+          <p class="sr-benefit-desc">Once annually, each member may commission a personalized batch of Montucky. Choose the mash bill within legal parameters, the proof, and the label design. Twenty-four bottles, numbered. This is not a service offered to the public at any price. It exists solely for members of The Still Room.</p>
+          <p class="sr-benefit-highlight">Member cost: $500 (materials only)</p>
+        </div>
+
+        <div class="sr-benefit">
+          <div class="sr-benefit-num">VII · The Hereditary Track</div>
+          <div class="sr-benefit-title">Legacy Membership for Your Children</div>
+          <p class="sr-benefit-desc">When a founding member's child reaches age 25, they may be considered for provisional membership. One sponsor required instead of two. Fast-tracked Committee review. Legacy pricing at 50% of current rates. The Society you build can outlast you — and that matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ COST OF EXCLUSION ══ -->
+  <section style="background:var(--bg2);">
+    <div class="sr-section-sm reveal">
+      <p class="sr-label">What You Lose</p>
+      <h2 class="sr-h2">The cost of <em>not joining</em>.</h2>
+      <p class="sr-body">The Still Room is not a discount club. Non-members are not disadvantaged — they simply don't have access to things that aren't offered to them. That distinction matters.</p>
+
+      <div class="sr-exclusion">
+        <div class="sr-exclusion-title">Without membership, you will never have:</div>
+        <ul class="sr-exclusion-list">
+          <li><strong>Archive Editions</strong> — These products exist only for members. You may encounter them on the secondary market at two to three times member price.</li>
+          <li><strong>Early Access</strong> — Limited commercial releases sell out before any public announcement goes out. Members hear first. Always.</li>
+          <li><strong>The Still Room</strong> — The private chamber is not bookable by non-members under any circumstances.</li>
+          <li><strong>The Gathering</strong> — The annual dinner is closed to non-members, including spouses and close associates of members.</li>
+          <li><strong>The Expeditions</strong> — These trips are organized solely for members. They will not be offered commercially.</li>
+          <li><strong>The Network</strong> — You will not be introduced to The Fifty. You will not appear in the Directory. The connections that come from membership don't exist outside of it.</li>
+          <li><strong>The Custom Batch</strong> — This service does not exist for non-members. There is no back channel, no waitlist, no price at which it becomes available.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ COMPARISON ══ -->
+  <section style="background:var(--bg);">
+    <div class="sr-section reveal">
+      <p class="sr-label">The Landscape</p>
+      <h2 class="sr-h2">How The Still Room compares to <em>true private societies</em>.</h2>
+      <p class="sr-body" style="max-width:620px">There are very few genuinely private societies in America. Most clubs that call themselves "exclusive" are simply expensive. The Still Room belongs to a different category — one defined by selectivity, not price.</p>
+
+      <div class="sr-compare-wrap">
+        <table class="sr-compare">
+          <thead>
+            <tr>
+              <th>Society</th>
+              <th>Members</th>
+              <th>Entry Barrier</th>
+              <th>Annual Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Yellowstone Club</td>
+              <td>~864</td>
+              <td>$400k initiation + $4M+ property purchase</td>
+              <td>~$60,000</td>
+            </tr>
+            <tr>
+              <td>Huron Mountain Club</td>
+              <td>50</td>
+              <td>Hereditary descent or unanimous board vote</td>
+              <td>~$50,000</td>
+            </tr>
+            <tr>
+              <td>The Explorers Club (NYC)</td>
+              <td>~3,000</td>
+              <td>Field credentials + 2 sponsors</td>
+              <td>~$2,000</td>
+            </tr>
+            <tr>
+              <td>The Bohemian Club</td>
+              <td>~2,500</td>
+              <td>Invitation only · 15-year waitlist</td>
+              <td>~$10,000</td>
+            </tr>
+            <tr class="sr-compare-hl">
+              <td>The Still Room</td>
+              <td><strong>50</strong> — hard cap</td>
+              <td>Character + 2 sponsors + unanimous vote</td>
+              <td>~$17,000 first year</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="sr-body" style="margin-top:2rem">The Still Room is the smallest membership in this table and the only one measured in a single room. Smallness is the point. When there are fifty members and they all have to agree on every new member, quality does not erode over time.</p>
+    </div>
+  </section>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ THE FIVE LAWS ══ -->
+  <section style="background:var(--bg2);">
+    <div class="sr-section-sm reveal">
+      <p class="sr-label">The Culture</p>
+      <h2 class="sr-h2">How The Still Room <em>operates</em>.</h2>
+      <p class="sr-body">These are not rules imposed on members. They're a description of how the Society already works — because the right people naturally behave this way.</p>
+
+      <ol class="sr-laws">
+        <li class="sr-law">
+          <div class="sr-law-title">Silence</div>
+          <div class="sr-law-body">What happens in The Still Room stays in The Still Room. Members do not discuss Society business, other members, or proceedings with anyone outside. Not friends, not family, not press. This is not paranoia — it's respect for the people in the room with you.</div>
+        </li>
+        <li class="sr-law">
+          <div class="sr-law-title">Presence</div>
+          <div class="sr-law-body">When you're in The Room, you're in The Room. No business transactions. Phones put away. No photographs. The value of this space is the quality of the conversation it produces — and that only happens when people are actually present.</div>
+        </li>
+        <li class="sr-law">
+          <div class="sr-law-title">Respect</div>
+          <div class="sr-law-body">Dress like you mean it. Jacket and tie for gentlemen; equivalent for everyone else. The Room is a place worth showing up for. Showing up well is how you demonstrate that you understand that.</div>
+        </li>
+        <li class="sr-law">
+          <div class="sr-law-title">The Pour</div>
+          <div class="sr-law-body">Every gathering opens with a pour from the house still. You accept it. You don't comment on the proof. You drink it with the people around you, and you let whatever comes next, come next.</div>
+        </li>
+        <li class="sr-law">
+          <div class="sr-law-title">The Vote</div>
+          <div class="sr-law-body">The Society decides by unanimous consent. A single no is a permanent no. Members vote their conscience — not their relationships, not their preferences, not their business interests. The Fifty has to be fifty people every member is proud to know.</div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ FOUNDING STORY ══ -->
+  <div class="sr-story reveal">
+    <p class="sr-label" style="text-align:center">The Origin</p>
+    <blockquote>"Fifty. No more."</blockquote>
+    <p class="sr-body" style="text-align:center;margin-bottom:2rem">The Still Room began with a restored copper pot still, a fire, and a conversation between two people who understood that the best things in life are worth limiting — and worth protecting. The Society exists because Darryl believed that fifty true believers are worth more than fifty thousand customers. That belief has not changed.</p>
+    <cite>Darryl · Founder · Montucky Moonshine · Helena, Montana</cite>
+  </div>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ THE ECONOMICS (Darryl context) ══ -->
+  <section style="background:var(--bg2);">
+    <div class="sr-section reveal">
+      <p class="sr-label">The Business Case</p>
+      <h2 class="sr-h2">What The Still Room generates — <em>at capacity</em>.</h2>
+      <p class="sr-body" style="max-width:620px">For those who want to understand the full picture. These numbers reflect a fully seated Society of fifty members at current pricing.</p>
+
+      <div class="sr-econ-grid">
+        <div class="sr-econ-block">
+          <h4>Annual Revenue (at capacity)</h4>
+          <div class="sr-econ-row"><span>Annual dues (50 × $3,600)</span><span>$180,000</span></div>
+          <div class="sr-econ-row"><span>Gathering fees (50 × $1,000)</span><span>$50,000</span></div>
+          <div class="sr-econ-row"><span>Min. purchases (50 × $2,400)</span><span>$120,000</span></div>
+          <div class="sr-econ-row"><span>Total Annual</span><span>$350,000</span></div>
+        </div>
+        <div class="sr-econ-block">
+          <h4>Annual Costs</h4>
+          <div class="sr-econ-row"><span>The Gathering (venue, chef, lodging)</span><span>$30,000</span></div>
+          <div class="sr-econ-row"><span>The Expedition</span><span>$25,000</span></div>
+          <div class="sr-econ-row"><span>Archive Editions (product cost)</span><span>$40,000</span></div>
+          <div class="sr-econ-row"><span>Operations &amp; admin</span><span>$15,000</span></div>
+          <div class="sr-econ-row"><span>Total Costs</span><span>$110,000</span></div>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--bdr);border-radius:4px;padding:2.5rem 2rem;margin-top:0.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div class="sr-label" style="margin-bottom:0.5rem">Net Annual Profit at Capacity</div>
+          <p class="sr-body" style="margin:0;font-size:0.85rem">Before accounting for brand equity, earned-media value, and 50 high-net-worth advocates with networks money can't access directly.</p>
+        </div>
+        <div style="font-family:var(--ff-d);font-size:2.5rem;color:var(--amber);white-space:nowrap">$240,000</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-divider"></div>
+
+  <!-- ══ CTA ══ -->
+  <div class="sr-cta-block reveal">
+    <span class="sr-label">Request Consideration</span>
+    <h2 class="sr-cta-title">Ready to be <em>considered</em>?</h2>
+    <p class="sr-cta-body">Membership is not applied for — it is requested. If you believe you belong in The Fifty and you have a current member willing to sponsor your consideration, reach out directly to Darryl. Tell us who you are and who's vouching for you. The Committee will take it from there.</p>
+    <a href="contact.html" class="sr-btn">Request Consideration</a>
+    <a href="venue.html" class="sr-btn sr-btn-ghost">See the Venue First</a>
+    <p class="sr-cta-disclaimer">You are not applying for membership. You are requesting that your name be placed before the Committee. The Society decides. This process cannot be expedited by any means.</p>
+  </div>
+
+  <!-- ══ FOOTER NOTE ══ -->
+  <div class="sr-footer-note">
+    The Still Room &nbsp;·&nbsp; Montucky Moonshine &nbsp;·&nbsp; Helena, Montana &nbsp;·&nbsp; Founded MMXXVI<br>
+    <span style="margin-top:0.5rem;display:block">Fifty members · No more · Ever</span>
+  </div>
+
+  <!-- FOOTER (matches site) -->
+  <footer class="footer">
+    <div class="footer-in">
+      <div class="footer-brand">
+        <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine" width="52" height="52">
+        <div class="footer-brand-name">Montucky Moonshine<small>Handcrafted in Helena, Montana</small></div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="venue.html">Venue</a>
+          <a href="the-still-room.html">The Still Room</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="footer-col">
+          <h4>Lifestyle</h4>
+          <a href="lifestyle/recipes/index.html">All Recipes</a>
+          <a href="lifestyle/culture/index.html">Culture</a>
+          <a href="lifestyle/guides/index.html">Guides</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="refund.html">Refunds</a>
+        </div>
+      </div>
+      <div class="social-links" style="margin-top:1rem">
+        <a href="https://www.facebook.com/Montucky-Moonshine-661364020944905/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/montuckymoonshine/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.tiktok.com/@montuckymoonshine" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
+      </div>
+      <p class="footer-age">🔞 Must be 21+ to purchase alcohol. Please drink responsibly.</p>
+      <p class="footer-copy">© 2025 D &amp; V Enterprises LLC · Montucky Moonshine · Helena, MT</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Intersection observer for reveal animations
+    const reveals = document.querySelectorAll('.reveal, .from-left, .from-right');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

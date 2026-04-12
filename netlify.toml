@@ -5,6 +5,9 @@
 [build]
   publish = "."
 
+[images]
+  remote_images = ["https://montuckymoonshine.com/.*"]
+
 # =============================================================================
 # Redirects — Root pages (alphabetical)
 # =============================================================================
@@ -256,6 +259,15 @@
   status = 200
 
 # =============================================================================
+# Content Hub routes
+# =============================================================================
+
+[[redirects]]
+  from = "/content-hub"
+  to = "/lifestyle/recipes/index.html"
+  status = 200
+
+# =============================================================================
 # Legacy 301 redirects
 # =============================================================================
 
@@ -289,7 +301,7 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://montuckymoonshine.com data:; connect-src 'self'; frame-ancestors 'none'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://montuckymoonshine.com https://images.pexels.com data: blob:; media-src 'self' https://montuckymoonshine.com blob:; connect-src 'self' https://api.elevenlabs.io https://montuckymoonshine.com; frame-ancestors 'none'"
     Cache-Control = "public, max-age=3600"
 
 [[headers]]
@@ -305,4 +317,54 @@
 [[headers]]
   for = "/venue/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=31536000, immutable"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+from = "/recipe-midnight-smoke.html"
+  to = "/lifestyle/recipes"
+  status = 301
+
+[[redirects]]
+from = "/recipe-huckleberry-shine.html"
+  to = "/lifestyle/recipes/huckleberry-moonshine-smash"
+  status = 301
+
+[[redirects]]
+from = "/recipe-montana-mule.html"
+  to = "/lifestyle/recipes/montana-mule"
+  status = 301
+
+# =============================================================================
+# Redirects — Proposal / tool pages (clean URLs)
+# =============================================================================
+
+[[redirects]]
+from = "/builder-kit"
+  to = "/builder-kit.html"
+  status = 200
+
+[[redirects]]
+from = "/social-tools"
+  to = "/social-tools.html"
+  status = 200
+[[redirects]]
+  from = "/lifestyle/guides"
+  to = "/lifestyle/guides/index.html"
+  status = 200

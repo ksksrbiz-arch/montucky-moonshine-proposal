@@ -21,7 +21,8 @@
   <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/lifestyle/recipes/flathead-cherry-bounce">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="../../css/style.css">
 
   <script type="application/ld+json">
@@ -30,7 +31,10 @@
     "@type": "Recipe",
     "name": "Flathead Cherry Bounce",
     "description": "A classic Montana cocktail featuring moonshine, cherry liqueur, fresh lemon juice, and sweet Flathead cherries over ice.",
-    "author": { "@type": "Organization", "name": "Montucky Moonshine" },
+    "author": {
+        "@type": "Organization",
+        "name": "Montucky Moonshine"
+    },
     "prepTime": "PT5M",
     "totalTime": "PT5M",
     "recipeYield": "1 serving",
@@ -38,20 +42,37 @@
     "recipeCuisine": "American",
     "keywords": "cherry bounce, Flathead cherry cocktail, Montana moonshine drink, cabin cocktail",
     "recipeIngredient": [
-      "2 oz moonshine",
-      "1 oz cherry liqueur",
-      "1/2 oz lemon juice",
-      "3 fresh Flathead cherries",
-      "Ice"
+        "2 oz moonshine",
+        "1 oz cherry liqueur",
+        "1/2 oz lemon juice",
+        "3 fresh Flathead cherries",
+        "Ice"
     ],
     "recipeInstructions": [
-      { "@type": "HowToStep", "position": 1, "text": "Add the moonshine, cherry liqueur, and fresh lemon juice to a cocktail shaker filled with ice." },
-      { "@type": "HowToStep", "position": 2, "text": "Shake vigorously for 12-15 seconds until the shaker is frosty cold." },
-      { "@type": "HowToStep", "position": 3, "text": "Strain into a rocks glass over fresh ice." },
-      { "@type": "HowToStep", "position": 4, "text": "Garnish with the three fresh Flathead cherries on a pick. Serve immediately." }
-    ]
-  }
-  </script>
+        {
+            "@type": "HowToStep",
+            "position": 1,
+            "text": "Add the moonshine, cherry liqueur, and fresh lemon juice to a cocktail shaker filled with ice."
+        },
+        {
+            "@type": "HowToStep",
+            "position": 2,
+            "text": "Shake vigorously for 12-15 seconds until the shaker is frosty cold."
+        },
+        {
+            "@type": "HowToStep",
+            "position": 3,
+            "text": "Strain into a rocks glass over fresh ice."
+        },
+        {
+            "@type": "HowToStep",
+            "position": 4,
+            "text": "Garnish with the three fresh Flathead cherries on a pick. Serve immediately."
+        }
+    ],
+    "image": "https://images.pexels.com/photos/5863531/pexels-photo-5863531.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&dpr=1&fit=crop"
+}
+</script>
 </head>
 <body>
 
@@ -76,8 +97,40 @@
         <a href="../../index.html">Home</a>
         <a href="../../shop.html">Shop</a>
         <a href="../../venue.html">Venue</a>
+        <a href="../../the-still-room.html" style="color:var(--amber)">The Still Room</a>
         <a href="../../about.html">About</a>
-        <a href="../index.html" class="active">Lifestyle</a>
+        <div class="nav-drop">
+          <a href="../../lifestyle/index.html" class="active">Lifestyle</a>
+          <div class="nav-mega" role="region" aria-label="Lifestyle menu">
+            <div class="nav-mega-in">
+              <div class="nav-mega-col">
+                <h4>🫐 Recipes</h4>
+                <a href="../../lifestyle/recipes/huckleberry-moonshine-smash.html">Huckleberry Smash<span class="nav-link-sub">Most popular</span></a>
+                <a href="../../lifestyle/recipes/montana-mule.html">Montana Mule</a>
+                <a href="../../lifestyle/recipes/moonshine-old-fashioned.html">Old Fashioned</a>
+                <a href="../../lifestyle/recipes/index.html">All Recipes →</a>
+              </div>
+              <div class="nav-mega-col">
+                <h4>📖 Culture</h4>
+                <a href="../../lifestyle/culture/montana-lady-bootleggers.html">Lady Bootleggers</a>
+                <a href="../../lifestyle/culture/bootlegger-trail.html">Bootlegger Trail</a>
+                <a href="../../lifestyle/culture/rebellion-in-a-jar.html">Rebellion in a Jar</a>
+                <a href="../../lifestyle/culture/index.html">All Articles →</a>
+              </div>
+              <div class="nav-mega-col">
+                <h4>🥃 Guides</h4>
+                <a href="../../lifestyle/guides/what-does-moonshine-taste-like.html">What Does It Taste Like?</a>
+                <a href="../../lifestyle/guides/what-to-mix-with-moonshine.html">What to Mix With It</a>
+                <a href="../../lifestyle/guides/moonshine-vs-whiskey.html">Moonshine vs Whiskey</a>
+                <a href="../../lifestyle/guides/index.html">All Guides →</a>
+              </div>
+              <div class="nav-mega-hub">
+                <a href="../../lifestyle/index.html">⚡ Open Lifestyle Hub</a>
+                <span>Recipes · Culture · Guides · Montana Stories</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <a href="../../contact.html">Contact</a>
         <a href="https://montuckymoonshine.com/collections/all" target="_blank" rel="noopener noreferrer" class="nav-cta">Shop Now</a>
       </div>
@@ -113,7 +166,21 @@
 
   <main id="main">
 
-    <section style="padding:4rem 1.5rem">
+        <section class="recipe-hero">
+      <img src="https://images.pexels.com/photos/5863531/pexels-photo-5863531.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&dpr=1&fit=crop" alt="Cocktail drink on wooden table" class="recipe-hero-bg" loading="eager" fetchpriority="high">
+      <div class="recipe-hero-overlay"></div>
+      <div class="recipe-hero-content">
+        <div class="recipe-category" style="color:#A52A2A">River & Trail</div>
+        <h1 class="recipe-hero-title">Flathead Cherry Bounce</h1>
+        <div class="recipe-meta">
+          <span>&#9202; 5 min</span>
+          <span>&#127860; 1 serving</span>
+          <span>&#9728; Summer</span>
+        </div>
+      </div>
+    </section>
+
+<section style="padding:4rem 1.5rem">
       <div class="editorial reveal">
         <p style="font-size:1.1rem;color:var(--cream);font-family:var(--ff-d);line-height:1.6;margin-bottom:1.5rem"><em>You pull off the highway at one of those hand-painted cherry stands, the ones with the honor-system cash box and a dog asleep in the shade.</em></p>
         <p>Flathead Lake cherries are one of Montana's best-kept secrets -- sweet, firm, and deeply red, they ripen in a brief window in late July that locals track like a holiday. People drive hours for a bucket. The cherry bounce was originally a colonial-era drink, a way of preserving fruit in spirits. This version is simpler and faster, but it carries the same idea: take something perfect from the land and make it last a little longer in the glass.</p>
@@ -200,6 +267,18 @@
       </div>
     </section>
 
+
+    <!-- Complete the Moment -->
+    <section class="recipe-extras">
+      <div class="recipe-extra-card reveal">
+        <h3>Serve It In</h3>
+        <p>A small cordial glass or a rocks glass over a single large ice cube. This is a sipper, not a shooter.</p>
+      </div>
+      <div class="recipe-extra-card reveal">
+        <h3>Complete the Moment</h3>
+        <p>Serve in the <a href="https://montuckymoonshine.com/products/moonshine-stein" target="_blank" rel="noopener noreferrer">Montucky Stein</a> and grab the <a href="https://montuckymoonshine.com/products/montucky-moonshine-spirits-e-book" target="_blank" rel="noopener noreferrer">Spirits E-Book</a> for more recipes built around Montana ingredients.</p>
+      </div>
+    </section>
   </main>
 
   <footer class="safe-b" role="contentinfo">
