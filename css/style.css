@@ -13,10 +13,15 @@ a{text-decoration:none;color:inherit}
 
 /*===== TOKENS =====*/
 :root{
-  --bg:#0a0a08;--bg2:#121210;--card:#1a1a16;
+  /* Deep warm base → clearly stepped sections */
+  --bg:#0a0906;          /* near-black, warm cast */
+  --bg2:#1d1509;         /* warm bourbon brown — visibly different */
+  --bg3:#271d0e;         /* richer mid-dark for variety */
+  --card:#31260f;        /* warm readable card surface */
+  --card2:#3d3017;       /* lighter card accent */
   --amber:#c8922a;--amber-l:#e6b04a;--amber-g:rgba(200,146,42,0.15);
-  --cream:#f5f0e6;--t1:#eae5d8;--t2:#9e9a8f;--t3:#8a8578;
-  --bdr:rgba(200,146,42,0.12);
+  --cream:#f5f0e6;--t1:#eae5d8;--t2:#a09a8e;--t3:#8a8578;
+  --bdr:rgba(200,146,42,0.18);   /* slightly stronger borders */
   --ff-d:'Playfair Display',Georgia,serif;
   --ff-b:'Barlow',sans-serif;
   --ff-c:'Barlow Condensed',sans-serif;
