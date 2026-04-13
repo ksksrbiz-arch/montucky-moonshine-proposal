@@ -1,18 +1,13 @@
+[build]
+  publish = "."
 
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+# Static site — no edge functions, no SSR, no bundler needed
+[build.environment]
+  NODE_VERSION = "20"
 
-[[headers]]
-  for = "/assets/recipe-photos/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+# Disable edge functions bundling for this static site
+[dev]
+  framework = "#static"
 
 [[redirects]]
   from = "/faq"
@@ -48,9 +43,6 @@
   from = "/recipes"
   to = "/recipes.html"
   status = 200
-
-[build]
-  publish = "."
 
 [[redirects]]
   from = "/shop"
@@ -107,14 +99,30 @@
   to = "/deliverables.html"
   status = 200
 
+# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://montuckymoonshine.com data:; connect-src 'self'; frame-ancestors 'none'"
     Cache-Control = "public, max-age=3600"
+
+# Long-term asset caching
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/recipe-photos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/css/*"
