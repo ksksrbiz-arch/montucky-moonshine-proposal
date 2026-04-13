@@ -686,10 +686,12 @@
       menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     }
 
     toggle.addEventListener('click', function () {
       var isOpen = menu.classList.toggle('open');
+      document.body.classList.toggle('menu-open', isOpen);
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', String(isOpen));
       document.body.style.overflow = isOpen ? 'hidden' : '';

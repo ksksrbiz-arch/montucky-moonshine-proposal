@@ -44,6 +44,18 @@
     .recipe-expand-btn:hover{opacity:.7}
     @media(max-width:640px){.recipe-grid{grid-template-columns:1fr}}
   </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Montucky Moonshine",
+    "url":"https://montuckymoonshine.com",
+    "logo":"https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107",
+    "address":{"@type":"PostalAddress","streetAddress":"3420 Byron Road","addressLocality":"Helena","addressRegion":"MT","postalCode":"59602","addressCountry":"US"},
+    "email":"montuckymoonshine@gmail.com",
+    "sameAs":["https://www.facebook.com/Montucky-Moonshine-661364020944905/"]
+  }
+  </script>
 </head>
 <body>
 
@@ -89,7 +101,7 @@
     <!-- Hero -->
     <section class="hero" style="min-height:45vh">
       <div class="hero-bg">
-        <img src="assets/recipe-photos/recipe-hub-hero.jpg" alt="" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.2">
+        <picture><source srcset="assets/recipe-photos/recipe-hub-hero.webp" type="image/webp"><img src="assets/recipe-photos/recipe-hub-hero.jpg" alt="" loading="eager" fetchpriority="high" class="parallax-bg" data-parallax="0.2"></picture>
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
@@ -135,7 +147,7 @@
           <!-- Recipe 1 -->
           <div class="recipe-card reveal from-scale" data-moment="trail" data-season="summer" data-difficulty="easy">
             <div class="recipe-img">
-              <img src="assets/recipe-photos/recipe-montana-mule.jpg" alt="Montana Mule — moonshine with ginger beer and lime in a mason jar" loading="lazy">
+              <picture><source srcset="assets/recipe-photos/recipe-montana-mule.webp" type="image/webp"><img src="assets/recipe-photos/recipe-montana-mule.jpg" alt="Montana Mule — moonshine with ginger beer and lime in a mason jar" loading="lazy"></picture>
               <div class="recipe-img-overlay"></div>
             </div>
             <div class="recipe-body">
@@ -172,7 +184,7 @@
           <!-- Recipe 2 -->
           <div class="recipe-card reveal from-scale" data-moment="campfire" data-season="all" data-difficulty="intermediate">
             <div class="recipe-img">
-              <img src="assets/recipe-photos/recipe-campfire-sour.jpg" alt="Campfire Sour — moonshine with honey and lemon" loading="lazy">
+              <picture><source srcset="assets/recipe-photos/recipe-campfire-sour.webp" type="image/webp"><img src="assets/recipe-photos/recipe-campfire-sour.jpg" alt="Campfire Sour — moonshine with honey and lemon" loading="lazy"></picture>
               <div class="recipe-img-overlay"></div>
             </div>
             <div class="recipe-body">
@@ -209,7 +221,7 @@
           <!-- Recipe 3 -->
           <div class="recipe-card reveal from-scale" data-moment="porch" data-season="summer" data-difficulty="easy">
             <div class="recipe-img">
-              <img src="assets/recipe-photos/recipe-huckleberry-shine.jpg" alt="Huckleberry Shine — Montana huckleberry moonshine cocktail" loading="lazy">
+              <picture><source srcset="assets/recipe-photos/recipe-huckleberry-shine.webp" type="image/webp"><img src="assets/recipe-photos/recipe-huckleberry-shine.jpg" alt="Huckleberry Shine — Montana huckleberry moonshine cocktail" loading="lazy"></picture>
               <div class="recipe-img-overlay"></div>
             </div>
             <div class="recipe-body">
@@ -245,7 +257,7 @@
           <!-- Recipe 4 -->
           <div class="recipe-card reveal from-scale" data-moment="cabin" data-season="winter" data-difficulty="advanced">
             <div class="recipe-img">
-              <img src="assets/recipe-photos/recipe-midnight-smoke.jpg" alt="Midnight Smoke — cold brew and moonshine cocktail" loading="lazy">
+              <picture><source srcset="assets/recipe-photos/recipe-midnight-smoke.webp" type="image/webp"><img src="assets/recipe-photos/recipe-midnight-smoke.jpg" alt="Midnight Smoke — cold brew and moonshine cocktail" loading="lazy"></picture>
               <div class="recipe-img-overlay"></div>
             </div>
             <div class="recipe-body">
@@ -280,7 +292,7 @@
           <!-- Recipe 5 -->
           <div class="recipe-card reveal from-scale" data-moment="porch" data-season="summer" data-difficulty="easy">
             <div class="recipe-img">
-              <img src="assets/recipe-photos/recipe-peach-shine.jpg" alt="Montana Peach Shine — peach moonshine cocktail" loading="lazy">
+              <picture><source srcset="assets/recipe-photos/recipe-peach-shine.webp" type="image/webp"><img src="assets/recipe-photos/recipe-peach-shine.jpg" alt="Montana Peach Shine — peach moonshine cocktail" loading="lazy"></picture>
               <div class="recipe-img-overlay"></div>
             </div>
             <div class="recipe-body">
@@ -315,7 +327,7 @@
           <!-- Recipe 6 -->
           <div class="recipe-card reveal from-scale" data-moment="porch" data-season="all" data-difficulty="expert">
             <div class="recipe-img">
-              <img src="assets/recipe-photos/recipe-straight-pour.jpg" alt="The Straight Pour — moonshine neat" loading="lazy">
+              <picture><source srcset="assets/recipe-photos/recipe-straight-pour.webp" type="image/webp"><img src="assets/recipe-photos/recipe-straight-pour.jpg" alt="The Straight Pour — moonshine neat" loading="lazy"></picture>
               <div class="recipe-img-overlay"></div>
             </div>
             <div class="recipe-body">
@@ -351,7 +363,7 @@
 
     <!-- CTA -->
     <section style="background:var(--card);border-top:1px solid var(--bdr);text-align:center;padding:4rem 1.5rem;position:relative;overflow:hidden">
-      <div style="position:absolute;inset:0;pointer-events:none"><img src="assets/recipe-photos/recipe-hub-hero.jpg" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;filter:brightness(.08) saturate(.4)"></div>
+      <div style="position:absolute;inset:0;pointer-events:none"><picture><source srcset="assets/recipe-photos/recipe-hub-hero.webp" type="image/webp"><img src="assets/recipe-photos/recipe-hub-hero.jpg" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;filter:brightness(.08) saturate(.4)"></picture></div>
       <div class="container reveal from-blur" style="position:relative;z-index:1">
         <p class="sec-label">Stock Up</p>
         <h2 class="sec-title">Get the <em>Good Stuff</em></h2>

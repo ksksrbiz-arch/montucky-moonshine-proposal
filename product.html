@@ -8,7 +8,7 @@
   <meta property="og:title" content="Shop — Montucky Moonshine">
   <meta property="og:description" content="Handcrafted Montana goods. Ships from Helena.">
   <meta property="og:image" content="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
-  <title>Product — Montucky Moonshine</title>
+  <title>Shop — Montucky Moonshine</title>
   <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -194,5 +194,18 @@
 
   <script src="js/main.js"></script>
   <script src="js/product.js"></script>
+  <script>
+    // Update page title dynamically once product loads
+    document.addEventListener('DOMContentLoaded', function() {
+      var observer = new MutationObserver(function() {
+        var title = document.getElementById('prodTitle');
+        if (title && title.textContent.trim()) {
+          document.title = title.textContent.trim() + ' — Montucky Moonshine';
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, {childList: true, subtree: true});
+    });
+  </script>
 </body>
 </html>

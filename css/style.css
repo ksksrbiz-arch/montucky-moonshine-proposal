@@ -531,3 +531,106 @@ body.page-loaded{opacity:1}
 
 /*===== RECIPE CARD HOVER — stronger =====*/
 .recipe-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 40px rgba(200,146,42,.12)}
+
+/*===== REFINEMENTS — VISUAL POLISH =====*/
+
+/* Smoother font rendering globally */
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+
+/* Tighter nav spacing on mobile */
+@media(max-width:640px){
+  .nav-in{padding:.6rem 1rem}
+  .nav-brand{font-size:1rem}
+  .nav-logo img{height:38px;width:38px}
+}
+
+/* Announcement bar — tighter on mobile */
+@media(max-width:480px){
+  .ann-bar p{font-size:.6rem;letter-spacing:.1em;padding:.5rem 2rem .5rem .75rem}
+}
+
+/* Hero content vertical rhythm */
+.hero-badge{margin-bottom:1.25rem}
+.hero h1{margin-bottom:.6rem}
+.hero-sub{margin-bottom:.6rem}
+.hero-desc{margin-bottom:1.75rem}
+
+/* Card hover transition timing consistency */
+.v-card,.bundle-card,.recipe-card,.p-card,.product-card{
+  transition:all .4s cubic-bezier(.16,1,.3,1)
+}
+
+/* Section padding uniformity */
+@media(max-width:640px){
+  section{padding:3.5rem 1rem}
+  .sec-in{padding:0 1rem}
+}
+
+/* Footer layout mobile fix */
+@media(max-width:480px){
+  .foot-grid{grid-template-columns:1fr 1fr!important;gap:2rem}
+}
+
+/* Strip scroll indicators on mobile */
+.scroll-x{-webkit-overflow-scrolling:touch}
+
+/* Better focus ring */
+*:focus-visible{
+  outline:2px solid var(--amber);
+  outline-offset:3px;
+  border-radius:2px
+}
+
+/* Improved button active state */
+.btn:active{transform:scale(.98)!important}
+
+/* Image loading shimmer — faster */
+.img-wrap{animation-duration:1.2s}
+
+/* Product card info padding consistency */
+.p-info,.product-info{padding:.85rem 1rem 1.1rem}
+
+/* Stronger amber glow on interactive cards */
+.card:hover,.v-card:hover,.recipe-card:hover{
+  box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px rgba(200,146,42,.12)
+}
+
+/* Newsletter input — better placeholder */
+.newsletter-input::placeholder,.popup-input::placeholder{
+  color:var(--t3);opacity:.7
+}
+
+/* Preloader — faster exit on repeat visits */
+@media(prefers-reduced-motion:no-preference){
+  .preloader{transition:opacity .4s,visibility .4s}
+}
+
+/* Trust bar responsive */
+@media(max-width:768px){
+  .trust-bar{gap:1rem;padding:1rem}
+  .trust-item{font-size:.6rem}
+}
+@media(max-width:480px){
+  .trust-bar{gap:.75rem;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding:.75rem 1rem}
+  .trust-item{flex-shrink:0}
+}
+
+/* Shipping bar polish */
+.ship-progress{border-radius:4px;overflow:hidden}
+.ship-bar-fill{border-radius:2px}
+
+/* Social link hover — lift */
+.social-link:hover{transform:translateY(-2px)}
+
+/* Mobile menu overlay when open */
+body.menu-open::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:rgba(10,10,8,.4);
+  z-index:98;
+  pointer-events:none
+}
+
+/* Smooth anchor scroll offset for fixed nav */
+html{scroll-padding-top:70px}
