@@ -1,13 +1,9 @@
 [build]
   publish = "."
+  framework = "#static"
 
-# Static site — no edge functions, no SSR, no bundler needed
 [build.environment]
   NODE_VERSION = "20"
-
-# Disable edge functions bundling for this static site
-[dev]
-  framework = "#static"
 
 [[redirects]]
   from = "/faq"
