@@ -1,9 +1,12 @@
 [build]
   publish = "."
-  framework = "#static"
+  command = "echo 'Static site — no build needed'"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NETLIFY_EDGE_FUNCTIONS_ENABLED = "false"
+
+[dev]
+  framework = "#static"
 
 [[redirects]]
   from = "/faq"
