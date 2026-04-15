@@ -108,7 +108,7 @@
           <p style="color:var(--t3);font-size:.8rem;line-height:1.6;margin-bottom:.75rem">Montana cocktail recipes to your inbox.</p>
           <form name="recipe-newsletter" netlify netlify-honeypot="bot-field" action="/thank-you" method="POST">
             <input type="hidden" name="form-name" value="recipe-newsletter">
-            <input type="hidden" name="bot-field">
+            <p style="display:none"><input name="bot-field"></p>
             <input type="email" name="email" placeholder="your@email.com" required style="width:100%;padding:.65rem;background:var(--bg);border:1px solid var(--bdr);color:var(--cream);font-family:var(--ff-b);font-size:.8rem;margin-bottom:.5rem;box-sizing:border-box">
             <button type="submit" class="btn btn-o" style="width:100%;padding:.65rem">Subscribe</button>
           </form>

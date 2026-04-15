@@ -99,6 +99,21 @@
   to = "/deliverables.html"
   status = 200
 
+[[redirects]]
+  from = "/recipe-campfire-sour"
+  to = "/recipe-campfire-sour.html"
+  status = 200
+
+[[redirects]]
+  from = "/recipe-peach-shine"
+  to = "/recipe-peach-shine.html"
+  status = 200
+
+[[redirects]]
+  from = "/recipe-straight-pour"
+  to = "/recipe-straight-pour.html"
+  status = 200
+
 # Security headers
 [[headers]]
   for = "/*"
