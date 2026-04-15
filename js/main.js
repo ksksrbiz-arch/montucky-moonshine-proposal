@@ -274,6 +274,24 @@
         if (e.key === 'ArrowLeft') navigate(-1);
         if (e.key === 'ArrowRight') navigate(1);
       });
+
+      // Touch swipe support
+      var touchStartX = 0;
+      var touchStartY = 0;
+      lb.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+      }, { passive: true });
+      lb.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
+          if (dx < 0) navigate(1);
+          else navigate(-1);
+        } else if (Math.abs(dy) > Math.abs(dx) && dy > 80) {
+          closeLightbox();
+        }
+      }, { passive: true });
     });
   })();
 
