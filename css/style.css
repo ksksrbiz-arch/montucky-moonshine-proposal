@@ -674,7 +674,7 @@ html{scroll-padding-top:70px}
 /*===== MOBILE BOTTOM TAB BAR =====*/
 .mob-tab{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(10,10,8,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--bdr);display:none;justify-content:space-around;align-items:stretch;padding-bottom:env(safe-area-inset-bottom)}
 @media(max-width:640px){.mob-tab{display:flex}}
-.mob-tab-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;padding:.55rem .25rem;text-decoration:none;color:var(--t3);font-family:var(--ff-c);font-size:.48rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:color .25s;min-height:52px;border:none;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mob-tab-item{flex:1;min-width:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;padding:.55rem .25rem;text-decoration:none;color:var(--t3);font-family:var(--ff-c);font-size:.48rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:color .25s;min-height:52px;border:none;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .mob-tab-item svg{width:21px;height:21px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .mob-tab-item.active{color:var(--amber)}
 .mob-tab-item:hover{color:var(--amber)}
