@@ -282,7 +282,7 @@
       <p style="color:var(--t3);font-size:.85rem;line-height:1.8;margin-top:1rem">Be first to know about exclusive merchandise drops, venue events, and Montana lifestyle content. No spam — just the good stuff.</p>
       <form class="newsletter-form" name="newsletter" netlify netlify-honeypot="bot-field" action="/thank-you" method="POST">
         <input type="hidden" name="form-name" value="newsletter">
-        <input type="hidden" name="bot-field">
+        <p style="display:none"><input name="bot-field"></p>
         <input class="newsletter-input" type="email" name="email" placeholder="Enter your email address" required autocomplete="email">
         <button type="submit" class="btn btn-p">Subscribe</button>
       </form>
@@ -320,7 +320,6 @@
         </div>
         <div class="foot-col">
           <h4>Company</h4>
-          <a href="https://montuckymoonshine.com/pages/contact-us" target="_blank" rel="noopener noreferrer">Contact Us</a>
           <a href="contact.html">Contact Us</a>
           <a href="recipes.html">Recipes</a>
           <a href="faq.html">FAQ</a>
