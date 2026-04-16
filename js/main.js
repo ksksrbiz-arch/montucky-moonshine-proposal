@@ -8,29 +8,7 @@
 
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ----------------------------------------------------------
-     1. Preloader
-  ---------------------------------------------------------- */
-  (function preloader() {
-    var el = document.getElementById('preloader');
-    var fill = document.getElementById('preloaderFill');
-    if (!el || !fill) return;
-
-    var progress = 0;
-    var ticker = setInterval(function () {
-      progress += Math.random() * 12;
-      if (progress > 90) progress = 90;
-      fill.style.width = progress + '%';
-    }, 180);
-
-    window.addEventListener('load', function () {
-      clearInterval(ticker);
-      fill.style.width = '100%';
-      setTimeout(function () {
-        el.classList.add('done');
-      }, 400);
-    });
-  })();
+  /* Preloader removed — was blocking LCP until window.load + 400 ms */
 
   /* ----------------------------------------------------------
      2. Scroll Progress Bar  &  3. Nav Scroll Effect
@@ -535,13 +513,8 @@
   });
 
   /* ----------------------------------------------------------
-     17. Page Load Transition
+     17. Page Load Transition — removed (was blocking LCP)
   ---------------------------------------------------------- */
-  document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
-      document.body.classList.add('page-loaded');
-    }, 100);
-  });
 
   /* ----------------------------------------------------------
      18. Tilt Card Effect
