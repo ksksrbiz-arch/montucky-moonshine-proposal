@@ -282,8 +282,7 @@ footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:3.5rem 1.5r
 @media(pointer:coarse){.cursor-glow{display:none!important}}
 
 /*===== PAGE TRANSITION =====*/
-body{opacity:0;transition:opacity .4s ease}
-body.page-loaded{opacity:1}
+/* body opacity fade removed — was blocking FCP/LCP */
 
 /*===== FEATURE GRID =====*/
 .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}

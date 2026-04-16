@@ -21,7 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="venue/bar_long.webp" type="image/webp">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="css/style.css">
   <style>
     .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2.5s cubic-bezier(.4,0,.2,1)}
@@ -51,11 +52,6 @@
     <p><strong>🚚 FREE SHIPPING</strong> on orders over $40 &nbsp;·&nbsp; Use code <strong>MONTANA15</strong> for 15% off your first order &nbsp;<a href="shop.html">Shop Now &rarr;</a></p>
     <button class="ann-bar-close" onclick="document.getElementById('annBar').style.display='none'" aria-label="Close announcement">✕</button>
   </div>
-
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <img class="preloader-logo" src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="">
-    <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
   </div>
 
   <!-- Scroll Progress -->
@@ -73,7 +69,7 @@
   <a href="#main" class="skip">Skip to content</a>
 
   <!--===== NAV =====-->
-  <nav id="navbar" role="banner">
+  <nav id="navbar">
     <div class="nav-in">
       <a class="nav-logo" href="index.html" aria-label="Home">
         <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
@@ -143,15 +139,15 @@
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/lounge.webp" alt="Lounge area" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/pool_table.webp" alt="Pool table room" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
         <div class="img-wrap" style="flex-shrink:0"><img src="venue/bar_long.webp" alt="Full bar view" width="1215" height="911" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/01_vintage_poster_medium.png" alt="Vintage Heritage" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/02_neon_sign_medium.png" alt="Neon Sign" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/05_steampunk_medium.png" alt="Steampunk" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/07_wolf_mystical_medium.png" alt="Wild Montana" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/06_grunge_90s_medium.png" alt="Grunge Era" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/08_vintage_label_medium.png" alt="Vintage Label" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/04_tattoo_skull_medium.png" alt="Tattoo Skull" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/03_psychedelic_medium.png" alt="Psychedelic" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
-        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/10_metal_80s_medium.png" alt="Metal 80s" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/01_vintage_poster_thumbnail.png" alt="Vintage Heritage" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/02_neon_sign_thumbnail.png" alt="Neon Sign" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/05_steampunk_thumbnail.png" alt="Steampunk" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/07_wolf_mystical_thumbnail.png" alt="Wild Montana" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/06_grunge_90s_thumbnail.png" alt="Grunge Era" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/08_vintage_label_thumbnail.png" alt="Vintage Label" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/04_tattoo_skull_thumbnail.png" alt="Tattoo Skull" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/03_psychedelic_thumbnail.png" alt="Psychedelic" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
+        <div class="img-wrap" style="flex-shrink:0"><img src="assets/montucky-visuals/10_metal_80s_thumbnail.png" alt="Metal 80s" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
       </div>
     </div>
 
@@ -354,7 +350,7 @@
     <div class="popup-box">
       <button class="popup-close" id="popupClose" aria-label="Close">&#10005;</button>
       <div class="popup-img">
-        <img src="assets/montucky-visuals/bottletucky.jpeg" alt="" aria-hidden="true">
+        <img src="assets/montucky-visuals/bottletucky.jpeg" alt="" aria-hidden="true" loading="lazy">
         <div class="popup-img-overlay"></div>
         <div class="popup-img-text">
           <p class="sec-label" style="margin:0 0 .5rem">Join the Inner Circle</p>
@@ -374,23 +370,14 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
   <script>
     (function(){
       var slides = document.querySelectorAll('.hero-slide');
       var dots   = document.querySelectorAll('.hero-dot');
       if(!slides.length) return;
-      // Time-of-day starting image: 0=venue bar, 1=hero bar, 2=metal80s, 3=vintage poster
-      var h = new Date().getHours();
-      var start = h>=5&&h<12 ? 3 : h>=12&&h<18 ? 1 : h>=18&&h<22 ? 0 : 2;
-      slides[0].classList.remove('active');
-      slides[start].classList.add('active');
-      // Sync dots
-      if(dots.length){
-        dots[0].classList.remove('active');
-        dots[start].classList.add('active');
-      }
-      var cur = start;
+      // Always start at slide 0 (bar_long.webp) — it's preloaded and fetchpriority=high (LCP image)
+      var cur = 0;
       function goTo(idx){
         slides[cur].classList.remove('active');
         if(dots.length) dots[cur].classList.remove('active');

@@ -17,7 +17,8 @@
   <link rel="canonical" href="https://montucky-moonshine-proposal.netlify.app/about">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
@@ -35,9 +36,6 @@
 <body>
 
   <!-- Preloader -->
-  <div id="preloader">
-    <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine" width="80" height="80">
-    <div class="progress-bar"><div class="progress-fill"></div></div>
   </div>
 
   <!-- Scroll Progress -->
@@ -47,7 +45,7 @@
   <a href="#main" class="skip">Skip to content</a>
 
   <!-- Navigation -->
-  <nav id="navbar" role="banner">
+  <nav id="navbar">
     <div class="nav-in">
       <a class="nav-logo" href="index.html" aria-label="Home">
         <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
@@ -274,7 +272,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 
   <!-- Mobile Bottom Tab Bar -->
   <nav class="mob-tab" aria-label="Mobile navigation tabs">

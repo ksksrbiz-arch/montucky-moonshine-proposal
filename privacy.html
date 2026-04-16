@@ -11,7 +11,8 @@
   <link rel="icon" type="image/png" href="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,7 +21,7 @@
   <a href="#main" class="skip">Skip to content</a>
 
   <!-- Nav -->
-  <nav id="navbar" role="banner">
+  <nav id="navbar">
     <div class="nav-in">
       <a class="nav-logo" href="index.html" aria-label="Home">
         <img src="https://montuckymoonshine.com/cdn/shop/files/hat1-6_180x.png?v=1614732107" alt="Montucky Moonshine logo" width="44" height="44">
@@ -128,7 +129,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
   <!-- Mobile Bottom Tab Bar -->
   <nav class="mob-tab" aria-label="Mobile navigation tabs">
     <a href="index.html" class="mob-tab-item" aria-label="Home">
