@@ -434,7 +434,7 @@
         if (success) success.style.display = 'block';
       })
       .catch(function () {
-        alert('Something went wrong. Please email us directly at info@montuckymoonshine.com');
+        alert('Something went wrong. Please email us directly at montuckymoonshine@gmail.com');
       });
     });
   });
