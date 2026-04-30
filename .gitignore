@@ -1,0 +1,8 @@
+# Netlify local artifacts — never commit these
+.netlify/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
