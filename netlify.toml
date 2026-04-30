@@ -1,9 +1,6 @@
 [build]
   publish = "."
-
-# Static site — no edge functions, no SSR, no bundler needed
-[build.environment]
-  NODE_VERSION = "20"
+  command = ""   # pure static — no build step, no blobs to upload
 
 # Disable edge functions bundling for this static site
 [dev]
