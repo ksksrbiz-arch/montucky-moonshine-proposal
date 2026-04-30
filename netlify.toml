@@ -1,6 +1,6 @@
 [build]
   publish = "."
-  command  = ""   # pure static — no build step, no blobs to upload
+  command = ""   # pure static — no build step, no blobs to upload
 
 # Disable edge functions bundling for this static site
 [dev]
