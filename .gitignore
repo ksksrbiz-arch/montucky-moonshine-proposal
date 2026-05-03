@@ -1,6 +1,9 @@
 # Netlify local artifacts — never commit these
 .netlify/
 
+# Node
+node_modules/
+
 # macOS
 .DS_Store
 

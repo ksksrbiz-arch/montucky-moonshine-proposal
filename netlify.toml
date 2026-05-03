@@ -1,6 +1,10 @@
 [build]
   publish = "."
-  command = ""   # pure static — no build step, no blobs to upload
+  command = "npm install"   # installs @netlify/blobs for the submission-created function
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 # Disable edge functions bundling for this static site
 [dev]
