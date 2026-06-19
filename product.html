@@ -98,9 +98,9 @@
         <div class="product-actions">
           <div class="qty-row">
             <span style="font-family:var(--ff-c);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)">Qty</span>
-            <button class="qty-btn" onclick="changeQty(-1)">−</button>
-            <span class="qty-val" id="qtyVal">1</span>
-            <button class="qty-btn" onclick="changeQty(1)">+</button>
+            <button type="button" class="qty-btn" onclick="changeQty(-1)" aria-label="Decrease quantity">−</button>
+            <span class="qty-val" id="qtyVal" aria-live="polite" aria-label="Quantity">1</span>
+            <button type="button" class="qty-btn" onclick="changeQty(1)" aria-label="Increase quantity">+</button>
           </div>
           <a id="prodBuyBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-p product-buy">Add to Cart — Shop Now &rarr;</a>
           <button class="product-secondary" onclick="window.open('https://montuckymoonshine.com/collections/all','_blank')">View Full Collection</button>

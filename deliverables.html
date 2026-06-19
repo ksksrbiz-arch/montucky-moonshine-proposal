@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+.skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:1rem;background:#c8922a;color:#0a0a08;font-weight:700;text-decoration:none}
+.skip:focus{left:1rem;top:1rem;width:auto;height:auto}
 :root {
   --bg: #0a0a08;
   --bg2: #121210;
@@ -379,6 +381,8 @@ footer a { color: var(--amber); }
 </head>
 <body>
 
+<a href="#main" class="skip">Skip to content</a>
+
 <header class="hero">
   <div class="hero-badge"><span class="dot"></span> Proposal Ready</div>
   <h1>Montucky <em>Moonshine</em></h1>
@@ -386,7 +390,7 @@ footer a { color: var(--amber); }
   <p class="from">Engineered by 1Commerce LLC &middot; April 2026</p>
 </header>
 
-<main>
+<main id="main">
   <!-- Deliverables -->
   <div class="container">
     <section class="section">

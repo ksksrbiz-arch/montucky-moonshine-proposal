@@ -285,7 +285,7 @@
       <form class="newsletter-form" name="newsletter" netlify netlify-honeypot="bot-field" action="/thank-you" method="POST">
         <input type="hidden" name="form-name" value="newsletter">
         <p style="display:none"><input name="bot-field"></p>
-        <input class="newsletter-input" type="email" name="email" placeholder="Enter your email address" required autocomplete="email">
+        <input class="newsletter-input" type="email" name="email" placeholder="Enter your email address" required autocomplete="email" aria-label="Email address">
         <button type="submit" class="btn btn-p">Subscribe</button>
       </form>
       <div class="newsletter-perks">
@@ -362,7 +362,7 @@
         <form name="email-capture" netlify netlify-honeypot="bot-field" action="/thank-you" method="POST">
           <input type="hidden" name="form-name" value="email-capture">
           <p style="display:none"><input name="bot-field"></p>
-          <input class="popup-input" type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+          <input class="popup-input" type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
           <button type="submit" class="btn btn-p" style="width:100%">Claim 15% Off &rarr;</button>
         </form>
         <p class="popup-fine">No spam. Unsubscribe anytime. Offer valid on first purchase only.</p>
@@ -385,11 +385,25 @@
         slides[cur].classList.add('active');
         if(dots.length) dots[cur].classList.add('active');
       }
-      if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-        setInterval(function(){ goTo(cur+1); }, 8000);
+      var heroEl = document.querySelector('.hero');
+      var rotateTimer = null;
+      function startRotation(){
+        if(rotateTimer || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+        rotateTimer = setInterval(function(){ goTo(cur+1); }, 8000);
+      }
+      function stopRotation(){
+        if(rotateTimer){ clearInterval(rotateTimer); rotateTimer = null; }
+      }
+      startRotation();
+      // WCAG 2.2.2 — let users pause the auto-advance by hovering or
+      // moving keyboard focus into the hero; resume when they leave.
+      if(heroEl){
+        heroEl.addEventListener('mouseenter', stopRotation);
+        heroEl.addEventListener('mouseleave', startRotation);
+        heroEl.addEventListener('focusin', stopRotation);
+        heroEl.addEventListener('focusout', startRotation);
       }
       // Touch swipe on hero
-      var heroEl = document.querySelector('.hero');
       if(heroEl){
         var tx = 0, ty = 0;
         heroEl.addEventListener('touchstart',function(e){
