@@ -50,6 +50,7 @@
         var linkFile = href.split('/').pop();
         if (linkFile === path) {
           links[i].classList.add('active');
+          links[i].setAttribute('aria-current', 'page');
         }
       }
     }
@@ -183,27 +184,45 @@
     ];
 
     var currentIndex = 0;
+    var lastFocused = null;
 
     function openLightbox(idx) {
       var lb = document.getElementById('lightbox');
       if (!lb) return;
+      var wasOpen = lb.classList.contains('open');
       currentIndex = idx;
       var data = venueImages[idx];
       var img = lb.querySelector('.lightbox-img') || lb.querySelector('img');
-      var title = lb.querySelector('.lightbox-title');
-      var desc = lb.querySelector('.lightbox-desc');
+      // Caption markup is <div class="lightbox-cap"><strong></strong><span></span></div>
+      var title = lb.querySelector('.lightbox-title') || lb.querySelector('.lightbox-cap strong');
+      var desc = lb.querySelector('.lightbox-desc') || lb.querySelector('.lightbox-cap span');
       if (img) { img.src = data.src; img.alt = data.title; }
       if (title) title.textContent = data.title;
       if (desc) desc.textContent = data.desc;
       lb.classList.add('open');
+      lb.setAttribute('aria-modal', 'true');
+      lb.removeAttribute('aria-hidden');
       document.body.style.overflow = 'hidden';
+      // Only capture origin focus and move focus in on the initial open,
+      // not on subsequent prev/next navigation within the open dialog.
+      if (!wasOpen) {
+        lastFocused = document.activeElement;
+        var closeBtn = lb.querySelector('.lightbox-close');
+        if (closeBtn) closeBtn.focus();
+      }
     }
 
     function closeLightbox() {
       var lb = document.getElementById('lightbox');
       if (!lb) return;
       lb.classList.remove('open');
+      lb.removeAttribute('aria-modal');
       document.body.style.overflow = '';
+      // Restore focus to the element that opened the lightbox
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        lastFocused.focus();
+      }
+      lastFocused = null;
     }
 
     function navigate(dir) {
@@ -216,11 +235,28 @@
     window.closeLightbox = closeLightbox;
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Click triggers
+      // Click triggers — also make non-native elements keyboard operable
       var triggers = document.querySelectorAll('[data-lightbox]');
       for (var i = 0; i < triggers.length; i++) {
         (function (index) {
-          triggers[index].addEventListener('click', function (e) {
+          var trigger = triggers[index];
+          var tag = trigger.tagName.toLowerCase();
+          // Native buttons/links are already focusable & operable; only enhance others
+          if (tag !== 'button' && tag !== 'a') {
+            if (!trigger.hasAttribute('tabindex')) trigger.setAttribute('tabindex', '0');
+            if (!trigger.hasAttribute('role')) trigger.setAttribute('role', 'button');
+            if (!trigger.hasAttribute('aria-label')) {
+              var cap = trigger.querySelector('.v-cap strong');
+              trigger.setAttribute('aria-label', 'View larger image' + (cap ? ': ' + cap.textContent.trim() : ''));
+            }
+            trigger.addEventListener('keydown', function (e) {
+              if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                openLightbox(index);
+              }
+            });
+          }
+          trigger.addEventListener('click', function (e) {
             e.preventDefault();
             openLightbox(index);
           });
@@ -245,12 +281,26 @@
       if (prevBtn) prevBtn.addEventListener('click', function () { navigate(-1); });
       if (nextBtn) nextBtn.addEventListener('click', function () { navigate(1); });
 
-      // Keyboard navigation
+      // Keyboard navigation + focus trap
       document.addEventListener('keydown', function (e) {
         if (!lb.classList.contains('open')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') navigate(-1);
-        if (e.key === 'ArrowRight') navigate(1);
+        if (e.key === 'Escape') { closeLightbox(); return; }
+        if (e.key === 'ArrowLeft') { navigate(-1); return; }
+        if (e.key === 'ArrowRight') { navigate(1); return; }
+        if (e.key === 'Tab') {
+          // Keep keyboard focus inside the dialog while it is open
+          var focusables = lb.querySelectorAll('button:not([disabled])');
+          if (!focusables.length) return;
+          var first = focusables[0];
+          var last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
       });
 
       // Touch swipe support
@@ -342,9 +392,9 @@
       for (var i = 0; i < list.length; i++) {
         var item = list[i];
         html +=
-          (PRODUCT_SLUGS[item.n] ? '<a href="product.html?id=' + PRODUCT_SLUGS[item.n] + '"' : '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer"') + ' class="product-card" data-cat="' + item.cat + '" style="animation-delay:' + (i * 60) + 'ms">' +
+          (PRODUCT_SLUGS[item.n] ? '<a href="product.html?id=' + PRODUCT_SLUGS[item.n] + '"' : '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer"') + ' class="product-card" role="listitem" data-cat="' + item.cat + '" style="animation-delay:' + (i * 60) + 'ms">' +
             '<div class="img-wrap">' +
-              '<img src="' + item.img + '" alt="' + item.n + '" loading="lazy" onload="this.parentElement.classList.add(\'loaded\')">' +
+              '<img src="' + item.img + '" alt="' + item.n.replace(/"/g, '&quot;') + '" loading="lazy" onload="this.parentElement.classList.add(\'loaded\')">' +
               '<div class="product-overlay"><span class="btn btn-o">Buy Now</span></div>' +
             '</div>' +
             '<div class="product-info">' +
@@ -582,13 +632,26 @@
     var closeBtn = document.getElementById('popupClose');
     if (!popup) return;
 
-    var timer = setTimeout(function () {
+    var popupLastFocused = null;
+
+    function openPopup() {
+      popupLastFocused = document.activeElement;
       popup.classList.add('open');
       sessionStorage.setItem('popup_shown', '1');
-    }, 8000);
+      // Move focus into the modal for keyboard / screen-reader users
+      var firstInput = popup.querySelector('input[type="email"]') || closeBtn;
+      if (firstInput) firstInput.focus();
+    }
+
+    var timer = setTimeout(openPopup, 8000);
 
     function closePopup() {
+      if (!popup.classList.contains('open')) return;
       popup.classList.remove('open');
+      if (popupLastFocused && typeof popupLastFocused.focus === 'function') {
+        popupLastFocused.focus();
+      }
+      popupLastFocused = null;
     }
 
     if (closeBtn) closeBtn.addEventListener('click', closePopup);
@@ -596,15 +659,29 @@
       if (e.target === popup) closePopup();
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closePopup();
+      if (!popup.classList.contains('open')) return;
+      if (e.key === 'Escape') { closePopup(); return; }
+      if (e.key === 'Tab') {
+        // Trap focus inside the modal while it is open
+        var focusables = popup.querySelectorAll('button:not([disabled]), input:not([disabled]), a[href]');
+        if (!focusables.length) return;
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
 
     // Exit intent (desktop only)
     document.addEventListener('mouseleave', function (e) {
       if (e.clientY <= 0 && !sessionStorage.getItem('popup_shown')) {
         clearTimeout(timer);
-        popup.classList.add('open');
-        sessionStorage.setItem('popup_shown', '1');
+        openPopup();
       }
     });
   })();
@@ -701,9 +778,12 @@
       if (!toggle.contains(e.target) && !menu.contains(e.target)) close();
     });
 
-    // Close on escape
+    // Close on escape and return focus to the toggle for keyboard users
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        close();
+        toggle.focus();
+      }
     });
   })();
 

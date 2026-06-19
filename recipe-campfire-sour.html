@@ -107,7 +107,7 @@
           <form name="recipe-newsletter" netlify netlify-honeypot="bot-field" action="/thank-you" method="POST">
             <input type="hidden" name="form-name" value="recipe-newsletter">
             <p style="display:none"><input name="bot-field"></p>
-            <input type="email" name="email" placeholder="your@email.com" required style="width:100%;padding:.65rem;background:var(--bg);border:1px solid var(--bdr);color:var(--cream);font-family:var(--ff-b);font-size:.8rem;margin-bottom:.5rem;box-sizing:border-box">
+            <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" autocomplete="email" style="width:100%;padding:.65rem;background:var(--bg);border:1px solid var(--bdr);color:var(--cream);font-family:var(--ff-b);font-size:.8rem;margin-bottom:.5rem;box-sizing:border-box">
             <button type="submit" class="btn btn-o" style="width:100%;padding:.65rem">Subscribe</button>
           </form>
         </div>
