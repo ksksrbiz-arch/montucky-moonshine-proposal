@@ -4,7 +4,7 @@
   "private": true,
   "description": "Montucky Moonshine proposal site — Netlify Functions",
   "dependencies": {
-    "@netlify/blobs": "^10.7.4"
+    "@netlify/blobs": "^10.7.9"
   },
   "overrides": {
     "uuid": "^14.0.0"
